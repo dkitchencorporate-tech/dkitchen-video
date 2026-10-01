@@ -19,7 +19,7 @@ const path = require('path');
   const salida = path.join(carpeta, 'reel.mp4');
   const ff = spawn(ffmpeg, ['-y', '-f', 'image2pipe', '-framerate', String(fps), '-i', '-', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-preset', 'medium', '-crf', '20', '-movflags', '+faststart', salida], { stdio: ['pipe', 'ignore', 'inherit'] });
   for (let i = 0; i < total; i++) {
-    await p.evaluate((t) => window.TL.seek(t, false), i / fps);
+    await p.evaluate((t) => { window.TL.seek(t, false); }, i / fps); // sin devolver la línea de tiempo (Playwright se colgaba serializándola)
     const buf = await p.screenshot({ type: 'jpeg', quality: 92 });
     if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once('drain', r));
     if (i % 60 === 0) console.log(`fotograma ${i}/${total}`);

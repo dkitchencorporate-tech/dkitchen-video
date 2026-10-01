@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<!-- Reel 01 de DKitchen (01/10/2026). Método HyperFrames de OpenMontage: HTML + GSAP con una
+     línea de tiempo en pausa (window.TL); el renderizador la posiciona fotograma a fotograma. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0A080C; }
+  .escena { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+  .escena img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .velo { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,8,12,.92) 0%, rgba(10,8,12,.35) 45%, rgba(10,8,12,.1) 100%); }
+  .texto { position: absolute; left: 90px; right: 90px; bottom: 260px; color: #F7F5F2; }
+  .etiqueta { font: 700 30px Inter, sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #D9B25C; }
+  .titulo { font: 600 112px/1.02 'Cormorant Garamond', serif; margin-top: 22px; }
+  .titulo em { font-style: italic; color: #D9B25C; font-weight: 500; }
+  .linea { height: 3px; width: 0; background: #D9B25C; margin-top: 34px; }
+  #cierre { background: radial-gradient(circle at 50% 40%, #A3184A 0%, #6E0C2B 45%, #3E0515 100%); }
+  #cierre .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #F7F5F2; }
+  #cierre .marca { font: 600 150px 'Cormorant Garamond', serif; }
+  #cierre .marca span { color: #D9B25C; }
+  #cierre .oferta { font: 700 46px Inter, sans-serif; margin-top: 40px; padding: 26px 54px; border: 3px solid #D9B25C; border-radius: 999px; }
+  #cierre .web { font: 500 38px Inter, sans-serif; margin-top: 46px; color: rgba(247,245,242,.8); letter-spacing: .04em; }
+</style>
+</head>
+<body>
+  <div class="escena" id="e1"><img src="../../imagenes/01-presentacion.jpg"><div class="velo"></div>
+    <div class="texto"><div class="etiqueta">Carta digital QR</div><div class="titulo">Tu carta,<br><em>a la altura</em><br>de tu cocina</div><div class="linea"></div></div></div>
+  <div class="escena" id="e2"><img src="../../imagenes/06-fotos-ia.jpg"><div class="velo"></div>
+    <div class="texto"><div class="etiqueta">Fotos y textos con IA</div><div class="titulo">Cada plato,<br><em>apetecible</em></div><div class="linea"></div></div></div>
+  <div class="escena" id="e3"><img src="../../imagenes/07-reservas.jpg"><div class="velo"></div>
+    <div class="texto"><div class="etiqueta">Reservas y sala</div><div class="titulo">Tu sala,<br><em>conectada</em></div><div class="linea"></div></div></div>
+  <div class="escena" id="cierre"><div class="centro">
+    <div class="marca">D<span>K</span>itchen</div>
+    <div class="oferta">Primer mes por 1 € + IVA</div>
+    <div class="web">dkitchencorporate.es</div></div></div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  const escena = (id, ini) => {
+    tl.to(id, { opacity: 1, duration: 0.5 }, ini)
+      .fromTo(id + ' img', { scale: 1.12 }, { scale: 1, duration: 3.5, ease: 'none' }, ini)
+      .from(id + ' .etiqueta', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, ini + 0.3)
+      .from(id + ' .titulo', { y: 70, opacity: 0, duration: 0.8, ease: 'power3.out' }, ini + 0.45)
+      .to(id + ' .linea', { width: 260, duration: 0.7, ease: 'power2.out' }, ini + 0.9)
+      .to(id, { opacity: 0, duration: 0.4 }, ini + 3.1);
+  };
+  escena('#e1', 0); escena('#e2', 3.1); escena('#e3', 6.2);
+  tl.to('#cierre', { opacity: 1, duration: 0.5 }, 9.3)
+    .from('#cierre .marca', { scale: 0.85, opacity: 0, duration: 0.8, ease: 'back.out(1.6)' }, 9.5)
+    .from('#cierre .oferta', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, 10.0)
+    .from('#cierre .web', { opacity: 0, duration: 0.6 }, 10.4)
+    .to({}, { duration: 0.1 }, 11.9);
+  window.TL = tl;
+  window.LISTO = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => { i.onload = r; i.onerror = r; }))));
+</script>
+</body>
+</html>

@@ -1,17 +1,18 @@
-# Renderiza un reel (composición HTML + GSAP, método HyperFrames de OpenMontage) y lo publica como artefacto.
-# Uso: Actions → «Renderizar reel» → Run workflow → carpeta (p. ej. reels/reel-01).
+# Renderizado de piezas (HyperFrames + OpenMontage) con entrega y QC
+# DKitchen Studio - Calidad Gran Reserva
 name: Renderizar reel
 on:
   workflow_dispatch:
     inputs:
       carpeta:
-        description: Carpeta del reel (contiene composicion.html)
+        description: Carpeta de la pieza (contiene composicion.html)
         required: true
         default: reels/reel-01
       fps:
-        description: Fotogramas por segundo
+        description: Fotogramas por segundo (estándar DKitchen = 30)
         required: false
         default: '30'
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -20,9 +21,29 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
-      - run: npm i playwright ffmpeg-static && npx playwright install --with-deps chromium
-      - run: node renderizar.cjs "${{ inputs.carpeta }}" "${{ inputs.fps }}"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+
+      - name: Instalar dependencias
+        run: |
+          npm i playwright ffmpeg-static
+          npx playwright install --with-deps chromium
+          pip install google-api-python-client google-auth
+
+      - name: Renderizar vídeo y generar Control de Calidad
+        run: node renderizar.cjs "${{ inputs.carpeta }}" "${{ inputs.fps }}"
+
+      - name: Entregar a Google Drive (si está configurado)
+        env:
+          GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: python scripts/entrega_drive.py "${{ inputs.carpeta }}"
+
+      - name: Guardar artefactos en GitHub Actions
+        uses: actions/upload-artifact@v4
         with:
-          name: reel
-          path: ${{ inputs.carpeta }}/reel.mp4
+          name: entrega-${{ github.run_id }}
+          path: |
+            ${{ inputs.carpeta }}/reel.mp4
+            ${{ inputs.carpeta }}/contact_sheet.jpg
+            ${{ inputs.carpeta }}/control_calidad.txt

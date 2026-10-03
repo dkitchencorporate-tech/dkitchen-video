@@ -1,0 +1,25 @@
+name: Fusionar OpenMontageArchitect
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dkitchen-video
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Configurar git
+        run: |
+          git config user.name "Antigravity Studio"
+          git config user.email "dkitchencorporate@gmail.com"
+      - name: Añadir remote y fusionar
+        run: |
+          git remote add openmontage https://github.com/dkitchencorporate-tech/OpenMontageArchitect.git
+          git fetch openmontage main
+          git merge openmontage/main --allow-unrelated-histories -s ort -X ours -m "Integrar OpenMontageArchitect conservando licencias (AGPL-3.0)"
+      - name: Push a main
+        run: |
+          git push origin main

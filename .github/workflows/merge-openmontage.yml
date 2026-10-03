@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  workflows: write
 jobs:
   merge:
     runs-on: ubuntu-latest
@@ -17,15 +16,14 @@ jobs:
         run: |
           git config user.name "Antigravity Studio"
           git config user.email "dkitchencorporate@gmail.com"
-      - name: Añadir remote y fusionar
+      - name: Añadir remote y fusionar sin tocar workflows
         run: |
           git remote add openmontage https://github.com/dkitchencorporate-tech/OpenMontageArchitect.git
           git fetch openmontage main
-          git merge openmontage/main --allow-unrelated-histories -s ort -X ours -m "Integrar OpenMontageArchitect conservando licencias (AGPL-3.0)"
-          if [ -f .github/workflows/ci.yml ]; then
-            git rm .github/workflows/ci.yml
-            git commit --amend --no-edit
-          fi
+          git merge openmontage/main --allow-unrelated-histories -s ort -X ours --no-commit -m "Integrar OpenMontageArchitect conservando licencias (AGPL-3.0)" || true
+          rm -rf .github/workflows/ci.yml
+          git add -A
+          git commit -m "Integrar OpenMontageArchitect conservando licencias (AGPL-3.0)" || true
       - name: Push a main
         run: |
           git push origin main

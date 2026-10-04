@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'export',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  trailingSlash: true,
   images: {
-    domains: ['images.unsplash.com', 'drive.google.com', 'lh3.googleusercontent.com'],
+    unoptimized: true,
   },
 };
 

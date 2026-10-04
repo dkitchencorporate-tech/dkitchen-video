@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<!-- Reel 02 de DKitchen (04/10/2026). Tutorial Motion: Configurar, instalar y publicar tu carta en 60 segundos. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0A080C; font-family: 'Inter', sans-serif; }
+  .escena { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+  .velo { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,8,12,.95) 0%, rgba(10,8,12,.45) 55%, rgba(10,8,12,.15) 100%); }
+  .fondo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  
+  /* Bloque de texto en zona segura (superior a 240px, inferior a 440px) */
+  .caja-texto { position: absolute; left: 80px; right: 80px; bottom: 320px; color: #F7F5F2; }
+  .badge-paso { display: inline-flex; align-items: center; padding: 10px 24px; border-radius: 999px; background: rgba(110,12,43,0.85); border: 2px solid #D9B25C; color: #D9B25C; font: 700 24px 'Inter', sans-serif; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 24px; }
+  .titular-gran { font: 800 92px/1.04 'Bricolage Grotesque', sans-serif; color: #F7F5F2; margin: 0; }
+  .titular-gran em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #D9B25C; font-weight: 500; }
+  .subtexto { font: 500 36px/1.4 'Inter', sans-serif; color: rgba(247,245,242,0.85); margin-top: 20px; }
+  
+  /* Cierre Gran Reserva */
+  #cierre { background: radial-gradient(circle at 50% 35%, #A3184A 0%, #6E0C2B 50%, #20020A 100%); }
+  #cierre .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #F7F5F2; padding: 0 60px; }
+  #cierre .marca { font: 700 140px 'Cormorant Garamond', serif; letter-spacing: -0.02em; }
+  #cierre .marca span { color: #D9B25C; }
+  #cierre .burbuja-oferta { font: 800 48px 'Bricolage Grotesque', sans-serif; margin-top: 36px; padding: 24px 60px; border: 3px solid #D9B25C; border-radius: 999px; background: rgba(10,8,12,0.6); color: #F7F5F2; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  #cierre .cta-bio { font: 600 38px 'Inter', sans-serif; margin-top: 36px; color: #D9B25C; letter-spacing: .05em; }
+  #cierre .dominio { font: 400 32px 'Inter', sans-serif; margin-top: 16px; color: rgba(247,245,242,0.7); }
+</style>
+</head>
+<body>
+  <!-- Escena 1: Gancho -->
+  <div class="escena" id="e1">
+    <img src="../../imagenes/03-antes-despues.jpg" class="fondo-img">
+    <div class="velo"></div>
+    <div class="caja-texto">
+      <div class="badge-paso">Capítulo 01 · Tu Carta QR</div>
+      <h1 class="titular-gran">Configura tu menú en <em>60 segundos</em></h1>
+      <p class="subtexto">Sin depender de diseñadores ni de reimprimir cartas nunca más.</p>
+    </div>
+  </div>
+
+  <!-- Escena 2: Añadir Platos y Precios -->
+  <div class="escena" id="e2">
+    <img src="../../imagenes/02-primer-mes.jpg" class="fondo-img">
+    <div class="velo"></div>
+    <div class="caja-texto">
+      <div class="badge-paso">Paso 1 · Control Total</div>
+      <h2 class="titular-gran">Cambia precios y platos <em>al instante</em></h2>
+      <p class="subtexto">Edita desde el móvil durante el servicio. Tu QR no cambia nunca.</p>
+    </div>
+  </div>
+
+  <!-- Escena 3: Fotos y Alérgenos con IA -->
+  <div class="escena" id="e3">
+    <img src="../../imagenes/04-alergenos.jpg" class="fondo-img">
+    <div class="velo"></div>
+    <div class="caja-texto">
+      <div class="badge-paso">Paso 2 · Cumplimiento UE</div>
+      <h2 class="titular-gran">14 alérgenos claros y <em>fotos apetecibles</em></h2>
+      <p class="subtexto">Tus clientes piden tranquilos; tu equipo trabaja sin confusiones.</p>
+    </div>
+  </div>
+
+  <!-- Escena 4: Cierre Gran Reserva -->
+  <div class="escena" id="cierre">
+    <div class="centro">
+      <div class="marca">D<span>K</span>itchen</div>
+      <div class="burbuja-oferta">Primer mes por 1 € + IVA</div>
+      <div class="cta-bio">Prueba tu demo en el enlace de la bio 🍷</div>
+      <div class="dominio">dkitchencorporate.es</div>
+    </div>
+  </div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+  
+  const animarEscena = (id, ini, dur) => {
+    tl.to(id, { opacity: 1, duration: 0.4 }, ini)
+      .fromTo(id + ' .fondo-img', { scale: 1.15, y: 15 }, { scale: 1, y: 0, duration: dur, ease: 'none' }, ini)
+      .from(id + ' .badge-paso', { y: 30, opacity: 0, duration: 0.5, ease: 'back.out(1.5)' }, ini + 0.2)
+      .from(id + ' .titular-gran', { y: 50, opacity: 0, duration: 0.7, ease: 'power3.out' }, ini + 0.35)
+      .from(id + ' .subtexto', { y: 30, opacity: 0, duration: 0.6, ease: 'power2.out' }, ini + 0.6)
+      .to(id, { opacity: 0, duration: 0.35 }, ini + dur - 0.35);
+  };
+
+  animarEscena('#e1', 0, 4.0);
+  animarEscena('#e2', 4.0, 4.0);
+  animarEscena('#e3', 8.0, 4.0);
+
+  // Cierre (12.0s a 16.0s)
+  tl.to('#cierre', { opacity: 1, duration: 0.4 }, 12.0)
+    .from('#cierre .marca', { scale: 0.82, opacity: 0, duration: 0.8, ease: 'back.out(1.6)' }, 12.2)
+    .from('#cierre .burbuja-oferta', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, 12.6)
+    .from('#cierre .cta-bio', { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 13.0)
+    .from('#cierre .dominio', { opacity: 0, duration: 0.5 }, 13.3)
+    .to({}, { duration: 0.1 }, 15.9);
+
+  window.TL = tl;
+  window.LISTO = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => { i.onload = r; i.onerror = r; }))));
+</script>
+</body>
+</html>

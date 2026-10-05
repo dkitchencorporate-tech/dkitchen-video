@@ -101,6 +101,23 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
     descripcion: 'Versión cinematográfica 3D. Sistema de partículas doradas en canvas, luces volumétricas en parallax, smartphone 3D con inercia, interacción táctil en tiempo real cambiando precio de 24€ a 28€ y tipografía cinética con máscaras. Locución enérgica de Álvaro y caja segura 940x1280 100% blindada.',
     zonasSeguras: 'cumplidas',
     ajustes: []
+  },
+  {
+    id: 'reel-ugc-30s',
+    titulo: 'Reel 30s Master: Fuga en Sala, Avatar UGC y Conversión Real',
+    linea: 'Motion Flow 3D + UGC Viral (30 Segundos)',
+    duracion: '30.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/reel-ugc-30s/reel.mp4',
+    contactSheetUrl: '/media/reel-ugc-30s/contact_sheet.jpg',
+    lufs: '-14.8 LUFS (ElevenLabs Álvaro + Beat Cinemático)',
+    bitrate: '10,2 Mbps H.264 High Master',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: 'Hoy, 19:15',
+    descripcion: 'Segunda prueba de alta duración (30s). Integra avatar UGC de portavoz en sala, contraste dinámico de tiempos, smartphone 3D con menú en vivo y micro-interacciones táctiles, métricas de retención (+18% ticket) y cierre directivo Gran Reserva.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
   }
 ];
 

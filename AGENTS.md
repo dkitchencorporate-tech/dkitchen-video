@@ -1,9 +1,8 @@
-# OpenMontage
+# OpenMontage & DKitchen Studio
 
-**MANDATORY: Read `AGENT_GUIDE.md` before responding to ANY user message.**
+**MANDATORY: Read `AGENT_GUIDE.md` and `docs/DIRECTRICES_CREATIVAS_INAMOVIBLES.md` before responding to ANY user message.**
 
-Do not act on the user's request until you have read AGENT_GUIDE.md.
-It contains routing rules that determine your first action based on what the user asked.
-Skipping it WILL cause you to take the wrong action.
+Do not act on the user's request until you have read both documents.
+They contain creative standards (zero static screens, continuous 3D motion, particle canvas, required APIs: ElevenLabs, CapCut, Flow) and routing rules that determine your actions.
+Skipping them WILL cause you to produce mediocre or non-compliant output.
 
-There are no instructions in this file. All instructions are in AGENT_GUIDE.md.

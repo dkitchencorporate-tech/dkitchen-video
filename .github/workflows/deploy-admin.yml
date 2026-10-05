@@ -9,8 +9,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Instalar Vercel CLI
-        run: npm install -g vercel@latest
+      - name: Instalar Vercel CLI y Dependencias
+        working-directory: admin
+        run: |
+          npm install -g vercel@latest
+          npm install
       - name: Build y Deploy a Vercel
         working-directory: admin
         env:
@@ -20,7 +23,6 @@ jobs:
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
             echo "[ERROR FATAL] VERCEL_TOKEN no está configurado en GitHub Secrets."
-            echo "El estudio exige despliegue real en el equipo 'architect-sys-projects'. Abortando."
             exit 1
           fi
           vercel pull --yes --environment=production --token=$VERCEL_TOKEN

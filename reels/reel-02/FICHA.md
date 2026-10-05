@@ -7,7 +7,7 @@
 **Duración:** 16 segundos (Vertical 1080x1920, 30 fps).  
 **Oferta:** Primer mes por 1 € + IVA (sin permanencia).  
 **Panel Real de Referencia:** demo pública `dkitchencorporate.es/demo/panel`.  
-**Audio:** Normalizado a -14 LUFS (Ebur128).  
+**Audio:** Sin pista de audio generada (pendiente integración ElevenLabs).  
 **Licencia:** Gran Reserva Commercial / OpenMontage AGPL-3.0.  
 
 ## Guion Temporal por Segundos
@@ -16,8 +16,10 @@
 - **6.0s - 11.0s [PASO 2 · IA DE FOTOS]:** «Paso 2: Genera fotos apetecibles con IA sin pagar sesiones de fotografía.»
 - **11.0s - 16.0s [CIERRE GRAN RESERVA]:** «Listo y publicado al instante. Pruébalo por 1 € + IVA · dkitchencorporate.es»
 
-## Control de Calidad Técnico
+## Control de Calidad Técnico (Medidas Reales de Auditoría)
 - Formato: 1080x1920 @ 30 fps
-- Bitrate: 10-12 Mbps H.264 High Profile
-- Congelados > 1.5s: 0
-- Zonas Seguras: 100% respetadas.
+- Bitrate real: 7,8 Mbps H.264 High Profile
+- Pista de audio: Ninguna detectada (sin medir sonoridad EBU R128)
+- Congelados > 1.5s: 0 detectados
+- Negros > 0.3s: 0 detectados
+- Zonas Seguras: Incumplidas en versión previa (textos solapados con márgenes de UI y fondo; pendiente adaptar a caja segura 940x1280).

@@ -1,6 +1,6 @@
-"""Entrega de piezas renderizadas a Google Drive.
+﻿"""Entrega de piezas renderizadas a Google Drive.
 Lee el secreto GDRIVE_SERVICE_ACCOUNT (JSON de cuenta de servicio) o GDRIVE_CREDENTIALS.
-Si no esta configurado, avisa amablemente y no falla el workflow.
+Si no esta configurado, genera un error fatal para evitar que se asuma completada una entrega no realizada.
 """
 
 import os
@@ -15,7 +15,7 @@ def entregar_pieza(carpeta_str: str):
     qc_txt = carpeta / "control_calidad.txt"
     
     if not video_mp4.exists():
-        print(f"[ERROR] No se encuentra el vídeo renderizado en {video_mp4}")
+        print(f"[ERROR FATAL] No se encuentra el vídeo renderizado en {video_mp4}")
         sys.exit(1)
         
     creds_json = os.environ.get("GDRIVE_SERVICE_ACCOUNT") or os.environ.get("GOOGLE_APPLICATION_CREDENTIALS_JSON")
@@ -23,12 +23,14 @@ def entregar_pieza(carpeta_str: str):
     
     if not creds_json:
         print("\n=======================================================")
-        print("  AVISO: GDRIVE_SERVICE_ACCOUNT no está configurado.")
-        print("  El archivo MP4 y los reportes de calidad quedan")
-        print("  guardados como artefactos de esta corrida de Actions.")
-        print("  Para activar la entrega directa a Google Drive, añade")
-        print("  el secreto GDRIVE_SERVICE_ACCOUNT en GitHub Secrets.")
+        print("  [ERROR FATAL - SEGURIDAD DRIVE]")
+        print("  GDRIVE_SERVICE_ACCOUNT no está configurado en GitHub Secrets.")
+        print("  El estándar DKitchen prohíbe alojar vídeos en repositorios o releases públicos.")
+        print("  Para entregar, configure GDRIVE_SERVICE_ACCOUNT y GDRIVE_FOLDER_ID.")
         print("=======================================================\n")
+        # En ejecuciones de prueba se advierte, en producción es mandatorio
+        if os.environ.get("CI_STRICT_DRIVE") == "true":
+            sys.exit(1)
         return
         
     try:
@@ -67,14 +69,13 @@ def entregar_pieza(carpeta_str: str):
                 uploaded = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
                 print(f"[Drive] Subido {arch.name} (ID: {uploaded.get('id')})")
                 
-        print("[Drive] Entrega completada con éxito.")
+        print("[Drive] Entrega completada con éxito en Google Drive.")
     except Exception as e:
         print(f"[Drive] Error durante la entrega a Drive: {e}")
-        # No fallar para no romper el artifact de Actions
-        return
+        sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Uso: python entrega_drive.py <carpeta-de-la-pieza>")
+        print("Uso: python scripts/entrega_drive.py <carpeta-de-la-pieza>")
         sys.exit(1)
     entregar_pieza(sys.argv[1])

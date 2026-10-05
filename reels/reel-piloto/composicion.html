@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<!-- Pieza Piloto Cinemática DKitchen - Motion 3D de Alta Gama
-     Identidad: Gran Reserva (#6E0C2B, #D9B25C, #FAF8F5, #1E1920)
+<!-- Pieza Piloto DKitchen - Motion Gráfico Gran Reserva
+     Colores: Gran Reserva (#6E0C2B, #D9B25C, #FAF8F5, #1E1920)
      Caja Segura: 940x1280 px (X: 40-940, Y: 240-1480 px) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -19,54 +19,61 @@
     background: #FAF8F5;
     font-family: 'Inter', sans-serif;
     color: #1E1920;
-    perspective: 1200px;
   }
 
-  /* Fondo Dinámico Gran Reserva: Papel editorial, rejilla técnica sutil y orbes de luz vino */
+  /* Fondo Editorial Gran Reserva */
   .canvas-bg {
     position: absolute;
     inset: 0;
     background-color: #FAF8F5;
     background-image: 
-      radial-gradient(#E8E2D5 1.5px, transparent 1.5px),
-      radial-gradient(ellipse at 80% 20%, rgba(110, 12, 43, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 20% 80%, rgba(217, 178, 92, 0.12) 0%, transparent 60%);
+      radial-gradient(#E5DFD3 1.5px, transparent 1.5px),
+      radial-gradient(ellipse at 85% 15%, rgba(110, 12, 43, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 15% 85%, rgba(217, 178, 92, 0.12) 0%, transparent 60%);
     background-size: 36px 36px, 100% 100%, 100% 100%;
     z-index: 1;
   }
 
-  /* Marco y Caja Segura Estricta (940x1280 px) */
+  /* Caja Segura Estricta (Margen Superior 240px, Ancho 900px, Alto 1240px) */
   .safe-container {
     position: absolute;
     left: 40px;
     width: 900px;
     top: 240px;
     height: 1240px;
-    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 10;
   }
 
   .escena {
     position: absolute;
     inset: 0;
+    visibility: hidden;
     opacity: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transform-style: preserve-3d;
   }
 
-  /* Elementos UI & Micro-badges */
+  /* Escena 1 visible por defecto */
+  #sc1 {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Badges y Categorías */
   .badge-categoria {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background: #FFFFFF;
     border: 2px solid #E8E2D5;
     padding: 12px 28px;
     border-radius: 999px;
     box-shadow: 0 10px 25px rgba(30, 25, 32, 0.06);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     width: fit-content;
   }
   .badge-categoria span.punto {
@@ -85,20 +92,20 @@
     color: #6E0C2B;
   }
 
-  /* Tipografías Cinéticas */
+  /* Tipografías Gran Reserva */
   .titular-gancho {
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 80px;
+    font-size: 78px;
     font-weight: 800;
-    line-height: 1.05;
+    line-height: 1.08;
     color: #1E1920;
     margin: 0;
     letter-spacing: -0.03em;
   }
   .titular-gancho .resalte-vino {
     color: #6E0C2B;
-    background: linear-gradient(120deg, rgba(110,12,43,0.12) 0%, rgba(110,12,43,0.02) 100%);
-    padding: 0 12px;
+    background: rgba(110, 12, 43, 0.08);
+    padding: 2px 14px;
     border-radius: 12px;
   }
   .titular-gancho .resalte-oro {
@@ -117,26 +124,59 @@
     line-height: 1.4;
   }
 
-  /* Contenedores y Tarjetas 3D Isometric / Perspective */
-  .card-3d-wrapper {
-    perspective: 1400px;
-    margin-top: 40px;
-    width: 100%;
+  /* Comparativas y Cajas */
+  .comparativa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .comparativa-box {
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 36px 24px;
+    text-align: center;
+    border: 2px solid #E8E2D5;
+    box-shadow: 0 15px 40px rgba(30,25,32,0.05);
+  }
+  .comparativa-box.alerta {
+    border-color: #F8D7DA;
+    background: #FFF8F8;
+  }
+  .comparativa-box.exito {
+    border-color: #D9B25C;
+    background: #FDFBF7;
+    box-shadow: 0 20px 50px rgba(110,12,43,0.1);
+  }
+  .comp-label {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .comp-label.rojo { color: #C92A2A; }
+  .comp-label.vino { color: #6E0C2B; }
+  .comp-valor {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    margin: 16px 0 8px 0;
+  }
+  .comp-sub {
+    font-size: 20px;
+    font-weight: 600;
+    color: #716975;
   }
 
-  .mockup-3d-phone {
+  /* Mockup Visual de Carta Digital */
+  .mockup-phone {
     background: #FFFFFF;
     border: 3px solid #E8E2D5;
     border-radius: 36px;
     padding: 36px;
-    box-shadow: 
-      0 40px 100px rgba(30, 25, 32, 0.12),
-      0 10px 30px rgba(110, 12, 43, 0.08);
-    transform: rotateX(12deg) rotateY(-8deg) rotateZ(1deg);
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
+    margin-top: 40px;
+    box-shadow: 0 30px 80px rgba(30, 25, 32, 0.1);
   }
-
   .phone-header {
     display: flex;
     justify-content: space-between;
@@ -176,8 +216,6 @@
     padding: 6px 16px;
     border-radius: 999px;
   }
-
-  /* Item de Menú Interactivo */
   .plato-card {
     background: #FAF8F5;
     border: 2px solid #E8E2D5;
@@ -186,7 +224,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
   }
   .plato-nombre {
     font-size: 30px;
@@ -200,7 +237,7 @@
   }
   .precio-badge {
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 48px;
+    font-size: 44px;
     font-weight: 800;
     color: #6E0C2B;
     background: #FFFFFF;
@@ -210,51 +247,7 @@
     box-shadow: 0 6px 16px rgba(217, 178, 92, 0.25);
   }
 
-  /* Comparativa Imprenta vs DKitchen */
-  .comparativa-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 36px;
-  }
-  .comparativa-box {
-    background: #FFFFFF;
-    border-radius: 28px;
-    padding: 32px 24px;
-    text-align: center;
-    border: 2px solid #E8E2D5;
-    box-shadow: 0 15px 40px rgba(30,25,32,0.05);
-  }
-  .comparativa-box.alerta {
-    border-color: #F8D7DA;
-    background: #FFF8F8;
-  }
-  .comparativa-box.exito {
-    border-color: #D9B25C;
-    background: #FDFBF7;
-    box-shadow: 0 20px 50px rgba(110,12,43,0.1);
-  }
-  .comp-label {
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .comp-label.rojo { color: #C92A2A; }
-  .comp-label.vino { color: #6E0C2B; }
-  .comp-valor {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 64px;
-    font-weight: 800;
-    margin: 16px 0 8px 0;
-  }
-  .comp-sub {
-    font-size: 20px;
-    font-weight: 600;
-    color: #716975;
-  }
-
-  /* Cierre Gran Reserva Impacto */
+  /* Cierre Directivo Gran Reserva */
   .cierre-box {
     background: #FFFFFF;
     border: 3px solid #E8E2D5;
@@ -306,9 +299,9 @@
 
   <div class="canvas-bg"></div>
 
-  <!-- ESCENA 1: GANCHO VIRAL Y DOLOR (0.0s - 2.8s) -->
-  <div class="escena" id="sc1">
-    <div class="safe-container">
+  <div class="safe-container">
+    <!-- ESCENA 1: GANCHO VIRAL Y DOLOR (0.0s - 2.8s) -->
+    <div class="escena" id="sc1">
       <div class="badge-categoria">
         <span class="punto"></span>
         <span class="texto">Costes Ocultos en Sala</span>
@@ -320,11 +313,9 @@
         Reimprimir en papel en 2026 no es trabajar. Es quemar tu margen.
       </p>
     </div>
-  </div>
 
-  <!-- ESCENA 2: CONTRASTE DE VELOCIDAD 3D (2.8s - 5.8s) -->
-  <div class="escena" id="sc2">
-    <div class="safe-container">
+    <!-- ESCENA 2: CONTRASTE DE VELOCIDAD (2.8s - 5.8s) -->
+    <div class="escena" id="sc2">
       <div class="badge-categoria">
         <span class="punto"></span>
         <span class="texto">Velocidad de Reacción</span>
@@ -332,7 +323,6 @@
       <h2 class="titular-gancho">
         Tu imprenta tarda cuatro días.<br>Tú tardas <span class="resalte-oro">sesenta segundos</span>.
       </h2>
-      
       <div class="comparativa-grid">
         <div class="comparativa-box alerta" id="boxImprenta">
           <div class="comp-label rojo">Imprenta Tradicional</div>
@@ -346,11 +336,9 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ESCENA 3: MOCKUP 3D INTERACTIVO (5.8s - 9.2s) -->
-  <div class="escena" id="sc3">
-    <div class="safe-container">
+    <!-- ESCENA 3: MOCKUP INTERACTIVO EN TIEMPO REAL (5.8s - 9.2s) -->
+    <div class="escena" id="sc3">
       <div class="badge-categoria">
         <span class="punto"></span>
         <span class="texto">Control Total en Tiempo Real</span>
@@ -358,31 +346,26 @@
       <h2 class="titular-gancho" style="font-size: 68px;">
         Modificas tu carta en el móvil.<br><span class="resalte-vino">Tu sala ya está actualizada.</span>
       </h2>
-
-      <div class="card-3d-wrapper">
-        <div class="mockup-3d-phone" id="phoneMockup">
-          <div class="phone-header">
-            <div class="phone-brand">
-              <div class="phone-logo">DK</div>
-              <div class="phone-title">Panel de Control · Sala</div>
-            </div>
-            <div class="status-badge">● ACTIVA</div>
+      <div class="mockup-phone" id="phoneMockup">
+        <div class="phone-header">
+          <div class="phone-brand">
+            <div class="phone-logo">DK</div>
+            <div class="phone-title">Panel de Control · Sala</div>
           </div>
-          <div class="plato-card">
-            <div>
-              <div class="plato-nombre">Chuletón Madurado 45 Días</div>
-              <div class="plato-sub">14 Alérgenos Auditados · Foto HD lista</div>
-            </div>
-            <div class="precio-badge" id="precioTag">24 €</div>
+          <div class="status-badge">● ACTIVA</div>
+        </div>
+        <div class="plato-card">
+          <div>
+            <div class="plato-nombre">Chuletón Madurado 45 Días</div>
+            <div class="plato-sub">14 Alérgenos Auditados · Foto HD lista</div>
           </div>
+          <div class="precio-badge" id="precioTag">24 €</div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ESCENA 4: EXPERIENCIA DEL CLIENTE (9.2s - 12.0s) -->
-  <div class="escena" id="sc4">
-    <div class="safe-container">
+    <!-- ESCENA 4: EXPERIENCIA DEL CLIENTE (9.2s - 12.0s) -->
+    <div class="escena" id="sc4">
       <div class="badge-categoria">
         <span class="punto"></span>
         <span class="texto">Conversión y Experiencia</span>
@@ -394,11 +377,9 @@
         Carga instantánea en 0,3s. Tu cliente decide antes y pide más.
       </p>
     </div>
-  </div>
 
-  <!-- ESCENA 5: CIERRE DIRECTIVO GRAN RESERVA (12.0s - 15.5s) -->
-  <div class="escena" id="sc5">
-    <div class="safe-container">
+    <!-- ESCENA 5: CIERRE DIRECTIVO GRAN RESERVA (12.0s - 15.5s) -->
+    <div class="escena" id="sc5">
       <div class="cierre-box">
         <h2 class="cierre-logo">D<span>K</span>itchen</h2>
         <div class="cierre-tagline">El Sistema de Venta para Hostelería</div>
@@ -411,73 +392,45 @@
 <script>
   const tl = gsap.timeline({ paused: true });
 
-  // Escena 1 (0.0s - 2.8s) - Gancho de Dolor
-  tl.to('#sc1', { opacity: 1, duration: 0.25 }, 0)
+  // Escena 1 (0.0s - 2.8s) - Inmediatamente visible desde t=0
+  tl.set('#sc1', { autoAlpha: 1 })
     .from('#sc1 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 0.1)
-    .from('#sc1 .titular-gancho', { y: 60, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.25)
-    .from('#sc1 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.6)
-    .to('#sc1', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 2.5);
+    .from('#sc1 .titular-gancho', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.2)
+    .from('#sc1 .subtitulo-cinematico', { y: 20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 0.5)
+    .to('#sc1', { autoAlpha: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 2.5);
 
-  // Escena 2 (2.8s - 5.8s) - Contraste 3D Imprenta vs DKitchen
-  tl.to('#sc2', { opacity: 1, duration: 0.25 }, 2.8)
+  // Escena 2 (2.8s - 5.8s)
+  tl.set('#sc2', { autoAlpha: 1 }, 2.8)
     .from('#sc2 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 2.9)
-    .from('#sc2 .titular-gancho', { y: 50, opacity: 0, duration: 0.5, ease: 'power3.out' }, 3.0)
-    .from('#boxImprenta', { x: -60, opacity: 0, rotationY: 15, duration: 0.6, ease: 'back.out(1.4)' }, 3.3)
-    .from('#boxDKitchen', { x: 60, opacity: 0, scale: 0.9, rotationY: -15, duration: 0.6, ease: 'back.out(1.5)' }, 3.5)
-    .to('#boxDKitchen', { scale: 1.05, duration: 0.35, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 4.3)
-    .to('#sc2', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 5.5);
+    .from('#sc2 .titular-gancho', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 3.0)
+    .from('#boxImprenta', { x: -50, opacity: 0, duration: 0.5, ease: 'power2.out' }, 3.2)
+    .from('#boxDKitchen', { x: 50, opacity: 0, duration: 0.5, ease: 'power2.out' }, 3.4)
+    .to('#sc2', { autoAlpha: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 5.5);
 
-  // Escena 3 (5.8s - 9.2s) - Mockup 3D Interactivo de Panel
-  tl.to('#sc3', { opacity: 1, duration: 0.25 }, 5.8)
+  // Escena 3 (5.8s - 9.2s)
+  tl.set('#sc3', { autoAlpha: 1 }, 5.8)
     .from('#sc3 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 5.9)
     .from('#sc3 .titular-gancho', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 6.0)
-    .from('#phoneMockup', { 
-      y: 100, 
-      rotationX: 30, 
-      rotationY: -20, 
-      opacity: 0, 
-      duration: 0.8, 
-      ease: 'back.out(1.3)' 
-    }, 6.2)
-    .to('#phoneMockup', { rotationX: 0, rotationY: 0, duration: 0.8, ease: 'power2.out' }, 7.0)
-    .to('#precioTag', { 
-      scale: 1.3, 
-      backgroundColor: '#6E0C2B', 
-      color: '#FFFFFF', 
-      duration: 0.3, 
-      yoyo: true, 
-      repeat: 1, 
-      ease: 'power2.out' 
-    }, 7.5)
-    .to('#sc3', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 8.9);
+    .from('#phoneMockup', { y: 60, opacity: 0, duration: 0.6, ease: 'back.out(1.2)' }, 6.2)
+    .to('#precioTag', { scale: 1.15, backgroundColor: '#6E0C2B', color: '#FFFFFF', duration: 0.3, yoyo: true, repeat: 1 }, 7.2)
+    .to('#sc3', { autoAlpha: 0, y: -30, duration: 0.3, ease: 'power2.in' }, 8.9);
 
-  // Escena 4 (9.2s - 12.0s) - Experiencia Apetecible
-  tl.to('#sc4', { opacity: 1, duration: 0.25 }, 9.2)
+  // Escena 4 (9.2s - 12.0s)
+  tl.set('#sc4', { autoAlpha: 1 }, 9.2)
     .from('#sc4 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 9.3)
-    .from('#sc4 .titular-gancho', { y: 50, opacity: 0, duration: 0.5, ease: 'power3.out' }, 9.4)
-    .from('#sc4 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 9.8)
-    .to('#sc4', { opacity: 0, scale: 0.95, duration: 0.3, ease: 'power2.in' }, 11.7);
+    .from('#sc4 .titular-gancho', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 9.4)
+    .from('#sc4 .subtitulo-cinematico', { y: 20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 9.7)
+    .to('#sc4', { autoAlpha: 0, duration: 0.3, ease: 'power2.in' }, 11.7);
 
-  // Escena 5 (12.0s - 15.5s) - Cierre Gran Reserva & Oferta
-  tl.to('#sc5', { opacity: 1, duration: 0.3 }, 12.0)
-    .from('#sc5 .cierre-box', { 
-      scale: 0.85, 
-      y: 60, 
-      opacity: 0, 
-      duration: 0.7, 
-      ease: 'back.out(1.5)' 
-    }, 12.1)
-    .from('#sc5 .cierre-oferta-badge', { 
-      scale: 0.7, 
-      opacity: 0, 
-      duration: 0.5, 
-      ease: 'back.out(2)' 
-    }, 12.6)
-    .from('#sc5 .cierre-web', { opacity: 0, y: 20, duration: 0.4 }, 13.0)
+  // Escena 5 (12.0s - 15.5s)
+  tl.set('#sc5', { autoAlpha: 1 }, 12.0)
+    .from('#sc5 .cierre-box', { scale: 0.9, opacity: 0, duration: 0.6, ease: 'back.out(1.4)' }, 12.1)
+    .from('#sc5 .cierre-oferta-badge', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'back.out(1.8)' }, 12.5)
+    .from('#sc5 .cierre-web', { opacity: 0, y: 15, duration: 0.4 }, 12.9)
     .to({}, { duration: 0.1 }, 15.4);
 
   window.TL = tl;
-  window.LISTO = document.fonts.ready.then(() => 1);
+  window.LISTO = 1;
 </script>
 </body>
 </html>

@@ -9,11 +9,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Descargar artefactos de vídeo para previsualización privada del admin
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p admin/public/media
+          # Descargar reel-01 si existe
+          gh run download 37132994500 -n entrega-37132994500 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
+          # Descargar reel-02 si existe
+          gh run download 37164540189 -n entrega-37164540189 -D admin/public/media/reel-02 || echo "Artefacto reel-02 no disponible"
+          ls -la admin/public/media/* || true
+
       - name: Instalar Vercel CLI y Dependencias
         working-directory: admin
         run: |
           npm install -g vercel@latest
           npm install
+
       - name: Build y Deploy a Vercel
         working-directory: admin
         env:

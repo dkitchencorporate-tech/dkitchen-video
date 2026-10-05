@@ -1,219 +1,408 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<!-- Pieza Piloto DKitchen (05/10/2026). Motion Design Cinematográfico Nivel G: #TuCartaEn60Segundos
-     Estándar: 1080x1920, 30 fps, Caja Segura 940x1280 px (X: 0-940, Y: 220-1500).
-     Identidad: Gran Reserva (#6E0C2B, #D9B25C, #0A080C, #F7F5F2). -->
+<!-- Pieza Piloto Cinemática DKitchen - Motion 3D de Alta Gama
+     Identidad: Gran Reserva (#6E0C2B, #D9B25C, #FAF8F5, #1E1920)
+     Caja Segura: 940x1280 px (X: 40-940, Y: 240-1480 px) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <style>
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0A080C; font-family: 'Inter', sans-serif; }
-  
-  /* LÍMITE ESTRICTO DE CAJA SEGURA (940x1280 px: X: 40-940, Y: 220-1500) */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #FAF8F5;
+    font-family: 'Inter', sans-serif;
+    color: #1E1920;
+    perspective: 1200px;
+  }
+
+  /* Fondo Dinámico Gran Reserva: Papel editorial, rejilla técnica sutil y orbes de luz vino */
+  .canvas-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #FAF8F5;
+    background-image: 
+      radial-gradient(#E8E2D5 1.5px, transparent 1.5px),
+      radial-gradient(ellipse at 80% 20%, rgba(110, 12, 43, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(217, 178, 92, 0.12) 0%, transparent 60%);
+    background-size: 36px 36px, 100% 100%, 100% 100%;
+    z-index: 1;
+  }
+
+  /* Marco y Caja Segura Estricta (940x1280 px) */
   .safe-container {
     position: absolute;
     left: 40px;
     width: 900px;
     top: 240px;
     height: 1240px;
-    overflow: hidden;
-    pointer-events: none;
+    overflow: visible;
+    z-index: 10;
   }
 
-  .escena { position: absolute; inset: 0; opacity: 0; }
-  .velo { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,8,12,0.92) 0%, rgba(10,8,12,0.4) 60%, rgba(10,8,12,0.1) 100%); }
-  
-  /* Tipografía Cinética Bricolage & Gran Reserva */
+  .escena {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform-style: preserve-3d;
+  }
+
+  /* Elementos UI & Micro-badges */
+  .badge-categoria {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 2px solid #E8E2D5;
+    padding: 12px 28px;
+    border-radius: 999px;
+    box-shadow: 0 10px 25px rgba(30, 25, 32, 0.06);
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .badge-categoria span.punto {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #6E0C2B;
+    box-shadow: 0 0 12px rgba(110, 12, 43, 0.5);
+  }
+  .badge-categoria span.texto {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6E0C2B;
+  }
+
+  /* Tipografías Cinéticas */
   .titular-gancho {
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 84px;
+    font-size: 80px;
     font-weight: 800;
     line-height: 1.05;
-    color: #F7F5F2;
+    color: #1E1920;
     margin: 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
-  .titular-gancho span.resalte-rojo { color: #E63946; }
-  .titular-gancho span.resalte-oro { color: #D9B25C; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; }
+  .titular-gancho .resalte-vino {
+    color: #6E0C2B;
+    background: linear-gradient(120deg, rgba(110,12,43,0.12) 0%, rgba(110,12,43,0.02) 100%);
+    padding: 0 12px;
+    border-radius: 12px;
+  }
+  .titular-gancho .resalte-oro {
+    color: #A67C1E;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 700;
+  }
 
   .subtitulo-cinematico {
     font-family: 'Inter', sans-serif;
-    font-size: 34px;
-    font-weight: 500;
-    color: rgba(247,245,242,0.85);
+    font-size: 32px;
+    font-weight: 600;
+    color: #5A5160;
     margin-top: 24px;
     line-height: 1.4;
   }
 
-  /* Cronómetro Motion */
-  .crono-box {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(110,12,43,0.4);
-    border: 2px solid #D9B25C;
-    padding: 14px 32px;
-    border-radius: 999px;
-    margin-bottom: 24px;
-  }
-  .crono-num {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 42px;
-    font-weight: 800;
-    color: #D9B25C;
+  /* Contenedores y Tarjetas 3D Isometric / Perspective */
+  .card-3d-wrapper {
+    perspective: 1400px;
+    margin-top: 40px;
+    width: 100%;
   }
 
-  /* Interfaz Reconstruida dkitchencorporate.es/demo/panel */
-  .mockup-panel {
-    background: #1A161E;
-    border: 2px solid #362D3D;
-    border-radius: 28px;
+  .mockup-3d-phone {
+    background: #FFFFFF;
+    border: 3px solid #E8E2D5;
+    border-radius: 36px;
     padding: 36px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-    margin-top: 40px;
+    box-shadow: 
+      0 40px 100px rgba(30, 25, 32, 0.12),
+      0 10px 30px rgba(110, 12, 43, 0.08);
+    transform: rotateX(12deg) rotateY(-8deg) rotateZ(1deg);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
   }
-  .panel-header {
+
+  .phone-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #362D3D;
+    border-bottom: 2px solid #F4EBE1;
     padding-bottom: 20px;
     margin-bottom: 24px;
   }
-  .panel-plato {
+  .phone-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .phone-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #6E0C2B;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .phone-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1E1920;
+  }
+  .status-badge {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #A5D6A7;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 999px;
+  }
+
+  /* Item de Menú Interactivo */
+  .plato-card {
+    background: #FAF8F5;
+    border: 2px solid #E8E2D5;
+    border-radius: 24px;
+    padding: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #25202B;
-    border: 1px solid #453A4D;
-    border-radius: 18px;
-    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
   }
-  .precio-tag {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 52px;
+  .plato-nombre {
+    font-size: 30px;
     font-weight: 800;
-    color: #D9B25C;
+    color: #1E1920;
+  }
+  .plato-sub {
+    font-size: 20px;
+    color: #716975;
+    margin-top: 4px;
+  }
+  .precio-badge {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: #6E0C2B;
+    background: #FFFFFF;
+    border: 2px solid #D9B25C;
+    padding: 10px 24px;
+    border-radius: 18px;
+    box-shadow: 0 6px 16px rgba(217, 178, 92, 0.25);
   }
 
-  /* Cierre Gran Reserva */
-  .cierre-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  /* Comparativa Imprenta vs DKitchen */
+  .comparativa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .comparativa-box {
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 32px 24px;
     text-align: center;
+    border: 2px solid #E8E2D5;
+    box-shadow: 0 15px 40px rgba(30,25,32,0.05);
+  }
+  .comparativa-box.alerta {
+    border-color: #F8D7DA;
+    background: #FFF8F8;
+  }
+  .comparativa-box.exito {
+    border-color: #D9B25C;
+    background: #FDFBF7;
+    box-shadow: 0 20px 50px rgba(110,12,43,0.1);
+  }
+  .comp-label {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .comp-label.rojo { color: #C92A2A; }
+  .comp-label.vino { color: #6E0C2B; }
+  .comp-valor {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    margin: 16px 0 8px 0;
+  }
+  .comp-sub {
+    font-size: 20px;
+    font-weight: 600;
+    color: #716975;
+  }
+
+  /* Cierre Gran Reserva Impacto */
+  .cierre-box {
+    background: #FFFFFF;
+    border: 3px solid #E8E2D5;
+    border-radius: 36px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(110,12,43,0.12);
   }
   .cierre-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 130px;
     font-weight: 700;
-    color: #F7F5F2;
+    color: #1E1920;
     margin: 0;
+    line-height: 1;
   }
-  .cierre-logo span { color: #D9B25C; }
-  .cierre-oferta {
+  .cierre-logo span { color: #6E0C2B; }
+  .cierre-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #A67C1E;
+    margin-top: 12px;
+  }
+  .cierre-oferta-badge {
+    display: inline-block;
+    background: #6E0C2B;
+    color: #FFFFFF;
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 800;
-    color: #F7F5F2;
-    border: 3px solid #D9B25C;
-    background: rgba(110,12,43,0.8);
-    padding: 24px 54px;
+    padding: 20px 48px;
     border-radius: 999px;
-    margin-top: 40px;
+    border: 3px solid #D9B25C;
+    margin: 32px 0 20px 0;
+    box-shadow: 0 16px 40px rgba(110,12,43,0.3);
   }
   .cierre-web {
-    font-family: 'Inter', sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    color: rgba(247,245,242,0.8);
-    margin-top: 30px;
-    letter-spacing: 0.05em;
+    font-size: 34px;
+    font-weight: 800;
+    color: #1E1920;
+    letter-spacing: 0.02em;
   }
 </style>
 </head>
 <body>
 
-  <!-- Escena 1: Gancho de Dolor (0.0s - 2.0s) -->
+  <div class="canvas-bg"></div>
+
+  <!-- ESCENA 1: GANCHO VIRAL Y DOLOR (0.0s - 2.8s) -->
   <div class="escena" id="sc1">
     <div class="safe-container">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h1 class="titular-gancho">
-          ¿Cuántas cartas vas a tirar a la <span class="resalte-rojo">basura</span> por cambiar <span class="resalte-oro">tres precios</span>?
-        </h1>
-        <p class="subtitulo-cinematico">
-          Reimprimir no es una solución en 2026. Es perder dinero.
-        </p>
+      <div class="badge-categoria">
+        <span class="punto"></span>
+        <span class="texto">Costes Ocultos en Sala</span>
       </div>
+      <h1 class="titular-gancho">
+        ¿Sigues tirando cartas a la <span class="resalte-vino">basura</span> cada vez que cambias un <span class="resalte-oro">precio</span>?
+      </h1>
+      <p class="subtitulo-cinematico">
+        Reimprimir en papel en 2026 no es trabajar. Es quemar tu margen.
+      </p>
     </div>
   </div>
 
-  <!-- Escena 2: Contraste de Fricción (2.0s - 4.5s) -->
+  <!-- ESCENA 2: CONTRASTE DE VELOCIDAD 3D (2.8s - 5.8s) -->
   <div class="escena" id="sc2">
     <div class="safe-container">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <div class="crono-box">
-          <span class="crono-num">00:60s DE RELOJ</span>
+      <div class="badge-categoria">
+        <span class="punto"></span>
+        <span class="texto">Velocidad de Reacción</span>
+      </div>
+      <h2 class="titular-gancho">
+        Tu imprenta tarda cuatro días.<br>Tú tardas <span class="resalte-oro">sesenta segundos</span>.
+      </h2>
+      
+      <div class="comparativa-grid">
+        <div class="comparativa-box alerta" id="boxImprenta">
+          <div class="comp-label rojo">Imprenta Tradicional</div>
+          <div class="comp-valor" style="color: #C92A2A;">4 Días</div>
+          <div class="comp-sub">+ Gastos de envío y copias</div>
         </div>
-        <h2 class="titular-gancho">
-          Tu imprenta tarda cuatro días.<br>Tú tardas <span class="resalte-oro">sesenta segundos</span>.
-        </h2>
-        <p class="subtitulo-cinematico">
-          Modifica precios, platos agotados o alérgenos en directo.
-        </p>
+        <div class="comparativa-box exito" id="boxDKitchen">
+          <div class="comp-label vino">Panel DKitchen</div>
+          <div class="comp-valor" style="color: #6E0C2B;">60s</div>
+          <div class="comp-sub">En directo en todas las mesas</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Escena 3: Interfaz Real demo/panel (4.5s - 8.0s) -->
+  <!-- ESCENA 3: MOCKUP 3D INTERACTIVO (5.8s - 9.2s) -->
   <div class="escena" id="sc3">
     <div class="safe-container">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 class="titular-gancho" style="font-size: 64px;">
-          Tocas el plato en tu móvil.<br><span class="resalte-oro">Tu sala ya está actualizada.</span>
-        </h2>
-        
-        <div class="mockup-panel">
-          <div class="panel-header">
-            <span style="color: #F7F5F2; font-weight: 700; font-size: 28px;">Panel DKitchen · Carta Principal</span>
-            <span style="color: #2EC4B6; font-weight: 700; font-size: 24px;">● EN SERVICIO</span>
-          </div>
-          <div class="panel-plato">
-            <div>
-              <div style="color: #F7F5F2; font-weight: 700; font-size: 32px;">Solomillo de Vaca Rubia</div>
-              <div style="color: rgba(247,245,242,0.6); font-size: 24px; margin-top: 6px;">Carta Comedor · Actualizado ahora</div>
+      <div class="badge-categoria">
+        <span class="punto"></span>
+        <span class="texto">Control Total en Tiempo Real</span>
+      </div>
+      <h2 class="titular-gancho" style="font-size: 68px;">
+        Modificas tu carta en el móvil.<br><span class="resalte-vino">Tu sala ya está actualizada.</span>
+      </h2>
+
+      <div class="card-3d-wrapper">
+        <div class="mockup-3d-phone" id="phoneMockup">
+          <div class="phone-header">
+            <div class="phone-brand">
+              <div class="phone-logo">DK</div>
+              <div class="phone-title">Panel de Control · Sala</div>
             </div>
-            <div class="precio-tag" id="precioTarget">22 €</div>
+            <div class="status-badge">● ACTIVA</div>
+          </div>
+          <div class="plato-card">
+            <div>
+              <div class="plato-nombre">Chuletón Madurado 45 Días</div>
+              <div class="plato-sub">14 Alérgenos Auditados · Foto HD lista</div>
+            </div>
+            <div class="precio-badge" id="precioTag">24 €</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Escena 4: Ventaja Competitiva QR (8.0s - 11.5s) -->
+  <!-- ESCENA 4: EXPERIENCIA DEL CLIENTE (9.2s - 12.0s) -->
   <div class="escena" id="sc4">
     <div class="safe-container">
-      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <h2 class="titular-gancho">
-          Sin descargas.<br>Sin PDF borrosos.<br><span class="resalte-oro">Fotos que abren el apetito.</span>
-        </h2>
-        <p class="subtitulo-cinematico">
-          Carga en 0,4 segundos. Tu cliente pide más y decide antes.
-        </p>
+      <div class="badge-categoria">
+        <span class="punto"></span>
+        <span class="texto">Conversión y Experiencia</span>
       </div>
+      <h2 class="titular-gancho">
+        Sin descargas lentas.<br>Sin PDF pixelados.<br><span class="resalte-oro">Fotos apetecibles que venden.</span>
+      </h2>
+      <p class="subtitulo-cinematico">
+        Carga instantánea en 0,3s. Tu cliente decide antes y pide más.
+      </p>
     </div>
   </div>
 
-  <!-- Escena 5: Cierre Gran Reserva (11.5s - 15.5s) -->
+  <!-- ESCENA 5: CIERRE DIRECTIVO GRAN RESERVA (12.0s - 15.5s) -->
   <div class="escena" id="sc5">
     <div class="safe-container">
       <div class="cierre-box">
         <h2 class="cierre-logo">D<span>K</span>itchen</h2>
-        <div class="cierre-oferta">Primer mes por 1 € + IVA</div>
+        <div class="cierre-tagline">El Sistema de Venta para Hostelería</div>
+        <div class="cierre-oferta-badge">Primer mes por 1 € + IVA</div>
         <div class="cierre-web">dkitchencorporate.es</div>
       </div>
     </div>
@@ -222,37 +411,69 @@
 <script>
   const tl = gsap.timeline({ paused: true });
 
-  // Escena 1 (0.0s - 2.0s)
-  tl.to('#sc1', { opacity: 1, duration: 0.3 }, 0)
-    .from('#sc1 .titular-gancho', { y: 60, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.2)
+  // Escena 1 (0.0s - 2.8s) - Gancho de Dolor
+  tl.to('#sc1', { opacity: 1, duration: 0.25 }, 0)
+    .from('#sc1 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 0.1)
+    .from('#sc1 .titular-gancho', { y: 60, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.25)
     .from('#sc1 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.6)
-    .to('#sc1', { opacity: 0, duration: 0.3 }, 1.8);
+    .to('#sc1', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 2.5);
 
-  // Escena 2 (2.0s - 4.5s)
-  tl.to('#sc2', { opacity: 1, duration: 0.3 }, 2.0)
-    .from('#sc2 .crono-box', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'back.out(1.5)' }, 2.2)
-    .from('#sc2 .titular-gancho', { y: 50, opacity: 0, duration: 0.6, ease: 'power3.out' }, 2.4)
-    .from('#sc2 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 2.8)
-    .to('#sc2', { opacity: 0, duration: 0.3 }, 4.3);
+  // Escena 2 (2.8s - 5.8s) - Contraste 3D Imprenta vs DKitchen
+  tl.to('#sc2', { opacity: 1, duration: 0.25 }, 2.8)
+    .from('#sc2 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 2.9)
+    .from('#sc2 .titular-gancho', { y: 50, opacity: 0, duration: 0.5, ease: 'power3.out' }, 3.0)
+    .from('#boxImprenta', { x: -60, opacity: 0, rotationY: 15, duration: 0.6, ease: 'back.out(1.4)' }, 3.3)
+    .from('#boxDKitchen', { x: 60, opacity: 0, scale: 0.9, rotationY: -15, duration: 0.6, ease: 'back.out(1.5)' }, 3.5)
+    .to('#boxDKitchen', { scale: 1.05, duration: 0.35, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 4.3)
+    .to('#sc2', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 5.5);
 
-  // Escena 3 (4.5s - 8.0s)
-  tl.to('#sc3', { opacity: 1, duration: 0.3 }, 4.5)
-    .from('#sc3 .titular-gancho', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, 4.7)
-    .from('#sc3 .mockup-panel', { scale: 0.95, opacity: 0, y: 30, duration: 0.6, ease: 'back.out(1.2)' }, 5.0)
-    .to('#precioTarget', { scale: 1.25, color: '#FFFFFF', duration: 0.3, yoyo: true, repeat: 1 }, 5.8)
-    .to('#sc3', { opacity: 0, duration: 0.3 }, 7.8);
+  // Escena 3 (5.8s - 9.2s) - Mockup 3D Interactivo de Panel
+  tl.to('#sc3', { opacity: 1, duration: 0.25 }, 5.8)
+    .from('#sc3 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 5.9)
+    .from('#sc3 .titular-gancho', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 6.0)
+    .from('#phoneMockup', { 
+      y: 100, 
+      rotationX: 30, 
+      rotationY: -20, 
+      opacity: 0, 
+      duration: 0.8, 
+      ease: 'back.out(1.3)' 
+    }, 6.2)
+    .to('#phoneMockup', { rotationX: 0, rotationY: 0, duration: 0.8, ease: 'power2.out' }, 7.0)
+    .to('#precioTag', { 
+      scale: 1.3, 
+      backgroundColor: '#6E0C2B', 
+      color: '#FFFFFF', 
+      duration: 0.3, 
+      yoyo: true, 
+      repeat: 1, 
+      ease: 'power2.out' 
+    }, 7.5)
+    .to('#sc3', { opacity: 0, y: -40, duration: 0.3, ease: 'power2.in' }, 8.9);
 
-  // Escena 4 (8.0s - 11.5s)
-  tl.to('#sc4', { opacity: 1, duration: 0.3 }, 8.0)
-    .from('#sc4 .titular-gancho', { y: 50, opacity: 0, duration: 0.6, ease: 'power3.out' }, 8.2)
-    .from('#sc4 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 8.6)
-    .to('#sc4', { opacity: 0, duration: 0.3 }, 11.3);
+  // Escena 4 (9.2s - 12.0s) - Experiencia Apetecible
+  tl.to('#sc4', { opacity: 1, duration: 0.25 }, 9.2)
+    .from('#sc4 .badge-categoria', { y: -20, opacity: 0, duration: 0.4, ease: 'power2.out' }, 9.3)
+    .from('#sc4 .titular-gancho', { y: 50, opacity: 0, duration: 0.5, ease: 'power3.out' }, 9.4)
+    .from('#sc4 .subtitulo-cinematico', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 9.8)
+    .to('#sc4', { opacity: 0, scale: 0.95, duration: 0.3, ease: 'power2.in' }, 11.7);
 
-  // Escena 5 (11.5s - 15.5s)
-  tl.to('#sc5', { opacity: 1, duration: 0.4 }, 11.5)
-    .from('#sc5 .cierre-logo', { scale: 0.85, opacity: 0, duration: 0.7, ease: 'back.out(1.5)' }, 11.7)
-    .from('#sc5 .cierre-oferta', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, 12.2)
-    .from('#sc5 .cierre-web', { opacity: 0, duration: 0.5 }, 12.6)
+  // Escena 5 (12.0s - 15.5s) - Cierre Gran Reserva & Oferta
+  tl.to('#sc5', { opacity: 1, duration: 0.3 }, 12.0)
+    .from('#sc5 .cierre-box', { 
+      scale: 0.85, 
+      y: 60, 
+      opacity: 0, 
+      duration: 0.7, 
+      ease: 'back.out(1.5)' 
+    }, 12.1)
+    .from('#sc5 .cierre-oferta-badge', { 
+      scale: 0.7, 
+      opacity: 0, 
+      duration: 0.5, 
+      ease: 'back.out(2)' 
+    }, 12.6)
+    .from('#sc5 .cierre-web', { opacity: 0, y: 20, duration: 0.4 }, 13.0)
     .to({}, { duration: 0.1 }, 15.4);
 
   window.TL = tl;

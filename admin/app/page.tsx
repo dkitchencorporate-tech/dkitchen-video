@@ -103,6 +103,23 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
     ajustes: []
   },
   {
+    id: 'reel-cinematic-pro',
+    titulo: 'Reel Cinemático Pro: Paleta Web Oficial y Gastronomía Real',
+    linea: 'Cinematic B-Roll + 3D Motion Flow (20 Segundos)',
+    duracion: '20.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/reel-cinematic-pro/reel.mp4',
+    contactSheetUrl: '/media/reel-cinematic-pro/contact_sheet.jpg',
+    lufs: '-14.5 LUFS (ElevenLabs Peninsular + B-Roll Real)',
+    bitrate: '11,4 Mbps H.264 High Master',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: 'Hoy, 20:47',
+    descripcion: 'Versión definitiva con colores exactos de la web oficial de DKitchen (#090B10, #F59E0B, #DC2626). Incorpora fotografías reales de alta gastronomía en B-Roll dinámico con efecto Ken Burns, smartphone 3D interactivo con panel de sala, tipografía Outfit con resaltes en oro y chipotle, y locución con pausas e inflexión comercial.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
     id: 'reel-ugc-30s',
     titulo: 'Reel 30s Master: Fuga en Sala, Avatar UGC y Conversión Real',
     linea: 'Motion Flow 3D + UGC Viral (30 Segundos)',

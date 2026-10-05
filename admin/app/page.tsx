@@ -104,9 +104,70 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
   }
 ];
 
+
+function base32ToBuffer(base32: string): ArrayBuffer {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let bits = '';
+  for (let i = 0; i < base32.length; i++) {
+    const val = alphabet.indexOf(base32[i].toUpperCase());
+    if (val === -1) continue;
+    bits += val.toString(2).padStart(5, '0');
+  }
+  const bytes = new Uint8Array(Math.floor(bits.length / 8));
+  for (let i = 0; i + 8 <= bits.length; i += 8) {
+    bytes[Math.floor(i / 8)] = parseInt(bits.substr(i, 8), 2);
+  }
+  return bytes.buffer;
+}
+
+async function verifyTOTP(tokenInput: string, secretBase32: string): Promise<boolean> {
+  try {
+    const keyBytes = base32ToBuffer(secretBase32);
+    const key = await window.crypto.subtle.importKey(
+      'raw',
+      keyBytes,
+      { name: 'HMAC', hash: { name: 'SHA-1' } },
+      false,
+      ['sign']
+    );
+
+    const epoch = Math.floor(Date.now() / 1000);
+    const timeSteps = [
+      Math.floor((epoch - 30) / 30),
+      Math.floor(epoch / 30),
+      Math.floor((epoch + 30) / 30)
+    ];
+
+    for (const step of timeSteps) {
+      const buffer = new ArrayBuffer(8);
+      const view = new DataView(buffer);
+      view.setBigUint64(0, BigInt(step));
+
+      const signature = await window.crypto.subtle.sign('HMAC', key, buffer);
+      const hmac = new Uint8Array(signature);
+      const offset = hmac[hmac.length - 1] & 0xf;
+      const binCode =
+        ((hmac[offset] & 0x7f) << 24) |
+        ((hmac[offset + 1] & 0xff) << 16) |
+        ((hmac[offset + 2] & 0xff) << 8) |
+        (hmac[offset + 3] & 0xff);
+
+      const generated = (binCode % 1000000).toString().padStart(6, '0');
+      if (generated === tokenInput.trim()) {
+        return true;
+      }
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
 export default function DashboardAdmin() {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState<boolean>(false);
-  const [emailInput, setEmailInput] = useState('');
+  const [emailInput, setEmailInput] = useState('videostudiopro.ia@gmail.com');
+  const [totpCode, setTotpCode] = useState('');
+  const [verificando, setVerificando] = useState(false);
   const [errorAuth, setErrorAuth] = useState('');
   
   const [moduloActivo, setModuloActivo] = useState<'videos' | 'imagenes' | 'carruseles' | 'flyers'>('videos');
@@ -200,14 +261,28 @@ export default function DashboardAdmin() {
 
           <form onSubmit={handleLoginGoogle} className="space-y-4 text-left">
             <div>
-              <label className="text-xs font-semibold text-[#1E1920]">Introduce tu cuenta de Google / DKitchen</label>
+              <label className="text-xs font-semibold text-[#1E1920]">Usuario Administrador</label>
               <input
                 type="email"
-                required
+                readOnly
                 value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                placeholder="tu-correo@gmail.com"
-                className="w-full mt-1.5 p-3 rounded-xl border border-[#E8E2D5] text-sm focus:outline-hidden focus:ring-2 focus:ring-[#6E0C2B]/30"
+                className="w-full mt-1 p-2.5 rounded-xl border border-[#E8E2D5] bg-[#FAF8F5] text-xs font-mono text-[#4A434F] cursor-not-allowed"
+              />
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold text-[#1E1920]">Código 2FA de Google Authenticator</label>
+              <input
+                type="text"
+                required
+                maxLength={6}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                autoComplete="one-time-code"
+                value={totpCode}
+                onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, ''))}
+                placeholder="000000"
+                className="w-full mt-1 p-3 rounded-xl border border-[#E8E2D5] text-center text-2xl tracking-[0.3em] font-mono font-bold text-[#1E1920] focus:outline-hidden focus:ring-2 focus:ring-[#6E0C2B]/30"
               />
             </div>
 
@@ -219,10 +294,11 @@ export default function DashboardAdmin() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-[#6E0C2B] hover:bg-[#570922] text-white font-semibold text-sm transition-colors shadow-sm flex items-center justify-center space-x-2"
+              disabled={verificando || totpCode.length < 6}
+              className="w-full py-3 rounded-xl bg-[#6E0C2B] hover:bg-[#570922] disabled:opacity-50 text-white font-semibold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center space-x-2 cursor-pointer"
             >
               <Lock className="w-4 h-4" />
-              <span>Entrar como karc0</span>
+              <span>{verificando ? 'Validando con Google Authenticator...' : 'Verificar y Acceder'}</span>
             </button>
           </form>
 

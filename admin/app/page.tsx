@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { 
@@ -42,8 +42,8 @@ const PIEZAS_INICIALES: PiezaVideo[] = [
     linea: 'Dark Kitchens B2B / Inversores',
     duracion: '0:15',
     estado: 'renderizado',
-    videoUrl: 'https://github.com/dkitchencorporate-tech/dkitchen-video/releases/download/v1.0.0/reel-01.mp4',
-    contactSheetUrl: 'https://github.com/dkitchencorporate-tech/dkitchen-video/releases/download/v1.0.0/reel-01-sheet.jpg',
+    videoUrl: '',
+    contactSheetUrl: '',
     lufs: -14.1,
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
@@ -56,8 +56,8 @@ const PIEZAS_INICIALES: PiezaVideo[] = [
     linea: 'Operaciones & Tecnología Hub',
     duracion: '0:18',
     estado: 'renderizado',
-    videoUrl: 'https://github.com/dkitchencorporate-tech/dkitchen-video/releases/download/v1.0.0/reel-02.mp4',
-    contactSheetUrl: 'https://github.com/dkitchencorporate-tech/dkitchen-video/releases/download/v1.0.0/reel-02-sheet.jpg',
+    videoUrl: '',
+    contactSheetUrl: '',
     lufs: -13.9,
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
@@ -102,7 +102,7 @@ export default function DashboardAdmin() {
           <div className="flex items-center space-x-3">
             <div className="hidden sm:flex items-center space-x-2 bg-[#F7F4EE] px-3 py-1.5 rounded-lg border border-[#E8E2D5] text-xs font-medium text-[#4A434F]">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>CDN GitHub Release v1.0.0 Online</span>
+              <span>Almacenamiento Privado Drive (Producción)</span>
             </div>
             <a 
               href="https://dkitchencorporate.es" 

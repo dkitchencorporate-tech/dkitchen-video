@@ -1,8 +1,6 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  trailingSlash: true,
+  // Configuración lista para Vercel Serverless / Edge
   images: {
     unoptimized: true,
   },

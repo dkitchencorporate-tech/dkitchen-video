@@ -1,4 +1,4 @@
-# Renderizado de piezas (HyperFrames + OpenMontage) con entrega y QC
+﻿# Renderizado de piezas (HyperFrames + OpenMontage) con generación de audio ElevenLabs y QC estricto
 # DKitchen Studio - Calidad Gran Reserva
 name: Renderizar reel
 on:
@@ -26,14 +26,24 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          npm i playwright ffmpeg-static
+          npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
           npx playwright install --with-deps chromium
           pip install google-api-python-client google-auth
+
+      - name: Generar Audio con ElevenLabs (Voz de Marca y Música)
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          if [ -f "scripts/generar_audio_pieza.cjs" ]; then
+            node scripts/generar_audio_pieza.cjs "${{ inputs.carpeta }}"
+          else
+            echo "[AVISO] No se encontró scripts/generar_audio_pieza.cjs. Saltando generación de voz."
+          fi
 
       - name: Renderizar vídeo y generar Control de Calidad
         run: node renderizar.cjs "${{ inputs.carpeta }}" "${{ inputs.fps }}"
 
-      - name: Entregar a Google Drive (si está configurado)
+      - name: Entregar a Google Drive (Estricto para producción)
         env:
           GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}

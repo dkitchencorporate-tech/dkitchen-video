@@ -19,8 +19,8 @@ jobs:
           gh run download 37132994500 -n entrega-37132994500 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
           # Descargar reel-02 si existe
           gh run download 37164540189 -n entrega-37164540189 -D admin/public/media/reel-02 || echo "Artefacto reel-02 no disponible"
-          # Descargar reel-piloto renderizado con ElevenLabs
-          gh run download 37310229833 -n entrega-37310229833 -D admin/public/media/reel-piloto || echo "Artefacto reel-piloto no disponible"
+          # Descargar reel-piloto renderizado 3D cinematográfico con voz de Álvaro
+          gh run download 37312579028 -n entrega-37312579028 -D admin/public/media/reel-piloto || echo "Artefacto reel-piloto no disponible"
           ls -la admin/public/media/* || true
 
       - name: Instalar Vercel CLI y Dependencias

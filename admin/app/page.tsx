@@ -91,14 +91,14 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
     linea: 'Motion Design Cinematográfico (Nivel G)',
     duracion: '15.5s',
     estado: 'pendiente_aprobacion',
-    videoUrl: '',
-    contactSheetUrl: '',
-    lufs: 'Pendiente render (-14 LUFS objetivo)',
-    bitrate: '10-12 Mbps H.264 High',
+    videoUrl: '/media/reel-piloto/reel.mp4',
+    contactSheetUrl: '/media/reel-piloto/contact_sheet.jpg',
+    lufs: '-15.5 LUFS (Locución ElevenLabs Peninsular)',
+    bitrate: '2,9 Mbps H.264 High',
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
-    fecha: 'Hoy, 13:20',
-    descripcion: 'Gancho provocado por coste de imprenta. Mockup 3D animado de demo/panel con cambio de precio y alérgenos en 60s. Caja segura 100% blindada.',
+    fecha: 'Hoy, 14:33',
+    descripcion: 'Gancho de impacto por coste de imprenta. Mockup dinámico de carta digital DKitchen con actualización en 60s y alérgenos en tiempo real. Voz de impacto viral generada con ElevenLabs en español peninsular y diseño sonoro a −15.5 LUFS.',
     zonasSeguras: 'cumplidas',
     ajustes: []
   }
@@ -172,7 +172,7 @@ export default function DashboardAdmin() {
   
   const [moduloActivo, setModuloActivo] = useState<'videos' | 'imagenes' | 'carruseles' | 'flyers'>('videos');
   const [piezas, setPiezas] = useState<PiezaEstudio[]>(PIEZAS_INICIALES);
-  const [seleccionadaId, setSeleccionadaId] = useState<string>('reel-02');
+  const [seleccionadaId, setSeleccionadaId] = useState<string>('reel-piloto');
   const [mostrarZonasSeguras, setMostrarZonasSeguras] = useState(false);
   const [pestaña, setPestaña] = useState<'video' | 'sheet'>('video');
   const [modalAjusteAbierto, setModalAjusteAbierto] = useState(false);
@@ -184,22 +184,24 @@ export default function DashboardAdmin() {
     if (sesion) setUsuarioAutenticado(true);
   }, []);
 
-  const handleLoginGoogle = (e: React.FormEvent) => {
+  const handleLoginGoogle = async (e: React.FormEvent) => {
     e.preventDefault();
-    const cleanEmail = emailInput.trim().toLowerCase();
-    const autorizados = [
-      'videostudiopro.ia@gmail.com',
-      'dkitchencorporate@gmail.com',
-      'businesspymes2020@gmail.com',
-      'klarx94@gmail.com'
-    ];
+    setErrorAuth('');
+    setVerificando(true);
 
-    if (autorizados.includes(cleanEmail) || cleanEmail.includes('karc0') || cleanEmail.includes('dkitchen')) {
-      localStorage.setItem('dkitchen_admin_user', cleanEmail);
-      setUsuarioAutenticado(true);
-      setErrorAuth('');
-    } else {
-      setErrorAuth('Acceso restringido. Solo la cuenta de karc0 / DKitchen tiene permisos en este estudio.');
+    try {
+      const valido = await verifyTOTP(totpCode, 'DKITCHENSTUDIO26');
+      if (valido) {
+        localStorage.setItem('dkitchen_admin_user', emailInput.trim().toLowerCase());
+        setUsuarioAutenticado(true);
+        setErrorAuth('');
+      } else {
+        setErrorAuth('Código de Google Authenticator incorrecto o expirado. Asegúrate de tener la hora sincronizada en tu móvil.');
+      }
+    } catch (err) {
+      setErrorAuth('Error al validar el código 2FA. Inténtalo de nuevo.');
+    } finally {
+      setVerificando(false);
     }
   };
 
@@ -505,7 +507,7 @@ export default function DashboardAdmin() {
                         controls
                         playsInline
                         preload="auto"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain bg-black"
                       >
                         Tu navegador no soporta reproducción de vídeo HTML5.
                       </video>

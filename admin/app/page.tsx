@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { 
@@ -87,18 +87,18 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
   },
   {
     id: 'reel-piloto',
-    titulo: 'Piloto Cinemático: ¿Cuántas cartas vas a tirar a la basura?',
-    linea: 'Motion Design Cinematográfico (Nivel G)',
+    titulo: 'Piloto Cinemático 3D: ¿Cuántas cartas vas a tirar a la basura?',
+    linea: 'Motion Flow 3D & Canvas Orgánico (Nivel G)',
     duracion: '15.5s',
     estado: 'pendiente_aprobacion',
     videoUrl: '/media/reel-piloto/reel.mp4',
     contactSheetUrl: '/media/reel-piloto/contact_sheet.jpg',
-    lufs: '-15.5 LUFS (Locución ElevenLabs Peninsular)',
-    bitrate: '2,9 Mbps H.264 High',
+    lufs: '-15.4 LUFS (Locución Álvaro ElevenLabs + Ducking)',
+    bitrate: '9,5 Mbps H.264 High (Master)',
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
-    fecha: 'Hoy, 14:33',
-    descripcion: 'Gancho de impacto por coste de imprenta. Mockup dinámico de carta digital DKitchen con actualización en 60s y alérgenos en tiempo real. Voz de impacto viral generada con ElevenLabs en español peninsular y diseño sonoro a −15.5 LUFS.',
+    fecha: 'Hoy, 18:45',
+    descripcion: 'Versión cinematográfica 3D. Sistema de partículas doradas en canvas, luces volumétricas en parallax, smartphone 3D con inercia, interacción táctil en tiempo real cambiando precio de 24€ a 28€ y tipografía cinética con máscaras. Locución enérgica de Álvaro y caja segura 940x1280 100% blindada.',
     zonasSeguras: 'cumplidas',
     ajustes: []
   }

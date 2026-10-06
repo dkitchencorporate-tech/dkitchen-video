@@ -49,10 +49,12 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           TARGET_CARPETA: ${{ inputs.carpeta }}
         run: |
-          if [ -f "scripts/generar_audio_pieza.cjs" ]; then
+          if [ -f "scripts/generar_audio_envolvente.cjs" ]; then
+            node scripts/generar_audio_envolvente.cjs "$TARGET_CARPETA"
+          elif [ -f "scripts/generar_audio_pieza.cjs" ]; then
             node scripts/generar_audio_pieza.cjs "$TARGET_CARPETA"
           else
-            echo "[AVISO] No se encontró scripts/generar_audio_pieza.cjs. Saltando generación de voz."
+            echo "[AVISO] No se encontró script de generación de audio. Saltando generación de voz."
           fi
 
       - name: Renderizar vídeo y generar Control de Calidad

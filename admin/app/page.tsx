@@ -48,6 +48,40 @@ interface PiezaEstudio {
 
 const PIEZAS_INICIALES: PiezaEstudio[] = [
   {
+    id: 'reel-cinematic-pro',
+    titulo: 'Reel Cinemático Pro: Paleta Web Oficial y Gastronomía Real',
+    linea: 'Cinematic B-Roll + 3D Motion Flow (20 Segundos)',
+    duracion: '20.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/reel-cinematic-pro/reel.mp4',
+    contactSheetUrl: '/media/reel-cinematic-pro/contact_sheet.jpg',
+    lufs: '-14.5 LUFS (ElevenLabs Peninsular + B-Roll Real)',
+    bitrate: '11,4 Mbps H.264 High Master',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: 'Hoy, 20:47',
+    descripcion: 'Versión definitiva con colores exactos de la web oficial de DKitchen (#090B10, #F59E0B, #DC2626). Incorpora fotografías reales de alta gastronomía en B-Roll dinámico con efecto Ken Burns, smartphone 3D interactivo con panel de sala, tipografía Outfit con resaltes en oro y chipotle, y locución con pausas e inflexión comercial.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
+    id: 'reel-piloto',
+    titulo: 'Piloto Cinemático 3D: ¿Cuántas cartas vas a tirar a la basura?',
+    linea: 'Motion Flow 3D & Canvas Orgánico (Nivel G)',
+    duracion: '15.5s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/reel-piloto/reel.mp4',
+    contactSheetUrl: '/media/reel-piloto/contact_sheet.jpg',
+    lufs: '-15.4 LUFS (Locución Álvaro ElevenLabs + Ducking)',
+    bitrate: '9,5 Mbps H.264 High (Master)',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: '05/10/2026',
+    descripcion: 'Versión cinematográfica 3D. Sistema de partículas doradas en canvas, luces volumétricas en parallax, smartphone 3D con inercia, interacción táctil en tiempo real cambiando precio de 24€ a 28€ y tipografía cinética con máscaras. Locución enérgica de Álvaro y caja segura 940x1280 100% blindada.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
     id: 'reel-02',
     titulo: 'Reel 02: Configura tu menú en 60 segundos',
     linea: 'Tutorial Producto (#TuCartaEn60Segundos)',
@@ -84,57 +118,6 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
     ajustes: [
       { fecha: '05/10/2026 12:40', autor: 'Auditoría Claude Code', texto: 'Textos de cabecera y pie invadían zonas seguras; requiere audio y subtítulos grabados.' }
     ]
-  },
-  {
-    id: 'reel-piloto',
-    titulo: 'Piloto Cinemático 3D: ¿Cuántas cartas vas a tirar a la basura?',
-    linea: 'Motion Flow 3D & Canvas Orgánico (Nivel G)',
-    duracion: '15.5s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-piloto/reel.mp4',
-    contactSheetUrl: '/media/reel-piloto/contact_sheet.jpg',
-    lufs: '-15.4 LUFS (Locución Álvaro ElevenLabs + Ducking)',
-    bitrate: '9,5 Mbps H.264 High (Master)',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: 'Hoy, 18:45',
-    descripcion: 'Versión cinematográfica 3D. Sistema de partículas doradas en canvas, luces volumétricas en parallax, smartphone 3D con inercia, interacción táctil en tiempo real cambiando precio de 24€ a 28€ y tipografía cinética con máscaras. Locución enérgica de Álvaro y caja segura 940x1280 100% blindada.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-cinematic-pro',
-    titulo: 'Reel Cinemático Pro: Paleta Web Oficial y Gastronomía Real',
-    linea: 'Cinematic B-Roll + 3D Motion Flow (20 Segundos)',
-    duracion: '20.0s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-cinematic-pro/reel.mp4',
-    contactSheetUrl: '/media/reel-cinematic-pro/contact_sheet.jpg',
-    lufs: '-14.5 LUFS (ElevenLabs Peninsular + B-Roll Real)',
-    bitrate: '11,4 Mbps H.264 High Master',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: 'Hoy, 20:47',
-    descripcion: 'Versión definitiva con colores exactos de la web oficial de DKitchen (#090B10, #F59E0B, #DC2626). Incorpora fotografías reales de alta gastronomía en B-Roll dinámico con efecto Ken Burns, smartphone 3D interactivo con panel de sala, tipografía Outfit con resaltes en oro y chipotle, y locución con pausas e inflexión comercial.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-ugc-30s',
-    titulo: 'Reel 30s Master: Fuga en Sala, Avatar UGC y Conversión Real',
-    linea: 'Motion Flow 3D + UGC Viral (30 Segundos)',
-    duracion: '30.0s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-ugc-30s/reel.mp4',
-    contactSheetUrl: '/media/reel-ugc-30s/contact_sheet.jpg',
-    lufs: '-14.8 LUFS (ElevenLabs Álvaro + Beat Cinemático)',
-    bitrate: '10,2 Mbps H.264 High Master',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: 'Hoy, 19:15',
-    descripcion: 'Segunda prueba de alta duración (30s). Integra avatar UGC de portavoz en sala, contraste dinámico de tiempos, smartphone 3D con menú en vivo y micro-interacciones táctiles, métricas de retención (+18% ticket) y cierre directivo Gran Reserva.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
   }
 ];
 
@@ -206,7 +189,7 @@ export default function DashboardAdmin() {
   
   const [moduloActivo, setModuloActivo] = useState<'videos' | 'imagenes' | 'carruseles' | 'flyers'>('videos');
   const [piezas, setPiezas] = useState<PiezaEstudio[]>(PIEZAS_INICIALES);
-  const [seleccionadaId, setSeleccionadaId] = useState<string>('reel-piloto');
+  const [seleccionadaId, setSeleccionadaId] = useState<string>('reel-cinematic-pro');
   const [mostrarZonasSeguras, setMostrarZonasSeguras] = useState(false);
   const [pestaña, setPestaña] = useState<'video' | 'sheet'>('video');
   const [modalAjusteAbierto, setModalAjusteAbierto] = useState(false);

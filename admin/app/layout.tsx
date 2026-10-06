@@ -22,6 +22,10 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "DKitchen Studio · Control y Aprobación",
   description: "Estudio de producción audiovisual y centro de aprobación de piezas Gran Reserva.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   icons: {
     icon: "/favicon.ico",
   },

@@ -1,4 +1,4 @@
-﻿# Renderizado de piezas (HyperFrames + OpenMontage) con generación de audio ElevenLabs y QC estricto
+# Renderizado de piezas (HyperFrames + OpenMontage) con generación de audio ElevenLabs y QC estricto
 # DKitchen Studio - Calidad Gran Reserva
 name: Renderizar reel
 on:
@@ -30,24 +30,43 @@ jobs:
           npx playwright install --with-deps chromium
           pip install google-api-python-client google-auth
 
+      - name: Validar y Sanitizar Parámetros de Entrada (S9)
+        env:
+          INPUT_CARPETA: ${{ inputs.carpeta }}
+          INPUT_FPS: ${{ inputs.fps }}
+        run: |
+          if [[ ! "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]]; then
+            echo "[ERROR FATAL S9] La carpeta '$INPUT_CARPETA' no cumple con el patrón seguro ^reels/[a-z0-9-]+$"
+            exit 1
+          fi
+          if [[ ! "$INPUT_FPS" =~ ^(24|30|60)$ ]]; then
+            echo "[ERROR FATAL S9] Los FPS '$INPUT_FPS' deben ser 24, 30 o 60."
+            exit 1
+          fi
+
       - name: Generar Audio con ElevenLabs (Voz de Marca y Música)
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          TARGET_CARPETA: ${{ inputs.carpeta }}
         run: |
           if [ -f "scripts/generar_audio_pieza.cjs" ]; then
-            node scripts/generar_audio_pieza.cjs "${{ inputs.carpeta }}"
+            node scripts/generar_audio_pieza.cjs "$TARGET_CARPETA"
           else
             echo "[AVISO] No se encontró scripts/generar_audio_pieza.cjs. Saltando generación de voz."
           fi
 
       - name: Renderizar vídeo y generar Control de Calidad
-        run: node renderizar.cjs "${{ inputs.carpeta }}" "${{ inputs.fps }}"
+        env:
+          TARGET_CARPETA: ${{ inputs.carpeta }}
+          TARGET_FPS: ${{ inputs.fps }}
+        run: node renderizar.cjs "$TARGET_CARPETA" "$TARGET_FPS"
 
       - name: Entregar a Google Drive (Estricto para producción)
         env:
           GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-        run: python scripts/entrega_drive.py "${{ inputs.carpeta }}"
+          TARGET_CARPETA: ${{ inputs.carpeta }}
+        run: python scripts/entrega_drive.py "$TARGET_CARPETA"
 
       - name: Guardar artefactos en GitHub Actions
         uses: actions/upload-artifact@v4

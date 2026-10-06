@@ -122,71 +122,7 @@ const PIEZAS_INICIALES: PiezaEstudio[] = [
 ];
 
 
-function base32ToBuffer(base32: string): ArrayBuffer {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-  let bits = '';
-  for (let i = 0; i < base32.length; i++) {
-    const val = alphabet.indexOf(base32[i].toUpperCase());
-    if (val === -1) continue;
-    bits += val.toString(2).padStart(5, '0');
-  }
-  const bytes = new Uint8Array(Math.floor(bits.length / 8));
-  for (let i = 0; i + 8 <= bits.length; i += 8) {
-    bytes[Math.floor(i / 8)] = parseInt(bits.substr(i, 8), 2);
-  }
-  return bytes.buffer;
-}
-
-async function verifyTOTP(tokenInput: string, secretBase32: string): Promise<boolean> {
-  try {
-    const keyBytes = base32ToBuffer(secretBase32);
-    const key = await window.crypto.subtle.importKey(
-      'raw',
-      keyBytes,
-      { name: 'HMAC', hash: { name: 'SHA-1' } },
-      false,
-      ['sign']
-    );
-
-    const epoch = Math.floor(Date.now() / 1000);
-    const timeSteps = [
-      Math.floor((epoch - 30) / 30),
-      Math.floor(epoch / 30),
-      Math.floor((epoch + 30) / 30)
-    ];
-
-    for (const step of timeSteps) {
-      const buffer = new ArrayBuffer(8);
-      const view = new DataView(buffer);
-      view.setBigUint64(0, BigInt(step));
-
-      const signature = await window.crypto.subtle.sign('HMAC', key, buffer);
-      const hmac = new Uint8Array(signature);
-      const offset = hmac[hmac.length - 1] & 0xf;
-      const binCode =
-        ((hmac[offset] & 0x7f) << 24) |
-        ((hmac[offset + 1] & 0xff) << 16) |
-        ((hmac[offset + 2] & 0xff) << 8) |
-        (hmac[offset + 3] & 0xff);
-
-      const generated = (binCode % 1000000).toString().padStart(6, '0');
-      if (generated === tokenInput.trim()) {
-        return true;
-      }
-    }
-    return false;
-  } catch (e) {
-    return false;
-  }
-}
-
 export default function DashboardAdmin() {
-  const [usuarioAutenticado, setUsuarioAutenticado] = useState<boolean>(false);
-  const [emailInput, setEmailInput] = useState('videostudiopro.ia@gmail.com');
-  const [totpCode, setTotpCode] = useState('');
-  const [verificando, setVerificando] = useState(false);
-  const [errorAuth, setErrorAuth] = useState('');
-  
   const [moduloActivo, setModuloActivo] = useState<'videos' | 'imagenes' | 'carruseles' | 'flyers'>('videos');
   const [piezas, setPiezas] = useState<PiezaEstudio[]>(PIEZAS_INICIALES);
   const [seleccionadaId, setSeleccionadaId] = useState<string>('reel-cinematic-pro');
@@ -196,35 +132,12 @@ export default function DashboardAdmin() {
   const [textoAjuste, setTextoAjuste] = useState('');
   const [mensajeExito, setMensajeExito] = useState<string | null>(null);
 
-  useEffect(() => {
-    const sesion = localStorage.getItem('dkitchen_admin_user');
-    if (sesion) setUsuarioAutenticado(true);
-  }, []);
-
-  const handleLoginGoogle = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorAuth('');
-    setVerificando(true);
-
+  const handleLogout = async () => {
     try {
-      const valido = await verifyTOTP(totpCode, 'DKITCHENSTUDIO26');
-      if (valido) {
-        localStorage.setItem('dkitchen_admin_user', emailInput.trim().toLowerCase());
-        setUsuarioAutenticado(true);
-        setErrorAuth('');
-      } else {
-        setErrorAuth('Código de Google Authenticator incorrecto o expirado. Asegúrate de tener la hora sincronizada en tu móvil.');
-      }
-    } catch (err) {
-      setErrorAuth('Error al validar el código 2FA. Inténtalo de nuevo.');
+      await fetch('/api/logout', { method: 'POST' });
     } finally {
-      setVerificando(false);
+      window.location.href = '/login';
     }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('dkitchen_admin_user');
-    setUsuarioAutenticado(false);
   };
 
   const seleccionada = piezas.find(p => p.id === seleccionadaId) || piezas[0];
@@ -262,72 +175,21 @@ export default function DashboardAdmin() {
     setMensajeExito(`Solicitud de ajuste guardada en la ficha de ${seleccionada.id}.`);
     setTimeout(() => setMensajeExito(null), 3500);
   };
-
-  if (!usuarioAutenticado) {
-    return (
-      <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl p-8 max-w-md w-full border border-[#E8E2D5] shadow-xl text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-[#6E0C2B] text-white flex items-center justify-center mx-auto text-2xl font-bold shadow-md">
-            DK
-          </div>
-          <div>
-            <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#F4EBE1] text-[#6E0C2B] border border-[#E3D3C4]">
-              Acceso Privado karc0
-            </span>
-            <h1 className="text-2xl font-bold text-[#1E1920] mt-3">DKitchen Video Studio</h1>
-            <p className="text-xs text-[#716975] mt-1">Consola interna de producción audiovisual y aprobación de piezas.</p>
-          </div>
-
-          <form onSubmit={handleLoginGoogle} className="space-y-4 text-left">
-            <div>
-              <label className="text-xs font-semibold text-[#1E1920]">Usuario Administrador</label>
-              <input
-                type="email"
-                readOnly
-                value={emailInput}
-                className="w-full mt-1 p-2.5 rounded-xl border border-[#E8E2D5] bg-[#FAF8F5] text-xs font-mono text-[#4A434F] cursor-not-allowed"
-              />
-            </div>
-
-            <div>
-              <label className="text-xs font-semibold text-[#1E1920]">Código 2FA de Google Authenticator</label>
-              <input
-                type="text"
-                required
-                maxLength={6}
-                inputMode="numeric"
-                pattern="[0-9]*"
-                autoComplete="one-time-code"
-                value={totpCode}
-                onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, ''))}
-                placeholder="000000"
-                className="w-full mt-1 p-3 rounded-xl border border-[#E8E2D5] text-center text-2xl tracking-[0.3em] font-mono font-bold text-[#1E1920] focus:outline-hidden focus:ring-2 focus:ring-[#6E0C2B]/30"
-              />
-            </div>
-
-            {errorAuth && (
-              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
-                {errorAuth}
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={verificando || totpCode.length < 6}
-              className="w-full py-3 rounded-xl bg-[#6E0C2B] hover:bg-[#570922] disabled:opacity-50 text-white font-semibold text-xs sm:text-sm transition-colors shadow-sm flex items-center justify-center space-x-2 cursor-pointer"
-            >
-              <Lock className="w-4 h-4" />
-              <span>{verificando ? 'Validando con Google Authenticator...' : 'Verificar y Acceder'}</span>
-            </button>
-          </form>
-
-          <p className="text-[11px] text-[#A29A91]">
-            Protegido bajo política de uso exclusivo DKitchen Corporate.
-          </p>
-        </div>
-      </div>
-    );
-  }
+    setPiezas(prev => prev.map(p => {
+      if (p.id === seleccionada.id) {
+        return {
+          ...p,
+          estado: 'pendiente_aprobacion',
+          ajustes: [nuevoComentario, ...p.ajustes]
+        };
+      }
+      return p;
+    }));
+    setTextoAjuste('');
+    setModalAjusteAbierto(false);
+    setMensajeExito(`Solicitud de ajuste guardada en la ficha de ${seleccionada.id}.`);
+    setTimeout(() => setMensajeExito(null), 3500);
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-[#1E1920] font-sans antialiased selection:bg-[#6E0C2B] selection:text-white pb-24">

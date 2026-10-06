@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Flyer Maestro DKitchen A4 · Pase de Acceso Exclusivo (Dos Caras - Imprenta)</title>
+<!-- 
+  Formato: A4 Vertical (210 x 297 mm) + 3 mm de sangrado por lado = 216 x 303 mm por cara.
+  Resolución a 300 DPI: 2551 x 3579 px por cara.
+  Paleta: Gran Reserva (Crema Editorial #F9F6F0, Vino de Autor #6E0C2B, Oro Noble #C59B27, Tinta #1A151E).
+  Estilo: Membresía de club privado gastronómico / Pase de software de alta gama. CERO fondos negros.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: 216mm 303mm; margin: 0; }
+
+  body {
+    background: #E5DFD5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1A151E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    padding: 60px 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* LIENZO A4 CON SANGRADO (300 DPI) */
+  .a4-page {
+    width: 2551px;
+    height: 3579px;
+    position: relative;
+    overflow: hidden;
+    background: #FBF9F5;
+    box-shadow: 0 35px 90px rgba(26, 21, 30, 0.22);
+    page-break-after: always;
+  }
+
+  /* Textura de fondo sutil (Papel verjurado / Micro-guilloché) */
+  .paper-texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(#C59B27 0.75px, transparent 0.75px),
+      radial-gradient(#6E0C2B 0.5px, #FBF9F5 0.5px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Guías de corte y sangrado (3mm = 35px a 300 DPI) */
+  .bleed-guide {
+    position: absolute;
+    inset: 35px;
+    border: 1px dashed rgba(197, 155, 39, 0.35);
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  /* Marco exterior de alta joyería editorial */
+  .frame-border {
+    position: absolute;
+    inset: 95px;
+    border: 3px solid #E2D9C8;
+    border-radius: 48px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .frame-inner-line {
+    position: absolute;
+    inset: 120px;
+    border: 1px solid rgba(197, 155, 39, 0.45);
+    border-radius: 36px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Esquinas ornamentales estilo pase privado */
+  .corner-ornament {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #C59B27;
+    z-index: 3;
+  }
+  .corner-tl { top: 135px; left: 135px; border-right: none; border-bottom: none; }
+  .corner-tr { top: 135px; right: 135px; border-left: none; border-bottom: none; }
+  .corner-bl { bottom: 135px; left: 135px; border-right: none; border-top: none; }
+  .corner-br { bottom: 135px; right: 135px; border-left: none; border-top: none; }
+
+  /* Contenedor seguro de contenido */
+  .content-safe {
+    position: absolute;
+    inset: 160px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* ==============================================================
+     CARA A: CREDENCIAL / PASE PRIVADO EXCLUSIVO (ANVERSO)
+     ============================================================== */
+  .front-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #E8E0D2;
+    padding-bottom: 55px;
+  }
+  .brand-title-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .brand-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 92px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #1A151E;
+    line-height: 1;
+  }
+  .brand-logo-text span {
+    color: #6E0C2B;
+  }
+  .brand-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-style: italic;
+    font-weight: 600;
+    color: #C59B27;
+    letter-spacing: 0.05em;
+  }
+
+  .pass-serial {
+    text-align: right;
+  }
+  .pass-serial-label {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #8C7B6B;
+  }
+  .pass-serial-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    color: #6E0C2B;
+    letter-spacing: 0.1em;
+  }
+
+  /* Centro del Pase */
+  .front-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 60px;
+  }
+
+  .invitation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: #F4ECE1;
+    border: 2px solid #C59B27;
+    padding: 16px 44px;
+    border-radius: 999px;
+    margin-bottom: 48px;
+  }
+  .invitation-badge-dot {
+    width: 14px;
+    height: 14px;
+    background: #6E0C2B;
+    border-radius: 50%;
+  }
+  .invitation-badge-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #6E0C2B;
+  }
+
+  .front-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 130px;
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: #1A151E;
+    max-width: 2050px;
+  }
+  .front-headline em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #6E0C2B;
+  }
+
+  .front-subheadline {
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #554C5B;
+    max-width: 1750px;
+    margin-top: 50px;
+  }
+
+  /* Sello de Lacre / Emblema Central de Excelencia */
+  .seal-container {
+    margin: 80px 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wax-seal {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #8A1339, #6E0C2B 65%, #4A081D);
+    box-shadow: 
+      0 20px 50px rgba(110, 12, 43, 0.35),
+      inset 0 4px 10px rgba(255, 255, 255, 0.3),
+      inset 0 -6px 14px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 4px solid #C59B27;
+  }
+  .wax-seal-inner {
+    width: 176px;
+    height: 176px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 240, 200, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .wax-seal-icon {
+    font-family: 'Outfit', sans-serif;
+    font-size: 58px;
+    font-weight: 900;
+    color: #FAF4E8;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .wax-seal-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #F0DDA8;
+    margin-top: 6px;
+  }
+
+  /* Cuadrícula de Credencial Privada */
+  .credentials-card {
+    background: #FFFFFF;
+    border: 2px solid #E8E0D2;
+    border-radius: 36px;
+    padding: 50px 70px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    width: 100%;
+    box-shadow: 0 15px 45px rgba(26, 21, 30, 0.04);
+  }
+  .cred-item {
+    text-align: left;
+    border-left: 3px solid #C59B27;
+    padding-left: 30px;
+  }
+  .cred-label {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #8C7B6B;
+    margin-bottom: 8px;
+  }
+  .cred-val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: #1A151E;
+  }
+
+  /* Pie Cara A */
+  .front-footer {
+    border-top: 2px solid #E8E0D2;
+    padding-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .front-footer-note {
+    font-size: 26px;
+    font-weight: 600;
+    color: #7A7080;
+  }
+  .front-turn-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: #F4ECE1;
+    border: 2px solid #D9B25C;
+    padding: 16px 36px;
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6E0C2B;
+  }
+
+  /* ==============================================================
+     CARA B: MANIFIESTO, 3 PILARES Y LLAVE DE ACTIVACIÓN QR
+     ============================================================== */
+  .back-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #E8E0D2;
+    padding-bottom: 45px;
+  }
+  .back-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .back-badge {
+    background: #6E0C2B;
+    color: #FAF8F5;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 10px 24px;
+    border-radius: 999px;
+  }
+  .back-header-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #1A151E;
+  }
+  .back-header-url {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #C59B27;
+    letter-spacing: 0.05em;
+  }
+
+  .back-manifesto {
+    margin: 40px 0 20px;
+    text-align: left;
+  }
+  .back-manifesto-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 88px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: #1A151E;
+  }
+  .back-manifesto-title span {
+    color: #6E0C2B;
+  }
+  .back-manifesto-p {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #4F4756;
+    margin-top: 24px;
+    max-width: 1950px;
+  }
+
+  /* Los 3 Pilares Tecnológicos */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin: 45px 0;
+  }
+  .pillar-card {
+    background: #FFFFFF;
+    border: 2px solid #E8E0D2;
+    border-radius: 36px;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 35px rgba(26, 21, 30, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: #E8E0D2;
+  }
+  .pillar-card.highlight::before {
+    background: #6E0C2B;
+  }
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #C59B27;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .pillar-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #1A151E;
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+  .pillar-desc {
+    font-size: 26px;
+    font-weight: 500;
+    color: #675E6F;
+    line-height: 1.45;
+  }
+  .pillar-tag {
+    margin-top: 30px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6E0C2B;
+    background: #F8F2E8;
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(197, 155, 39, 0.4);
+    align-self: flex-start;
+  }
+
+  /* LLAVE DE ACTIVACIÓN / CONVERSIÓN CON QR */
+  .activation-vault {
+    background: #FFFFFF;
+    border: 3px solid #C59B27;
+    border-radius: 44px;
+    padding: 55px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 25px 75px rgba(110, 12, 43, 0.08);
+    position: relative;
+  }
+  .vault-left {
+    flex: 1;
+    padding-right: 70px;
+  }
+  .vault-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #6E0C2B;
+    color: #FAF8F5;
+    padding: 10px 26px;
+    border-radius: 999px;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .vault-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 78px;
+    font-weight: 900;
+    line-height: 1.08;
+    color: #1A151E;
+    margin: 20px 0 16px;
+    letter-spacing: -0.025em;
+  }
+  .vault-headline em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: #6E0C2B;
+    font-weight: 700;
+  }
+  .vault-copy {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #554C5B;
+  }
+  .vault-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 26px;
+  }
+  .guarantee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A151E;
+    background: #F7F3EB;
+    border: 1px solid #E2D9C8;
+    padding: 8px 22px;
+    border-radius: 999px;
+  }
+  .guarantee-chip span { color: #C59B27; font-weight: 900; }
+
+  /* Marco del Código QR con medidas estrictas (35mm de lectura a 30cm) */
+  .vault-qr-station {
+    width: 440px;
+    flex-shrink: 0;
+    background: #FBF9F5;
+    border: 3px solid #1A151E;
+    border-radius: 36px;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  }
+  .qr-scanner-frame {
+    width: 350px;
+    height: 350px;
+    background: #FFFFFF;
+    border: 2px solid #E2D9C8;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .qr-scanner-frame img {
+    width: 310px;
+    height: 310px;
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+  .qr-action-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1A151E;
+    margin-top: 20px;
+  }
+  .qr-url-hint {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #8C7B6B;
+    margin-top: 6px;
+  }
+
+  /* Pie Cara B */
+  .back-footer {
+    border-top: 2px solid #E8E0D2;
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .back-footer-legal {
+    font-size: 24px;
+    font-weight: 500;
+    color: #7A7080;
+    line-height: 1.4;
+  }
+  .back-footer-legal strong {
+    color: #1A151E;
+    font-weight: 700;
+  }
+  .back-footer-brand {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #6E0C2B;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+  <!-- =====================================================================
+       CARA A (ANVERSO): CREDENCIAL / PASE EXCLUSIVO DE ENTRADA AL CLUB
+       ===================================================================== -->
+  <section class="a4-page">
+    <div class="paper-texture"></div>
+    <div class="bleed-guide"></div>
+    <div class="frame-border"></div>
+    <div class="frame-inner-line"></div>
+    <div class="corner-ornament corner-tl"></div>
+    <div class="corner-ornament corner-tr"></div>
+    <div class="corner-ornament corner-bl"></div>
+    <div class="corner-ornament corner-br"></div>
+
+    <div class="content-safe">
+      <!-- Cabecera -->
+      <header class="front-header">
+        <div class="brand-title-wrap">
+          <div class="brand-logo-text">D<span>K</span>itchen</div>
+          <div class="brand-sub">Grand Cru Digital</div>
+        </div>
+        <div class="pass-serial">
+          <div class="pass-serial-label">Documento Oficial de Acceso</div>
+          <div class="pass-serial-num">PASE-DK-2026/A</div>
+        </div>
+      </header>
+
+      <!-- Cuerpo / Claim de Élite -->
+      <main class="front-body">
+        <div class="invitation-badge">
+          <span class="invitation-badge-dot"></span>
+          <span class="invitation-badge-text">Invitación para Dirección Gastronómica</span>
+        </div>
+
+        <h1 class="front-headline">
+          Si su cocina es de autor,<br>
+          su carta no puede estar<br>
+          <em>atrapada en papel.</em>
+        </h1>
+
+        <p class="front-subheadline">
+          La primera suite interactiva diseñada para restaurantes que defienden su ticket medio, 
+          eliminan las reimpresiones para siempre y convierten cada mesa en una experiencia memorable.
+        </p>
+
+        <!-- Sello de Lacre / Emblema -->
+        <div class="seal-container">
+          <div class="wax-seal">
+            <div class="wax-seal-inner">
+              <div class="wax-seal-icon">DK</div>
+              <div class="wax-seal-text">Gran Reserva</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ficha de Membresía -->
+        <div class="credentials-card">
+          <div class="cred-item">
+            <div class="cred-label">Emisión Oficial</div>
+            <div class="cred-val">Campañas Octubre 2026</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label">Privilegio de Acceso</div>
+            <div class="cred-val">Prueba Completa de 30 Días</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label">Activación de Entrada</div>
+            <div class="cred-val">1,00 € (Sin Compromiso)</div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Pie Anverso -->
+      <footer class="front-footer">
+        <div class="front-footer-note">
+          Validez preferente para sala, bodega y dirección de restaurante.
+        </div>
+        <div class="front-turn-card">
+          Ver condiciones y llave de acceso al reverso &rarr;
+        </div>
+      </footer>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CARA B (REVERSO): MANIFIESTO, LOS 3 PILARES Y LLAVE QR A 1 €
+       ===================================================================== -->
+  <section class="a4-page">
+    <div class="paper-texture"></div>
+    <div class="bleed-guide"></div>
+    <div class="frame-border"></div>
+    <div class="frame-inner-line"></div>
+    <div class="corner-ornament corner-tl"></div>
+    <div class="corner-ornament corner-tr"></div>
+    <div class="corner-ornament corner-bl"></div>
+    <div class="corner-ornament corner-br"></div>
+
+    <div class="content-safe">
+      <!-- Cabecera Reverso -->
+      <header class="back-header">
+        <div class="back-header-left">
+          <span class="back-badge">Protocolo de Operación</span>
+          <span class="back-header-title">Arquitectura Tecnológica DKitchen</span>
+        </div>
+        <div class="back-header-url">dkitchencorporate.es/qr</div>
+      </header>
+
+      <!-- Manifiesto -->
+      <section class="back-manifesto">
+        <h2 class="back-manifesto-title">
+          Tome el control absoluto de su sala.<br>
+          <span>En tiempo real. Desde cualquier dispositivo.</span>
+        </h2>
+        <p class="back-manifesto-p">
+          Olvídese de tachar platos agotados, pagar facturas recurrentes a la imprenta o depender de PDFs estáticos imposibles de leer en móvil. DKitchen dota a su restaurante de una infraestructura digital del más alto nivel técnico.
+        </p>
+      </section>
+
+      <!-- Los 3 Pilares -->
+      <section class="pillars-grid">
+        <article class="pillar-card highlight">
+          <div>
+            <div class="pillar-num">01</div>
+            <h3 class="pillar-title">Carta Interactiva en Alta Fidelidad</h3>
+            <p class="pillar-desc">
+              Visualización fotográfica impecable, 14 alérgenos auditados con filtro instantáneo y sugerencias de maridaje que elevan el ticket medio de sala.
+            </p>
+          </div>
+          <span class="pillar-tag">Experiencia de Sala</span>
+        </article>
+
+        <article class="pillar-card">
+          <div>
+            <div class="pillar-num">02</div>
+            <h3 class="pillar-title">Edición al Vuelo en 60 Segundos</h3>
+            <p class="pillar-desc">
+              Cambie precios, oculte platos fuera de carta o active sugerencias del día al instante desde su móvil. Sin esperas técnicas ni reimpresiones.
+            </p>
+          </div>
+          <span class="pillar-tag">Control de Cocina</span>
+        </article>
+
+        <article class="pillar-card">
+          <div>
+            <div class="pillar-num">03</div>
+            <h3 class="pillar-title">Comandero Ágil y Eventos Experience</h3>
+            <p class="pillar-desc">
+              Recepción fluida de pedidos por mesa y pasarela exclusiva para vender experiencias con maridaje o talleres gastronómicos con entrada anticipada.
+            </p>
+          </div>
+          <span class="pillar-tag">Rendimiento y Negocio</span>
+        </article>
+      </section>
+
+      <!-- Llave de Activación / Bóveda QR -->
+      <section class="activation-vault">
+        <div class="vault-left">
+          <div class="vault-badge">Llave de Acceso Reservado</div>
+          <h3 class="vault-headline">
+            Active su primer mes por <em>1,00 €</em>
+          </h3>
+          <p class="vault-copy">
+            Escanee el código para acceder a la pasarela directa. Pruebe la plataforma durante 30 días sin permanencia ni letra pequeña. Todo configurado en minutos.
+          </p>
+          <div class="vault-guarantee">
+            <div class="guarantee-chip"><span>&check;</span> Sin permanencia</div>
+            <div class="guarantee-chip"><span>&check;</span> Asistencia técnica incluida</div>
+            <div class="guarantee-chip"><span>&check;</span> Activación inmediata</div>
+          </div>
+        </div>
+
+        <div class="vault-qr-station">
+          <div class="qr-scanner-frame">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=https%3A%2F%2Fdkitchencorporate.es%2Fqr%3Futm_source%3Dflyer%26utm_medium%3Dprint%26utm_campaign%3Darranque_oct26" alt="Código QR Activación DKitchen" />
+          </div>
+          <div class="qr-action-label">Escanee para Activar</div>
+          <div class="qr-url-hint">dkitchencorporate.es/qr</div>
+        </div>
+      </section>
+
+      <!-- Pie Reverso -->
+      <footer class="back-footer">
+        <div class="back-footer-legal">
+          <strong>DKitchen Corporate Tech</strong> &middot; Soluciones de software y experiencia para hostelería de vanguardia.<br>
+          Campaña de lanzamiento oficial. Acceso directo protegido por pasarela de suscripción segura.
+        </div>
+        <div class="back-footer-brand">
+          dkitchencorporate.es
+        </div>
+      </footer>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -264,27 +264,15 @@ const FORMATOS_EXPERIENCE_INICIALES: FormatoExperience[] = [
 
 const FLYERS_INICIALES: FlyerItem[] = [
   {
-    id: 'flyer-propuesta-a',
-    nombre: 'Propuesta A: Edición Gran Reserva (Fondo Crema)',
-    variante: 'Blanco Editorial Gran Reserva',
-    paleta: '#FAF8F5 (Fondo), #1E1920 (Tinta), #6E0C2B (Vino), #D9B25C (Oro)',
-    formato: 'A5 (148×210 mm) y A6 (105×148 mm) a 300 ppp para imprenta',
-    urlHtml: '/media/flyers/flyer_maestro_propuesta_a.html',
+    id: 'flyer-maestro-a4-doble-cara',
+    nombre: 'Flyer Maestro Oficial A4 (Dos Caras Imprenta)',
+    variante: 'Pase Exclusivo Editorial Gran Reserva (Sin Fondo Negro)',
+    paleta: '#FBF9F5 (Crema Editorial), #6E0C2B (Vino Tinto), #C59B27 (Oro Noble), #1A151E (Tinta)',
+    formato: 'A4 Vertical (210×297 mm) + 3 mm sangrado a 300 ppp (Cara A Anverso + Cara B Reverso)',
+    urlHtml: '/media/flyers/flyer_maestro_a4_doble_cara.html',
     qrUrl: 'https://dkitchencorporate.es/qr?utm_source=flyer&utm_medium=print&utm_campaign=arranque_oct26',
     utm: 'utm_source=flyer&utm_medium=print&utm_campaign=arranque_oct26',
-    descripcion: 'Diseño limpio y de alta legibilidad para mesa o mostrador. QR vectorial con zona de silencio de 30 mm garantizada. Destaca la prueba de 1 € (+ IVA) y el ahorro en reimpresión. Sin mención de oferta Fundador.',
-    estado: 'pendiente_aprobacion'
-  },
-  {
-    id: 'flyer-propuesta-b',
-    nombre: 'Propuesta B: Edición Obsidiana Noche (Fondo Oscuro)',
-    variante: 'Obsidiana & Oro Gastronómico',
-    paleta: '#1E1920 (Obsidiana), #FAF8F5 (Crema), #D9B25C (Oro), #6E0C2B (Vino)',
-    formato: 'A5 (148×210 mm) y A6 (105×148 mm) a 300 ppp para imprenta',
-    urlHtml: '/media/flyers/flyer_maestro_propuesta_b.html',
-    qrUrl: 'https://dkitchencorporate.es/qr?utm_source=flyer&utm_medium=print&utm_campaign=arranque_oct26',
-    utm: 'utm_source=flyer&utm_medium=print&utm_campaign=arranque_oct26',
-    descripcion: 'Diseño de máxima sofisticación nocturna con marco perimetral en oro y contraste premium. QR de alta definición sobre fondo blanco protegido. Precios estrictos de dkitchencorporate.es/precios.',
+    descripcion: 'Diseño de credencial exclusiva para alta gastronomía. Cara A: Credencial/Pase Exclusivo con sello lacre Gran Reserva. Cara B: Manifiesto Tecnológico, 3 Pilares y Llave de Activación QR (35 mm) a 1,00 € con UTM estrictas. Cero fondos negros para impresión impecable a dos caras.',
     estado: 'pendiente_aprobacion'
   }
 ];

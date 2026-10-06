@@ -2,183 +2,529 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Reel 02 - Configura tu menú en 60 segundos (DKitchen Élite)</title>
+<title>Reel 02 - Menú en 60 Segundos (DKitchen Gran Reserva)</title>
+<!-- Fuentes Oficiales DKitchen Gran Reserva -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  
   html, body {
-    width: 1080px; height: 1920px;
-    overflow: hidden; background: #090B10;
-    font-family: 'Plus Jakarta Sans', sans-serif; color: #FFFFFF;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #0A080D;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #FAF8F5;
     -webkit-font-smoothing: antialiased;
   }
+
   #viewport {
-    position: relative; width: 1080px; height: 1920px;
-    overflow: hidden; perspective: 1200px; background: #090B10;
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    perspective: 1400px;
+    perspective-origin: 50% 48%;
+    background: #0A080D;
   }
-  .broll-layer { position: absolute; inset: -40px; z-index: 1; }
-  .broll-img {
-    position: absolute; inset: 0; width: 1160px; height: 2000px;
-    object-fit: cover; opacity: 0;
-    filter: brightness(0.38) saturate(1.15) contrast(1.1);
-    transform-origin: center center; will-change: transform, opacity;
+
+  /* ATMÓSFERA Y LUZ VOLUMÉTRICA GRAN RESERVA */
+  .bg-universe {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
   }
-  #img1 { opacity: 1; }
-  .vignette {
-    position: absolute; inset: 0; z-index: 2;
-    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.4) 0%, rgba(9, 11, 16, 0.88) 70%, #090B10 100%);
+  .glow-vino {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    filter: blur(140px);
+    background: radial-gradient(circle, #6E0C2B 0%, rgba(110, 12, 43, 0) 70%);
+    top: 15%;
+    right: -180px;
+    mix-blend-mode: screen;
   }
-  .glow-amber {
-    position: absolute; width: 800px; height: 800px; border-radius: 50%;
-    filter: blur(140px); background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, transparent 70%);
-    bottom: 15%; right: -100px; z-index: 3; mix-blend-mode: screen; will-change: transform;
+  .glow-oro {
+    position: absolute;
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+    filter: blur(140px);
+    background: radial-gradient(circle, #C59B27 0%, rgba(197, 155, 39, 0) 70%);
+    bottom: 12%;
+    left: -150px;
+    mix-blend-mode: screen;
   }
+  .editorial-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(197, 155, 39, 0.18) 1.5px, transparent 1.5px);
+    background-size: 44px 44px;
+    opacity: 0.35;
+    z-index: 2;
+  }
+
+  /* CAJA SEGURA ESTRICTA (940 x 1280 px: X=70..1010, Y=320..1600) */
   .safe-box {
-    position: absolute; left: 60px; top: 240px; width: 860px; height: 1240px;
-    z-index: 10; display: flex; flex-direction: column; justify-content: center;
+    position: absolute;
+    left: 70px;
+    top: 320px;
+    width: 940px;
+    height: 1280px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
   }
-  .scene {
-    position: absolute; inset: 0; display: flex; flex-direction: column;
-    justify-content: center; visibility: hidden; opacity: 0; will-change: transform, opacity;
+
+  /* ==============================================================
+     ESCENA 1: EL GANCHO DEL CRONÓMETRO DE URGENCIA (0.0s - 3.2s)
+     ============================================================== */
+  #hook-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 20;
   }
-  #sc1 { visibility: visible; opacity: 1; }
-  .badge-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(24, 24, 27, 0.9); border: 1.5px solid rgba(245, 158, 11, 0.5);
-    padding: 10px 24px; border-radius: 999px; margin-bottom: 24px; width: fit-content;
+  .hook-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #6E0C2B;
+    border: 2px solid #C59B27;
+    color: #FAF8F5;
+    padding: 12px 32px;
+    border-radius: 999px;
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(110, 12, 43, 0.6);
   }
-  .badge-dot { width: 12px; height: 12px; border-radius: 50%; background: #F59E0B; box-shadow: 0 0 14px #F59E0B; }
-  .badge-lbl { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #F8FAFC; }
-  .titular {
-    font-family: 'Outfit', sans-serif; font-size: 80px; font-weight: 900; line-height: 1.08;
-    color: #FFFFFF; letter-spacing: -0.02em; text-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  .hook-badge-dot {
+    width: 12px;
+    height: 12px;
+    background: #FAF8F5;
+    border-radius: 50%;
   }
-  .gold-gradient {
-    color: #FACC15; background: linear-gradient(135deg, #F59E0B 0%, #FDE047 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+  /* CRONÓMETRO GIGANTE DE CUENTA ATRÁS */
+  .hook-countdown-box {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
   }
-  .chipotle-tag {
-    background: rgba(220, 38, 38, 0.85); color: #FFFFFF; padding: 2px 16px;
-    border-radius: 14px; border: 1px solid rgba(239, 68, 68, 0.5); display: inline-block;
+  .hook-timer-num {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 160px;
+    font-weight: 900;
+    line-height: 1;
+    color: #C59B27;
+    text-shadow: 0 0 50px rgba(197, 155, 39, 0.6);
+    letter-spacing: -0.05em;
   }
-  .desc { font-size: 32px; font-weight: 500; color: #CBD5E1; margin-top: 24px; line-height: 1.4; max-width: 800px; }
-  .card-3d {
-    margin-top: 36px; background: rgba(24, 24, 27, 0.85); border: 2px solid rgba(245, 158, 11, 0.35);
-    border-radius: 28px; padding: 28px 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: space-between;
+  .hook-timer-unit {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: #FAF8F5;
   }
-  .card-val { font-family: 'Outfit', sans-serif; font-size: 50px; font-weight: 900; color: #FACC15; }
-  .card-tag { font-size: 19px; font-weight: 700; color: #94A3B8; text-transform: uppercase; }
-  .cta-btn {
-    display: inline-block; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-    color: #090B10; font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 900;
-    padding: 20px 50px; border-radius: 999px; border: 3px solid #FDE047; margin-top: 36px;
-    box-shadow: 0 15px 40px rgba(245, 158, 11, 0.5); text-align: center;
+
+  .hook-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 82px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #FAF8F5;
+    max-width: 860px;
   }
+  .hook-title span {
+    color: #C59B27;
+  }
+
+  /* ==============================================================
+     ESCENA 2: ESCENARIO CINEMÁTICO UNIFICADO (3.2s - 18.5s)
+     ============================================================== */
+  #main-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 25;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .device-frame-3d {
+    width: 780px;
+    height: 1040px;
+    background: linear-gradient(155deg, rgba(28, 22, 31, 0.96) 0%, rgba(14, 11, 16, 0.98) 100%);
+    border: 3.5px solid #C59B27;
+    border-radius: 54px;
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 
+      0 40px 100px rgba(0, 0, 0, 0.85),
+      0 0 60px rgba(110, 12, 43, 0.35),
+      inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+  }
+  .device-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(197, 155, 39, 0.3);
+    padding-bottom: 22px;
+  }
+  .device-logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: #FAF8F5;
+  }
+  .device-logo span { color: #6E0C2B; }
+  .device-status {
+    background: #6E0C2B;
+    color: #FAF8F5;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 6px 18px;
+    border-radius: 999px;
+    border: 1px solid #C59B27;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .dish-card-live {
+    background: rgba(42, 34, 46, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 36px;
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+  .dish-img-box {
+    width: 220px;
+    height: 220px;
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #C59B27;
+    flex-shrink: 0;
+  }
+  .dish-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .dish-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .dish-tag {
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #C59B27;
+    letter-spacing: 0.12em;
+  }
+  .dish-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #FAF8F5;
+  }
+  .live-action-badge {
+    background: #6E0C2B;
+    border: 2px solid #C59B27;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #FAF8F5;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+  }
+  .feature-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 10px;
+  }
+  .feat-cell {
+    background: rgba(42, 34, 46, 0.5);
+    border: 1.5px solid rgba(197, 155, 39, 0.35);
+    border-radius: 24px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+  .feat-cell-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #C59B27;
+  }
+  .feat-cell-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #FAF8F5;
+    margin-top: 4px;
+  }
+
+  /* ==============================================================
+     ESCENA 3: MEGA-CTA CON URGENCIA Y MOVIMIENTO (18.5s - 22.5s)
+     (SILENCIO TOTAL DE VOZ)
+     ============================================================== */
+  #mega-cta-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .cta-vault-box {
+    width: 900px;
+    background: linear-gradient(165deg, #1C1420 0%, #0D0A10 100%);
+    border: 5px solid #C59B27;
+    border-radius: 56px;
+    padding: 60px 48px;
+    text-align: center;
+    box-shadow: 
+      0 50px 120px rgba(0, 0, 0, 0.95),
+      0 0 90px rgba(110, 12, 43, 0.7),
+      inset 0 0 60px rgba(197, 155, 39, 0.25);
+    transform-style: preserve-3d;
+  }
+  .cta-urgent-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #6E0C2B;
+    border: 2.5px solid #C59B27;
+    color: #FAF8F5;
+    padding: 14px 38px;
+    border-radius: 999px;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 30px;
+    box-shadow: 0 0 35px rgba(110, 12, 43, 0.8);
+  }
+  .cta-mega-headline {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 86px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #FAF8F5;
+  }
+  .cta-mega-headline span { color: #C59B27; }
+  .cta-price-badge {
+    background: linear-gradient(135deg, #6E0C2B 0%, #4A071C 100%);
+    border: 4px solid #C59B27;
+    border-radius: 36px;
+    padding: 30px 40px;
+    margin: 36px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  }
+  .cta-price-amount {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 92px;
+    font-weight: 900;
+    color: #FAF8F5;
+    line-height: 1;
+  }
+  .cta-price-amount span { font-size: 40px; color: #C59B27; }
+  .cta-price-detail {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cta-detail-item {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FAF8F5;
+  }
+  .cta-detail-item span { color: #C59B27; }
+  .cta-url-box {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: #FAF8F5;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cta-url-box span { color: #C59B27; }
 </style>
 </head>
 <body>
 
-<div id="viewport">
-  <div class="broll-layer">
-    <img src="../../imagenes/11-broll-steak.jpg" id="img1" class="broll-img">
-    <img src="../../imagenes/12-broll-qr-table.jpg" id="img2" class="broll-img">
-    <img src="../../imagenes/04-alergenos.jpg" id="img3" class="broll-img">
-    <img src="../../imagenes/02-primer-mes.jpg" id="img4" class="broll-img">
+  <div id="viewport">
+    <div class="bg-universe">
+      <div class="glow-vino"></div>
+      <div class="glow-oro"></div>
+      <div class="editorial-grid"></div>
+    </div>
+
+    <div class="safe-box">
+      <!-- ESCENA 1: EL RETO DEL TIEMPO (0.0s - 3.2s) -->
+      <section id="hook-scene">
+        <div class="hook-badge">
+          <span class="hook-badge-dot"></span>
+          <span>Control Absoluto en Sala</span>
+        </div>
+        <div class="hook-countdown-box">
+          <span class="hook-timer-num" id="countdown">60</span>
+          <span class="hook-timer-unit">SEG</span>
+        </div>
+        <h1 class="hook-title">
+          ¿Cuánto tardas en cambiar<br>
+          <span>un plato de tu carta?</span>
+        </h1>
+      </section>
+
+      <!-- ESCENA 2: ESCENARIO 3D UNIFICADO (3.2s - 18.5s) -->
+      <section id="main-stage">
+        <div class="device-frame-3d" id="deviceFrame">
+          <div class="device-header">
+            <div class="device-logo">D<span>K</span>itchen Studio</div>
+            <div class="device-status">Actualización Instantánea</div>
+          </div>
+
+          <div class="dish-card-live" id="dishCard">
+            <div class="dish-img-box">
+              <img src="/media/experience/experience-brunch-de-domingo-4x5.webp" alt="Plato con IA DKitchen" />
+            </div>
+            <div class="dish-info">
+              <span class="dish-tag">Sugerencia Actualizada</span>
+              <h3 class="dish-title">Brunch Gourmet de Temporada</h3>
+              <div class="live-action-badge">
+                <span>&check; 14 Alérgenos Auditados</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-strip">
+            <div class="feat-cell">
+              <div class="feat-cell-num">01</div>
+              <div class="feat-cell-title">En 60 Segundos</div>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell-num">02</div>
+              <div class="feat-cell-title">Fotos con IA</div>
+            </div>
+            <div class="feat-cell">
+              <div class="feat-cell-num">03</div>
+              <div class="feat-cell-title">Sin Reimpresión</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESCENA 3: MEGA-CTA GIGANTE (18.5s - 22.5s) -->
+      <section id="mega-cta-scene">
+        <div class="cta-vault-box" id="ctaBox">
+          <div class="cta-urgent-pill">
+            &bull; Primer Mes Bonificado &bull;
+          </div>
+          <h2 class="cta-mega-headline">
+            Toma el control hoy por <span>1,00 €</span>
+          </h2>
+          <div class="cta-price-badge">
+            <div class="cta-price-amount">
+              1 € <span>(+ IVA)</span>
+            </div>
+            <div class="cta-price-detail">
+              <div class="cta-detail-item"><span>&check;</span> Alta de 159 € incluida</div>
+              <div class="cta-detail-item"><span>&check;</span> Sin permanencia</div>
+              <div class="cta-detail-item"><span>&check;</span> Sin reimprimir jamás</div>
+            </div>
+          </div>
+          <div class="cta-url-box" id="ctaUrl">
+            <span>&rarr;</span> dkitchencorporate.es/qr
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-  <div class="vignette"></div>
-  <div class="glow-amber" id="glowA"></div>
 
-  <div class="safe-box">
-    <!-- ESCENA 1: EL RETO DEL TIEMPO (0.0s - 4.0s) -->
-    <div class="scene" id="sc1">
-      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 01 · Agilidad Extrema</div></div>
-      <h1 class="titular">Configura tu menú en <span class="gold-gradient">60 segundos</span></h1>
-      <p class="desc">Añade o cambia cualquier plato desde tu móvil antes de abrir el servicio.</p>
-      <div class="card-3d">
-        <div><div class="card-tag">Tiempo de Publicación</div><div class="card-val">&lt; 1 Minuto</div></div>
-        <div style="font-size: 46px;">⏱️</div>
-      </div>
-    </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    window.TL = tl;
 
-    <!-- ESCENA 2: CONTROL DE PRECIOS EN VIVO (4.0s - 8.0s) -->
-    <div class="scene" id="sc2">
-      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 02 · Precios en Tiempo Real</div></div>
-      <h2 class="titular">Cambia precios y stock <span class="gold-gradient">al instante</span></h2>
-      <p class="desc">¿Se agotó un plato o subió el coste del ingrediente? Un toque y tu sala está sincronizada.</p>
-      <div class="card-3d">
-        <div><div class="card-tag">Sincronización Total</div><div class="card-val">En Directo</div></div>
-        <div style="font-size: 46px;">📱</div>
-      </div>
-    </div>
+    // Escena 1: Cronómetro animado
+    tl.set('#hook-scene', { autoAlpha: 1 });
+    tl.from('#hook-scene .hook-badge', { y: -40, opacity: 0, duration: 0.5, ease: 'back.out(1.8)' }, 0.05);
+    tl.from('#hook-scene .hook-countdown-box', { scale: 0.6, opacity: 0, duration: 0.6, ease: 'back.out(2)' }, 0.15);
+    
+    // Cuenta regresiva 60 -> 45 -> 30 -> 10 en 2.5s
+    tl.to('#countdown', {
+      innerText: 10,
+      roundProps: 'innerText',
+      duration: 2.5,
+      ease: 'power1.in'
+    }, 0.2);
 
-    <!-- ESCENA 3: CUMPLIMIENTO Y ALÉRGENOS (8.0s - 12.2s) -->
-    <div class="scene" id="sc3">
-      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 03 · Normativa UE</div></div>
-      <h2 class="titular">14 alérgenos claros y <span class="gold-gradient">fotos con IA</span></h2>
-      <p class="desc">Tus clientes piden con máxima tranquilidad y tu equipo atiende el doble de rápido.</p>
-      <div class="card-3d">
-        <div><div class="card-tag">Seguridad y Claridad</div><div class="card-val">100% Blindado</div></div>
-        <div style="font-size: 46px;">🛡️</div>
-      </div>
-    </div>
+    tl.from('#hook-scene .hook-title', { y: 30, opacity: 0, duration: 0.5, ease: 'power2.out' }, 0.5);
+    tl.to('#hook-scene', { autoAlpha: 0, scale: 1.1, duration: 0.45, ease: 'power2.in' }, 2.9);
 
-    <!-- ESCENA 4: CIERRE (12.2s - 16.0s) -->
-    <div class="scene" id="sc4" style="text-align: center; align-items: center;">
-      <div style="font-family: 'Outfit'; font-size: 110px; font-weight: 900; line-height: 1;">D<span style="color: #F59E0B;">K</span>itchen</div>
-      <div style="font-size: 22px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #FACC15; margin-top: 14px;">Tu Carta Lista en 60 Segundos</div>
-      <div class="cta-btn">Primer mes por 1 € + IVA</div>
-      <div style="font-family: 'Outfit'; font-size: 34px; font-weight: 800; color: #FFFFFF; margin-top: 24px;">dkitchencorporate.es</div>
-    </div>
-  </div>
-</div>
+    // Escena 2
+    tl.set('#main-stage', { autoAlpha: 1 }, 3.2);
+    tl.from('#deviceFrame', { scale: 0.82, rotateX: 18, rotateY: -12, opacity: 0, duration: 0.9, ease: 'power3.out' }, 3.25);
+    tl.to('#deviceFrame', { rotateY: 8, rotateX: -6, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 4.2);
+    tl.to('#main-stage', { autoAlpha: 0, scale: 0.88, rotateX: -20, duration: 0.6, ease: 'power3.in' }, 17.9);
 
-<script>
-  const tl = gsap.timeline({ paused: true });
-  tl.to('#glowA', { x: -80, y: -100, scale: 1.25, duration: 8, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0);
-  tl.to('#img1', { scale: 1.08, duration: 4.5, ease: 'none' }, 0);
+    // Escena 3 (Mega-CTA con pulso en silencio de voz)
+    tl.set('#mega-cta-scene', { autoAlpha: 1 }, 18.5);
+    tl.from('#ctaBox', { scale: 0.75, opacity: 0, duration: 0.7, ease: 'back.out(2)' }, 18.55);
+    tl.to('#ctaBox', {
+      scale: 1.04,
+      boxShadow: '0 60px 140px rgba(0, 0, 0, 1), 0 0 110px rgba(197, 155, 39, 0.9), inset 0 0 80px rgba(110, 12, 43, 0.6)',
+      duration: 0.45,
+      yoyo: true,
+      repeat: 7,
+      ease: 'sine.inOut'
+    }, 19.1);
+    tl.from('#ctaUrl', { scale: 0.9, opacity: 0.5, duration: 0.35, yoyo: true, repeat: 9, ease: 'power1.inOut' }, 19.0);
 
-  // Escena 1
-  tl.set('#sc1', { autoAlpha: 1 }, 0);
-  tl.from('#sc1 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 0.05);
-  tl.from('#sc1 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.15);
-  tl.from('#sc1 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 0.45);
-  tl.from('#sc1 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 0.7);
-  tl.to('#sc1', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 3.6);
-  tl.to('#img1', { opacity: 0, duration: 0.4 }, 3.6);
-  tl.to('#img2', { opacity: 1, scale: 1.08, duration: 4.5, ease: 'none' }, 3.6);
-
-  // Escena 2
-  tl.set('#sc2', { autoAlpha: 1 }, 4.0);
-  tl.from('#sc2 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 4.05);
-  tl.from('#sc2 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 4.15);
-  tl.from('#sc2 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 4.45);
-  tl.from('#sc2 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 4.7);
-  tl.to('#sc2', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 7.6);
-  tl.to('#img2', { opacity: 0, duration: 0.4 }, 7.6);
-  tl.to('#img3', { opacity: 1, scale: 1.08, duration: 4.8, ease: 'none' }, 7.6);
-
-  // Escena 3
-  tl.set('#sc3', { autoAlpha: 1 }, 8.0);
-  tl.from('#sc3 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 8.05);
-  tl.from('#sc3 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 8.15);
-  tl.from('#sc3 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 8.45);
-  tl.from('#sc3 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 8.7);
-  tl.to('#sc3', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 11.8);
-  tl.to('#img3', { opacity: 0, duration: 0.4 }, 11.8);
-  tl.to('#img4', { opacity: 1, scale: 1.08, duration: 4.5, ease: 'none' }, 11.8);
-
-  // Escena 4: Cierre
-  tl.set('#sc4', { autoAlpha: 1 }, 12.2);
-  tl.from('#sc4', { scale: 0.88, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' }, 12.25);
-  tl.to('#sc4 .cta-btn', { scale: 1.05, duration: 0.5, yoyo: true, repeat: 4, ease: 'sine.inOut' }, 12.8);
-  tl.to({}, { duration: 0.1 }, 15.9);
-
-  window.TL = tl;
-  window.LISTO = 1;
-</script>
+    tl.duration(22.5);
+  </script>
 </body>
 </html>

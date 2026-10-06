@@ -1,6 +1,15 @@
 {
-  "titulo": "Reel 02 - Configura tu menú en 60 segundos",
+  "titulo": "Reel 02 - Menú en 60 Segundos",
   "voice_id": "bIHbv24MWmeRgasZH58o",
-  "duracion_segundos": 16.0,
-  "locucion": "¿Cuánto tardas en cambiar un plato de tu carta?... Con DKitchen lo haces en menos de sesenta segundos... Subes tus fotos con inteligencia artificial... ajustas precios al instante... y los catorce alérgenos se muestran con total claridad. Sin reimprimir nada jamás. Empieza hoy mismo por un euro."
+  "duracion_total_video": 22.5,
+  "duracion_locucion_segundos": 18.0,
+  "corte_voz_segundo": 18.5,
+  "locucion": "¿Cuánto tardas en cambiar un plato de tu carta? Con DKitchen lo haces en menos de sesenta segundos. Subes fotos con inteligencia artificial, ajustas precios en directo y los catorce alérgenos se muestran con total claridad. Sin reimprimir nada jamás.",
+  "estructura": {
+    "hook_segundos": "0.0 - 3.0 (Cronómetro gigante en pantalla con tic-tac de reloj y sentido de urgencia)",
+    "desarrollo_broll_segundos": "3.0 - 14.5 (Panel móvil interactuando con 3 toques, alérgeno activado y platos modificados)",
+    "transicion_solucion_segundos": "14.5 - 18.5 (Cero intermediarios y cero facturas de imprenta)",
+    "silencio_voz_segundos": "18.5 - 22.5 (Silencio total de locución)",
+    "mega_cta_segundos": "18.5 - 22.5 (Mega-CTA con resplandor dorado: 1 € el primer mes con alta bonificada en dkitchencorporate.es/qr)"
+  }
 }

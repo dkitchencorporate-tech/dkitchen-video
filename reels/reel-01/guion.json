@@ -1,6 +1,15 @@
 {
-  "titulo": "Reel 01 - Tu carta, a la altura de tu cocina",
+  "titulo": "Reel 01 - Tu cocina es de autor",
   "voice_id": "bIHbv24MWmeRgasZH58o",
-  "duracion_segundos": 14.5,
-  "locucion": "Si tu cocina es de autor... ¿por qué tu carta sigue en papel?... Con DKitchen, cada plato se presenta en alta definición... Los precios se actualizan en segundos... y tu sala trabaja con precisión de reloj suizo. Digitaliza tu restaurante hoy... y prueba tu primer mes por solo un euro."
+  "duracion_total_video": 23.5,
+  "duracion_locucion_segundos": 19.0,
+  "corte_voz_segundo": 19.5,
+  "locucion": "Si tu cocina es de autor... ¿por qué tu carta sigue atrapada en papel? Con DKitchen, cada plato se presenta en alta fidelidad fotográfica. Los precios se actualizan al instante y tu sala trabaja con precisión de reloj suizo.",
+  "estructura": {
+    "hook_segundos": "0.0 - 3.0 (Siseo de plancha y fuego, disonancia entre alta cocina y papel arrugado)",
+    "desarrollo_broll_segundos": "3.0 - 14.5 (B-roll fotográfico de platos gourmet, maridaje sugerido y 14 alérgenos auditados)",
+    "transicion_solucion_segundos": "14.5 - 19.5 (Autoridad de sala y rotación un 20% más rápida)",
+    "silencio_voz_segundos": "19.5 - 23.5 (Silencio total de locución)",
+    "mega_cta_segundos": "19.5 - 23.5 (Mega-CTA en oro palpitante con urgencia: Activa tu sala por 1 € en dkitchencorporate.es)"
+  }
 }

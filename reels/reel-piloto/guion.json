@@ -1,6 +1,15 @@
 {
-  "titulo": "Piloto Cinemático 3D - ¿Cuántas cartas vas a tirar a la basura?",
+  "titulo": "Piloto Cinemático 3D - La Carta en Llamas",
   "voice_id": "bIHbv24MWmeRgasZH58o",
-  "duracion_segundos": 15.5,
-  "locucion": "Cada vez que reimprimes tu carta física... estás tirando beneficio a la basura... Con DKitchen, tienes una carta digital interactiva en tres dimensiones... Modifica platos al vuelo... ahorra miles de euros en imprenta... y ofrece una experiencia memorable a cada cliente. Entra en dkitchencorporate punto es."
+  "duracion_total_video": 24.0,
+  "duracion_locucion_segundos": 19.5,
+  "corte_voz_segundo": 20.0,
+  "locucion": "Cada vez que reimprimes tu carta física... estás tirando beneficio a la basura. Con DKitchen, tienes una carta digital interactiva en tres dimensiones. Modifica platos en sesenta segundos, ahorra miles de euros en imprenta... y ofrece una experiencia que tus clientes recuerdan.",
+  "estructura": {
+    "hook_segundos": "0.0 - 3.0 (Corte seco de dolor, sonido de papel desgarrado y billetes cayendo)",
+    "desarrollo_broll_segundos": "3.0 - 15.0 (Smartphone 3D con carta viva, cambio de precio en vivo de 24€ a 28€ y alérgenos)",
+    "transicion_solucion_segundos": "15.0 - 20.0 (Autoridad de marca y ahorro directo)",
+    "silencio_voz_segundos": "20.0 - 24.0 (Silencio total de locución)",
+    "mega_cta_segundos": "20.0 - 24.0 (Caja gigante en Vino #6E0C2B y Oro #C59B27 con pulso continuo y urgencia real: Prueba de 1,00 € en dkitchencorporate.es/qr)"
+  }
 }

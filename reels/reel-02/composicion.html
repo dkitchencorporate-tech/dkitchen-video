@@ -2,103 +2,183 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<!-- Reel 02 de DKitchen (04/10/2026). Tutorial Motion: Configurar, instalar y publicar tu carta en 60 segundos. -->
+<title>Reel 02 - Configura tu menú en 60 segundos (DKitchen Élite)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
 <style>
-  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0A080C; font-family: 'Inter', sans-serif; }
-  .escena { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
-  .velo { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,8,12,.95) 0%, rgba(10,8,12,.45) 55%, rgba(10,8,12,.15) 100%); }
-  .fondo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  
-  /* Bloque de texto en zona segura (superior a 240px, inferior a 440px) */
-  .caja-texto { position: absolute; left: 80px; right: 80px; bottom: 320px; color: #F7F5F2; }
-  .badge-paso { display: inline-flex; align-items: center; padding: 10px 24px; border-radius: 999px; background: rgba(110,12,43,0.85); border: 2px solid #D9B25C; color: #D9B25C; font: 700 24px 'Inter', sans-serif; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 24px; }
-  .titular-gran { font: 800 92px/1.04 'Bricolage Grotesque', sans-serif; color: #F7F5F2; margin: 0; }
-  .titular-gran em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #D9B25C; font-weight: 500; }
-  .subtexto { font: 500 36px/1.4 'Inter', sans-serif; color: rgba(247,245,242,0.85); margin-top: 20px; }
-  
-  /* Cierre Gran Reserva */
-  #cierre { background: radial-gradient(circle at 50% 35%, #A3184A 0%, #6E0C2B 50%, #20020A 100%); }
-  #cierre .centro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #F7F5F2; padding: 0 60px; }
-  #cierre .marca { font: 700 140px 'Cormorant Garamond', serif; letter-spacing: -0.02em; }
-  #cierre .marca span { color: #D9B25C; }
-  #cierre .burbuja-oferta { font: 800 48px 'Bricolage Grotesque', sans-serif; margin-top: 36px; padding: 24px 60px; border: 3px solid #D9B25C; border-radius: 999px; background: rgba(10,8,12,0.6); color: #F7F5F2; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-  #cierre .cta-bio { font: 600 38px 'Inter', sans-serif; margin-top: 36px; color: #D9B25C; letter-spacing: .05em; }
-  #cierre .dominio { font: 400 32px 'Inter', sans-serif; margin-top: 16px; color: rgba(247,245,242,0.7); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1920px;
+    overflow: hidden; background: #090B10;
+    font-family: 'Plus Jakarta Sans', sans-serif; color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+  }
+  #viewport {
+    position: relative; width: 1080px; height: 1920px;
+    overflow: hidden; perspective: 1200px; background: #090B10;
+  }
+  .broll-layer { position: absolute; inset: -40px; z-index: 1; }
+  .broll-img {
+    position: absolute; inset: 0; width: 1160px; height: 2000px;
+    object-fit: cover; opacity: 0;
+    filter: brightness(0.38) saturate(1.15) contrast(1.1);
+    transform-origin: center center; will-change: transform, opacity;
+  }
+  #img1 { opacity: 1; }
+  .vignette {
+    position: absolute; inset: 0; z-index: 2;
+    background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.4) 0%, rgba(9, 11, 16, 0.88) 70%, #090B10 100%);
+  }
+  .glow-amber {
+    position: absolute; width: 800px; height: 800px; border-radius: 50%;
+    filter: blur(140px); background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, transparent 70%);
+    bottom: 15%; right: -100px; z-index: 3; mix-blend-mode: screen; will-change: transform;
+  }
+  .safe-box {
+    position: absolute; left: 60px; top: 240px; width: 860px; height: 1240px;
+    z-index: 10; display: flex; flex-direction: column; justify-content: center;
+  }
+  .scene {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    justify-content: center; visibility: hidden; opacity: 0; will-change: transform, opacity;
+  }
+  #sc1 { visibility: visible; opacity: 1; }
+  .badge-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(24, 24, 27, 0.9); border: 1.5px solid rgba(245, 158, 11, 0.5);
+    padding: 10px 24px; border-radius: 999px; margin-bottom: 24px; width: fit-content;
+  }
+  .badge-dot { width: 12px; height: 12px; border-radius: 50%; background: #F59E0B; box-shadow: 0 0 14px #F59E0B; }
+  .badge-lbl { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #F8FAFC; }
+  .titular {
+    font-family: 'Outfit', sans-serif; font-size: 80px; font-weight: 900; line-height: 1.08;
+    color: #FFFFFF; letter-spacing: -0.02em; text-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  }
+  .gold-gradient {
+    color: #FACC15; background: linear-gradient(135deg, #F59E0B 0%, #FDE047 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .chipotle-tag {
+    background: rgba(220, 38, 38, 0.85); color: #FFFFFF; padding: 2px 16px;
+    border-radius: 14px; border: 1px solid rgba(239, 68, 68, 0.5); display: inline-block;
+  }
+  .desc { font-size: 32px; font-weight: 500; color: #CBD5E1; margin-top: 24px; line-height: 1.4; max-width: 800px; }
+  .card-3d {
+    margin-top: 36px; background: rgba(24, 24, 27, 0.85); border: 2px solid rgba(245, 158, 11, 0.35);
+    border-radius: 28px; padding: 28px 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-val { font-family: 'Outfit', sans-serif; font-size: 50px; font-weight: 900; color: #FACC15; }
+  .card-tag { font-size: 19px; font-weight: 700; color: #94A3B8; text-transform: uppercase; }
+  .cta-btn {
+    display: inline-block; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    color: #090B10; font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 900;
+    padding: 20px 50px; border-radius: 999px; border: 3px solid #FDE047; margin-top: 36px;
+    box-shadow: 0 15px 40px rgba(245, 158, 11, 0.5); text-align: center;
+  }
 </style>
 </head>
 <body>
-  <!-- Escena 1: Gancho -->
-  <div class="escena" id="e1">
-    <img src="../../imagenes/03-antes-despues.jpg" class="fondo-img">
-    <div class="velo"></div>
-    <div class="caja-texto">
-      <div class="badge-paso">Capítulo 01 · Tu Carta QR</div>
-      <h1 class="titular-gran">Configura tu menú en <em>60 segundos</em></h1>
-      <p class="subtexto">Sin depender de diseñadores ni de reimprimir cartas nunca más.</p>
-    </div>
-  </div>
 
-  <!-- Escena 2: Añadir Platos y Precios -->
-  <div class="escena" id="e2">
-    <img src="../../imagenes/02-primer-mes.jpg" class="fondo-img">
-    <div class="velo"></div>
-    <div class="caja-texto">
-      <div class="badge-paso">Paso 1 · Control Total</div>
-      <h2 class="titular-gran">Cambia precios y platos <em>al instante</em></h2>
-      <p class="subtexto">Edita desde el móvil durante el servicio. Tu QR no cambia nunca.</p>
-    </div>
+<div id="viewport">
+  <div class="broll-layer">
+    <img src="../../imagenes/11-broll-steak.jpg" id="img1" class="broll-img">
+    <img src="../../imagenes/12-broll-qr-table.jpg" id="img2" class="broll-img">
+    <img src="../../imagenes/04-alergenos.jpg" id="img3" class="broll-img">
+    <img src="../../imagenes/02-primer-mes.jpg" id="img4" class="broll-img">
   </div>
+  <div class="vignette"></div>
+  <div class="glow-amber" id="glowA"></div>
 
-  <!-- Escena 3: Fotos y Alérgenos con IA -->
-  <div class="escena" id="e3">
-    <img src="../../imagenes/04-alergenos.jpg" class="fondo-img">
-    <div class="velo"></div>
-    <div class="caja-texto">
-      <div class="badge-paso">Paso 2 · Cumplimiento UE</div>
-      <h2 class="titular-gran">14 alérgenos claros y <em>fotos apetecibles</em></h2>
-      <p class="subtexto">Tus clientes piden tranquilos; tu equipo trabaja sin confusiones.</p>
+  <div class="safe-box">
+    <!-- ESCENA 1: EL RETO DEL TIEMPO (0.0s - 4.0s) -->
+    <div class="scene" id="sc1">
+      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 01 · Agilidad Extrema</div></div>
+      <h1 class="titular">Configura tu menú en <span class="gold-gradient">60 segundos</span></h1>
+      <p class="desc">Añade o cambia cualquier plato desde tu móvil antes de abrir el servicio.</p>
+      <div class="card-3d">
+        <div><div class="card-tag">Tiempo de Publicación</div><div class="card-val">&lt; 1 Minuto</div></div>
+        <div style="font-size: 46px;">⏱️</div>
+      </div>
     </div>
-  </div>
 
-  <!-- Escena 4: Cierre Gran Reserva -->
-  <div class="escena" id="cierre">
-    <div class="centro">
-      <div class="marca">D<span>K</span>itchen</div>
-      <div class="burbuja-oferta">Primer mes por 1 € + IVA</div>
-      <div class="cta-bio">Prueba tu demo en el enlace de la bio 🍷</div>
-      <div class="dominio">dkitchencorporate.es</div>
+    <!-- ESCENA 2: CONTROL DE PRECIOS EN VIVO (4.0s - 8.0s) -->
+    <div class="scene" id="sc2">
+      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 02 · Precios en Tiempo Real</div></div>
+      <h2 class="titular">Cambia precios y stock <span class="gold-gradient">al instante</span></h2>
+      <p class="desc">¿Se agotó un plato o subió el coste del ingrediente? Un toque y tu sala está sincronizada.</p>
+      <div class="card-3d">
+        <div><div class="card-tag">Sincronización Total</div><div class="card-val">En Directo</div></div>
+        <div style="font-size: 46px;">📱</div>
+      </div>
+    </div>
+
+    <!-- ESCENA 3: CUMPLIMIENTO Y ALÉRGENOS (8.0s - 12.2s) -->
+    <div class="scene" id="sc3">
+      <div class="badge-tag"><div class="badge-dot"></div><div class="badge-lbl">Paso 03 · Normativa UE</div></div>
+      <h2 class="titular">14 alérgenos claros y <span class="gold-gradient">fotos con IA</span></h2>
+      <p class="desc">Tus clientes piden con máxima tranquilidad y tu equipo atiende el doble de rápido.</p>
+      <div class="card-3d">
+        <div><div class="card-tag">Seguridad y Claridad</div><div class="card-val">100% Blindado</div></div>
+        <div style="font-size: 46px;">🛡️</div>
+      </div>
+    </div>
+
+    <!-- ESCENA 4: CIERRE (12.2s - 16.0s) -->
+    <div class="scene" id="sc4" style="text-align: center; align-items: center;">
+      <div style="font-family: 'Outfit'; font-size: 110px; font-weight: 900; line-height: 1;">D<span style="color: #F59E0B;">K</span>itchen</div>
+      <div style="font-size: 22px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #FACC15; margin-top: 14px;">Tu Carta Lista en 60 Segundos</div>
+      <div class="cta-btn">Primer mes por 1 € + IVA</div>
+      <div style="font-family: 'Outfit'; font-size: 34px; font-weight: 800; color: #FFFFFF; margin-top: 24px;">dkitchencorporate.es</div>
     </div>
   </div>
+</div>
 
 <script>
   const tl = gsap.timeline({ paused: true });
-  
-  const animarEscena = (id, ini, dur) => {
-    tl.to(id, { opacity: 1, duration: 0.4 }, ini)
-      .fromTo(id + ' .fondo-img', { scale: 1.15, y: 15 }, { scale: 1, y: 0, duration: dur, ease: 'none' }, ini)
-      .from(id + ' .badge-paso', { y: 30, opacity: 0, duration: 0.5, ease: 'back.out(1.5)' }, ini + 0.2)
-      .from(id + ' .titular-gran', { y: 50, opacity: 0, duration: 0.7, ease: 'power3.out' }, ini + 0.35)
-      .from(id + ' .subtexto', { y: 30, opacity: 0, duration: 0.6, ease: 'power2.out' }, ini + 0.6)
-      .to(id, { opacity: 0, duration: 0.35 }, ini + dur - 0.35);
-  };
+  tl.to('#glowA', { x: -80, y: -100, scale: 1.25, duration: 8, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0);
+  tl.to('#img1', { scale: 1.08, duration: 4.5, ease: 'none' }, 0);
 
-  animarEscena('#e1', 0, 4.0);
-  animarEscena('#e2', 4.0, 4.0);
-  animarEscena('#e3', 8.0, 4.0);
+  // Escena 1
+  tl.set('#sc1', { autoAlpha: 1 }, 0);
+  tl.from('#sc1 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 0.05);
+  tl.from('#sc1 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.15);
+  tl.from('#sc1 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 0.45);
+  tl.from('#sc1 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 0.7);
+  tl.to('#sc1', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 3.6);
+  tl.to('#img1', { opacity: 0, duration: 0.4 }, 3.6);
+  tl.to('#img2', { opacity: 1, scale: 1.08, duration: 4.5, ease: 'none' }, 3.6);
 
-  // Cierre (12.0s a 16.0s)
-  tl.to('#cierre', { opacity: 1, duration: 0.4 }, 12.0)
-    .from('#cierre .marca', { scale: 0.82, opacity: 0, duration: 0.8, ease: 'back.out(1.6)' }, 12.2)
-    .from('#cierre .burbuja-oferta', { y: 40, opacity: 0, duration: 0.6, ease: 'power3.out' }, 12.6)
-    .from('#cierre .cta-bio', { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out' }, 13.0)
-    .from('#cierre .dominio', { opacity: 0, duration: 0.5 }, 13.3)
-    .to({}, { duration: 0.1 }, 15.9);
+  // Escena 2
+  tl.set('#sc2', { autoAlpha: 1 }, 4.0);
+  tl.from('#sc2 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 4.05);
+  tl.from('#sc2 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 4.15);
+  tl.from('#sc2 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 4.45);
+  tl.from('#sc2 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 4.7);
+  tl.to('#sc2', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 7.6);
+  tl.to('#img2', { opacity: 0, duration: 0.4 }, 7.6);
+  tl.to('#img3', { opacity: 1, scale: 1.08, duration: 4.8, ease: 'none' }, 7.6);
+
+  // Escena 3
+  tl.set('#sc3', { autoAlpha: 1 }, 8.0);
+  tl.from('#sc3 .badge-tag', { y: -25, opacity: 0, duration: 0.4, ease: 'back.out(1.5)' }, 8.05);
+  tl.from('#sc3 .titular', { y: 40, opacity: 0, duration: 0.5, ease: 'power3.out' }, 8.15);
+  tl.from('#sc3 .desc', { y: 25, opacity: 0, duration: 0.45, ease: 'power2.out' }, 8.45);
+  tl.from('#sc3 .card-3d', { y: 40, opacity: 0, scale: 0.92, duration: 0.5, ease: 'back.out(1.4)' }, 8.7);
+  tl.to('#sc3', { autoAlpha: 0, scale: 0.94, y: -40, duration: 0.4, ease: 'power3.in' }, 11.8);
+  tl.to('#img3', { opacity: 0, duration: 0.4 }, 11.8);
+  tl.to('#img4', { opacity: 1, scale: 1.08, duration: 4.5, ease: 'none' }, 11.8);
+
+  // Escena 4: Cierre
+  tl.set('#sc4', { autoAlpha: 1 }, 12.2);
+  tl.from('#sc4', { scale: 0.88, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' }, 12.25);
+  tl.to('#sc4 .cta-btn', { scale: 1.05, duration: 0.5, yoyo: true, repeat: 4, ease: 'sine.inOut' }, 12.8);
+  tl.to({}, { duration: 0.1 }, 15.9);
 
   window.TL = tl;
-  window.LISTO = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => { i.onload = r; i.onerror = r; }))));
+  window.LISTO = 1;
 </script>
 </body>
 </html>

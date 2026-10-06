@@ -85,6 +85,7 @@ interface PostEstatico {
   tipo: 'post' | 'carrusel';
   titular: string;
   badge: string;
+  imagen?: string;
   slidesCount?: number;
   copyPublicacion: string;
   enlaceUtm: string;
@@ -283,6 +284,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: '¿Sigues reimprimiendo cartas en papel cada vez que cambias un precio?',
     badge: 'Fuga de Beneficio',
+    imagen: '/media/posts/01-presentacion.jpg',
     copyPublicacion: '¿Cuánto dinero y tiempo le cuesta a tu restaurante cambiar 3 precios o quitar un plato agotado? 🍽️ Con DKitchen, abres tu teléfono, cambias el precio en 10 segundos y tus mesas ya lo tienen actualizado. Sin reimprimir nada jamás. 👉 Activa tu carta digital con el primer mes por solo 1 € (+ IVA). Alta de 159 € incluida en la prueba.',
     enlaceUtm: 'https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#DKitchen', '#HosteleriaMadrid', '#RestaurantesMadrid', '#CartaDigital'],
@@ -293,6 +295,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: 'Tu carta digital lista en 60 segundos.',
     badge: 'Agilidad en Sala',
+    imagen: '/media/posts/02-primer-mes.jpg',
     copyPublicacion: 'Cambiar de carta no debería ser un dolor de cabeza de dos semanas. En DKitchen cualquier miembro de tu equipo puede añadir una sugerencia del día en menos de 1 minuto. Tu QR en mesa no cambia nunca; tu contenido evoluciona con tu cocina. 🍷 Prueba por 1 € el primer mes.',
     enlaceUtm: 'https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#Restaurantes', '#DigitalizacionGastronomica', '#CartaQR'],
@@ -303,6 +306,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: '14 alérgenos claros. Cero dudas en mesa.',
     badge: 'Normativa UE Blindada',
+    imagen: '/media/posts/04-alergenos.jpg',
     copyPublicacion: 'El 80% de las dudas en sala ocurren por comensales preguntando qué platos llevan gluten, lactosa o frutos secos. Con DKitchen, cada plato cuenta con sus 14 iconos normalizados. El cliente filtra en un toque desde su teléfono y pide seguro. Cumple normativa desde 1 €.',
     enlaceUtm: 'https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#Alergenos', '#HosteleriaSegura', '#RestaurantesMadrid'],
@@ -313,6 +317,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: '0% Comisiones. Todo el margen es para tu cocina.',
     badge: 'Margen Protegido',
+    imagen: '/media/posts/05-signature.jpg',
     copyPublicacion: 'Hay plataformas que se quedan entre el 15% y el 30% de cada pedido. En DKitchen creemos que el hostelero debe ser dueño de su negocio. Cuota plana fija, sin porcentajes de ventas. Tus clientes pagan en tu pasarela y tu dinero va a tu cuenta. 💡 Consulta tarifas en dkitchencorporate.es/precios.',
     enlaceUtm: 'https://dkitchencorporate.es/precios?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#RentabilidadRestaurante', '#CeroComisiones', '#DKitchen'],
@@ -323,6 +328,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: 'Tu cocina es de autor... No la enseñes como si fuera un PDF.',
     badge: 'Alta Definición',
+    imagen: '/media/posts/06-fotos-ia.jpg',
     copyPublicacion: 'Un PDF ampliado en el móvil con letra minúscula no es una carta digital; es una mala experiencia. Cuando un comensal ve el corte de carne chisporroteando o el maridaje sugerido en alta resolución, el ticket medio sube de forma natural (+18% en promedio de sala). Dale a tu producto el soporte que merece.',
     enlaceUtm: 'https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#GastroMarketing', '#FoodDesign', '#RestaurantesEspana'],
@@ -333,6 +339,7 @@ const PIEZAS_ESTATICAS_INICIALES: PostEstatico[] = [
     tipo: 'post',
     titular: 'Tu restaurante en el siglo XXI por 1 € (+ IVA).',
     badge: 'Oferta de Arranque',
+    imagen: '/media/posts/03-antes-despues.jpg',
     copyPublicacion: 'Queremos que compruebes en tu propio servicio lo que cambia tener la sala conectada. Durante 30 días, disfruta de todas las funciones de la Carta Digital Ampliada de DKitchen por solo 1 € (+ IVA). Te incluimos el alta de 159 €, subimos tu carta y te dejamos todo preparado hoy mismo.',
     enlaceUtm: 'https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=arranque_oct26',
     tags: ['#DKitchen', '#RestaurantesMadrid', '#HosteleriaDigital'],
@@ -1147,6 +1154,16 @@ export default function DashboardAdmin() {
                         {item.tipo === 'carrusel' ? `Carrusel (${item.slidesCount} slides)` : 'Post 4:5'}
                       </span>
                     </div>
+
+                    {item.imagen && (
+                      <div className="relative rounded-2xl overflow-hidden bg-neutral-100 border border-[#E8E2D5] aspect-4/5 flex items-center justify-center">
+                        <img
+                          src={item.imagen}
+                          alt={item.titular}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
 
                     <h4 className="text-sm font-bold text-[#1E1920] leading-snug">
                       {item.titular}

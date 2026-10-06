@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/request';
+import { NextResponse, NextRequest } from 'next/server';
 
 // Verificación de firma HMAC-SHA256 con Web Crypto (compatible Edge / Node)
 async function verifySessionToken(token: string, secret: string): Promise<boolean> {

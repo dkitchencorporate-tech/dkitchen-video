@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/request';
+import { NextResponse, NextRequest } from 'next/server';
 import crypto from 'crypto';
 
 // Rate limiting simple en memoria por IP (5 intentos cada 15 min)

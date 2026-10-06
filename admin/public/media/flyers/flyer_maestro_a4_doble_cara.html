@@ -596,7 +596,28 @@
     font-size: 32px;
     font-weight: 800;
     color: #6E0C2B;
-    letter-spacing: 0.05em;
+  /* REGLAS PROFESIONALES DE IMPRESIÓN Y EXPORTACIÓN A PDF */
+  @media print {
+    html, body {
+      background: transparent !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+      width: 216mm !important;
+    }
+    .a4-page {
+      box-shadow: none !important;
+      margin: 0 !important;
+      width: 216mm !important;
+      height: 303mm !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .bleed-guide {
+      display: none !important; /* Ocultar guía visual punteada en el corte real */
+    }
   }
 </style>
 </head>

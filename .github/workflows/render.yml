@@ -5,9 +5,13 @@ on:
   workflow_dispatch:
     inputs:
       carpeta:
-        description: Carpeta de la pieza (contiene composicion.html)
+        description: Carpeta de la pieza (contiene composicion o MasterPiece)
         required: true
-        default: reels/reel-01
+        default: reels/v1-la-carta-en-llamas
+      motor:
+        description: 'Motor de renderizado (remotion | hyperframes_legacy)'
+        required: false
+        default: 'remotion'
       fps:
         description: Fotogramas por segundo (estándar DKitchen = 30)
         required: false
@@ -29,11 +33,13 @@ jobs:
           npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
           npx playwright install --with-deps chromium
           pip install google-api-python-client google-auth
+          npm --prefix remotion-composer install
 
       - name: Validar y Sanitizar Parámetros de Entrada (S9)
         env:
           INPUT_CARPETA: ${{ inputs.carpeta }}
           INPUT_FPS: ${{ inputs.fps }}
+          INPUT_MOTOR: ${{ inputs.motor }}
         run: |
           if [[ ! "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]]; then
             echo "[ERROR FATAL S9] La carpeta '$INPUT_CARPETA' no cumple con el patrón seguro ^reels/[a-z0-9-]+$"
@@ -49,7 +55,9 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           TARGET_CARPETA: ${{ inputs.carpeta }}
         run: |
-          if [ -f "scripts/generar_audio_envolvente.cjs" ]; then
+          if [ -f "$TARGET_CARPETA/audio.mp3" ]; then
+            echo "[Audio] Pista de audio ya existente en $TARGET_CARPETA. Conservando master."
+          elif [ -f "scripts/generar_audio_envolvente.cjs" ]; then
             node scripts/generar_audio_envolvente.cjs "$TARGET_CARPETA"
           elif [ -f "scripts/generar_audio_pieza.cjs" ]; then
             node scripts/generar_audio_pieza.cjs "$TARGET_CARPETA"
@@ -61,7 +69,15 @@ jobs:
         env:
           TARGET_CARPETA: ${{ inputs.carpeta }}
           TARGET_FPS: ${{ inputs.fps }}
-        run: node renderizar.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+          TARGET_MOTOR: ${{ inputs.motor }}
+        run: |
+          if [ "$TARGET_MOTOR" = "remotion" ] || [ "$TARGET_CARPETA" = "reels/v1-la-carta-en-llamas" ]; then
+            echo "[Motor] Ejecutando Remotion + Three.js WebGL (Opción A)..."
+            node scripts/render_remotion.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+          else
+            echo "[Motor] Ejecutando renderizado alternativo..."
+            node renderizar.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+          fi
 
       - name: Entregar a Google Drive (Estricto para producción)
         env:

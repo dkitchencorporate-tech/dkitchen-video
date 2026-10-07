@@ -117,3 +117,23 @@ Antes de que cualquier agente suba o etiquete un vídeo como "listo":
 - [ ] **Zonas Seguras Estrictas:** Caja 940x1280 px (cabecera libre > 220px, pie libre > 420px, lateral derecho libre > 140px).
 - [ ] **Sincronización Sonora:** Audio master a -14.0 LUFS EBU R128 con locución clara, música Lo-Fi envolvente en estéreo y remate al segundo 35 con mega-CTA.
 - [ ] **Motor Auténtico Verificado:** El log de compilación en GitHub Actions debe certificar la ejecución de `@remotion/three` o `hyperframes render`, no un bucle de capturas de Playwright.
+
+---
+
+## 6. RESULTADOS DEL BENCHMARK COMPARATIVO EN PIEZA 01 (35 SEGUNDOS)
+
+| Métrica / Característica | 🅰️ Remotion + Three.js (Test 1) | 🅱️ HyperFrames Native (Test 2) |
+| :--- | :--- | :--- |
+| **Estado del Test** | **COMPLETADO CON ÉXITO (07/10/2026)** | Pendiente de ejecución |
+| **Pipeline GitHub Actions** | [Run 37609112102](https://github.com/dkitchencorporate-tech/dkitchen-video/actions/runs/37609112102) | - |
+| **Duración y Fotogramas** | 35.00s · 1.050 fotogramas (30 fps) | 35.00s · 1.050 fotogramas |
+| **Resolución** | 1080x1920 (9:16 Vertical) | 1080x1920 (9:16 Vertical) |
+| **Tiempo de Renderizado (Cloud VM)** | **20 min 08 s** (`swangle` software WebGL) | En evaluación |
+| **Z-Clipping / Recortes CSS** | **0% (ERRADICADO)** · Cámara de perspectiva matemática pura | En evaluación |
+| **Materiales e Iluminación** | PBR Titanio satinado, pantalla OLED emisiva, cristal reflectante | En evaluación |
+| **Efectos VFX (Fuego / Ascuas)** | Shaders de partículas GPU (180 ascuas con blending aditivo) | En evaluación |
+| **Salto de Capas 3D** | Salto en eje Z (Z-pop) de la tarjeta gastronómica hacia cámara | En evaluación |
+| **Zonas Seguras (940x1280 px)** | 100% CUMPLIDAS (Y: 240-1480, X: 70-940) | En evaluación |
+| **Audio Master (-14 LUFS EBU R128)** | Sincronizado: Álvaro + Lo-Fi duckeado + SFX + Silencio Mega-CTA | En evaluación |
+| **Artefactos Entregados** | `entrega-37609112102` (`reel.mp4`, `contact_sheet.jpg`, `control_calidad.txt`) | - |
+

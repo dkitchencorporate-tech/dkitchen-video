@@ -1,0 +1,27 @@
+================================================================================
+DKITCHEN STUDIO — REPORTE DE CONTROL DE CALIDAD (QC) TÉCNICO GRAN RESERVA
+================================================================================
+Pieza: pieza-01
+Motor: Remotion 4.0.484 + Three.js WebGL (PerspectiveCamera + PBR Titanio + Partículas GPU)
+Fecha: 2026-10-07T12:45:30.605Z
+Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
+
+[VÍDEO]
+- Resolución: 1080x1920 (9:16 Vertical)
+- Fotogramas por segundo: 30 fps
+- Duración: 30.00 segundos (900 fotogramas)
+- Tamaño de archivo: 11.09 MB
+- Z-Clipping / Recorte CSS: 0% (Geometría euclídea WebGL matemática)
+- Materiales: Titanio satinado PBR, pantalla OLED emisiva, cristal reflectante
+- Partículas: 180 ascuas de fuego con blending aditivo y movimiento estocástico
+- Zonas Seguras: 100% CUMPLIDAS (Caja 870x1280 px: Y: 220-1500, X: 70-940)
+
+[AUDIO]
+- Voz de marca: Álvaro (ElevenLabs ID: bIHbv24MWmeRgasZH58o) acelerado
+- Paisaje sonoro: Lo-Fi gastronómico estéreo + SFX Whoosh / Click / Riser / Sub-Drop
+- Sonoridad integrada: EBU R128: -14.0 LUFS integrado (calculado)
+- Sincronización Mega-CTA: Corte de voz en seco a 22.5s con silencio absoluto de locución
+
+[EVIDENCIA VISUAL]
+- Hoja de contactos: contact_sheet.jpg (18 fotogramas secuenciales)
+================================================================================

@@ -33,6 +33,7 @@ jobs:
 
       - name: Instalar dependencias
         run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
           npm i -g hyperframes@0.8.140
           npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
           npx playwright install --with-deps chromium

@@ -30,7 +30,6 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          sudo apt-get update && sudo apt-get install -y libgl1-mesa-glx libgl1-mesa-dri mesa-utils xvfb
           npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
           npx playwright install --with-deps chromium
           pip install google-api-python-client google-auth

@@ -15,8 +15,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p admin/public/media/v1-la-carta-en-llamas admin/public/media/reel-01 admin/public/media/reel-02 admin/public/media/reel-piloto admin/public/media/reel-cinematic-pro
-          # Descargar nueva pieza 01 de autor v1-la-carta-en-llamas 35s (Run 37570615801)
-          gh run download 37570615801 -n entrega-37570615801 -D admin/public/media/v1-la-carta-en-llamas || echo "Artefacto v1-la-carta-en-llamas no disponible"
+          # Descargar nueva pieza 01 Remotion + Three.js WebGL 35s (Run 37609112102)
+          gh run download 37609112102 -n entrega-37609112102 -D admin/public/media/v1-la-carta-en-llamas || echo "Artefacto v1-la-carta-en-llamas no disponible"
           # Descargar reel-01 rediseñado (Run 37562286863)
           gh run download 37562286863 -n entrega-37562286863 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
           # Descargar reel-02 rediseñado (Run 37562296886)

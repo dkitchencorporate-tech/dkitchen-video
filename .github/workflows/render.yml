@@ -94,3 +94,10 @@ jobs:
             ${{ inputs.carpeta }}/reel.mp4
             ${{ inputs.carpeta }}/contact_sheet.jpg
             ${{ inputs.carpeta }}/control_calidad.txt
+
+      - name: Disparar despliegue automático a Vercel Admin
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run deploy-admin.yml || echo "[AVISO] No se pudo disparar deploy-admin automáticamente"

@@ -107,6 +107,23 @@ interface PiezaBoveda {
 
 const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
   {
+    id: 'v1-la-carta-en-llamas',
+    titulo: 'Pieza 01 (Master 35s): La Carta en Llamas · Edición Disruptiva',
+    linea: '3D Physics Paper Burning + QR Laser Scan + 3 Smartphones Fan-out',
+    duracion: '35.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/v1-la-carta-en-llamas/reel.mp4',
+    contactSheetUrl: '/media/v1-la-carta-en-llamas/contact_sheet.jpg',
+    lufs: '-14.0 LUFS (Álvaro 108% + Lo-Fi Ducked + SFX Stems)',
+    bitrate: '10,2 Mbps H.264 High (Master)',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: '07/10/2026',
+    descripcion: 'Edición cinematográfica de alto nivel (35 segundos). Hook de hojas de papel ardiendo en perspectiva 3D, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) y Mega-CTA dinámico abovedado a 1,00 €.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
     id: 'reel-cinematic-pro',
     titulo: 'Reel Cinemático Pro: Paleta Web Oficial y Gastronomía Real',
     linea: 'Cinematic B-Roll + 3D Motion Flow (20 Segundos)',

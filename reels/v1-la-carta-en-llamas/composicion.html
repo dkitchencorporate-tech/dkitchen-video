@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>DKitchen Reel 01 - La Carta en Llamas (Edición 35s)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html, body {
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #08060A;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    color: #FAF8F5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ESCENARIO CINEMATOGRÁFICO 3D */
+  #stage-universe {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    perspective: 1500px;
+    perspective-origin: 50% 50%;
+    background: radial-gradient(circle at 50% 40%, #1A0914 0%, #08060A 75%);
+  }
+
+  /* LUCES VOLUMÉTRICAS Y CHISPAS FLOTANTES */
+  .glow-ambient {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    filter: blur(160px);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .glow-burgundy { background: #6E0C2B; top: 15%; left: -100px; }
+  .glow-gold { background: #C59B27; bottom: 20%; right: -150px; opacity: 0.35; }
+
+  /* CAJA SEGURA ESTRICTA (940x1280 px: X: 0-940, Y: 220-1500) */
+  .safe-container {
+    position: absolute;
+    top: 240px;
+    left: 70px;
+    width: 940px;
+    height: 1260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+
+  /* HEADER BADGE TOP */
+  .brand-pill-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    border-radius: 999px;
+    background: rgba(110, 12, 43, 0.4);
+    border: 1px solid rgba(197, 155, 39, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+  .seal-mini {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #D9B25C, #9E7A1C);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    color: #0A080C;
+  }
+  .brand-pill-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FAF8F5;
+  }
+  .brand-pill-text span { color: #D9B25C; }
+
+  /* ================= ESCENA 1: HOOK DOLOR & PAPEL ARDIENDO ================= */
+  .scene-1-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 40px;
+    z-index: 20;
+  }
+  .hook-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 68px;
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+    color: #FAF8F5;
+  }
+  .hook-title .highlight-red {
+    display: inline-block;
+    color: #FF5277;
+    text-shadow: 0 0 30px rgba(255, 82, 119, 0.6);
+  }
+  .hook-title .highlight-gold {
+    color: #D9B25C;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 78px;
+  }
+  .cost-loss-box {
+    margin-top: 20px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    background: rgba(20, 10, 16, 0.8);
+    border: 2px solid #FF5277;
+    box-shadow: 0 0 40px rgba(255, 82, 119, 0.3);
+  }
+  .cost-loss-label {
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #FF8BA4;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .cost-loss-number {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 58px;
+    font-weight: 900;
+    color: #FAF8F5;
+  }
+
+  /* HOJAS 3D FLOTANTES ARDIENDO */
+  .flying-paper {
+    position: absolute;
+    width: 320px;
+    height: 440px;
+    background: #F4EFEB;
+    color: #1A1412;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(255, 80, 0, 0.4);
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+  .paper-1 { top: 15%; left: 80px; transform: rotateX(25deg) rotateY(-20deg) rotateZ(-15deg); }
+  .paper-2 { bottom: 15%; right: 80px; transform: rotateX(-15deg) rotateY(25deg) rotateZ(12deg); }
+
+  /* ================= ESCENA 2 & 3: SMARTPHONE 3D CON CARTA REAL ================= */
+  .phone-stage-3d {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    z-index: 15;
+    opacity: 0;
+  }
+
+  .iphone-chassis {
+    position: relative;
+    width: 480px;
+    height: 980px;
+    border-radius: 64px;
+    background: #15131A;
+    border: 8px solid #3A3225;
+    box-shadow: 0 0 0 4px #C59B27, 0 40px 100px rgba(0,0,0,0.9), inset 0 0 20px rgba(197, 155, 39, 0.4);
+    transform-style: preserve-3d;
+    overflow: hidden;
+    transform: rotateX(12deg) rotateY(-14deg) rotateZ(3deg);
+  }
+
+  .dynamic-island {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 34px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 50;
+  }
+
+  .screen-content {
+    position: absolute;
+    inset: 0;
+    background: #0D0B10;
+    padding: 60px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+  }
+  .rest-name { font-size: 20px; font-weight: 800; color: #FAF8F5; }
+  .table-badge { font-size: 14px; font-weight: 700; color: #D9B25C; background: rgba(110, 12, 43, 0.6); padding: 4px 10px; border-radius: 8px; }
+
+  .dish-card-hero {
+    position: relative;
+    background: #18141C;
+    border-radius: 24px;
+    border: 2px solid rgba(197, 155, 39, 0.4);
+    overflow: hidden;
+    padding-bottom: 16px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+  }
+
+  .dish-image-container {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    background: #251B24;
+  }
+
+  .dish-svg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dish-details { padding: 16px; }
+  .dish-title { font-size: 22px; font-weight: 800; color: #FAF8F5; margin-bottom: 6px; }
+  .dish-desc { font-size: 14px; color: #C4BFB5; line-height: 1.3; margin-bottom: 12px; }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price-tag-big {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #FAF8F5;
+    background: #6E0C2B;
+    padding: 6px 18px;
+    border-radius: 12px;
+    border: 1px solid #D9B25C;
+    box-shadow: 0 0 20px rgba(110, 12, 43, 0.8);
+  }
+
+  .allergens-row {
+    display: flex;
+    gap: 8px;
+  }
+  .allergen-pill {
+    font-size: 12px;
+    font-weight: 700;
+    color: #A3E635;
+    background: rgba(163, 230, 53, 0.15);
+    border: 1px solid rgba(163, 230, 53, 0.4);
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  /* RAYO LÁSER ESCÁNER QR */
+  .laser-scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, #D9B25C, #FAF8F5, #D9B25C, transparent);
+    box-shadow: 0 0 24px #D9B25C, 0 0 40px #FF5277;
+    z-index: 60;
+    opacity: 0;
+  }
+
+  /* ================= ESCENA 4: TRES CELULARES EN ABANICO ================= */
+  .fan-phone-left {
+    position: absolute;
+    width: 400px;
+    height: 820px;
+    border-radius: 54px;
+    background: #121016;
+    border: 6px solid #2A241C;
+    box-shadow: -30px 40px 80px rgba(0,0,0,0.8);
+    transform: translateX(-240px) translateY(80px) rotateY(-28deg) rotateX(10deg) scale(0.85);
+    z-index: 10;
+    overflow: hidden;
+    padding: 20px;
+    opacity: 0;
+  }
+  .fan-phone-right {
+    position: absolute;
+    width: 400px;
+    height: 820px;
+    border-radius: 54px;
+    background: #121016;
+    border: 6px solid #2A241C;
+    box-shadow: 30px 40px 80px rgba(0,0,0,0.8);
+    transform: translateX(240px) translateY(80px) rotateY(28deg) rotateX(10deg) scale(0.85);
+    z-index: 10;
+    overflow: hidden;
+    padding: 20px;
+    opacity: 0;
+  }
+
+  /* CALLOUTS LATERALES CINÉTICOS */
+  .kinetic-callout {
+    position: absolute;
+    padding: 18px 28px;
+    border-radius: 16px;
+    background: rgba(14, 11, 16, 0.95);
+    border: 1px solid #D9B25C;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    font-size: 22px;
+    font-weight: 800;
+    color: #FAF8F5;
+    z-index: 40;
+    opacity: 0;
+  }
+  .callout-top-left { top: 220px; left: -20px; border-left: 6px solid #6E0C2B; }
+  .callout-mid-right { top: 620px; right: -20px; border-right: 6px solid #D9B25C; }
+
+  /* ================= ESCENA 5: MEGA-CTA FINAL ================= */
+  .mega-cta-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 50;
+    opacity: 0;
+  }
+
+  .cta-vault-box {
+    width: 840px;
+    padding: 48px 36px;
+    border-radius: 36px;
+    background: radial-gradient(circle at 50% 30%, #3D0718 0%, #15050B 100%);
+    border: 3px solid #D9B25C;
+    box-shadow: 0 0 60px rgba(217, 178, 92, 0.35), 0 30px 90px rgba(0, 0, 0, 0.9);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-vault-box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.08), transparent);
+    transform: rotate(45deg);
+    animation: shineSweep 4s infinite linear;
+  }
+  @keyframes shineSweep {
+    0% { transform: translate(-100%, -100%) rotate(45deg); }
+    100% { transform: translate(100%, 100%) rotate(45deg); }
+  }
+
+  .cta-badge-top {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 999px;
+    background: #D9B25C;
+    color: #0A080C;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .cta-hero-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #FAF8F5;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cta-hero-title span { color: #D9B25C; }
+
+  .cta-subtitle {
+    font-size: 22px;
+    color: #E2DDD5;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .cta-button-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 48px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #D9B25C 0%, #A67C1E 100%);
+    color: #0A080C;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: 0 12px 40px rgba(217, 178, 92, 0.5);
+  }
+
+  .cta-footer-url {
+    margin-top: 24px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #FAF8F5;
+    text-transform: lowercase;
+  }
+  .cta-footer-url span { color: #D9B25C; }
+</style>
+</head>
+<body>
+
+<div id="stage-universe">
+  <!-- Luces volumétricas Gran Reserva -->
+  <div class="glow-ambient glow-burgundy"></div>
+  <div class="glow-ambient glow-gold"></div>
+
+  <!-- CAJA SEGURA (940x1280) -->
+  <div class="safe-container">
+    
+    <!-- HEADER MARCA SUPERIOR -->
+    <header class="brand-pill-header" id="brand-header">
+      <div class="seal-mini">DK</div>
+      <div class="brand-pill-text">DKitchen <span>Corporate</span></div>
+    </header>
+
+    <!-- ================= ESCENA 1: HOOK DISRUPTIVO DOLOR ================= -->
+    <div class="scene-1-container" id="scene-1">
+      <h1 class="hook-title">
+        ¿Cada vez que cambias un precio... <br>
+        <span class="highlight-red">QUEMAS</span> <span class="highlight-gold">tu beneficio?</span>
+      </h1>
+      <div class="cost-loss-box">
+        <div class="cost-loss-label">Fuga de dinero anual en imprenta</div>
+        <div class="cost-loss-number" id="cost-counter">1.840 € / año</div>
+      </div>
+    </div>
+
+    <!-- HOJAS DE CARTA FÍSICA VOLANDO EN 3D -->
+    <div class="flying-paper paper-1" id="paper-left">
+      <div style="font-weight:800;font-size:18px;margin-bottom:8px;border-bottom:2px solid #333;padding-bottom:4px;">RESTAURANTE EL ASADOR</div>
+      <div style="font-size:14px;line-height:1.6;color:#555;">
+        • Chuletón de Buey ... 24 € (Tachado a mano)<br>
+        • Solomillo al Foie ... 26 €<br>
+        • Rodaballo Salvaje ... S/M<br>
+        <span style="color:#C00;font-weight:bold;font-size:12px;">* Carta desactualizada por imprenta</span>
+      </div>
+    </div>
+    <div class="flying-paper paper-2" id="paper-right">
+      <div style="font-weight:800;font-size:18px;margin-bottom:8px;border-bottom:2px solid #333;padding-bottom:4px;">FACTURA DE IMPRENTA</div>
+      <div style="font-size:14px;line-height:1.6;color:#555;">
+        Concepto: 200 Cartas Plastificadas<br>
+        Plazo entrega: 14 días laborables<br>
+        <strong style="color:#000;font-size:16px;">Total Factura: 460,00 € + IVA</strong>
+      </div>
+    </div>
+
+    <!-- ================= ESCENAS 2, 3 & 4: SMARTPHONE 3D & ABANICO ================= -->
+    <div class="phone-stage-3d" id="phone-stage">
+      
+      <!-- Teléfono Izquierdo (Comandero Sala) -->
+      <div class="fan-phone-left" id="phone-left">
+        <div style="font-size:18px;font-weight:800;color:#D9B25C;margin-bottom:12px;">Comandero Pro · Sala</div>
+        <div style="background:#1E1824;padding:12px;border-radius:12px;margin-bottom:8px;border-left:4px solid #A3E635;">
+          <div style="font-weight:700;color:#fff;">Mesa 4 · Comanda Enviada</div>
+          <div style="font-size:12px;color:#A3E635;">Enviado a cocina en 0.2s</div>
+        </div>
+        <div style="background:#1E1824;padding:12px;border-radius:12px;border-left:4px solid #D9B25C;">
+          <div style="font-weight:700;color:#fff;">Mesa 7 · Cuenta Solicitada</div>
+          <div style="font-size:12px;color:#D9B25C;">Pago directo en TPV</div>
+        </div>
+      </div>
+
+      <!-- Teléfono Principal (Carta Digital 3D Viva) -->
+      <div class="iphone-chassis" id="phone-main">
+        <div class="dynamic-island"></div>
+        <div class="laser-scanner" id="laser-bar"></div>
+
+        <div class="screen-content">
+          <div class="restaurant-header">
+            <div class="rest-name">Asador Gran Reserva</div>
+            <div class="table-badge">Mesa 04 · En vivo</div>
+          </div>
+
+          <!-- Hero Dish Card -->
+          <div class="dish-card-hero">
+            <div class="dish-image-container">
+              <!-- Arte Fotográfico Gastronómico de Autor -->
+              <svg class="dish-svg-img" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#1C141B"/>
+                <circle cx="200" cy="120" r="90" fill="#3D0F22" stroke="#D9B25C" stroke-width="3"/>
+                <!-- Chuletón a la brasa -->
+                <path d="M140 130C130 90 180 70 230 85C270 95 280 140 240 160C200 180 150 160 140 130Z" fill="#5E1826" stroke="#9E2A3E" stroke-width="4"/>
+                <path d="M160 110L220 135M175 95L235 120M190 85L250 110" stroke="#D9B25C" stroke-width="3" stroke-linecap="round"/>
+                <!-- Destello de humo -->
+                <circle cx="160" cy="80" r="15" fill="#FAF8F5" opacity="0.1" filter="blur(5px)"/>
+                <circle cx="240" cy="70" r="20" fill="#FAF8F5" opacity="0.12" filter="blur(6px)"/>
+              </svg>
+            </div>
+            <div class="dish-details">
+              <div class="dish-title">Chuletón de Vaca Madurada 45 Días</div>
+              <div class="dish-desc">Maduración Dry Aged, sal en escamas de manantial y pimientos de padrón confitados.</div>
+              <div class="price-row">
+                <div class="price-tag-big" id="live-price-tag">24,00 €</div>
+                <div class="allergens-row">
+                  <span class="allergen-pill">✓ 0 Alérgenos</span>
+                  <span class="allergen-pill" style="color:#38BDF8;border-color:#38BDF8;">IA Ready</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Menu Item -->
+          <div style="background:#18141C;padding:14px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.06);">
+            <div>
+              <div style="font-weight:700;font-size:16px;color:#FAF8F5;">Tarta de Queso Fluida</div>
+              <div style="font-size:12px;color:#A8A29E;">Queso Idiazábal ahumado</div>
+            </div>
+            <div style="font-weight:900;font-size:18px;color:#D9B25C;">8,50 €</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teléfono Derecho (Panel Ingresos & Comisiones) -->
+      <div class="fan-phone-right" id="phone-right">
+        <div style="font-size:18px;font-weight:800;color:#D9B25C;margin-bottom:12px;">Rentabilidad Directa</div>
+        <div style="background:#1E1824;padding:12px;border-radius:12px;margin-bottom:8px;">
+          <div style="font-size:12px;color:#9E9A93;">Ticket Medio Sala</div>
+          <div style="font-size:24px;font-weight:900;color:#A3E635;">+18,4%</div>
+        </div>
+        <div style="background:#1E1824;padding:12px;border-radius:12px;">
+          <div style="font-size:12px;color:#9E9A93;">Comisiones de Plataforma</div>
+          <div style="font-size:24px;font-weight:900;color:#38BDF8;">0,00 €</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CALLOUTS LATERALES DINÁMICOS -->
+    <div class="kinetic-callout callout-top-left" id="callout-1">
+      ⚡ Modifica precios en 0.2 segundos
+    </div>
+    <div class="kinetic-callout callout-mid-right" id="callout-2">
+      ✨ Fotos IA & 14 Alérgenos Auditados
+    </div>
+
+    <!-- ================= ESCENA 5: MEGA-CTA DE CIERRE ================= -->
+    <div class="mega-cta-stage" id="mega-cta">
+      <div class="cta-vault-box">
+        <div class="cta-badge-top">Oferta Oficial de Arranque</div>
+        <h2 class="cta-hero-title">Pruébalo 30 días<br><span>por solo 1,00 €</span></h2>
+        <p class="cta-subtitle">Alta bonificada de 159 € incluida · Sin permanencia jamás</p>
+        <div class="cta-button-glow">
+          <span>COMENZAR AHORA</span> ➔
+        </div>
+        <div class="cta-footer-url">
+          dkitchencorporate.es/<span>qr</span>
+        </div>
+      </div>
+    </div>
+
+    <footer style="height:20px;"></footer>
+  </div>
+</div>
+
+<script>
+  window.LISTO = false;
+
+  const tl = gsap.timeline({
+    paused: true,
+    onComplete: () => { window.LISTO = true; }
+  });
+  window.TL = tl;
+
+  // ================= CRONOGRAMA MAESTRO (35.0 SEGUNDOS) =================
+
+  // --- ESCENA 1: HOOK DISRUPTIVO (0.0s - 5.5s) ---
+  tl.from("#brand-header", { duration: 0.8, y: -50, opacity: 0, ease: "power3.out" }, 0.0);
+  tl.from("#scene-1", { duration: 1.0, scale: 0.85, opacity: 0, ease: "power4.out" }, 0.2);
+  
+  // Hojas de papel rotando y alejándose
+  tl.from("#paper-left", { duration: 1.2, x: -200, y: 100, rotateZ: -45, opacity: 0, ease: "back.out(1.5)" }, 0.4);
+  tl.from("#paper-right", { duration: 1.2, x: 200, y: 150, rotateZ: 45, opacity: 0, ease: "back.out(1.5)" }, 0.6);
+  
+  // Hojas se queman y colapsan
+  tl.to("#paper-left", { duration: 1.0, scale: 0.2, rotateX: 90, opacity: 0, ease: "power3.in" }, 4.0);
+  tl.to("#paper-right", { duration: 1.0, scale: 0.2, rotateX: -90, opacity: 0, ease: "power3.in" }, 4.2);
+  tl.to("#scene-1", { duration: 0.8, scale: 0.9, opacity: 0, ease: "power2.inOut" }, 4.8);
+
+  // --- ESCENA 2: QR SCAN & NACIMIENTO IPHONE 3D (5.5s - 13.5s) ---
+  tl.set("#phone-stage", { opacity: 1 }, 5.2);
+  tl.from("#phone-main", { 
+    duration: 1.6, 
+    scale: 0.4, 
+    rotateY: 80, 
+    rotateX: -30, 
+    z: -400, 
+    opacity: 0, 
+    ease: "power3.out" 
+  }, 5.4);
+
+  // Rayo Láser escaneando el menú
+  tl.to("#laser-bar", { duration: 0.2, opacity: 1 }, 6.2);
+  tl.fromTo("#laser-bar", 
+    { top: "0%" }, 
+    { top: "95%", duration: 1.8, ease: "power2.inOut", repeat: 1, yoyo: true }, 
+    6.4
+  );
+  tl.to("#laser-bar", { duration: 0.3, opacity: 0 }, 10.2);
+
+  // Aparece Callout 1
+  tl.to("#callout-1", { duration: 0.8, opacity: 1, x: 20, ease: "back.out(1.7)" }, 8.5);
+  tl.to("#callout-1", { duration: 0.5, opacity: 0, y: -20, ease: "power2.in" }, 12.5);
+
+  // --- ESCENA 3: MODIFICACIÓN EN VIVO (13.5s - 21.5s) ---
+  // Zoom Macro sobre el teléfono y cambio de precio
+  tl.to("#phone-main", { 
+    duration: 1.2, 
+    scale: 1.12, 
+    rotateY: 6, 
+    rotateX: 8, 
+    ease: "power3.inOut" 
+  }, 13.5);
+
+  // Cambio de precio 24€ -> 29€ con resplandor
+  tl.to("#live-price-tag", { 
+    duration: 0.3, 
+    scale: 1.35, 
+    backgroundColor: "#C59B27", 
+    color: "#0A080C", 
+    boxShadow: "0 0 35px #C59B27", 
+    ease: "power2.out" 
+  }, 15.0);
+  tl.call(() => {
+    document.getElementById("live-price-tag").innerText = "29,00 €";
+  }, null, 15.3);
+  tl.to("#live-price-tag", { 
+    duration: 0.5, 
+    scale: 1.0, 
+    backgroundColor: "#6E0C2B", 
+    color: "#FAF8F5", 
+    ease: "elastic.out(1, 0.4)" 
+  }, 15.4);
+
+  // Aparece Callout 2
+  tl.to("#callout-2", { duration: 0.8, opacity: 1, x: -20, ease: "back.out(1.7)" }, 16.5);
+  tl.to("#callout-2", { duration: 0.5, opacity: 0, y: 20, ease: "power2.in" }, 20.5);
+
+  // --- ESCENA 4: ABANICO DE 3 CELULARES (21.5s - 30.5s) ---
+  tl.to("#phone-main", { 
+    duration: 1.2, 
+    scale: 0.85, 
+    rotateY: 0, 
+    rotateX: 6, 
+    ease: "power3.inOut" 
+  }, 21.5);
+
+  tl.to("#phone-left", { 
+    duration: 1.2, 
+    opacity: 1, 
+    x: -240, 
+    scale: 0.78, 
+    ease: "power3.out" 
+  }, 22.0);
+
+  tl.to("#phone-right", { 
+    duration: 1.2, 
+    opacity: 1, 
+    x: 240, 
+    scale: 0.78, 
+    ease: "power3.out" 
+  }, 22.2);
+
+  // Flotación 3D continua de los 3 dispositivos
+  tl.to(["#phone-main", "#phone-left", "#phone-right"], {
+    duration: 3.5,
+    y: "-=25",
+    rotateX: "+=3",
+    repeat: 1,
+    yoyo: true,
+    ease: "sine.inOut"
+  }, 23.5);
+
+  // Teléfonos colapsan y salen de cuadro
+  tl.to("#phone-stage", { 
+    duration: 0.9, 
+    scale: 0.5, 
+    opacity: 0, 
+    y: 100, 
+    ease: "power3.in" 
+  }, 29.8);
+
+  // --- ESCENA 5: SILENCIO DE VOZ & MEGA-CTA CINEMÁTICO (30.5s - 35.0s) ---
+  tl.set("#mega-cta", { opacity: 1 }, 30.4);
+  tl.from(".cta-vault-box", { 
+    duration: 1.2, 
+    scale: 0.6, 
+    rotateX: 45, 
+    opacity: 0, 
+    ease: "elastic.out(1, 0.6)" 
+  }, 30.5);
+
+  tl.from(".cta-badge-top", { duration: 0.6, y: -20, opacity: 0, ease: "power2.out" }, 31.0);
+  tl.from(".cta-hero-title", { duration: 0.8, scale: 0.9, opacity: 0, ease: "back.out(1.5)" }, 31.2);
+  tl.from(".cta-button-glow", { duration: 0.8, scale: 0.8, opacity: 0, ease: "elastic.out(1, 0.4)" }, 31.6);
+  tl.from(".cta-footer-url", { duration: 0.6, y: 15, opacity: 0, ease: "power2.out" }, 32.0);
+
+  // Pulso de luz y respiración final en el botón de CTA
+  tl.to(".cta-button-glow", {
+    duration: 0.8,
+    scale: 1.05,
+    boxShadow: "0 0 50px rgba(217, 178, 92, 0.9)",
+    repeat: 2,
+    yoyo: true,
+    ease: "sine.inOut"
+  }, 32.5);
+
+  window.LISTO = true;
+</script>
+</body>
+</html>

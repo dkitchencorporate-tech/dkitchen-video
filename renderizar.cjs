@@ -1,4 +1,4 @@
-﻿// Motor de renderizado HyperFrames + OpenMontage para DKitchen
+// Motor de renderizado HyperFrames + OpenMontage para DKitchen
 // Estándar técnico Gran Reserva: 1080x1920, 30 fps, H.264 High 8-12 Mbps, audio a -14 LUFS medido.
 // Control de calidad estricto: congelados, negros, sonoridad EBU R128 y verificación de zonas seguras.
 
@@ -126,7 +126,7 @@ const fs = require('fs');
 
   if (pistaAudio) {
     console.log(`[Audio] Mezclando audio desde ${path.basename(pistaAudio)} con filtro loudnorm (-14 LUFS)...`);
-    execSync(`"${ffmpeg}" -y -i "${salidaVideoRaw}" -i "${pistaAudio}" -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "${salidaFinal}"`);
+    execSync(`"${ffmpeg}" -y -i "${salidaVideoRaw}" -i "${pistaAudio}" -map 0:v:0 -map 1:a:0 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart "${salidaFinal}"`);
     fs.unlinkSync(salidaVideoRaw);
   } else {
     console.log('[Audio] Sin pista de audio en la carpeta. Conservando vídeo temporal mudo.');

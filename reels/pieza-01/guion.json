@@ -2,10 +2,10 @@
   "titulo": "Pieza 01: Tu Carta en 60 Segundos (Lanzamiento Gran Reserva)",
   "version": "1.0.0-final",
   "duracion_total_video": 30.0,
-  "corte_voz_segundo": 22.5,
+  "corte_voz_segundo": 21.0,
   "fps": 30,
   "voice_id": "bIHbv24MWmeRgasZH58o",
-  "locucion": "¿Cuánto dinero quemas cada vez que cambias un precio en tu carta? Las cartas de papel se rompen, se manchan y quedan desactualizadas. Un error en alérgenos te cuesta miles de euros. Con DKitchen, tu carta vive en el móvil de tu cliente. Platos con fotos irresistibles, alérgenos blindados y cambios al segundo. Sin comisiones por pedido. Sin intermediarios. Todo el control de tu sala en una sola suite. Pruébalo hoy por solo un euro. Entra en dkitchencorporate.es y ten tu carta lista en 60 segundos.",
+  "locucion": "?Cu?nto dinero quemas al cambiar tu carta? El papel se mancha, se rompe y te cuesta cientos de euros. Con Dekitchen, tu carta vive en el m?vil de tu cliente. Fotos irresistibles, al?rgenos blindados y cambios al segundo. Sin comisiones. Pru?balo hoy por solo un euro en dekitchencorporate.es.",
   "escenas": [
     {
       "numero": 1,
@@ -13,7 +13,7 @@
       "tiempo_inicio": 0.0,
       "tiempo_fin": 3.5,
       "frames": [0, 105],
-      "texto_pantalla": "¿CUÁNTO DINERO QUEMAS AL CAMBIAR TU CARTA?",
+      "texto_pantalla": "?CU?NTO DINERO QUEMAS AL CAMBIAR TU CARTA?",
       "b_roll": "imagenes/10-broll-wine.jpg"
     },
     {
@@ -22,7 +22,7 @@
       "tiempo_inicio": 3.5,
       "tiempo_fin": 9.0,
       "frames": [105, 270],
-      "texto_pantalla": "PAPEL MANCHADO · ALÉRGENOS UE 1169/2011",
+      "texto_pantalla": "PAPEL MANCHADO ? AL?RGENOS UE 1169/2011",
       "b_roll": "imagenes/12-broll-qr-table.jpg"
     },
     {
@@ -31,7 +31,7 @@
       "tiempo_inicio": 9.0,
       "tiempo_fin": 16.5,
       "frames": [270, 495],
-      "texto_pantalla": "CARTA DIGITAL INTERACTIVA · CAMBIOS AL SEGUNDO",
+      "texto_pantalla": "CARTA DIGITAL INTERACTIVA ? CAMBIOS AL SEGUNDO",
       "mockup": "iphone_pro_oled"
     },
     {
@@ -40,7 +40,7 @@
       "tiempo_inicio": 16.5,
       "tiempo_fin": 23.0,
       "frames": [495, 690],
-      "texto_pantalla": "0% COMISIONES · SALA + COMANDERO + MÉTRICAS",
+      "texto_pantalla": "0% COMISIONES ? SALA + COMANDERO + M?TRICAS",
       "mockup": "3_phones_calibrated"
     },
     {
@@ -49,7 +49,7 @@
       "tiempo_inicio": 23.0,
       "tiempo_fin": 30.0,
       "frames": [690, 900],
-      "texto_pantalla": "1 € EL PRIMER MES · dkitchencorporate.es/qr",
+      "texto_pantalla": "1 ? EL PRIMER MES ? dkitchencorporate.es/qr",
       "cta": "TU CARTA EN 60 SEGUNDOS"
     }
   ]

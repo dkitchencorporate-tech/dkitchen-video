@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>DKitchen Studio - Pieza 01 (HyperFrames Master)</title>
+    <!-- GSAP 3.14.2 & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <!-- Google Fonts: Outfit & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@400;600;700;800;900&family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --color-vino: #6e0c2b;
+        --color-vino-dark: #4a071c;
+        --color-oro: #c59b27;
+        --color-oro-glow: #f59e0b;
+        --color-oro-light: #fde68a;
+        --color-obsidiana: #0a080c;
+        --color-superficie: #14121a;
+        --color-papel: #faf8f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-obsidiana);
+        color: #ffffff;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-obsidiana);
+      }
+
+      /* Base Full-Frame Clip */
+      .clip {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+
+      /* Safe Zone Container: 940x1400 (Y: 220 to 1620, X: 70 to 1010) */
+      .safe-zone {
+        position: absolute;
+        top: 220px;
+        left: 70px;
+        width: 940px;
+        height: 1400px;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      /* Global Cinematic Vignette */
+      .vignette-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(10, 8, 12, 0.88) 100%);
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* Grain / Noise Texture */
+      .noise-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(197, 155, 39, 0.08) 1px, transparent 0);
+        background-size: 32px 32px;
+        pointer-events: none;
+        z-index: 3;
+        opacity: 0.7;
+      }
+
+      /* Background B-Roll Imagery */
+      .broll-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.38) contrast(1.15) saturate(1.1);
+        transform: scale(1.05);
+      }
+
+      /* Typography Helpers */
+      .font-serif {
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .font-mono {
+        font-family: 'Space Mono', monospace;
+      }
+
+      .text-gold {
+        color: var(--color-oro-glow);
+        background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #c59b27 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .text-wine {
+        color: #fca5a5;
+      }
+
+      /* Tags and Pills */
+      .editorial-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px;
+        border-radius: 9999px;
+        background: rgba(110, 12, 43, 0.45);
+        border: 1px solid rgba(197, 155, 39, 0.6);
+        color: var(--color-oro-light);
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 20px rgba(110, 12, 43, 0.4);
+        backdrop-filter: blur(12px);
+      }
+
+      .editorial-title {
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        text-shadow: 0 12px 36px rgba(0, 0, 0, 0.95);
+      }
+
+      /* High-End Card Base */
+      .luxury-card {
+        background: rgba(20, 18, 26, 0.85);
+        border: 1px solid rgba(197, 155, 39, 0.35);
+        border-radius: 32px;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(24px);
+      }
+
+      /* Stylized Mobile Phone Mockup */
+      .phone-chassis {
+        position: relative;
+        width: 580px;
+        height: 1100px;
+        background: #110e14;
+        border: 6px solid #282430;
+        border-radius: 64px;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(197, 155, 39, 0.3);
+        overflow: hidden;
+      }
+
+      .phone-notch {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 170px;
+        height: 38px;
+        background: #000000;
+        border-radius: 20px;
+        z-index: 30;
+      }
+
+      .phone-screen {
+        position: absolute;
+        inset: 0;
+        padding: 60px 24px 24px;
+        background: #0d0b10;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Glow Effects */
+      .glow-gold {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(197, 155, 39, 0.22) 0%, transparent 70%);
+        filter: blur(60px);
+        pointer-events: none;
+      }
+
+      .glow-wine {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(110, 12, 43, 0.35) 0%, transparent 70%);
+        filter: blur(70px);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Atmosphere & Lights -->
+      <div class="vignette-overlay" data-layout-allow-occlusion="true"></div>
+      <div class="noise-overlay" data-layout-allow-occlusion="true"></div>
+      <div class="glow-gold" data-layout-allow-occlusion="true" style="top: 10%; right: 5%; width: 600px; height: 600px;"></div>
+      <div class="glow-wine" data-layout-allow-occlusion="true" style="bottom: 15%; left: 5%; width: 700px; height: 700px;"></div>
+
+      <!-- Master Audio Track -->
+      <audio id="master-audio" src="assets/audio.mp3" data-start="0" data-duration="30"></audio>
+
+      <!-- ============================================================ -->
+      <!-- ESCENA 1: EL COSTE INVISIBLE DEL PAPEL (0.0s – 3.5s)          -->
+      <!-- ============================================================ -->
+      <div
+        id="scene-1"
+        class="clip"
+        data-start="0"
+        data-duration="3.8"
+        data-track-index="0"
+        style="opacity: 1;"
+      >
+        <img
+          src="assets/11-broll-steak.jpg"
+          class="broll-bg"
+          id="s1-bg"
+          alt="Gastronomía Real"
+          data-layout-allow-overflow="true"
+        />
+
+        <div class="safe-zone" style="justify-content: flex-start; padding-top: 40px;">
+          <!-- Tag -->
+          <div id="s1-tag" style="opacity: 0;">
+            <div class="editorial-tag">
+              <span>🔥 EL COSTE INVISIBLE DEL PAPEL</span>
+            </div>
+          </div>
+
+          <!-- Kinetic Headline -->
+          <div id="s1-title" style="margin-top: 24px; opacity: 0;">
+            <h1 class="editorial-title">
+              ¿CUÁNTO DINERO<br />
+              <span class="text-gold">QUEMAS AL CAMBIAR</span><br />
+              TU CARTA?
+            </h1>
+          </div>
+
+          <!-- Physical Paper Loss Card -->
+          <div
+            id="s1-card"
+            class="luxury-card"
+            style="margin-top: 48px; padding: 40px; width: 880px; opacity: 0;"
+          >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <p style="font-size: 24px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">
+                  Carta Física Tradicional
+                </p>
+                <h3 style="font-size: 38px; font-weight: 800; color: #ffffff; margin-top: 6px;">
+                  Reimpresiones & Imprenta
+                </h3>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 42px; font-weight: 900; color: #ef4444; text-decoration: line-through;">
+                  -450 €
+                </span>
+                <p style="font-size: 18px; color: #f87171; font-weight: 600; margin-top: 2px;">
+                  Perdidos por cambio de precio
+                </p>
+              </div>
+            </div>
+
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; gap: 20px;">
+              <span style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; padding: 6px 16px; border-radius: 12px; font-size: 18px; font-weight: 700;">
+                ⚠️ Alérgenos desactualizados
+              </span>
+              <span style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; padding: 6px 16px; border-radius: 12px; font-size: 18px; font-weight: 700;">
+                ❌ Platos agotados en mesa
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- ESCENA 2: ESCANEO QR DE MADERA NOBLE (3.5s – 9.0s)            -->
+      <!-- ============================================================ -->
+      <div
+        id="scene-2"
+        class="clip"
+        data-start="3.5"
+        data-duration="5.8"
+        data-track-index="0"
+        style="opacity: 0;"
+      >
+        <img
+          src="assets/12-broll-qr-table.jpg"
+          class="broll-bg"
+          id="s2-bg"
+          alt="Mesa de Autor"
+          data-layout-allow-overflow="true"
+        />
+
+        <div class="safe-zone" style="justify-content: space-between; align-items: center; text-align: center;">
+          <!-- Top Header -->
+          <div id="s2-header" style="opacity: 0;">
+            <div class="editorial-tag" style="background: rgba(197, 155, 39, 0.2); border-color: var(--color-oro);">
+              <span>⚡ TECNOLOGÍA DKITCHEN 3D</span>
+            </div>
+            <h1 class="editorial-title" style="font-size: 58px; margin-top: 18px;">
+              TU CARTA DIGITAL EN VIVO<br />
+              <span class="text-gold">EN MENOS DE 60 SEGUNDOS</span>
+            </h1>
+          </div>
+
+          <!-- Center Noble Wood QR Pedestal Card -->
+          <div
+            id="s2-qr-card"
+            class="luxury-card"
+            style="width: 540px; padding: 44px 36px; border: 2px solid var(--color-oro); position: relative; opacity: 0;"
+          >
+            <!-- Laser Scan Line -->
+            <div
+              id="s2-laser"
+              style="position: absolute; left: 10%; right: 10%; height: 3px; background: linear-gradient(90deg, transparent, #38bdf8, #f59e0b, transparent); box-shadow: 0 0 20px #38bdf8; z-index: 25; top: 0px; opacity: 0;"
+            ></div>
+
+            <p class="font-serif" style="font-size: 28px; color: var(--color-oro-light); letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase;">
+              DKITCHEN KAISEKI
+            </p>
+            <p style="font-size: 18px; color: #9ca3af; margin-top: 4px;">
+              Escanea para abrir la carta
+            </p>
+
+            <div style="background: #ffffff; padding: 24px; border-radius: 24px; margin: 24px auto 16px; width: 340px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);">
+              <!-- High-Res Pure SVG QR Graphic -->
+              <svg viewBox="0 0 100 100" style="width: 100%; height: auto; display: block;">
+                <path fill="#0A080C" d="M0,0 h30 v30 h-30 z M6,6 h18 v18 h-18 z M10,10 h10 v10 h-10 z" />
+                <path fill="#0A080C" d="M70,0 h30 v30 h-30 z M76,6 h18 v18 h-18 z M80,10 h10 v10 h-10 z" />
+                <path fill="#0A080C" d="M0,70 h30 v30 h-30 z M6,76 h18 v18 h-18 z M10,80 h10 v10 h-10 z" />
+                <circle cx="50" cy="50" r="14" fill="#6E0C2B" />
+                <text x="50" y="55" font-size="12" font-weight="900" fill="#FDE68A" text-anchor="middle" font-family="'Outfit', sans-serif">DK</text>
+                <rect x="40" y="10" width="8" height="8" fill="#0A080C" />
+                <rect x="52" y="10" width="8" height="8" fill="#0A080C" />
+                <rect x="40" y="24" width="8" height="8" fill="#0A080C" />
+                <rect x="10" y="44" width="8" height="8" fill="#0A080C" />
+                <rect x="24" y="44" width="8" height="8" fill="#0A080C" />
+                <rect x="70" y="44" width="8" height="8" fill="#0A080C" />
+                <rect x="84" y="44" width="8" height="8" fill="#0A080C" />
+                <rect x="40" y="72" width="8" height="8" fill="#0A080C" />
+                <rect x="54" y="72" width="8" height="8" fill="#0A080C" />
+                <rect x="74" y="72" width="8" height="8" fill="#0A080C" />
+                <rect x="84" y="84" width="8" height="8" fill="#0A080C" />
+              </svg>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 12px; margin-top: 12px;">
+              <span style="font-size: 16px; font-weight: 700; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 4px 14px; border-radius: 10px;">
+                CERO APPS
+              </span>
+              <span style="font-size: 16px; font-weight: 700; color: #34d399; background: rgba(52, 211, 153, 0.15); padding: 4px 14px; border-radius: 10px;">
+                100% PWA DIRECTA
+              </span>
+            </div>
+          </div>
+
+          <!-- Bottom Micro Copy -->
+          <div id="s2-footer" style="opacity: 0;">
+            <p style="font-size: 22px; color: #d1d5db; font-weight: 600;">
+              El cliente apunta su cámara y tu carta cobra vida al instante.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- ESCENA 3: HERO SMARTPHONE & CAMBIO DE PRECIO (9.0s – 16.5s)   -->
+      <!-- ============================================================ -->
+      <div
+        id="scene-3"
+        class="clip"
+        data-start="9.0"
+        data-duration="7.8"
+        data-track-index="0"
+        style="opacity: 0;"
+      >
+        <img
+          src="assets/05-signature.jpg"
+          class="broll-bg"
+          id="s3-bg"
+          alt="Experiencia Signature"
+          data-layout-allow-overflow="true"
+        />
+
+        <div class="safe-zone" style="justify-content: space-between; align-items: center;">
+          <!-- Top Title -->
+          <div id="s3-header" style="text-align: center; opacity: 0;">
+            <div class="editorial-tag">
+              <span>CONTROL EN TIEMPO REAL</span>
+            </div>
+            <h1 class="editorial-title" style="font-size: 54px; margin-top: 14px;">
+              CAMBIA PRECIOS AL SEGUNDO<br />
+              <span class="text-gold">SIN COSTE DE IMPRENTA</span>
+            </h1>
+          </div>
+
+          <!-- Smartphone Interactive Frame -->
+          <div id="s3-phone-wrapper" style="opacity: 0; transform: translateY(40px);">
+            <div class="phone-chassis">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <!-- App Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                  <div>
+                    <h4 class="font-serif" style="font-size: 24px; color: var(--color-oro-light); font-weight: 700;">
+                      DKITCHEN KAISEKI
+                    </h4>
+                    <p style="font-size: 14px; color: #9ca3af;">Mesa 4 · Alta Cocina</p>
+                  </div>
+                  <span style="font-size: 13px; font-weight: 800; background: rgba(52, 211, 153, 0.2); color: #34d399; padding: 4px 10px; border-radius: 8px;">
+                    EN VIVO
+                  </span>
+                </div>
+
+                <!-- Featured Dish Card -->
+                <div
+                  id="s3-dish-card"
+                  style="margin-top: 24px; background: #18151f; border: 2px solid rgba(197, 155, 39, 0.4); border-radius: 24px; padding: 20px; position: relative; overflow: hidden;"
+                >
+                  <!-- Dish Photo -->
+                  <div style="width: 100%; height: 260px; border-radius: 16px; overflow: hidden; position: relative;">
+                    <img src="assets/06-fotos-ia.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Tartar Balfegó" />
+                    <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; color: #38bdf8;">
+                      ✨ FOTO IA ULTRA-HD
+                    </div>
+                  </div>
+
+                  <!-- Details -->
+                  <div style="margin-top: 18px;">
+                    <h3 style="font-size: 28px; font-weight: 800; color: #ffffff;">
+                      Tartar de Atún Balfegó
+                    </h3>
+                    <p style="font-size: 15px; color: #9ca3af; margin-top: 4px; line-height: 1.3;">
+                      Caviar Imperial, emulsión trufada y flor de sal de Añana.
+                    </p>
+
+                    <!-- Price Morph Section -->
+                    <div style="margin-top: 18px; display: flex; align-items: baseline; gap: 14px;">
+                      <span id="s3-old-price" style="font-size: 26px; color: #6b7280; font-weight: 600; text-decoration: line-through;">
+                        24,00 €
+                      </span>
+                      <span id="s3-new-price" style="font-size: 40px; font-weight: 900; color: var(--color-oro-glow);">
+                        24,00 €
+                      </span>
+                      <span
+                        id="s3-margin-badge"
+                        style="opacity: 0; background: rgba(245, 158, 11, 0.25); border: 1px solid var(--color-oro); color: #fde68a; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 8px;"
+                      >
+                        +5€ MARGEN
+                      </span>
+                    </div>
+
+                    <!-- 14 Allergens Compliance Pill -->
+                    <div style="margin-top: 18px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
+                      <span style="color: #34d399; font-size: 18px; font-weight: 900;">✓</span>
+                      <span style="font-size: 14px; font-weight: 700; color: #34d399;">
+                        14 ALÉRGENOS AUDITADOS UE 1169/2011
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Second Menu Item Peek -->
+                <div style="margin-top: 18px; background: #141219; border-radius: 16px; padding: 16px; opacity: 0.6;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 18px; font-weight: 700; color: #e5e7eb;">Chuletón de Rubia Gallega (1 kg)</span>
+                    <span style="font-size: 18px; font-weight: 800; color: var(--color-oro);">48,00 €</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- ESCENA 4: SUITE OPERATIVA EN TRÍPTICO (16.5s – 23.0s)         -->
+      <!-- ============================================================ -->
+      <div
+        id="scene-4"
+        class="clip"
+        data-start="16.5"
+        data-duration="6.8"
+        data-track-index="0"
+        style="opacity: 0;"
+      >
+        <img
+          src="assets/08-camarero.jpg"
+          class="broll-bg"
+          id="s4-bg"
+          alt="Servicio en Sala"
+          data-layout-allow-overflow="true"
+        />
+
+        <div class="safe-zone" style="justify-content: space-between; align-items: center;">
+          <!-- Top Title -->
+          <div id="s4-header" style="text-align: center; opacity: 0;">
+            <div class="editorial-tag" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #6ee7b7;">
+              <span>MÁXIMA RENTABILIDAD EN SALA</span>
+            </div>
+            <h1 class="editorial-title" style="font-size: 56px; margin-top: 14px;">
+              ROTACIÓN MÁS RÁPIDA<br />
+              <span class="text-gold">0% COMISIONES POR VENTA</span>
+            </h1>
+          </div>
+
+          <!-- 3-Card Balanced Triptych (Full Safe Zone Compliance) -->
+          <div id="s4-cards-container" style="display: flex; flex-direction: column; gap: 24px; width: 880px;">
+            <!-- Card 1: Comandero de Camareros -->
+            <div
+              id="s4-card-1"
+              class="luxury-card"
+              style="padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; border-left: 6px solid #10b981; opacity: 0;"
+            >
+              <div>
+                <span class="font-mono" style="font-size: 16px; color: #34d399; font-weight: 700;">COMANDERO TPV</span>
+                <h3 style="font-size: 32px; font-weight: 800; color: #ffffff; margin-top: 4px;">Comandas en 3 Segundos</h3>
+                <p style="font-size: 18px; color: #9ca3af; margin-top: 2px;">Pedidos marchados a cocina al instante</p>
+              </div>
+              <div style="background: rgba(16, 185, 129, 0.15); padding: 14px 24px; border-radius: 18px; text-align: center;">
+                <span style="font-size: 28px; font-weight: 900; color: #34d399;">+25%</span>
+                <p style="font-size: 13px; color: #6ee7b7; font-weight: 700;">ROTACIÓN MESA</p>
+              </div>
+            </div>
+
+            <!-- Card 2: Carta Digital Interactiva -->
+            <div
+              id="s4-card-2"
+              class="luxury-card"
+              style="padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; border-left: 6px solid var(--color-oro); opacity: 0;"
+            >
+              <div>
+                <span class="font-mono" style="font-size: 16px; color: var(--color-oro-light); font-weight: 700;">CARTA INTERACTIVA</span>
+                <h3 style="font-size: 32px; font-weight: 800; color: #ffffff; margin-top: 4px;">Maridaje & Sugerencias</h3>
+                <p style="font-size: 18px; color: #9ca3af; margin-top: 2px;">Fotos irresistibles y venta cruzada</p>
+              </div>
+              <div style="background: rgba(245, 158, 11, 0.15); padding: 14px 24px; border-radius: 18px; text-align: center;">
+                <span style="font-size: 28px; font-weight: 900; color: var(--color-oro-glow);">+18%</span>
+                <p style="font-size: 13px; color: #fde68a; font-weight: 700;">TICKET MEDIO</p>
+              </div>
+            </div>
+
+            <!-- Card 3: Cero Comisiones de Plataforma -->
+            <div
+              id="s4-card-3"
+              class="luxury-card"
+              style="padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; border-left: 6px solid #38bdf8; opacity: 0;"
+            >
+              <div>
+                <span class="font-mono" style="font-size: 16px; color: #38bdf8; font-weight: 700;">SIN INTERMEDIARIOS</span>
+                <h3 style="font-size: 32px; font-weight: 800; color: #ffffff; margin-top: 4px;">0% Comisiones de Pedido</h3>
+                <p style="font-size: 18px; color: #9ca3af; margin-top: 2px;">El 100% de tu facturación es tuyo</p>
+              </div>
+              <div style="background: rgba(56, 189, 248, 0.15); padding: 14px 24px; border-radius: 18px; text-align: center;">
+                <span style="font-size: 28px; font-weight: 900; color: #38bdf8;">0 €</span>
+                <p style="font-size: 13px; color: #7dd3fc; font-weight: 700;">COMISIÓN</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 40px;"></div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- ESCENA 5: MEGA-CTA GRAN RESERVA (23.0s – 30.0s)               -->
+      <!-- ============================================================ -->
+      <div
+        id="scene-5"
+        class="clip"
+        data-start="23.0"
+        data-duration="7.0"
+        data-track-index="0"
+        style="opacity: 0;"
+      >
+        <img
+          src="assets/10-broll-wine.jpg"
+          class="broll-bg"
+          id="s5-bg"
+          alt="Bodega Gran Reserva"
+          style="filter: brightness(0.25) contrast(1.2);"
+          data-layout-allow-overflow="true"
+        />
+
+        <div class="safe-zone" style="justify-content: center; align-items: center; text-align: center;">
+          <!-- Vault Mega-CTA Container -->
+          <div
+            id="s5-vault"
+            class="luxury-card"
+            style="width: 880px; padding: 60px 48px; border: 2px solid var(--color-oro); position: relative; opacity: 0;"
+          >
+            <!-- Badge -->
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 9999px; background: rgba(197, 155, 39, 0.2); border: 1px solid var(--color-oro); color: #fde68a; font-size: 20px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">
+              ⭐ OFERTA EXCLUSIVA DE LANZAMIENTO
+            </div>
+
+            <!-- Price Claim -->
+            <h1 style="font-size: 64px; font-weight: 900; margin-top: 32px; line-height: 1.1; color: #ffffff;">
+              PRUÉBALO 30 DÍAS<br />
+              <span class="text-gold" style="font-size: 80px;">POR SOLO 1,00 €</span>
+            </h1>
+
+            <p style="font-size: 24px; color: #d1d5db; margin-top: 20px; font-weight: 600;">
+              Sin permanencia. Alta inmediata en 60 segundos.
+            </p>
+
+            <!-- Interactive Golden Button -->
+            <div
+              id="s5-button"
+              style="margin-top: 40px; background: linear-gradient(135deg, #f59e0b 0%, #c59b27 100%); padding: 26px 48px; border-radius: 28px; box-shadow: 0 16px 40px rgba(245, 158, 11, 0.4), 0 0 0 2px rgba(253, 230, 138, 0.6); display: inline-block;"
+            >
+              <span class="font-mono" style="font-size: 34px; font-weight: 900; color: #0a080c; letter-spacing: 0.05em;">
+                dkitchencorporate.es/qr
+              </span>
+            </div>
+
+            <!-- Trust Row -->
+            <div style="margin-top: 36px; display: flex; justify-content: center; gap: 24px; color: #9ca3af; font-size: 18px; font-weight: 600;">
+              <span>✓ Alta en 60s</span>
+              <span>•</span>
+              <span>✓ Soporte Directo</span>
+              <span>•</span>
+              <span>✓ Cancela cuando quieras</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MASTER GSAP DETERMINISTIC ANIMATION SCRIPT                   -->
+    <!-- ============================================================ -->
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      // Master Paused Timeline (Total: 30.0s)
+      const tl = gsap.timeline({ paused: true });
+
+      // --- SCENE 1: 0.0s -> 3.5s (Hook de Dolor) ---
+      tl.to("#s1-bg", { scale: 1.18, duration: 3.5, ease: "power1.inOut" }, 0);
+      tl.to("#s1-tag", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+      tl.fromTo("#s1-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.4);
+      tl.fromTo("#s1-card", { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.2)" }, 0.8);
+      // Scene 1 Exit
+      tl.to("#scene-1", { opacity: 0, duration: 0.4, ease: "power2.in" }, 3.4);
+
+      // --- SCENE 2: 3.5s -> 9.0s (Escaneo QR) ---
+      tl.to("#scene-2", { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.5);
+      tl.to("#s2-bg", { scale: 1.15, duration: 5.5, ease: "none" }, 3.5);
+      tl.fromTo("#s2-header", { opacity: 0, y: -25 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 3.7);
+      tl.fromTo("#s2-qr-card", { opacity: 0, scale: 0.88, rotationX: 10 }, { opacity: 1, scale: 1, rotationX: 0, duration: 0.9, ease: "expo.out" }, 4.0);
+      // Laser Scan Animation
+      tl.fromTo("#s2-laser", { opacity: 0, y: 100 }, { opacity: 1, y: 460, duration: 1.6, ease: "power1.inOut" }, 4.4);
+      tl.to("#s2-laser", { opacity: 0, duration: 0.3 }, 6.0);
+      tl.fromTo("#s2-footer", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.0);
+      // Scene 2 Exit
+      tl.to("#scene-2", { opacity: 0, duration: 0.4, ease: "power2.in" }, 8.8);
+
+      // --- SCENE 3: 9.0s -> 16.5s (Hero Smartphone & Precio en Vivo) ---
+      tl.to("#scene-3", { opacity: 1, duration: 0.4, ease: "power2.out" }, 9.0);
+      tl.to("#s3-bg", { scale: 1.18, duration: 7.5, ease: "none" }, 9.0);
+      tl.fromTo("#s3-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 9.2);
+      tl.fromTo("#s3-phone-wrapper", { opacity: 0, y: 60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: "back.out(1.1)" }, 9.5);
+      // Price Morph Beat at 12.0s (Live price change 24€ -> 29€)
+      tl.to("#s3-dish-card", { borderColor: "#F59E0B", boxShadow: "0 0 40px rgba(245, 158, 11, 0.4)", duration: 0.4, ease: "power2.out" }, 12.0);
+      tl.to("#s3-new-price", { innerText: "29,00 €", duration: 0.2, snap: { innerText: 1 } }, 12.0);
+      tl.fromTo("#s3-margin-badge", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 12.2);
+      // Scene 3 Exit
+      tl.to("#scene-3", { opacity: 0, duration: 0.4, ease: "power2.in" }, 16.3);
+
+      // --- SCENE 4: 16.5s -> 23.0s (Suite Operativa) ---
+      tl.to("#scene-4", { opacity: 1, duration: 0.4, ease: "power2.out" }, 16.5);
+      tl.to("#s4-bg", { scale: 1.14, duration: 6.5, ease: "none" }, 16.5);
+      tl.fromTo("#s4-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 16.7);
+      // Staggered Cards Reveal
+      tl.fromTo("#s4-card-1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 17.0);
+      tl.fromTo("#s4-card-2", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 17.5);
+      tl.fromTo("#s4-card-3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 18.0);
+      // Scene 4 Exit
+      tl.to("#scene-4", { opacity: 0, duration: 0.4, ease: "power2.in" }, 22.8);
+
+      // --- SCENE 5: 23.0s -> 30.0s (Mega-CTA Gran Reserva) ---
+      tl.to("#scene-5", { opacity: 1, duration: 0.4, ease: "power2.out" }, 23.0);
+      tl.fromTo("#s5-vault", { opacity: 0, scale: 0.86, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: "elastic.out(1, 0.75)" }, 23.3);
+      // Pulse animation on Button
+      tl.fromTo(
+        "#s5-button",
+        { scale: 1 },
+        { scale: 1.05, repeat: 6, yoyo: true, duration: 0.8, ease: "sine.inOut" },
+        24.0
+      );
+
+      // Register root timeline on window.__timelines
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

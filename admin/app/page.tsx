@@ -108,18 +108,18 @@ interface PiezaBoveda {
 const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
   {
     id: 'pieza-01',
-    titulo: 'Pieza 01 (Master 30s): Tu Carta en 60s · Remotion + Three.js 3D',
-    linea: 'Remotion 4.0.484 + Three.js WebGL (Titanio PBR, Shaders GPU, 0% Clipping)',
+    titulo: 'Pieza 01 (Master 30s): Tu Carta en 60s · HyperFrames Motion Editorial',
+    linea: 'HyperFrames CLI v0.8.140 (GSAP 3.14.2 + B-Roll Real + 60/60 WCAG AA)',
     duracion: '30.0s',
     estado: 'pendiente_aprobacion',
-    videoUrl: '/media/pieza-01/reel.mp4?v=37621692899',
-    contactSheetUrl: '/media/pieza-01/contact_sheet.jpg?v=37621692899',
+    videoUrl: '/media/pieza-01/reel.mp4',
+    contactSheetUrl: '/media/pieza-01/contact_sheet.jpg',
     lufs: '-14.0 LUFS (Álvaro + Lo-Fi Ducked + SFX Stems)',
     bitrate: '11,1 Mbps H.264 High (Master)',
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
     fecha: '07/10/2026',
-    descripcion: 'Edición cinematográfica de alto nivel (30 segundos). Motor Remotion + Three.js WebGL. Hook de papel ardiendo con 180 partículas GPU, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) calibrados al 100% en zonas seguras y Mega-CTA dinámico abovedado a 1,00 €.',
+    descripcion: 'Edición cinematográfica editorial de alto nivel (30 segundos). Motor HyperFrames CLI v0.8.140 + GSAP 3.14.2. Hook de dolor con B-roll gastronómico real, escaneo láser sobre QR noble de madera, smartphone hero interactivo con fotos IA ultra-HD y cambio de precio en vivo de 24€ a 29€ (+5€ margen), suite operativa en tríptico calibrado a zonas seguras (Comandero, Carta, Cero comisiones) y Mega-CTA Gran Reserva por 1,00 €.',
     zonasSeguras: 'cumplidas',
     ajustes: []
   }

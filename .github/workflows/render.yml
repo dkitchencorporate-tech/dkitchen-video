@@ -9,9 +9,9 @@ on:
         required: true
         default: reels/pieza-01
       motor:
-        description: 'Motor de renderizado (remotion | hyperframes_legacy)'
+        description: 'Motor de renderizado (hyperframes | remotion)'
         required: false
-        default: 'remotion'
+        default: 'hyperframes'
       fps:
         description: Fotogramas por segundo (estándar DKitchen = 30)
         required: false
@@ -21,6 +21,9 @@ jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,6 +33,7 @@ jobs:
 
       - name: Instalar dependencias
         run: |
+          npm i -g hyperframes@0.8.140
           npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
           npx playwright install --with-deps chromium
           pip install google-api-python-client google-auth
@@ -71,12 +75,12 @@ jobs:
           TARGET_FPS: ${{ inputs.fps }}
           TARGET_MOTOR: ${{ inputs.motor }}
         run: |
-          if [ "$TARGET_MOTOR" = "remotion" ] || [ "$TARGET_CARPETA" = "reels/pieza-01" ]; then
-            echo "[Motor] Ejecutando Remotion + Three.js WebGL (Opción A)..."
+          if [ "$TARGET_MOTOR" = "remotion" ]; then
+            echo "[Motor] Ejecutando Remotion + Three.js WebGL (Opción Alternativa)..."
             node scripts/render_remotion.cjs "$TARGET_CARPETA" "$TARGET_FPS"
           else
-            echo "[Motor] Ejecutando renderizado alternativo..."
-            node renderizar.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+            echo "[Motor] Ejecutando HyperFrames CLI v0.8.140 (Opción Prioritaria)..."
+            node scripts/render_hyperframes.cjs "$TARGET_CARPETA" "$TARGET_FPS"
           fi
 
       - name: Entregar a Google Drive (Estricto para producción)

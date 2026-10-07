@@ -46,20 +46,33 @@ if (fs.existsSync(audioOrigen)) {
 // 2. EJECUCIÓN DE REMOTION RENDER
 console.log(`[Render] Compilando y renderizando ${compositionId} a 1080x1920 con WebGL...`);
 
-let renderCmd = `npx remotion render src/index.tsx ${compositionId} "${salidaVideo}" --gl=angle`;
-console.log(`[Cmd] ${renderCmd}`);
+// En CI/Linux headless sin GPU física, swangle (Software ANGLE) es el estándar oficial de Remotion
+const preferredGl = (process.env.CI || process.platform === 'linux') ? 'swangle' : 'angle';
+console.log(`[OpenGL] Utilizando backend prioritario: --gl=${preferredGl}`);
 
 let renderProc = spawnSync('npx', [
   'remotion', 'render', 'src/index.tsx', compositionId, salidaVideo,
-  '--gl=angle'
+  `--gl=${preferredGl}`
 ], {
   cwd: remotionDir,
   stdio: 'inherit',
   shell: true,
 });
 
+if (renderProc.status !== 0 && preferredGl !== 'angle') {
+  console.warn(`[AVISO] Render con --gl=${preferredGl} no exitoso. Probando con --gl=angle...`);
+  renderProc = spawnSync('npx', [
+    'remotion', 'render', 'src/index.tsx', compositionId, salidaVideo,
+    '--gl=angle'
+  ], {
+    cwd: remotionDir,
+    stdio: 'inherit',
+    shell: true,
+  });
+}
+
 if (renderProc.status !== 0) {
-  console.warn('[AVISO] Render con --gl=angle no exitoso. Probando fallback con --gl=swiftshader...');
+  console.warn('[AVISO] Probando fallback final con --gl=swiftshader...');
   renderProc = spawnSync('npx', [
     'remotion', 'render', 'src/index.tsx', compositionId, salidaVideo,
     '--gl=swiftshader'

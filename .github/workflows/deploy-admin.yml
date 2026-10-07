@@ -15,12 +15,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p admin/public/media/reel-01 admin/public/media/reel-02 admin/public/media/reel-piloto admin/public/media/reel-cinematic-pro
-          # Descargar nuevo reel-01 rediseñado a < 25s (Run 37482360631)
-          gh run download 37482360631 -n entrega-37482360631 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
-          # Descargar nuevo reel-02 rediseñado a < 25s (Run 37482381379)
-          gh run download 37482381379 -n entrega-37482381379 -D admin/public/media/reel-02 || echo "Artefacto reel-02 no disponible"
-          # Descargar nuevo reel-piloto rediseñado a < 25s (Run 37481183226)
-          gh run download 37481183226 -n entrega-37481183226 -D admin/public/media/reel-piloto || echo "Artefacto reel-piloto no disponible"
+          # Descargar nuevo reel-01 rediseñado a < 25s (Run 37562286863)
+          gh run download 37562286863 -n entrega-37562286863 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
+          # Descargar nuevo reel-02 rediseñado a < 25s (Run 37562296886)
+          gh run download 37562296886 -n entrega-37562296886 -D admin/public/media/reel-02 || echo "Artefacto reel-02 no disponible"
+          # Descargar nuevo reel-piloto rediseñado a < 25s (Run 37562275330)
+          gh run download 37562275330 -n entrega-37562275330 -D admin/public/media/reel-piloto || echo "Artefacto reel-piloto no disponible"
           # Descargar reel-cinematic-pro (Run 37358694229)
           gh run download 37358694229 -n entrega-37358694229 -D admin/public/media/reel-cinematic-pro || echo "Artefacto reel-cinematic-pro no disponible"
           ls -la admin/public/media/* || true

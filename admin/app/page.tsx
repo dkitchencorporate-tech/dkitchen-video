@@ -408,7 +408,7 @@ export default function DashboardAdmin() {
   const [boveda, setBoveda] = useState<PiezaBoveda[]>([]);
 
   // Estados de selección
-  const [videoSeleccionadoId, setVideoSeleccionadoId] = useState<string>('reel-cinematic-pro');
+  const [videoSeleccionadoId, setVideoSeleccionadoId] = useState<string>('v1-la-carta-en-llamas');
   const [formatoExpSeleccionado, setFormatoExpSeleccionado] = useState<string>('noche-de-maridaje');
   const [vistaRelacionExp, setVistaRelacionExp] = useState<'16x9' | '4x5'>('16x9');
   const [flyerSeleccionadoId, setFlyerSeleccionadoId] = useState<string>('flyer-propuesta-a');

@@ -107,19 +107,19 @@ interface PiezaBoveda {
 
 const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
   {
-    id: 'v1-la-carta-en-llamas',
-    titulo: 'Pieza 01 (Master 35s): La Carta en Llamas · Remotion + Three.js 3D',
+    id: 'pieza-01',
+    titulo: 'Pieza 01 (Master 30s): Tu Carta en 60s · Remotion + Three.js 3D',
     linea: 'Remotion 4.0.484 + Three.js WebGL (Titanio PBR, Shaders GPU, 0% Clipping)',
-    duracion: '35.0s',
+    duracion: '30.0s',
     estado: 'pendiente_aprobacion',
-    videoUrl: '/media/v1-la-carta-en-llamas/reel.mp4?v=remotion-three-37609112102',
-    contactSheetUrl: '/media/v1-la-carta-en-llamas/contact_sheet.jpg?v=remotion-three-37609112102',
-    lufs: '-14.0 LUFS (Álvaro 108% + Lo-Fi Ducked + SFX Stems)',
+    videoUrl: '/media/pieza-01/reel.mp4',
+    contactSheetUrl: '/media/pieza-01/contact_sheet.jpg',
+    lufs: '-14.0 LUFS (Álvaro + Lo-Fi Ducked + SFX Stems)',
     bitrate: '10,2 Mbps H.264 High (Master)',
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
     fecha: '07/10/2026',
-    descripcion: 'Edición cinematográfica de alto nivel (35 segundos). Motor Remotion + Three.js WebGL. Hook de papel ardiendo con 180 partículas GPU, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) y Mega-CTA dinámico abovedado a 1,00 €.',
+    descripcion: 'Edición cinematográfica de alto nivel (30 segundos). Motor Remotion + Three.js WebGL. Hook de papel ardiendo con 180 partículas GPU, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) calibrados sin recorte y Mega-CTA dinámico abovedado a 1,00 €.',
     zonasSeguras: 'cumplidas',
     ajustes: []
   },

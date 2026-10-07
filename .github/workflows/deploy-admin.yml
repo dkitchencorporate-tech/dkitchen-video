@@ -1,6 +1,14 @@
 name: Deploy Admin to Vercel
 on:
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Run ID del render para descargar el artefacto nuevo'
+        required: false
+      carpeta:
+        description: 'Carpeta de la pieza'
+        required: false
+        default: 'reels/pieza-01'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,17 +22,28 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p admin/public/media/v1-la-carta-en-llamas admin/public/media/reel-01 admin/public/media/reel-02 admin/public/media/reel-piloto admin/public/media/reel-cinematic-pro
-          # Descargar nueva pieza 01 Remotion + Three.js WebGL 35s (Run 37609112102)
-          gh run download 37609112102 -n entrega-37609112102 -D admin/public/media/v1-la-carta-en-llamas || echo "Artefacto v1-la-carta-en-llamas no disponible"
-          # Descargar reel-01 rediseñado (Run 37562286863)
-          gh run download 37562286863 -n entrega-37562286863 -D admin/public/media/reel-01 || echo "Artefacto reel-01 no disponible"
-          # Descargar reel-02 rediseñado (Run 37562296886)
-          gh run download 37562296886 -n entrega-37562296886 -D admin/public/media/reel-02 || echo "Artefacto reel-02 no disponible"
-          # Descargar reel-piloto rediseñado (Run 37562275330)
-          gh run download 37562275330 -n entrega-37562275330 -D admin/public/media/reel-piloto || echo "Artefacto reel-piloto no disponible"
-          # Descargar reel-cinematic-pro (Run 37358694229)
-          gh run download 37358694229 -n entrega-37358694229 -D admin/public/media/reel-cinematic-pro || echo "Artefacto reel-cinematic-pro no disponible"
+          mkdir -p admin/public/media/pieza-01 admin/public/media/reel-01 admin/public/media/reel-02 admin/public/media/reel-piloto admin/public/media/reel-cinematic-pro
+          
+          # Si se especifica run_id explícito:
+          if [ -n "${{ inputs.run_id }}" ]; then
+            echo "[Admin] Descargando artefacto de render específico: ${{ inputs.run_id }}..."
+            TARGET_SLUG=$(basename "${{ inputs.carpeta }}")
+            mkdir -p "admin/public/media/$TARGET_SLUG"
+            gh run download "${{ inputs.run_id }}" -n "entrega-${{ inputs.run_id }}" -D "admin/public/media/$TARGET_SLUG" || echo "[AVISO] No se pudo descargar entrega-${{ inputs.run_id }}"
+          else
+            echo "[Admin] Buscando último render exitoso en GitHub Actions..."
+            LAST_RUN=$(gh run list --workflow=render.yml --status=success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+            if [ -n "$LAST_RUN" ]; then
+              echo "[Admin] Descargando último render exitoso: $LAST_RUN..."
+              gh run download "$LAST_RUN" -n "entrega-$LAST_RUN" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-$LAST_RUN"
+            fi
+          fi
+          
+          # Descargar reels previos si existen
+          gh run download 37562286863 -n entrega-37562286863 -D admin/public/media/reel-01 || true
+          gh run download 37562296886 -n entrega-37562296886 -D admin/public/media/reel-02 || true
+          gh run download 37562275330 -n entrega-37562275330 -D admin/public/media/reel-piloto || true
+          gh run download 37358694229 -n entrega-37358694229 -D admin/public/media/reel-cinematic-pro || true
           ls -la admin/public/media/* || true
 
       - name: Instalar Vercel CLI y Dependencias

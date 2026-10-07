@@ -334,7 +334,7 @@ export const Root: React.FC = () => {
       <Composition
         id="MasterPiece01"
         component={MasterPiece01}
-        durationInFrames={30 * 35}
+        durationInFrames={30 * 30}
         fps={30}
         width={1080}
         height={1920}

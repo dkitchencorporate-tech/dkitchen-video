@@ -14,25 +14,25 @@ export const MasterPiece01: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // === TIMELINE SEGMENTS (Total: 35.0s = 1050 frames at 30 fps) ===
-  // Scene 1: 0.0s - 5.0s   (Frames 0 - 150)
-  // Scene 2: 5.0s - 13.0s  (Frames 150 - 390)
-  // Scene 3: 13.0s - 21.0s (Frames 390 - 630)
-  // Scene 4: 21.0s - 30.5s (Frames 630 - 915)
-  // Scene 5: 30.5s - 35.0s (Frames 915 - 1050)
+  // === TIMELINE SEGMENTS (Total: 30.0s = 900 frames at 30 fps) ===
+  // Scene 1: 0.0s - 3.5s  (Frames 0 - 105)  [Hook]
+  // Scene 2: 3.5s - 9.0s  (Frames 105 - 270) [Pain]
+  // Scene 3: 9.0s - 16.5s (Frames 270 - 495) [Hero UI Reveal]
+  // Scene 4: 16.5s - 23.0s (Frames 495 - 690) [Suite Operativa]
+  // Scene 5: 23.0s - 30.0s (Frames 690 - 900) [Mega-CTA Gran Reserva]
 
-  // Subtle camera shake on Sub-Drop at frame 915 (Scene 5 transition)
+  // Subtle camera shake on Sub-Drop at frame 690 (Scene 5 transition)
   const shake =
-    frame >= 915 && frame <= 935
-      ? Math.sin((frame - 915) * 1.5) *
-        interpolate(frame, [915, 935], [12, 0], {
+    frame >= 690 && frame <= 710
+      ? Math.sin((frame - 690) * 1.5) *
+        interpolate(frame, [690, 710], [10, 0], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         })
       : 0;
 
-  // Scene 1 Overlays
-  const s1Opacity = interpolate(frame, [0, 15, 135, 150], [0, 1, 1, 0], {
+  // Scene 1 Overlays (Frames 0 - 105)
+  const s1Opacity = interpolate(frame, [0, 15, 95, 105], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -42,46 +42,46 @@ export const MasterPiece01: React.FC = () => {
     config: { damping: 14, stiffness: 100, mass: 0.8 },
   });
 
-  // Scene 2 Overlays
-  const s2Opacity = interpolate(frame, [155, 175, 370, 390], [0, 1, 1, 0], {
+  // Scene 2 Overlays (Frames 105 - 270)
+  const s2Opacity = interpolate(frame, [110, 130, 255, 270], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const s2Spring = spring({
-    frame: frame - 160,
+    frame: frame - 110,
     fps,
     config: { damping: 14, stiffness: 90, mass: 0.8 },
   });
 
-  // Scene 3 Overlays
-  const s3Opacity = interpolate(frame, [395, 415, 610, 630], [0, 1, 1, 0], {
+  // Scene 3 Overlays (Frames 270 - 495)
+  const s3Opacity = interpolate(frame, [275, 295, 475, 495], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const s3Spring = spring({
-    frame: frame - 400,
+    frame: frame - 280,
     fps,
     config: { damping: 14, stiffness: 90, mass: 0.8 },
   });
 
-  // Scene 4 Overlays
-  const s4Opacity = interpolate(frame, [635, 655, 895, 915], [0, 1, 1, 0], {
+  // Scene 4 Overlays (Frames 495 - 690)
+  const s4Opacity = interpolate(frame, [500, 520, 670, 690], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const s4Spring = spring({
-    frame: frame - 640,
+    frame: frame - 505,
     fps,
     config: { damping: 14, stiffness: 85, mass: 0.9 },
   });
 
-  // Scene 5 (Mega-CTA Vault) Overlays
-  const s5Opacity = interpolate(frame, [915, 935], [0, 1], {
+  // Scene 5 (Mega-CTA Vault) Overlays (Frames 690 - 900)
+  const s5Opacity = interpolate(frame, [690, 715], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const s5Scale = spring({
-    frame: frame - 915,
+    frame: frame - 690,
     fps,
     config: { damping: 12, stiffness: 120, mass: 0.8 },
   });

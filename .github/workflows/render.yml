@@ -7,7 +7,7 @@ on:
       carpeta:
         description: Carpeta de la pieza (contiene composicion o MasterPiece)
         required: true
-        default: reels/v1-la-carta-en-llamas
+        default: reels/pieza-01
       motor:
         description: 'Motor de renderizado (remotion | hyperframes_legacy)'
         required: false
@@ -71,7 +71,7 @@ jobs:
           TARGET_FPS: ${{ inputs.fps }}
           TARGET_MOTOR: ${{ inputs.motor }}
         run: |
-          if [ "$TARGET_MOTOR" = "remotion" ] || [ "$TARGET_CARPETA" = "reels/v1-la-carta-en-llamas" ]; then
+          if [ "$TARGET_MOTOR" = "remotion" ] || [ "$TARGET_CARPETA" = "reels/pieza-01" ]; then
             echo "[Motor] Ejecutando Remotion + Three.js WebGL (Opción A)..."
             node scripts/render_remotion.cjs "$TARGET_CARPETA" "$TARGET_FPS"
           else
@@ -100,4 +100,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run deploy-admin.yml || echo "[AVISO] No se pudo disparar deploy-admin automáticamente"
+          gh workflow run deploy-admin.yml -f run_id=${{ github.run_id }} -f carpeta=${{ inputs.carpeta }} || echo "[AVISO] No se pudo disparar deploy-admin automáticamente"

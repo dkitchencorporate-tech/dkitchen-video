@@ -17,25 +17,25 @@ interface ThreeSceneProps {
 const World: React.FC<{ frame: number }> = ({ frame }) => {
   const { camera } = useThree();
 
-  // === CAMERA & ORBIT DYNAMICS ===
-  // Scene 1: frames 0 - 150
-  // Scene 2: frames 150 - 390
-  // Scene 3: frames 390 - 630
-  // Scene 4: frames 630 - 915
-  // Scene 5: frames 915 - 1050
+  // === CAMERA & ORBIT DYNAMICS (Total: 30.0s = 900 frames a 30 fps) ===
+  // Scene 1: frames 0 - 105   (Hook)
+  // Scene 2: frames 105 - 270 (Pain & Laser)
+  // Scene 3: frames 270 - 495 (Hero Single Phone Reading)
+  // Scene 4: frames 495 - 690 (3-Phone Fan-Out)
+  // Scene 5: frames 690 - 900 (Mega-CTA)
 
-  // Camera Z distance choreography
+  // Camera Z distance choreography (Calibración trigonométrica para frustum vertical 9:16)
   const camZ = interpolate(
     frame,
-    [0, 140, 240, 390, 430, 580, 630, 680, 915, 1050],
-    [7.5, 7.5, 6.8, 6.8, 4.6, 4.6, 6.8, 8.2, 8.2, 8.6],
+    [0, 100, 180, 270, 310, 460, 495, 540, 690, 900],
+    [7.5, 7.5, 7.0, 7.0, 6.2, 6.2, 7.2, 10.5, 10.5, 11.0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
   const camY = interpolate(
     frame,
-    [390, 430, 580, 630],
-    [0, 0.45, 0.45, 0],
+    [270, 310, 460, 495],
+    [0, 0.35, 0.35, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
@@ -46,7 +46,7 @@ const World: React.FC<{ frame: number }> = ({ frame }) => {
   // Scene 1 Ember Particles opacity
   const emberOpacity = interpolate(
     frame,
-    [0, 15, 130, 160],
+    [0, 15, 90, 110],
     [0.2, 1.0, 0.9, 0.0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
@@ -54,7 +54,7 @@ const World: React.FC<{ frame: number }> = ({ frame }) => {
   // Scene 2 & 3: Hero iPhone animation
   const heroPhoneOpacity = interpolate(
     frame,
-    [220, 260, 620, 640],
+    [140, 180, 485, 505],
     [0, 1, 1, 0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
@@ -62,35 +62,35 @@ const World: React.FC<{ frame: number }> = ({ frame }) => {
   // Hero phone rotation (enters with dynamic 3D angle, straightens for reading)
   const heroRotY = interpolate(
     frame,
-    [220, 310, 390, 450, 580, 630],
-    [0.65, 0.05, 0.0, -0.06, 0.0, 0.15],
+    [140, 220, 270, 320, 460, 495],
+    [0.65, 0.05, 0.0, -0.05, 0.0, 0.12],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
   const heroRotX = interpolate(
     frame,
-    [220, 310, 410, 450],
+    [140, 220, 290, 330],
     [0.18, 0.04, 0.02, 0.0],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
   const heroScale = spring({
-    frame: frame - 220,
+    frame: frame - 140,
     fps: 30,
     config: { damping: 14, stiffness: 90, mass: 0.9 },
   });
 
   // Scene 4: 3-Phone Fan-Out
   const fanProgress = spring({
-    frame: frame - 630,
+    frame: frame - 495,
     fps: 30,
     config: { damping: 15, stiffness: 85, mass: 1.0 },
   });
 
   const fanOpacity = interpolate(
     frame,
-    [630, 650, 905, 925],
-    [0, 1, 1, 0.25],
+    [495, 515, 680, 700],
+    [0, 1, 1, 0.15],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
@@ -106,7 +106,7 @@ const World: React.FC<{ frame: number }> = ({ frame }) => {
       <directionalLight position={[-4, 4, 3]} intensity={1.2} color="#90CAF9" />
 
       {/* SCENE 1: Burning Paper Menu + Embers */}
-      {frame <= 165 && (
+      {frame <= 115 && (
         <>
           <BurningPaper frame={frame} />
           <EmberParticles frame={frame} opacity={emberOpacity} count={180} />
@@ -115,48 +115,48 @@ const World: React.FC<{ frame: number }> = ({ frame }) => {
       )}
 
       {/* SCENE 2: Laser Scanner Pedestal */}
-      {frame >= 145 && frame <= 290 && <LaserScanner frame={frame} />}
+      {frame >= 100 && frame <= 210 && <LaserScanner frame={frame} />}
 
-      {/* SCENE 2 & 3: Hero Single iPhone Pro */}
+      {/* SCENE 2 & 3: Hero Single iPhone Pro (Scaled 0.88 for strict safe zone) */}
       {heroPhoneOpacity > 0.01 && (
         <IPhoneModel
           frame={frame}
           mode="menu"
           position={[0, 0, 0]}
           rotation={[heroRotX, heroRotY, 0]}
-          scale={Math.max(0.01, heroScale * heroPhoneOpacity)}
-          highlightDishPop={frame >= 390 && frame <= 620}
+          scale={Math.max(0.01, heroScale * heroPhoneOpacity * 0.88)}
+          highlightDishPop={frame >= 270 && frame <= 480}
         />
       )}
 
-      {/* SCENE 4: 3-Phone 3D Fan-Out */}
+      {/* SCENE 4: 3-Phone 3D Fan-Out (Calibrated Safe Zone: 100% inside vertical screen) */}
       {fanOpacity > 0.01 && (
         <group position={[0, 0, 0]} scale={fanOpacity}>
           {/* Left Phone: Waiter Command Device */}
           <IPhoneModel
             frame={frame}
             mode="waiter"
-            position={[-2.7 * fanProgress, -0.15, -0.4 * fanProgress]}
-            rotation={[0.06, 0.35 * fanProgress, -0.06 * fanProgress]}
-            scale={0.92}
+            position={[-1.35 * fanProgress, -0.1, -0.3 * fanProgress]}
+            rotation={[0.06, 0.28 * fanProgress, -0.04 * fanProgress]}
+            scale={0.82}
           />
 
           {/* Center Phone: Kaiseki Digital Menu */}
           <IPhoneModel
             frame={frame}
             mode="menu"
-            position={[0, 0.1, 0.35 * fanProgress]}
+            position={[0, 0.05, 0.25 * fanProgress]}
             rotation={[0, 0, 0]}
-            scale={1.0}
+            scale={0.95}
           />
 
           {/* Right Phone: Profit Analytics Dashboard */}
           <IPhoneModel
             frame={frame}
             mode="analytics"
-            position={[2.7 * fanProgress, -0.15, -0.4 * fanProgress]}
-            rotation={[0.06, -0.35 * fanProgress, 0.06 * fanProgress]}
-            scale={0.92}
+            position={[1.35 * fanProgress, -0.1, -0.3 * fanProgress]}
+            rotation={[0.06, -0.28 * fanProgress, 0.04 * fanProgress]}
+            scale={0.82}
           />
         </group>
       )}

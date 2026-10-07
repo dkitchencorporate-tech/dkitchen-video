@@ -1,0 +1,56 @@
+{
+  "titulo": "Pieza 01: Tu Carta en 60 Segundos (Lanzamiento Gran Reserva)",
+  "version": "1.0.0-final",
+  "duracion_total_video": 30.0,
+  "corte_voz_segundo": 22.5,
+  "fps": 30,
+  "voice_id": "bIHbv24MWmeRgasZH58o",
+  "locucion": "¿Cuánto dinero quemas cada vez que cambias un precio en tu carta? Las cartas de papel se rompen, se manchan y quedan desactualizadas. Un error en alérgenos te cuesta miles de euros. Con DKitchen, tu carta vive en el móvil de tu cliente. Platos con fotos irresistibles, alérgenos blindados y cambios al segundo. Sin comisiones por pedido. Sin intermediarios. Todo el control de tu sala en una sola suite. Pruébalo hoy por solo un euro. Entra en dkitchencorporate.es y ten tu carta lista en 60 segundos.",
+  "escenas": [
+    {
+      "numero": 1,
+      "nombre": "HOOK",
+      "tiempo_inicio": 0.0,
+      "tiempo_fin": 3.5,
+      "frames": [0, 105],
+      "texto_pantalla": "¿CUÁNTO DINERO QUEMAS AL CAMBIAR TU CARTA?",
+      "b_roll": "imagenes/10-broll-wine.jpg"
+    },
+    {
+      "numero": 2,
+      "nombre": "PAIN",
+      "tiempo_inicio": 3.5,
+      "tiempo_fin": 9.0,
+      "frames": [105, 270],
+      "texto_pantalla": "PAPEL MANCHADO · ALÉRGENOS UE 1169/2011",
+      "b_roll": "imagenes/12-broll-qr-table.jpg"
+    },
+    {
+      "numero": 3,
+      "nombre": "HERO_UI_REVEAL",
+      "tiempo_inicio": 9.0,
+      "tiempo_fin": 16.5,
+      "frames": [270, 495],
+      "texto_pantalla": "CARTA DIGITAL INTERACTIVA · CAMBIOS AL SEGUNDO",
+      "mockup": "iphone_pro_oled"
+    },
+    {
+      "numero": 4,
+      "nombre": "SUITE_OPERATIVA",
+      "tiempo_inicio": 16.5,
+      "tiempo_fin": 23.0,
+      "frames": [495, 690],
+      "texto_pantalla": "0% COMISIONES · SALA + COMANDERO + MÉTRICAS",
+      "mockup": "3_phones_calibrated"
+    },
+    {
+      "numero": 5,
+      "nombre": "MEGA_CTA",
+      "tiempo_inicio": 23.0,
+      "tiempo_fin": 30.0,
+      "frames": [690, 900],
+      "texto_pantalla": "1 € EL PRIMER MES · dkitchencorporate.es/qr",
+      "cta": "TU CARTA EN 60 SEGUNDOS"
+    }
+  ]
+}

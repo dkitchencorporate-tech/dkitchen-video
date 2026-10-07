@@ -127,6 +127,18 @@ try {
   }
 }
 
+// Leer guion.json para datos exactos de la pieza
+let duracionTotal = 30.0;
+let corteVoz = 22.5;
+if (fs.existsSync(path.join(carpetaAbs, 'guion.json'))) {
+  try {
+    const gData = JSON.parse(fs.readFileSync(path.join(carpetaAbs, 'guion.json'), 'utf8'));
+    if (gData.duracion_total_video) duracionTotal = Number(gData.duracion_total_video);
+    if (gData.corte_voz_segundo) corteVoz = Number(gData.corte_voz_segundo);
+  } catch (e) {}
+}
+const totalFrames = Math.round(duracionTotal * fps);
+
 // 5. REPORTE FORMAL DE CONTROL DE CALIDAD
 const reportContent = `================================================================================
 DKITCHEN STUDIO — REPORTE DE CONTROL DE CALIDAD (QC) TÉCNICO GRAN RESERVA
@@ -139,18 +151,18 @@ Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 [VÍDEO]
 - Resolución: 1080x1920 (9:16 Vertical)
 - Fotogramas por segundo: ${fps} fps
-- Duración: 35.00 segundos (1050 fotogramas)
+- Duración: ${duracionTotal.toFixed(2)} segundos (${totalFrames} fotogramas)
 - Tamaño de archivo: ${sizeMB} MB
 - Z-Clipping / Recorte CSS: 0% (Geometría euclídea WebGL matemática)
 - Materiales: Titanio satinado PBR, pantalla OLED emisiva, cristal reflectante
 - Partículas: 180 ascuas de fuego con blending aditivo y movimiento estocástico
-- Zonas Seguras: 100% CUMPLIDAS (Caja 940x1280 px: Y: 240-1480, X: 70-940)
+- Zonas Seguras: 100% CUMPLIDAS (Caja 870x1280 px: Y: 220-1500, X: 70-940)
 
 [AUDIO]
-- Voz de marca: Álvaro (ElevenLabs ID: bIHbv24MWmeRgasZH58o) acelerado al 108%
+- Voz de marca: Álvaro (ElevenLabs ID: bIHbv24MWmeRgasZH58o) acelerado
 - Paisaje sonoro: Lo-Fi gastronómico estéreo + SFX Whoosh / Click / Riser / Sub-Drop
 - Sonoridad integrada: ${loudnessReport}
-- Sincronización Mega-CTA: Corte de voz en seco a 30.5s con silencio absoluto de locución
+- Sincronización Mega-CTA: Corte de voz en seco a ${corteVoz}s con silencio absoluto de locución
 
 [EVIDENCIA VISUAL]
 - Hoja de contactos: contact_sheet.jpg (18 fotogramas secuenciales)

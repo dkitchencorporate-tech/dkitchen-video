@@ -4,14 +4,14 @@ DKITCHEN STUDIO — REPORTE DE CONTROL DE CALIDAD (QC) TÉCNICO GRAN RESERVA
 Pieza: pieza-01
 Motor: HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Chromium Headless Deterministic Capture)
 Arquetipo: 03 Editorial Gastronómico Gran Reserva
-Fecha: 2026-10-07T14:14:43.933Z
+Fecha: 2026-10-07T15:36:10.983Z
 Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 
 [VÍDEO]
 - Resolución: 1080x1920 (9:16 Vertical)
 - Fotogramas por segundo: 30 fps
 - Duración: 30.00 segundos (900 fotogramas)
-- Tamaño de archivo: 20.75 MB
+- Tamaño de archivo: 21.03 MB
 - Motor: HyperFrames v0.8.140 con renderizado determinista sub-píxel
 - Composición: HTML5 + CSS3 + GSAP 3.14.2
 - Backgrounds: B-Roll Real de Alta Gastronomía (Rubia Gallega, Atún Balfegó, Bodega Gran Reserva)
@@ -22,7 +22,7 @@ Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 - Voz de marca: Álvaro (ElevenLabs ID: bIHbv24MWmeRgasZH58o) acelerado
 - Paisaje sonoro: Lo-Fi gastronómico estéreo + SFX Whoosh / Click / Riser / Sub-Drop
 - Sonoridad integrada: EBU R128: -14.0 LUFS integrado
-- Sincronización Mega-CTA: Corte de voz en seco a 22.5s con silencio absoluto de locución
+- Sincronización Mega-CTA: Corte de voz en seco a 21s con silencio absoluto de locución
 
 [EVIDENCIA VISUAL]
 - Hoja de contactos: contact_sheet.jpg (18 fotogramas secuenciales)

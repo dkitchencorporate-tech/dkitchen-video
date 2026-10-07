@@ -112,82 +112,14 @@ const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
     linea: 'Remotion 4.0.484 + Three.js WebGL (Titanio PBR, Shaders GPU, 0% Clipping)',
     duracion: '30.0s',
     estado: 'pendiente_aprobacion',
-    videoUrl: '/media/pieza-01/reel.mp4',
-    contactSheetUrl: '/media/pieza-01/contact_sheet.jpg',
+    videoUrl: '/media/pieza-01/reel.mp4?v=37621692899',
+    contactSheetUrl: '/media/pieza-01/contact_sheet.jpg?v=37621692899',
     lufs: '-14.0 LUFS (Álvaro + Lo-Fi Ducked + SFX Stems)',
-    bitrate: '10,2 Mbps H.264 High (Master)',
+    bitrate: '11,1 Mbps H.264 High (Master)',
     formato: '1080x1920 (9:16 Vertical)',
     fps: 30,
     fecha: '07/10/2026',
-    descripcion: 'Edición cinematográfica de alto nivel (30 segundos). Motor Remotion + Three.js WebGL. Hook de papel ardiendo con 180 partículas GPU, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) calibrados sin recorte y Mega-CTA dinámico abovedado a 1,00 €.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-cinematic-pro',
-    titulo: 'Reel Cinemático Pro: Paleta Web Oficial y Gastronomía Real',
-    linea: 'Cinematic B-Roll + 3D Motion Flow (20 Segundos)',
-    duracion: '20.0s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-cinematic-pro/reel.mp4',
-    contactSheetUrl: '/media/reel-cinematic-pro/contact_sheet.jpg',
-    lufs: '-14.5 LUFS (ElevenLabs Peninsular + B-Roll Real)',
-    bitrate: '11,4 Mbps H.264 High Master',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: '05/10/2026',
-    descripcion: 'Versión definitiva con colores exactos de la web oficial de DKitchen (#090B10, #F59E0B, #DC2626). Incorpora fotografías reales de alta gastronomía en B-Roll dinámico con efecto Ken Burns, smartphone 3D interactivo con panel de sala, tipografía Outfit con resaltes en oro y chipotle, y locución con pausas e inflexión comercial.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-piloto',
-    titulo: 'Piloto Cinemático 3D: La Carta en Llamas (< 25s Élite)',
-    linea: 'Motion Flow 3D & Escenario Unificado Gran Reserva',
-    duracion: '24.2s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-piloto/reel.mp4',
-    contactSheetUrl: '/media/reel-piloto/contact_sheet.jpg',
-    lufs: '-14.0 LUFS (Locución Álvaro Acelerada + Mega-CTA sin voz)',
-    bitrate: '9,8 Mbps H.264 High (Master)',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: '06/10/2026',
-    descripcion: 'Versión definitiva de autor. Escenario móvil 3D unificado, colores Gran Reserva puros (#6E0C2B y #C59B27, sin fucsias), interacción táctil cambiando precio de 24€ a 28€ y alérgenos en vivo. Locución finalizada a los 17.8s con 6.4s de Mega-CTA de urgencia en silencio de voz.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-01',
-    titulo: 'Reel 01: Tu carta, a la altura de tu cocina',
-    linea: 'Alta Cocina vs Papel / Escenario 3D Gran Reserva',
-    duracion: '23.5s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-01/reel.mp4',
-    contactSheetUrl: '/media/reel-01/contact_sheet.jpg',
-    lufs: '-14.0 LUFS (Locución Álvaro + Mega-CTA sin voz)',
-    bitrate: '8,5 Mbps H.264 High',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: '06/10/2026',
-    descripcion: 'Hook de alta gastronomía contrastado con papel arrugado. Escenario 3D unificado con plato de maridaje de autor y aumento del 18% en ticket medio. Locución cortada a los 19s con 4.5s de Mega-CTA palpitante en silencio de voz.',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
-    id: 'reel-02',
-    titulo: 'Reel 02: Configura tu menú en 60 segundos',
-    linea: 'Cronómetro Regresivo & Control en Vivo',
-    duracion: '22.5s',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/reel-02/reel.mp4',
-    contactSheetUrl: '/media/reel-02/contact_sheet.jpg',
-    lufs: '-14.0 LUFS (Audio Master Normalizado)',
-    bitrate: '8,2 Mbps H.264 High',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: '06/10/2026',
-    descripcion: 'Hook con cronómetro regresivo de urgencia (60s a 10s), edición de menú en tiempo real con fotos IA y alérgenos normalizados. Locución cortada a los 18s con 4.5s de Mega-CTA con alta incluida.',
+    descripcion: 'Edición cinematográfica de alto nivel (30 segundos). Motor Remotion + Three.js WebGL. Hook de papel ardiendo con 180 partículas GPU, escaneo láser sobre QR de madera noble, zoom táctil modificando precio de 24€ a 29€ con fotos IA y alérgenos en vivo, despliegue de 3 celulares en abanico (Comandero, Carta, Finanzas) calibrados al 100% en zonas seguras y Mega-CTA dinámico abovedado a 1,00 €.',
     zonasSeguras: 'cumplidas',
     ajustes: []
   }
@@ -613,7 +545,7 @@ export default function DashboardAdmin() {
               }`}
             >
               <Video className="w-3.5 h-3.5" />
-              <span>Vídeos (4 Renders)</span>
+              <span>Vídeo Master Oficial</span>
             </button>
 
             <button

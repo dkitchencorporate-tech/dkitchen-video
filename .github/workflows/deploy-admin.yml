@@ -22,7 +22,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p admin/public/media/pieza-01 admin/public/media/reel-01 admin/public/media/reel-02 admin/public/media/reel-piloto admin/public/media/reel-cinematic-pro
+          mkdir -p admin/public/media/pieza-01
           
           # Si se especifica run_id explícito:
           if [ -n "${{ inputs.run_id }}" ]; then
@@ -38,12 +38,6 @@ jobs:
               gh run download "$LAST_RUN" -n "entrega-$LAST_RUN" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-$LAST_RUN"
             fi
           fi
-          
-          # Descargar reels previos si existen
-          gh run download 37562286863 -n entrega-37562286863 -D admin/public/media/reel-01 || true
-          gh run download 37562296886 -n entrega-37562296886 -D admin/public/media/reel-02 || true
-          gh run download 37562275330 -n entrega-37562275330 -D admin/public/media/reel-piloto || true
-          gh run download 37358694229 -n entrega-37358694229 -D admin/public/media/reel-cinematic-pro || true
           ls -la admin/public/media/* || true
 
       - name: Instalar Vercel CLI y Dependencias

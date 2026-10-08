@@ -141,7 +141,9 @@ function mezclarPistasFinales() {
     }
 
     if (tieneClick) {
-      const clickMs = 8500; // Sincronizado a los 8.5s con la entrada del Smartphone
+      const scenePhone = (guionData.escenas || []).find(e => (e.nombre || '').includes('HERO') || (e.nombre || '').includes('SMARTPHONE'));
+      const clickTime = scenePhone ? (scenePhone.tiempo_inicio + 0.5) : 8.5;
+      const clickMs = Math.round(clickTime * 1000);
       filterComplex += `[${idx}:a]adelay=${clickMs}|${clickMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.35[a_click];`;
       mixInputs.push('[a_click]');
       idx++;
@@ -198,9 +200,9 @@ const payload = JSON.stringify({
   text: texto,
   model_id: "eleven_multilingual_v2",
   voice_settings: {
-    stability: 0.50,
+    stability: 0.65,
     similarity_boost: 0.85,
-    style: 0.30,
+    style: 0.20,
     use_speaker_boost: true
   }
 });

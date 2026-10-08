@@ -51,6 +51,8 @@ service_account*.json
 
 # Stray media downloads (test/scratch clips left in repo root)
 pexels_video_*.mp4
+reels/**/*.mp4
+reels/**/*.mp3
 
 # Scratch/debug scripts
 scratch/

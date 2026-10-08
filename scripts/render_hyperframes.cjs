@@ -33,7 +33,13 @@ if (!fs.existsSync(carpetaAbs)) {
   fs.mkdirSync(carpetaAbs, { recursive: true });
 }
 
-// 1. SINCRONIZACIÓN DE AUDIO MASTER
+// 1. SINCRONIZACIÓN DE AUDIO MASTER Y COMPOSICIÓN
+const compOrigen = path.join(carpetaAbs, 'composicion.html');
+if (fs.existsSync(compOrigen)) {
+  console.log(`[Composicion] Sincronizando composición desde ${compOrigen} hacia ${studioDir}/index.html...`);
+  fs.copyFileSync(compOrigen, path.join(studioDir, 'index.html'));
+}
+
 const audioOrigen = path.join(carpetaAbs, 'audio.mp3');
 const audioDestino = path.join(studioDir, 'assets/audio.mp3');
 if (fs.existsSync(audioOrigen)) {

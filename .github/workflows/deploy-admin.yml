@@ -23,6 +23,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p admin/public/media/pieza-01
+          # Preservar pieza-01 histórica:
+          gh run download "37707979546" -n "entrega-37707979546" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-37707979546"
           
           # Si se especifica run_id explícito:
           if [ -n "${{ inputs.run_id }}" ]; then

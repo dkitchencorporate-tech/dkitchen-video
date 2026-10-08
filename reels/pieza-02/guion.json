@@ -1,0 +1,66 @@
+{
+  "titulo": "Pieza 02: Hostelero, Tu Carta en 60s (Motion Reveal Hook Directo)",
+  "version": "1.0.0-motion",
+  "duracion_total_video": 30.0,
+  "corte_voz_segundo": 24.5,
+  "fps": 30,
+  "voice_id": "bIHbv24MWmeRgasZH58o",
+  "locucion": "Hostelero... ¿cuánto dinero gastas al mes en imprimir tu carta? El papel se mancha, se rompe y te cuesta cientos de euros. Con De-Kitchen... tu carta vive en el móvil de tu cliente en sesenta segundos. Fotos de alta cocina, alérgenos blindados y cambios al segundo sin pasar por la imprenta. Cero comisiones. Pruébalo hoy por solo un euro en dekitchencorporate.es.",
+  "escenas": [
+    {
+      "numero": 1,
+      "nombre": "HOOK_HOSTELERO",
+      "tiempo_inicio": 0.0,
+      "tiempo_fin": 5.0,
+      "frames": [
+        0,
+        150
+      ],
+      "texto_pantalla": "HOSTELERO: ¿CUÁNTO DINERO GASTAS AL MES?"
+    },
+    {
+      "numero": 2,
+      "nombre": "SCAN_60S_PULSE",
+      "tiempo_inicio": 5.0,
+      "tiempo_fin": 10.5,
+      "frames": [
+        150,
+        315
+      ],
+      "texto_pantalla": "TU CARTA EN 60 SEGUNDOS"
+    },
+    {
+      "numero": 3,
+      "nombre": "HERO_SMARTPHONE_LIVE",
+      "tiempo_inicio": 10.5,
+      "tiempo_fin": 18.0,
+      "frames": [
+        315,
+        540
+      ],
+      "texto_pantalla": "CAMBIOS AL SEGUNDO Y ALÉRGENOS BLINDADOS"
+    },
+    {
+      "numero": 4,
+      "nombre": "RENTABILIDAD_CERO_COMISION",
+      "tiempo_inicio": 18.0,
+      "tiempo_fin": 24.5,
+      "frames": [
+        540,
+        735
+      ],
+      "texto_pantalla": "0% COMISIONES SOBRE VENTAS"
+    },
+    {
+      "numero": 5,
+      "nombre": "MEGA_CTA_VAULT",
+      "tiempo_inicio": 24.5,
+      "tiempo_fin": 30.0,
+      "frames": [
+        735,
+        900
+      ],
+      "texto_pantalla": "PRUÉBALO POR 1 € · dkitchencorporate.es/qr"
+    }
+  ]
+}

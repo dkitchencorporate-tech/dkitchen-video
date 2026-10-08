@@ -107,6 +107,23 @@ interface PiezaBoveda {
 
 const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
   {
+    id: 'pieza-02',
+    titulo: 'Pieza 02 (Master 30s): Hostelero, tu Carta en 60s · Motion Reveal Hook Directo',
+    linea: 'HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Anillos Shockwave + Zero Clutter + 5.5s Mega-CTA)',
+    duracion: '30.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/pieza-02/reel.mp4',
+    contactSheetUrl: '/media/pieza-02/contact_sheet.jpg',
+    lufs: '-14.0 LUFS (Álvaro ElevenLabs De-Kitchen + Lo-Fi Ducked + Bass Boom)',
+    bitrate: '11,1 Mbps H.264 High (Master)',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: '08/10/2026',
+    descripcion: 'Segunda pieza maestra (30 segundos exactos) con hook directo a hostelería ("Hostelero, ¿cuánto dinero gastas al mes...?"). Contraste tipográfico colosal (96px/72px), shockwave rings de alta vibración, QR pedestal noble sin microtextos, smartphone hero en cristal obsidian con Balfegó real y subida de margen live (24€ a 29€), 0% comisiones colosal y 5.5 segundos completos de Mega-CTA flotante con música ininterrumpida.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
     id: 'pieza-01',
     titulo: 'Pieza 01 (Master 30s): Tu Carta en 60s · HyperFrames Motion Editorial',
     linea: 'HyperFrames CLI v0.8.140 (GSAP 3.14.2 + B-Roll Real + 60/60 WCAG AA)',

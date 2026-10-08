@@ -182,6 +182,25 @@ Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 
 fs.writeFileSync(qcReport, reportContent, 'utf8');
 console.log(`[QC] Reporte guardado en ${qcReport}`);
+
+// 7. ENTREGABLES COMPLETOS (MP4 + HTML + QC)
+try {
+  const htmlStudio = path.join(studioDir, 'index.html');
+  if (fs.existsSync(htmlStudio)) {
+    fs.copyFileSync(htmlStudio, path.join(carpetaAbs, 'composicion.html'));
+  }
+  const entregaDir = path.resolve('C:/Users/karc0/OneDrive/Desktop/5. Creacion de Contenido/trabajo/ultimo-video');
+  if (fs.existsSync(entregaDir)) {
+    if (fs.existsSync(salidaVideo)) fs.copyFileSync(salidaVideo, path.join(entregaDir, 'reel.mp4'));
+    if (fs.existsSync(contactSheet)) fs.copyFileSync(contactSheet, path.join(entregaDir, 'contact_sheet.jpg'));
+    if (fs.existsSync(qcReport)) fs.copyFileSync(qcReport, path.join(entregaDir, 'control_calidad.txt'));
+    if (fs.existsSync(htmlStudio)) fs.copyFileSync(htmlStudio, path.join(entregaDir, 'composicion.html'));
+    console.log(`[QC] Entregables completos actualizados en ${entregaDir}`);
+  }
+} catch (e) {
+  console.warn('[QC] Aviso copiando entregables:', e.message);
+}
+
 console.log('================================================================');
 console.log(' ✅ RENDER Y CONTROL DE CALIDAD HYPERFRAMES FINALIZADOS CON ÉXITO');
 console.log('================================================================');

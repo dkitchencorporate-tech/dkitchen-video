@@ -2,8 +2,8 @@
 // Motor de Audio 3D Envolvente de DKitchen Studio (Nivel Agencia Gran Reserva)
 // 1. Locución ElevenLabs calibrada por tramos de escena (cadencia natural en UTF-8 nativo, De-Kitchen pausado, 'punto es').
 // 2. Sincronización exacta: el tramo de Mega-CTA arranca en t=24.6s, coincidiendo con la entrada del CTA en pantalla.
-// 3. Mezcla de música Lo-Fi gastronómica con ducking dinámico (-13dB bajo voz, subiendo +11dB tras el CTA).
-// 4. Stems SFX sincronizados (Whoosh inicial, Clic táctil, Riser de tensión a 22.5s y Sub-Drop a 24.5s).
+// 3. Mezcla con PRIORIDAD VOCAL ABSOLUTA: voz a volumen 1.35 con cuerpo y pegada; música duckeada a 0.08 (-24dB bajo voz) y SFX a 0.12-0.25.
+// 4. Stems SFX sincronizados (Whoosh inicial, Clic táctil, Riser de tensión a 22.5s y Sub-Drop a 24.5s) que nunca enmascaran la voz.
 // 5. Duración exacta de 30.0s fijada para evitar cualquier desajuste en el multiplexado FFmpeg.
 
 const fs = require('fs');
@@ -180,20 +180,21 @@ function mezclarPistasFinales() {
     // Construcción de filtros
     let mixInputs = [];
     
-    // Música con ducking: volumen 0.22 durante la voz (hasta corteVoz), sube a 0.75 en silencio final
-    filterComplex += `[0:a]atrim=0:${duracionTotal},asetpts=PTS-STARTPTS,volume=enable='between(t,0.3,${corteVoz})':volume=0.22,volume=enable='gte(t,${corteVoz})':volume=0.75[a_musica];`;
+    // Música con ducking profundo: volumen 0.08 durante la locución para que la voz mande con máxima claridad y presencia.
+    // Al terminar la voz en corteVoz (t >= corteVoz), la música sube a 0.45 para rellenar el cierre visual del Mega-CTA.
+    filterComplex += `[0:a]atrim=0:${duracionTotal},asetpts=PTS-STARTPTS,volume=enable='between(t,0,${corteVoz})':volume=0.08,volume=enable='gte(t,${corteVoz})':volume=0.45[a_musica];`;
     mixInputs.push('[a_musica]');
 
     let idx = 1;
     if (tieneVoz) {
-      // La pista audioVozAcel ya viene calibrada con el adelay de sus tramos
-      filterComplex += `[${idx}:a]apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=1.0[a_voz];`;
+      // Voz de marca: volumen 1.35 con total presencia y pegada para que mande sobre la pista de fondo
+      filterComplex += `[${idx}:a]apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=1.35[a_voz];`;
       mixInputs.push('[a_voz]');
       idx++;
     }
 
     if (tieneWhoosh) {
-      filterComplex += `[${idx}:a]adelay=60|60,apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.42[a_whoosh];`;
+      filterComplex += `[${idx}:a]adelay=60|60,apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.14[a_whoosh];`;
       mixInputs.push('[a_whoosh]');
       idx++;
     }
@@ -202,26 +203,26 @@ function mezclarPistasFinales() {
       const scenePhone = (guionData.escenas || []).find(e => (e.nombre || '').includes('HERO') || (e.nombre || '').includes('SMARTPHONE'));
       const clickTime = scenePhone ? (scenePhone.tiempo_inicio + 0.3) : 10.8;
       const clickMs = Math.round(clickTime * 1000);
-      filterComplex += `[${idx}:a]adelay=${clickMs}|${clickMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.35[a_click];`;
+      filterComplex += `[${idx}:a]adelay=${clickMs}|${clickMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.12[a_click];`;
       mixInputs.push('[a_click]');
       idx++;
     }
 
     if (tieneRiser) {
       const riserMs = Math.round(riserTime * 1000); // 22500 ms
-      filterComplex += `[${idx}:a]adelay=${riserMs}|${riserMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.38[a_riser];`;
+      filterComplex += `[${idx}:a]adelay=${riserMs}|${riserMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.15[a_riser];`;
       mixInputs.push('[a_riser]');
       idx++;
     }
 
     if (tieneBoom) {
       const boomMs = Math.round(boomTime * 1000); // 24500 ms
-      filterComplex += `[${idx}:a]adelay=${boomMs}|${boomMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.60[a_boom];`;
+      filterComplex += `[${idx}:a]adelay=${boomMs}|${boomMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.25[a_boom];`;
       mixInputs.push('[a_boom]');
       idx++;
     }
 
-    filterComplex += `${mixInputs.join('')}amix=inputs=${mixInputs.length}:duration=first:dropout_transition=0,loudnorm=I=-14:TP=-1:LRA=11[a_out]`;
+    filterComplex += `${mixInputs.join('')}amix=inputs=${mixInputs.length}:duration=first:dropout_transition=0:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=9[a_out]`;
 
     const cmd = `"${ffmpeg}" -y ${inputs.join(' ')} -filter_complex "${filterComplex}" -map "[a_out]" -t ${duracionTotal} -b:a 192k -ar 48000 "${audioFinal}"`;
     execSync(cmd);
@@ -271,7 +272,7 @@ async function procesarAudio() {
     if (tramoInputs.length > 0) {
       console.log('[Audio Envolvente] Ensamblando tramos de voz en pista compuesta sincronizada...');
       const vLabels = tramosVoz.map((_, i) => `[v_${i}]`).join('');
-      const assembleCmd = `"${ffmpeg}" -y ${tramoInputs.join(' ')} -filter_complex "${tramoFilters.join('')}${vLabels}amix=inputs=${tramoInputs.length}:duration=longest:dropout_transition=0[v_out]" -map "[v_out]" -t ${duracionTotal} -b:a 192k -ar 48000 "${audioVozAcel}"`;
+      const assembleCmd = `"${ffmpeg}" -y ${tramoInputs.join(' ')} -filter_complex "${tramoFilters.join('')}${vLabels}amix=inputs=${tramoInputs.length}:duration=longest:dropout_transition=0:normalize=0[v_out]" -map "[v_out]" -t ${duracionTotal} -b:a 192k -ar 48000 "${audioVozAcel}"`;
       try {
         execSync(assembleCmd);
         console.log(`[Audio Envolvente] Pista de voz combinada ensamblada con éxito en ${audioVozAcel}`);

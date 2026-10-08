@@ -1,11 +1,38 @@
 {
-  "titulo": "Pieza 01: Tu Carta en 60 Segundos (Motion Reveal Gran Reserva 30s)",
-  "version": "2.1.0-motion",
+  "titulo": "Pieza 01: Tu Carta en 60 Segundos (Motion Reveal Gran Reserva 30s Master)",
+  "version": "2.2.0-motion",
   "duracion_total_video": 30.0,
-  "corte_voz_segundo": 24.5,
+  "corte_voz_segundo": 28.0,
   "fps": 30,
   "voice_id": "bIHbv24MWmeRgasZH58o",
-  "locucion": "¿Cuánto dinero quemas al año en imprimir tu carta? Con De-Kitchen... tu carta vive en el móvil de tu cliente en sesenta segundos. Fotos de alta cocina, alérgenos blindados y cambios de precio al instante. Cero comisiones. Pruébalo hoy por solo un euro en dekitchencorporate.es.",
+  "locucion": "¿Cuánto dinero quemas al año en imprimir tu carta? Con De-Kitchen... tu carta vive en el móvil de tu cliente en sesenta segundos. Fotos de alta cocina, catorce alérgenos blindados y cambios de precio al instante. Cero comisiones sobre tus ventas. Todo el beneficio es para ti. Pruébalo hoy por solo un euro en De-Kitchen Corporate punto es.",
+  "tramos_voz": [
+    {
+      "id": "t1_hook",
+      "tiempo_inicio": 0.3,
+      "texto": "¿Cuánto dinero quemas al año en imprimir tu carta?"
+    },
+    {
+      "id": "t2_qr",
+      "tiempo_inicio": 5.2,
+      "texto": "Con De-Kitchen... tu carta vive en el móvil de tu cliente en sesenta segundos."
+    },
+    {
+      "id": "t3_smartphone",
+      "tiempo_inicio": 10.8,
+      "texto": "Fotos de alta cocina, catorce alérgenos blindados y cambios de precio al instante."
+    },
+    {
+      "id": "t4_rentabilidad",
+      "tiempo_inicio": 18.2,
+      "texto": "Cero comisiones sobre tus ventas. Todo el beneficio es para ti."
+    },
+    {
+      "id": "t5_cta",
+      "tiempo_inicio": 24.6,
+      "texto": "Pruébalo hoy por solo un euro en De-Kitchen Corporate punto es."
+    }
+  ],
   "escenas": [
     {
       "numero": 1,

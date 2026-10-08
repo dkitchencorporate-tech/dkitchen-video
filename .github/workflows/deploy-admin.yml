@@ -24,22 +24,23 @@ jobs:
         run: |
           mkdir -p admin/public/media/pieza-01
           mkdir -p admin/public/media/pieza-02
-          # Preservar última entrega conocida de pieza-02:
-          gh run download "37711077863" -n "entrega-37711077863" -D admin/public/media/pieza-02 || echo "[AVISO] No se pudo descargar entrega-37711077863"
-          
-          # Si se especifica run_id explícito:
+
+          # 1. Cargar últimas entregas verificadas de la galería:
+          # Pieza 01 (Master 30s audio calibrado): run 37717193176
+          rm -rf admin/public/media/pieza-01/*
+          gh run download "37717193176" -n "entrega-37717193176" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-37717193176"
+
+          # Pieza 02 (Hostelero 30s con punto es y audio calibrado): run 37799511928
+          rm -rf admin/public/media/pieza-02/*
+          gh run download "37799511928" -n "entrega-37799511928" -D admin/public/media/pieza-02 || echo "[AVISO] No se pudo descargar entrega-37799511928"
+
+          # 2. Si se especifica run_id explícito para sobrescribir la pieza que acaba de renderizar:
           if [ -n "${{ inputs.run_id }}" ]; then
-            echo "[Admin] Descargando artefacto de render específico: ${{ inputs.run_id }}..."
             TARGET_SLUG=$(basename "${{ inputs.carpeta }}")
+            echo "[Admin] Descargando artefacto de render específico: ${{ inputs.run_id }} en $TARGET_SLUG..."
             mkdir -p "admin/public/media/$TARGET_SLUG"
+            rm -rf "admin/public/media/$TARGET_SLUG/*"
             gh run download "${{ inputs.run_id }}" -n "entrega-${{ inputs.run_id }}" -D "admin/public/media/$TARGET_SLUG" || echo "[AVISO] No se pudo descargar entrega-${{ inputs.run_id }}"
-          else
-            echo "[Admin] Buscando último render exitoso en GitHub Actions..."
-            LAST_RUN=$(gh run list --workflow=render.yml --status=success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
-            if [ -n "$LAST_RUN" ]; then
-              echo "[Admin] Descargando último render exitoso: $LAST_RUN..."
-              gh run download "$LAST_RUN" -n "entrega-$LAST_RUN" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-$LAST_RUN"
-            fi
           fi
           ls -la admin/public/media/* || true
 

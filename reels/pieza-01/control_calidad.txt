@@ -4,7 +4,7 @@ DKITCHEN STUDIO — REPORTE DE CONTROL DE CALIDAD (QC) TÉCNICO GRAN RESERVA
 Pieza: pieza-01
 Motor: HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Chromium Headless Deterministic Capture)
 Arquetipo: 03 Editorial Gastronómico Gran Reserva
-Fecha: 2026-10-08T01:54:53.233Z
+Fecha: 2026-10-08T02:22:17.053Z
 Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 
 [VÍDEO]

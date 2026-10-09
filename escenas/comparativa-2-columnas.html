@@ -1,0 +1,18 @@
+<!-- ESCENA: COMPARATIVA 2 COLUMNAS -->
+<div class="escena escena-comparativa-2-columnas" id="{{id}}" style="display:none; position:absolute; width:100%; height:100%; background:{{bg}}; color:{{color}};">
+  <div class="contenedor-seguro">
+    <h2 style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:900; text-align:center; margin-bottom:40px;">
+      {{titulo}}
+    </h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <div style="background:#FFF1F2; padding:32px; border-radius:var(--radius-md); border:2px solid #FDA4AF;">
+        <div style="color:var(--rojo-error); font-weight:800; font-size:var(--text-xs); margin-bottom:16px;">{{col1_titulo}}</div>
+        <div style="font-family:var(--font-body); font-size:var(--text-sm); line-height:1.4; color:#881337;">{{col1_texto}}</div>
+      </div>
+      <div style="background:#F0FDF4; padding:32px; border-radius:var(--radius-md); border:2px solid #86EFAC;">
+        <div style="color:var(--verde-ok); font-weight:800; font-size:var(--text-xs); margin-bottom:16px;">{{col2_titulo}}</div>
+        <div style="font-family:var(--font-body); font-size:var(--text-sm); line-height:1.4; color:#14532D;">{{col2_texto}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: 'Run ID del render para descargar el artefacto nuevo'
+        description: 'Run ID del render para descargar el artefacto nuevo (opcional; si se omite, toma el último de cada pieza)'
         required: false
       carpeta:
         description: 'Carpeta de la pieza'
@@ -25,23 +25,45 @@ jobs:
           mkdir -p admin/public/media/pieza-01
           mkdir -p admin/public/media/pieza-02
 
-          # 1. Cargar últimas entregas verificadas de la galería:
-          # Pieza 01 (Master 30s audio calibrado): run 37717193176
-          rm -rf admin/public/media/pieza-01/*
-          gh run download "37717193176" -n "entrega-37717193176" -D admin/public/media/pieza-01 || echo "[AVISO] No se pudo descargar entrega-37717193176"
+          # Función auxiliar para descargar el último artefacto 'entrega-*'
+          descargar_ultimo_artefacto() {
+            local pieza_dir="$1"
+            echo "[Admin] Buscando último artefacto para $pieza_dir..."
+            
+            # Buscar el último run exitoso de 'Renderizar reel'
+            local run_ids=$(gh run list --workflow="Renderizar reel" --status="success" --limit 10 --json databaseId -q '.[].databaseId')
+            local encontrado=false
 
-          # Pieza 02 (Hostelero 30s con punto es y audio calibrado): run 37799511928
-          rm -rf admin/public/media/pieza-02/*
-          gh run download "37799511928" -n "entrega-37799511928" -D admin/public/media/pieza-02 || echo "[AVISO] No se pudo descargar entrega-37799511928"
+            for rid in $run_ids; do
+              local art_name=$(gh run view "$rid" --json artifacts -q '.artifacts[] | select(.name | startswith("entrega-")) | .name' | head -n 1)
+              if [ -n "$art_name" ]; then
+                echo "[Admin] Descargando $art_name (Run $rid) en admin/public/media/$pieza_dir..."
+                rm -rf "admin/public/media/$pieza_dir/*"
+                if gh run download "$rid" -n "$art_name" -D "admin/public/media/$pieza_dir"; then
+                  encontrado=true
+                  break
+                fi
+              fi
+            done
 
-          # 2. Si se especifica run_id explícito para sobrescribir la pieza que acaba de renderizar:
+            if [ "$encontrado" = false ]; then
+              echo "[AVISO] No se pudo obtener automáticamente el último artefacto dinámico para $pieza_dir"
+            fi
+          }
+
+          # 1. Si se pasa run_id explícito, descargarlo prioritariamente en la carpeta seleccionada:
           if [ -n "${{ inputs.run_id }}" ]; then
             TARGET_SLUG=$(basename "${{ inputs.carpeta }}")
             echo "[Admin] Descargando artefacto de render específico: ${{ inputs.run_id }} en $TARGET_SLUG..."
             mkdir -p "admin/public/media/$TARGET_SLUG"
             rm -rf "admin/public/media/$TARGET_SLUG/*"
             gh run download "${{ inputs.run_id }}" -n "entrega-${{ inputs.run_id }}" -D "admin/public/media/$TARGET_SLUG" || echo "[AVISO] No se pudo descargar entrega-${{ inputs.run_id }}"
+          else
+            # 2. Descarga dinámica de los últimos artefactos sin run ID hardcodeados a mano
+            descargar_ultimo_artefacto "pieza-01"
+            descargar_ultimo_artefacto "pieza-02"
           fi
+
           ls -la admin/public/media/* || true
 
       - name: Instalar Vercel CLI y Dependencias

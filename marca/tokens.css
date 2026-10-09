@@ -1,0 +1,50 @@
+:root {
+  /* PALETA GRAN RESERVA OFICIAL DKITCHEN */
+  --vino: #6E0C2B;
+  --vino-dark: #4A081D;
+  --vino-light: #8E153A;
+  --oro: #D9B25C;
+  --oro-bright: #F0C96F;
+  --oro-dim: #A8863A;
+  --negro: #0A080C;
+  --negro-super: #050406;
+  --papel: #F7F5F2;
+  --blanco: #FFFFFF;
+  --gris-suave: #E8E5E0;
+  --gris-texto: #6B6864;
+  --verde-ok: #10B981;
+  --rojo-error: #EF4444;
+
+  /* TIPOGRAFÍAS */
+  --font-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* TAMAÑOS DE TEXTO */
+  --text-xs: 24px;
+  --text-sm: 32px;
+  --text-base: 40px;
+  --text-lg: 48px;
+  --text-xl: 56px;
+  --text-2xl: 72px;
+  --text-3xl: 88px;
+  --text-hero: 104px;
+
+  /* RADIOS */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 36px;
+  --radius-xl: 48px;
+  --radius-full: 9999px;
+
+  /* SOMBRAS */
+  --shadow-sm: 0 4px 12px rgba(10, 8, 12, 0.08);
+  --shadow-md: 0 12px 32px rgba(10, 8, 12, 0.16);
+  --shadow-lg: 0 24px 60px rgba(10, 8, 12, 0.28);
+  --shadow-oro: 0 0 40px rgba(217, 178, 92, 0.35);
+
+  /* ZONAS SEGURAS (1080x1920) */
+  --safe-top: 250px;
+  --safe-bottom: 340px;
+  --safe-right: 120px;
+  --safe-left: 60px;
+}

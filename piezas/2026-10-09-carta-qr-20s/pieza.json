@@ -1,0 +1,71 @@
+{
+  "titulo": "Carta QR DKitchen 20s",
+  "duracion_total": 20,
+  "escenas": [
+    {
+      "plantilla": "gancho-pregunta",
+      "duracion": 3.0,
+      "parametros": {
+        "bg": "var(--negro)",
+        "color": "#FFFFFF",
+        "categoria": "HOSTELERÍA RENTABLE",
+        "pregunta": "¿Sigues reimprimiendo tu carta?",
+        "subtitulo": "Cada cambio de precio no debería paralizar tu sala ni costarte otra tirada en imprenta."
+      }
+    },
+    {
+      "plantilla": "gancho-antes-despues",
+      "duracion": 3.0,
+      "parametros": {
+        "bg": "var(--papel)",
+        "color": "var(--negro)",
+        "antes_etiqueta": "Carta en papel",
+        "antes_texto": "Tachones, reimpresiones caras y alérgenos desactualizados.",
+        "despues_etiqueta": "Carta QR DKitchen",
+        "despues_texto": "Cambios en 10 segundos y fotos con IA para tus platos."
+      }
+    },
+    {
+      "plantilla": "movil-3d-giro",
+      "duracion": 5.0,
+      "parametros": {
+        "bg": "var(--negro)",
+        "color": "#FFFFFF",
+        "etiqueta": "TODO INCLUIDO",
+        "captura_url": "../../imagenes/gbp-capturas/demo-carta_movil.jpg",
+        "pie_texto": "Funciona al lado de tu TPV de siempre"
+      }
+    },
+    {
+      "plantilla": "precio-reveal",
+      "duracion": 4.0,
+      "parametros": {
+        "bg": "var(--vino)",
+        "color": "#FFFFFF",
+        "etiqueta": "OFERTA SALIDA A MERCADO",
+        "precio_grande": "1 €",
+        "precio_subtexto": "el primer mes · después 29 € + IVA/mes",
+        "precio_legal": "Plan Local · Sin permanencia · Cancela cuando quieras"
+      }
+    },
+    {
+      "plantilla": "cta-final",
+      "duracion": 5.0,
+      "parametros": {
+        "bg": "var(--negro)",
+        "color": "#FFFFFF",
+        "accion": "Pruébalo 30 días sin compromiso",
+        "boton_texto": "Empieza por 1 €",
+        "url_visible": "dkitchencorporate.es/qr",
+        "legal_cta": "Asistente IA 24/7 + Soporte humano por WhatsApp"
+      }
+    }
+  ],
+  "subtitulos": [
+    { "inicio": 0.2, "fin": 2.8, "texto": "¿Sigues reimprimiendo tu carta en papel?" },
+    { "inicio": 3.2, "fin": 5.8, "texto": "Cambia precios al instante sin tocar tu TPV" },
+    { "inicio": 6.2, "fin": 10.5, "texto": "Te cargamos la carta y creamos fotos con IA" },
+    { "inicio": 11.2, "fin": 14.5, "texto": "1 € el primer mes (+ IVA)" },
+    { "inicio": 15.2, "fin": 18.0, "texto": "Empieza por 1 € en dkitchencorporate.es" }
+  ]
+}

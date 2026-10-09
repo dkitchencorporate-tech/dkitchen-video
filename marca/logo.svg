@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <defs>
+    <linearGradient id="dkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0C96F" />
+      <stop offset="100%" stop-color="#D9B25C" />
+    </linearGradient>
+  </defs>
+  <rect x="10" y="15" width="70" height="70" rx="18" fill="#6E0C2B" />
+  <path d="M30 32 L50 32 C58 32 64 38 64 50 C64 62 58 68 50 68 L30 68 Z" fill="none" stroke="url(#dkGold)" stroke-width="6" stroke-linejoin="round" />
+  <path d="M42 32 L42 68" stroke="url(#dkGold)" stroke-width="6" stroke-linecap="round" />
+  <text x="100" y="65" font-family="'Bricolage Grotesque', 'Inter', sans-serif" font-size="52" font-weight="900" fill="#0A080C" letter-spacing="-1.5">DKitchen</text>
+  <circle cx="340" cy="60" r="5" fill="#D9B25C" />
+</svg>

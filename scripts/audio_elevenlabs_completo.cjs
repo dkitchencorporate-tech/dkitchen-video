@@ -57,7 +57,7 @@ const ff = (args) => execFileSync(ffmpeg, ['-y', '-loglevel', 'error', ...args])
   const sfxFiles = {};
   for (const [nombre, def] of Object.entries(g.sfx11 || {})) {
     const f = path.join(tmp, `sfx_${nombre}.mp3`);
-    const ok = await post('/v1/sound-generation', { text: def.prompt, duration_seconds: def.segundos, prompt_influence: 0.6 }, f);
+    const ok = await post('/v1/sound-generation', { text: def.prompt, duration_seconds: Math.min(30, Math.max(0.5, Number(def.segundos) || 1)), prompt_influence: 0.6 }, f);
     if (ok) { sfxFiles[nombre] = f; L(`SFX ${nombre} OK`); }
     else if (def.fallback && fs.existsSync(path.resolve(def.fallback))) { sfxFiles[nombre] = path.resolve(def.fallback); L(`SFX ${nombre}: fallback ${def.fallback}`); }
   }
@@ -74,8 +74,8 @@ const ff = (args) => execFileSync(ffmpeg, ['-y', '-loglevel', 'error', ...args])
   for (let i = 0; i < tramos.length; i++) {
     const t = tramos[i];
     const raw = path.join(tmp, `voz_${i}.mp3`);
-    let ok = await post(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_192`, { text: t.texto, model_id: v.modelo || 'eleven_v3', voice_settings: v.ajustes || { stability: 0.4, similarity_boost: 0.8, style: 0.6, use_speaker_boost: true } }, raw);
-    if (!ok && v.modelo_reserva) ok = await post(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_192`, { text: t.texto.replace(/\[[^\]]+\]\s*/g, ''), model_id: v.modelo_reserva, voice_settings: { stability: 0.45, similarity_boost: 0.8, style: 0.5, use_speaker_boost: true } }, raw);
+    let ok = await post(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_128`, { text: t.texto, model_id: v.modelo || 'eleven_v3', voice_settings: v.ajustes || { stability: 0.4, similarity_boost: 0.8, style: 0.6, use_speaker_boost: true } }, raw);
+    if (!ok && v.modelo_reserva) ok = await post(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_128`, { text: t.texto.replace(/\[[^\]]+\]\s*/g, ''), model_id: v.modelo_reserva, voice_settings: { stability: 0.45, similarity_boost: 0.8, style: 0.5, use_speaker_boost: true } }, raw);
     if (!ok) continue;
     const ventana = (i + 1 < tramos.length ? tramos[i + 1].tiempo_inicio : (g.corte_voz_segundo || DUR)) - t.tiempo_inicio - 0.08;
     const d = dur(raw);

@@ -41,7 +41,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
 /* S4 */
 #s4circ{position:absolute;left:540px;top:960px;width:2600px;height:2600px;margin:-1300px 0 0 -1300px;border-radius:50%;background:radial-gradient(circle,var(--vino) 0%,var(--vino2) 70%);transform:scale(0)}
 /* S5 móvil 3D */
-#escena3d{position:absolute;left:0;right:0;top:330px;height:1180px;perspective:2200px}
+#escena3d{position:absolute;left:0;right:0;top:360px;height:1180px;perspective:2200px}
 #movil{position:absolute;left:50%;top:0;width:560px;height:1150px;margin-left:-280px;border-radius:86px;background:#0b0b0b;padding:20px;transform-style:preserve-3d;box-shadow:0 80px 160px rgba(0,0,0,.8),0 0 0 3px #2b241f,inset 0 0 0 2px #3a322b}
 #pantalla{position:relative;width:100%;height:100%;border-radius:68px;overflow:hidden;background:#f7f4ee}
 #carta{position:absolute;left:0;top:0;width:520px}
@@ -53,10 +53,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
 #mosaico div{background-size:cover;background-position:center;border-radius:20px}
 .palabra{position:absolute;left:0;right:0;top:760px;text-align:center;font-size:260px;opacity:0;text-shadow:0 20px 90px rgba(0,0,0,.85)}
 /* S7 precio */
-#s7precio{position:absolute;left:0;right:0;top:720px;text-align:center;font-family:'Bricolage Grotesque';font-weight:800;font-size:300px;letter-spacing:-.05em;line-height:1}
+#s7precio{position:absolute;left:0;right:0;top:700px;text-align:center;font-family:'Bricolage Grotesque';font-weight:800;font-size:260px;letter-spacing:-.05em;line-height:1}
 #s7viejo{position:relative;display:inline-block;color:rgba(244,237,225,.55)}
 #s7viejo i{position:absolute;left:-10px;right:-10px;top:52%;height:22px;background:var(--vino);transform-origin:0 50%;transform:scaleX(0) rotate(-4deg);border-radius:10px}
-#s7nuevo{position:absolute;left:0;right:0;top:1040px;text-align:center;color:var(--oro);font-family:'Bricolage Grotesque';font-weight:800;font-size:300px;letter-spacing:-.05em;opacity:0;text-shadow:0 0 80px rgba(217,178,92,.6)}
+#s7nuevo{position:absolute;left:0;right:0;top:980px;text-align:center;color:var(--oro);font-family:'Bricolage Grotesque';font-weight:800;font-size:260px;letter-spacing:-.05em;opacity:0;text-shadow:0 0 80px rgba(217,178,92,.6)}
 #crono{position:absolute;left:50%;top:300px;transform:translateX(-50%);padding:22px 44px;border-radius:999px;border:3px solid var(--oro);background:rgba(11,8,7,.75);font:700 70px 'Space Mono';color:var(--oro)}
 /* S8 QR */
 .qr{background:var(--crema);padding:18px;border-radius:26px;box-shadow:0 30px 70px rgba(0,0,0,.7)}
@@ -146,7 +146,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
  <!-- S5 · 11.4–19.3 · PRODUCTO: la carta real en el móvil -->
  <div id="s5" class="clip" data-start="11.4" data-duration="7.9" data-track-index="4">
   <img class="bg" id="s5bg" src="assets/v40/sff-pulled_pork_beef.jpg" alt="" style="filter:blur(26px) brightness(.32) saturate(1.2)" data-layout-allow-overflow="true">
-  <div class="safe" style="top:240px;text-align:center"><div class="k" style="font-size:84px" id="s5t">Tu carta, <span class="oro">viva en su móvil.</span></div></div>
+  <div class="safe" style="top:240px;text-align:center"><div class="k" style="font-size:76px;white-space:nowrap" id="s5t">Viva en <span class="oro">su móvil.</span></div></div>
   <div id="escena3d"><div id="movil"><div id="pantalla"><div id="notch"></div><img id="carta" src="assets/v40/carta-larga.jpg" alt="Carta real DKitchen" data-layout-allow-overflow="true"></div></div></div>
   <div class="chip" id="ch1" style="left:40px;top:560px">Foto de <b>cada plato</b></div>
   <div class="chip" id="ch2" style="right:40px;top:820px"><b>Alérgenos</b> UE</div>
@@ -174,7 +174,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
   <div class="safe" style="top:470px;text-align:center"><div class="k" style="font-size:110px" id="s7t">¿Cambiar un precio?</div></div>
   <div id="s7precio"><span id="s7viejo">7,00€<i id="s7x"></i></span></div>
   <div id="s7nuevo">7,50€</div>
-  <div class="safe sub" style="top:1300px;text-align:center" id="s7s">Desde tu móvil. <span class="oro">Sin reimprimir.</span></div>
+  <div class="safe sub" style="top:1330px;text-align:center" id="s7s">Desde tu móvil. <span class="oro">Sin reimprimir.</span></div>
  </div>
 
  <!-- S8 · 30.0–34.1 · QR -->
@@ -182,17 +182,17 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
   <img class="bg" id="s8bg" src="assets/v40/mano-carta.jpg" alt="" data-layout-allow-overflow="true">
   <div class="shade"></div>
   <div id="s8qrw"><div class="qr" id="s8qr" data-u="https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=reel&utm_campaign=lote1&utm_content=reel40" style="width:100%;height:100%"></div><div id="s8scan"></div></div>
-  <div class="safe" style="top:1090px">
-   <div class="k line" style="font-size:150px"><span id="s8a">Escanea.</span></div>
-   <div class="k line oro" style="font-size:150px"><span id="s8b">Mira.</span></div>
-   <div class="k line" style="font-size:150px"><span id="s8c">Pide.</span></div>
+  <div class="safe" style="top:960px">
+   <div class="k line" style="font-size:140px"><span id="s8a">Escanea.</span></div>
+   <div class="k line oro" style="font-size:140px"><span id="s8b">Mira.</span></div>
+   <div class="k line" style="font-size:140px"><span id="s8c">Pide.</span></div>
   </div>
  </div>
 
  <!-- S9 · 34.0–40 · CTA -->
  <div id="s9" class="clip" data-start="34.0" data-duration="6.0" data-track-index="8">
   <div id="s9bg"></div>
-  <div class="safe" style="top:260px;text-align:center"><img src="assets/v40/logo.svg" alt="DKitchen" style="height:70px" id="s9logo"></div>
+  <div class="safe" style="top:260px;text-align:center"><div id="s9logo" style="font:800 64px 'Bricolage Grotesque';letter-spacing:-.03em">DKitchen<span style="color:var(--oro)">.</span></div></div>
   <div class="safe" style="top:400px;text-align:center"><div class="k" style="font-size:118px" id="s9t">Tu carta QR,<br><span class="oro">lista hoy.</span></div></div>
   <div id="lacre"><div><span class="n">1€</span><span class="t">primer mes</span></div></div>
   <div class="safe" style="top:1180px;text-align:center;font:800 54px Inter;color:var(--oro)" id="s9url">dkitchencorporate.es/qr</div>
@@ -261,7 +261,7 @@ tl.fromTo('#s5bg',{scale:1.1},{scale:1.3,duration:7.8,ease:'none'},11.4);
 tl.fromTo('#s5t',{opacity:0,y:-30},{opacity:1,y:0,duration:.5,ease:'expo.out'},11.5);
 tl.fromTo('#movil',{y:900,rotateY:-38,rotateX:18,rotateZ:-8},{y:0,rotateY:-14,rotateX:6,rotateZ:-3,duration:1.1,ease:'expo.out'},11.45);
 tl.to('#movil',{rotateY:12,rotateX:2,rotateZ:2,duration:6.5,ease:'sine.inOut'},12.6);
-tl.fromTo('#carta',{y:0},{y:-2050,duration:6.3,ease:'power2.inOut'},12.5);
+tl.fromTo('#carta',{y:0},{y:-3600,duration:6.3,ease:'power2.inOut'},12.5);
 ['#ch1','#ch2','#ch3','#ch4'].forEach((c,i)=>{const t=13.4+i*1.15,dx=i%2?300:-300;tl.fromTo(c,{x:dx,opacity:0,scale:.7},{x:0,opacity:1,scale:1,duration:.5,ease:'back.out(1.7)'},t);tl.to(c,{y:-30,duration:1.6,ease:'sine.inOut',yoyo:true,repeat:1},t+.5)});
 tl.to('#movil',{scale:2.4,opacity:0,duration:.35,ease:'power3.in'},18.95);
 tl.to(['#ch1','#ch2','#ch3','#ch4','#s5t'],{opacity:0,duration:.2},18.95);

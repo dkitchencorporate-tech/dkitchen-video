@@ -55,6 +55,12 @@ jobs:
             exit 1
           fi
 
+      - name: Preparar recursos de la pieza (capturas en la VM)
+        env:
+          TARGET_CARPETA: ${{ inputs.carpeta }}
+        run: |
+          if [ -f "$TARGET_CARPETA/preparar.cjs" ]; then node "$TARGET_CARPETA/preparar.cjs"; else echo "[Preparar] Sin preparar.cjs"; fi
+
       - name: Generar Audio con ElevenLabs (Voz de Marca y Música)
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="png 1080x1350">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600&display=block" rel="stylesheet">
+<style>
+:root{--tinta:#0B0807;--vino:#6E0F2A;--oro:#D9B45F;--crema:#F4EDE1}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;background:var(--tinta);font-family:Inter,sans-serif;color:var(--crema)}
+.foto{position:absolute;inset:0;background:url('img/01-a.jpg') center 30%/cover;filter:saturate(.92) contrast(1.05)}
+/* viñeta: oscurece abajo, donde está la zona de calma (barra de madera) */
+.velo{position:absolute;inset:0;background:
+ linear-gradient(180deg,rgba(11,8,7,.25) 0%,rgba(11,8,7,0) 30%,rgba(11,8,7,.15) 52%,rgba(11,8,7,.88) 74%,var(--tinta) 100%),
+ radial-gradient(120% 80% at 50% 35%,transparent 55%,rgba(0,0,0,.55) 100%)}
+.grano{position:absolute;inset:-50%;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1{position:absolute;left:72px;right:300px;bottom:290px;font:800 124px/0.9 'Bricolage Grotesque';letter-spacing:-4px;text-wrap:balance}
+h1 .tiza{color:var(--oro);position:relative;display:inline-block;-webkit-mask-image:linear-gradient(100deg,black 0 50%,rgba(0,0,0,.5) 64%,rgba(0,0,0,.15) 82%,rgba(0,0,0,.4) 100%)}
+/* tachón de tiza: la palabra se "borra" a medias */
+h1 .tiza::after{content:"";position:absolute;left:-8px;right:-14px;left:48%;top:38%;height:46px;background:linear-gradient(90deg,rgba(244,237,225,0),rgba(244,237,225,.32) 30%,rgba(244,237,225,.18) 80%,rgba(244,237,225,0));filter:blur(6px);transform:rotate(-2.5deg);mix-blend-mode:screen}
+.sub{position:absolute;left:76px;bottom:150px;font:600 40px/1.2 Inter;color:var(--crema)}
+.sub b{font-weight:700;color:var(--oro)}
+/* sello lacre */
+.lacre{position:absolute;right:70px;top:90px;width:260px;height:260px;border-radius:50%;
+ background:radial-gradient(circle at 35% 30%,#9a1c40 0%,var(--vino) 45%,#3d0717 100%);
+ box-shadow:0 18px 40px rgba(0,0,0,.6),inset 0 -8px 18px rgba(0,0,0,.45),inset 0 6px 10px rgba(255,255,255,.12);
+ display:grid;place-items:center;text-align:center;transform:rotate(-9deg);
+ clip-path:polygon(50% 0,58% 3%,66% 1%,73% 6%,81% 6%,86% 13%,93% 17%,95% 25%,100% 33%,98% 42%,100% 50%,98% 58%,100% 67%,95% 75%,93% 83%,86% 87%,81% 94%,73% 94%,66% 99%,58% 97%,50% 100%,42% 97%,34% 99%,27% 94%,19% 94%,14% 87%,7% 83%,5% 75%,0 67%,2% 58%,0 50%,2% 42%,0 33%,5% 25%,7% 17%,14% 13%,19% 6%,27% 6%,34% 1%,42% 3%)}
+.lacre div{border:2px solid rgba(217,180,95,.55);border-radius:50%;width:206px;height:206px;display:grid;place-content:center}
+.lacre .p{font:800 92px/0.85 'Bricolage Grotesque';color:var(--oro);letter-spacing:-2px}
+.lacre .t{font:700 17px/1.25 Inter;letter-spacing:1px;text-transform:uppercase;color:var(--crema);margin-top:6px}
+.pie{position:absolute;left:76px;right:72px;bottom:64px;display:flex;justify-content:space-between;align-items:flex-end;font:600 26px Inter;color:rgba(244,237,225,.78)}
+.firma{font:800 38px 'Bricolage Grotesque';letter-spacing:-.5px;color:var(--crema)}
+.firma i{font-style:normal;color:var(--oro)}
+.qr{background:#F4EDE1;padding:14px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.55)}.qr svg{display:block;width:100%;height:100%}</style></head><body>
+<div class="foto"></div><div class="velo"></div><div class="grano"></div>
+<h1>Tu carta no debería <span class="tiza">borrarse.</span></h1>
+<p class="sub">Con <b>DKitchen</b> la cambias desde el móvil<br>y tu cliente la ve <b>al momento.</b></p>
+<div class="lacre"><div><span class="p">1€</span><span class="t">primer mes<br>sin<br>permanencia</span></div></div>
+<div class="qr" data-u="https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=lote1&utm_content=cartel01" style="position:absolute;right:72px;bottom:130px;width:150px;height:150px;padding:10px"></div><div class="pie"><span>Después 29 € + IVA/mes · dkitchencorporate.es/qr</span><span class="firma">DKitchen<i>.</i></span></div>
+<script>document.querySelectorAll(".qr").forEach(e=>{const q=qrcode(0,"M");q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,"fill=\"#0B0807\"")})</script></body></html>

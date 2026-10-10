@@ -1,0 +1,38 @@
+# Exportación de piezas estáticas (carteles, carruseles, flyers y tarjetas en PDF de imprenta) en la VM.
+# Regla de karc0 (10/10/2026): nada de renders ni exportes en el portátil.
+name: Exportar estáticos
+on:
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: Carpeta de estáticos (estaticos/<lote>)
+        required: true
+        default: estaticos/lote1
+
+jobs:
+  exportar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Validar carpeta
+        env:
+          INPUT_CARPETA: ${{ inputs.carpeta }}
+        run: |
+          if [[ ! "$INPUT_CARPETA" =~ ^estaticos/[a-z0-9-]+$ ]]; then
+            echo "[ERROR] La carpeta '$INPUT_CARPETA' no cumple ^estaticos/[a-z0-9-]+$"; exit 1
+          fi
+      - name: Instalar Playwright
+        run: |
+          npm i playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Exportar
+        env:
+          INPUT_CARPETA: ${{ inputs.carpeta }}
+        run: node scripts/exportar_estaticos.cjs "$INPUT_CARPETA"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: estaticos-${{ github.run_id }}
+          path: ${{ inputs.carpeta }}/salida/

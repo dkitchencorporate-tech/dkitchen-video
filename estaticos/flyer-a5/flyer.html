@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="pdf">
+<title>Flyer A5 DKitchen · Carta QR + Signature</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
+<style>
+/* A5 148×210 mm + 3 mm de sangrado = 154×216 mm. Zona segura: 8 mm desde el borde del PDF.
+   Fondo claro (crema) para no encarecer la impresión: la tinta se concentra en las fotos. */
+@page{size:154mm 216mm;margin:0}
+:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#B8902F;--oro-claro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#5A525D}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
+.cara{position:relative;width:154mm;height:216mm;overflow:hidden;background:var(--crema);break-after:page}
+.k{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.04em;line-height:.92}
+.vino{color:var(--vino)}
+.qr{background:#fff;border-radius:2.5mm;padding:2mm;box-shadow:0 .8mm 3mm rgba(30,25,32,.18)}
+.qr svg{display:block;width:100%;height:100%}
+.marca{font:800 6.4mm 'Bricolage Grotesque';letter-spacing:-.03em}
+.marca i{font-style:normal;color:var(--vino)}
+.lacre{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a01d44 0%,var(--vino) 50%,#4a081d 100%);box-shadow:0 1.6mm 4mm rgba(30,25,32,.35);display:grid;place-items:center;text-align:center;color:#fff}
+.lacre>div{border:.45mm solid rgba(217,178,92,.75);border-radius:50%;display:grid;place-content:center}
+.lacre .n{font:800 14mm/.85 'Bricolage Grotesque';color:var(--oro-claro);letter-spacing:-.05em}
+.lacre .t{font:800 2.9mm/1.15 Inter;letter-spacing:.3mm;text-transform:uppercase;margin-top:.8mm}
+/* ===== CARA 1: dolor → solución → oferta ===== */
+.c1-foto{position:absolute;left:0;right:0;top:0;height:112mm;background:url(img/papel.jpg) center 38%/cover}
+.c1-foto::after{content:"";position:absolute;inset:auto 0 0 0;height:22mm;background:linear-gradient(180deg,transparent,var(--crema))}
+.c1-marca{position:absolute;left:11mm;top:10mm;background:var(--papel);padding:1.6mm 3mm;border-radius:1.6mm}
+.c1-etq{position:absolute;right:11mm;top:11mm;font:800 2.9mm Inter;letter-spacing:.45mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1.5mm 2.6mm;border-radius:1mm}
+.c1-lacre{right:11mm;top:84mm;width:34mm;height:34mm;transform:rotate(-8deg)}
+.c1-lacre>div{width:27.5mm;height:27.5mm}
+.c1-gancho{position:absolute;left:11mm;right:50mm;top:96mm;font:800 3mm Inter;letter-spacing:.4mm;text-transform:uppercase;color:var(--vino)}
+.c1-tit{position:absolute;left:11mm;right:11mm;top:103mm;font-size:13mm}
+.c1-sol{position:absolute;left:11mm;right:11mm;top:136mm;font:600 4.1mm/1.35 Inter;color:var(--gris)}
+.c1-sol b{color:var(--tinta)}
+.c1-cta{position:absolute;left:11mm;right:11mm;bottom:11mm;height:40mm;display:flex;gap:5mm;align-items:center;background:var(--papel);border-radius:3mm;padding:4mm;box-shadow:0 .6mm 2.5mm rgba(30,25,32,.12)}
+.c1-cta .qr{flex:0 0 36mm;height:36mm;padding:4mm;border-radius:2mm}
+.c1-cta .txt b{display:block;font:800 6mm/1 'Bricolage Grotesque';letter-spacing:-.03em;color:var(--vino)}
+.c1-cta .txt span{display:block;font:700 3.3mm/1.35 Inter;margin-top:1.6mm}
+.c1-cta .txt small{display:block;font:600 2.9mm/1.35 Inter;color:var(--gris);margin-top:1.4mm}
+/* ===== CARA 2: cómo funciona + qué incluye + Signature ===== */
+.c2-cab{position:absolute;left:11mm;right:11mm;top:11mm;display:flex;justify-content:space-between;align-items:baseline}
+.c2-cab .k{font-size:9.5mm}
+.c2-movil{position:absolute;right:11mm;top:24mm;width:46mm;height:62mm;border-radius:3mm;background:url(img/mano-carta.jpg) 44% 52%/240%;box-shadow:0 1mm 3.5mm rgba(30,25,32,.25)}
+.pasos{position:absolute;left:11mm;width:78mm;top:25mm}
+.paso{display:flex;gap:3mm;margin-bottom:4.2mm}
+.paso .n{flex:0 0 9mm;font:800 8mm/1 'Bricolage Grotesque';color:var(--vino)}
+.paso h3{font:800 3.6mm/1.2 Inter}
+.paso p{font:400 2.95mm/1.38 Inter;color:var(--gris);margin-top:.6mm}
+.incl{position:absolute;left:11mm;right:11mm;top:92mm}
+.incl h4{font:800 3mm Inter;letter-spacing:.4mm;text-transform:uppercase;color:var(--vino)}
+.chips{display:flex;flex-wrap:wrap;gap:1.6mm;margin-top:2mm}
+.chips span{font:700 2.95mm Inter;padding:1.3mm 2.5mm;border-radius:10mm;background:var(--papel);border:.3mm solid #E3D6C2}
+.precio{position:absolute;left:11mm;right:11mm;top:117mm;font:600 3.2mm/1.4 Inter;color:var(--gris)}
+.precio b{color:var(--vino)}
+.sig{position:absolute;left:8mm;right:8mm;bottom:8mm;height:74mm;border-radius:4mm;background:var(--papel);border:.5mm solid var(--vino);padding:5mm 5mm 4mm}
+.sig .tag{display:inline-block;font:800 2.9mm Inter;letter-spacing:.45mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1.2mm 2.4mm;border-radius:1mm}
+.sig h2{font-size:8.6mm;margin-top:2.4mm}
+.sig .cuenta{display:flex;gap:3mm;margin-top:3.2mm}
+.sig .cuenta div{flex:1;background:var(--crema);border-radius:2mm;padding:2.4mm 2.6mm}
+.sig .cuenta small{display:block;font:700 2.4mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--gris)}
+.sig .cuenta b{display:block;font:800 6.2mm/1.05 'Bricolage Grotesque';letter-spacing:-.03em;margin-top:.8mm}
+.sig .cuenta .mal b{color:#9B1C1C;text-decoration:line-through;text-decoration-thickness:.5mm}
+.sig .cuenta .bien b{color:var(--vino)}
+.sig .pie{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3.4mm}
+.sig .pie p{font:600 2.85mm/1.4 Inter;color:var(--gris);max-width:88mm}
+.sig .pie p b{color:var(--tinta)}
+.sig .qrw{flex:0 0 22mm;text-align:center}
+.sig .qrw .qr{width:22mm;height:22mm;padding:1.5mm}
+.sig .qrw span{display:block;font:800 2.9mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--vino);margin-top:1mm}
+.vend{position:absolute;right:11mm;top:117mm;font:700 2.9mm Inter;color:var(--gris)}
+.vend i{display:inline-block;width:22mm;border-bottom:.3mm solid var(--vino);margin-left:1mm}
+.sig-txt{font:500 3.4mm/1.4 Inter;color:var(--gris);margin-top:2.6mm}.sig-txt b{color:var(--tinta)}
+.sig .pie p.pie-corp{font:600 3mm/1.45 Inter;color:var(--tinta);max-width:none}.pie-corp small{font:500 2.85mm Inter;color:var(--gris)}
+.sig .qrw{flex:0 0 26mm}.sig .qrw .qr{width:26mm;height:26mm;padding:2mm}</style></head><body>
+
+<!-- CARA 1 -->
+<section class="cara">
+ <div class="c1-foto"></div>
+ <div class="c1-marca marca">DKitchen<i>.</i></div>
+ <div class="c1-etq">Para bares y restaurantes</div>
+ <div class="lacre c1-lacre"><div><span class="n">1€</span><span class="t">primer<br>mes</span></div></div>
+ <div class="c1-gancho">Lo que ve tu cliente antes de pedir</div>
+ <h1 class="k c1-tit">Cada precio tachado te <span class="vino">cuesta una mesa.</span></h1>
+ <p class="c1-sol">Con <b>DKitchen</b> tu carta vive en el móvil de tu cliente: <b>foto de cada plato, precio claro y alérgenos.</b> La cambias desde tu móvil en segundos. Sin reimprimir nunca más.</p>
+ <div class="c1-cta">
+  <div class="qr" data-u="https://dkitchencorporate.es/qr?utm_source=flyer&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara1"></div>
+  <div class="txt"><b>Escanea y actívala en 5 minutos.</b><span>Primer mes: 1 € + IVA</span><small>Después, 29 € + IVA al mes (plan Local). Sin permanencia: te das de baja cuando quieras.</small></div>
+ </div>
+</section>
+
+<!-- CARA 2 -->
+<section class="cara">
+ <div class="c2-cab"><h2 class="k">Así de <span class="vino">fácil.</span></h2><div class="marca">DKitchen<i>.</i></div></div>
+ <div class="pasos">
+  <div class="paso"><div class="n">01</div><div><h3>Sube tu carta</h3><p>Platos, precios y alérgenos. O te la montamos nosotros.</p></div></div>
+  <div class="paso"><div class="n">02</div><div><h3>Pon tu QR en la mesa</h3><p>Tu cliente escanea y ve cada plato con su foto.</p></div></div>
+  <div class="paso"><div class="n">03</div><div><h3>Cámbiala cuando quieras</h3><p>Un precio o el plato del día: desde tu móvil, al momento.</p></div></div>
+ </div>
+ <div class="c2-movil"></div>
+ <div class="incl"><h4>Incluido en el plan Local</h4>
+  <div class="chips"><span>Hasta 150 platos</span><span>15 mesas con plano</span><span>App de sala · 3 camareros</span><span>150 reservas/mes</span><span>Aviso del camarero</span><span>Alérgenos UE</span><span>Reseñas de Google</span><span>Cero comisiones</span></div>
+ </div>
+ <p class="precio"><b>Primer mes: 1 € + IVA.</b> Después, 29 € + IVA al mes.<br>Sin permanencia. Alta de 159 € incluida.</p>
+ <div class="vend">Tu asesor:<i></i></div>
+ <div class="sig">
+  <span class="tag">DKitchen Signature</span>
+  <h2 class="k">¿Pagas comisión <span class="vino">por cada pedido?</span></h2>
+  <p class="sig-txt">Tus clientes piden y pagan en <b>tu propia app, con tu marca</b>. La cocina recibe la comanda y los datos son tuyos. <b>Sin comisión por pedido.</b></p>
+  <div class="pie">
+   <p class="pie-corp"><b>DKitchen Corporate</b> · WhatsApp 622 652 659<br>dkitchencorporate.es · @dkitchen_es<br><small>Precios sin IVA (21 %). Condiciones en dkitchencorporate.es/terms</small></p>
+   <div class="qrw"><div class="qr" data-u="https://dkitchencorporate.es/signature?utm_source=flyer&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara2-signature"></div><span>Calcula lo que pierdes</span></div>
+  </div>
+ </div>
+</section>
+
+<script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#1E1920"')})</script>
+</body></html>

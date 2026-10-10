@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="pdf">
+<title>Tarjeta de visita DKitchen</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;700;800&display=block" rel="stylesheet">
+<style>
+/* 85×55 mm + 3 mm de sangrado = 91×61 mm. Zona segura: 6 mm desde el borde del PDF. Fondo claro. */
+@page{size:91mm 61mm;margin:0}
+:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#5A525D}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
+.cara{position:relative;width:91mm;height:61mm;overflow:hidden;background:var(--crema);break-after:page}
+.k{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.04em;line-height:.92}
+.vino{color:var(--vino)}
+.qr{background:#fff;border-radius:1.6mm;padding:1.3mm;box-shadow:0 .5mm 1.8mm rgba(30,25,32,.18)}
+.qr svg{display:block;width:100%;height:100%}
+.marca{font:800 5.2mm 'Bricolage Grotesque';letter-spacing:-.03em}.marca i{font-style:normal;color:var(--vino)}
+/* cara 1: persona + carta QR */
+.f-foto{position:absolute;right:0;top:0;bottom:0;width:34mm;background:url(img/mano-carta.jpg) 46% 45%/cover}
+.f-foto::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--crema) 0%,rgba(247,241,230,0) 35%)}
+.f-marca{position:absolute;left:7mm;top:7mm}
+.f-tit{position:absolute;left:7mm;width:50mm;top:17mm;font-size:5.6mm}
+.f-nombre{position:absolute;left:7mm;bottom:19mm;font:800 3.4mm Inter}
+.f-cargo{position:absolute;left:7mm;bottom:15.2mm;font:500 2.6mm Inter;color:var(--gris)}
+.f-contacto{position:absolute;left:7mm;bottom:6.5mm;font:700 2.6mm/1.45 Inter}
+.f-qr{position:absolute;right:6.5mm;bottom:6.5mm;width:17mm;height:17mm}
+.f-sello{position:absolute;right:6.5mm;top:6.5mm;width:13mm;height:13mm;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a01d44,var(--vino) 55%,#4a081d);display:grid;place-content:center;text-align:center;color:#fff;transform:rotate(-8deg);box-shadow:0 .6mm 1.6mm rgba(0,0,0,.35)}
+.f-sello b{font:800 5mm/.85 'Bricolage Grotesque';color:var(--oro)}.f-sello span{font:800 1.3mm Inter;letter-spacing:.15mm;text-transform:uppercase}
+/* cara 2: Signature */
+.t-tag{position:absolute;left:7mm;top:7mm;font:800 2mm Inter;letter-spacing:.35mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1mm 2mm;border-radius:.8mm}
+.t-tit{position:absolute;left:7mm;width:52mm;top:13.5mm;font-size:5.4mm}
+.t-txt{position:absolute;left:7mm;width:52mm;top:31mm;font:500 2.45mm/1.42 Inter;color:var(--gris)}
+.t-txt b{color:var(--tinta)}
+.t-precio{position:absolute;left:7mm;bottom:6.5mm;font:800 3.6mm 'Bricolage Grotesque';color:var(--vino)}
+.t-precio small{font:700 2.2mm Inter;color:var(--gris);margin-left:1mm}
+.t-qrw{position:absolute;right:6.5mm;top:50%;transform:translateY(-50%);width:20mm;text-align:center}
+.t-qrw .qr{width:20mm;height:20mm}
+.t-qrw span{display:block;font:800 1.9mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--vino);margin-top:1mm}
+.t-marca{position:absolute;right:6.5mm;bottom:5.5mm;font-size:3.6mm}
+</style></head><body>
+
+<section class="cara">
+ <div class="f-foto"></div>
+ <div class="f-marca marca">DKitchen<i>.</i></div>
+ <h1 class="k f-tit">Tu carta, en el móvil <span class="vino">de tu cliente.</span></h1>
+ <div class="f-nombre" id="nombre">DKitchen Asesor</div>
+ <div class="f-cargo">dkitchen@dkitchencorporate.es</div>
+ <div class="f-contacto"><span id="tel">WhatsApp 622 652 659</span><br>dkitchencorporate.es · @dkitchen_es</div>
+ <div class="f-sello"><b>1€</b><span>+ IVA 1.er mes</span></div>
+ <div class="qr f-qr" data-u="https://dkitchencorporate.es/qr?utm_source=tarjeta&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara1-qr"></div>
+</section>
+
+<section class="cara">
+ <div class="t-tag">DKitchen Signature</div>
+ <h2 class="k t-tit">Tu propia app. <span class="vino">Cero comisiones.</span></h2>
+ <p class="t-txt"><b>Tus clientes piden y pagan en tu app</b>, con tu marca. La comanda llega a cocina y los datos son tuyos.</p>
+ <div class="t-precio">Sin comisión por pedido<small></small></div>
+ <div class="t-qrw"><div class="qr" data-u="https://dkitchencorporate.es/signature?utm_source=tarjeta&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara2-signature"></div><span>Calcula lo que pierdes</span></div>
+</section>
+
+<script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#1E1920"')})</script>
+</body></html>

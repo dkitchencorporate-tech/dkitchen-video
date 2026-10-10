@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="png 1080x1350 paginas=1,2,3,4,5,6">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600&display=block" rel="stylesheet">
+<style>
+:root{--tinta:#0B0807;--vino:#6E0F2A;--oro:#D9B45F;--crema:#F4EDE1;--F:'../../fotos-lote1/'}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;background:var(--tinta);font-family:Inter,sans-serif;color:var(--crema);position:relative}
+.l{display:none;position:absolute;inset:0}.l.on{display:block}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center}
+.velo-b{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,8,7,.35) 0%,transparent 28%,transparent 45%,rgba(11,8,7,.9) 72%,var(--tinta) 100%)}
+.velo-t{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,8,7,.2) 0%,transparent 40%,rgba(11,8,7,.85) 70%,var(--tinta) 100%)}
+.grano{position:absolute;inset:0;opacity:.08;mix-blend-mode:overlay;pointer-events:none;z-index:9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.035em;line-height:.9;text-wrap:balance}
+h1{font-size:132px}h2{font-size:104px}
+.oro{color:var(--oro)}
+.abajo{position:absolute;left:72px;right:72px;bottom:150px}
+.arriba{position:absolute;left:72px;right:72px;top:120px}
+.p{font-size:46px;line-height:1.2;font-weight:600;color:var(--crema);margin-top:28px;text-shadow:0 3px 24px rgba(0,0,0,.7)}
+.p b{color:var(--oro);font-weight:700}
+.cont{position:absolute;top:60px;right:72px;font:700 26px Inter;letter-spacing:3px;color:rgba(244,237,225,.6);z-index:10}
+.firma{position:absolute;left:72px;bottom:60px;font:800 36px 'Bricolage Grotesque';z-index:10}.firma i{font-style:normal;color:var(--oro)}
+.desliza{position:absolute;right:72px;bottom:60px;font:700 30px Inter;letter-spacing:2px;text-transform:uppercase;color:var(--oro);z-index:10}
+/* anotación a mano sobre la foto */
+.nota{position:absolute;font:800 34px/1 'Bricolage Grotesque';color:var(--oro);transform:rotate(-6deg)}
+.circ{position:absolute;border:4px solid var(--oro);border-radius:50%;opacity:.9;transform:rotate(-8deg)}
+/* móvil CSS para la lámina 5 */
+.movil{position:absolute;left:50%;top:70px;width:430px;height:860px;margin-left:-215px;border-radius:78px;background:#0d0d0d;padding:18px;transform:rotate(-5deg);
+ box-shadow:0 60px 120px rgba(0,0,0,.75),0 0 0 2px #2a2420,inset 0 0 0 2px #3a322b}
+.movil .scr{width:100%;height:100%;border-radius:62px;background:url('img/tapas_4.jpg') center 22%/cover;filter:brightness(.95)}
+.halo{position:absolute;left:50%;top:420px;width:900px;height:600px;margin-left:-450px;background:radial-gradient(closest-side,rgba(217,180,95,.28),transparent);filter:blur(20px)}
+.lacre{position:absolute;right:72px;top:130px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9a1c40 0%,var(--vino) 45%,#3d0717 100%);
+ box-shadow:0 18px 40px rgba(0,0,0,.6),inset 0 -8px 18px rgba(0,0,0,.45);display:grid;place-items:center;text-align:center;transform:rotate(8deg)}
+.lacre div{border:2px solid rgba(217,180,95,.55);border-radius:50%;width:224px;height:224px;display:grid;place-content:center}
+.lacre .n{font:800 100px/.85 'Bricolage Grotesque';color:var(--oro)}
+.lacre .t{font:700 18px/1.25 Inter;letter-spacing:1px;text-transform:uppercase;margin-top:6px}
+.cta{display:inline-block;margin-top:34px;padding:22px 40px;border-radius:999px;background:var(--oro);color:var(--tinta);font:700 38px Inter}
+.letra{margin-top:22px;font-size:28px;color:rgba(244,237,225,.75)}
+.qr{background:#F4EDE1;padding:14px;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.55)}.qr svg{display:block;width:100%;height:100%}</style></head><body>
+<div class="grano"></div>
+
+<!-- 1 -->
+<section class="l" id="s1">
+ <div class="foto" style="background-image:url('img/flow-02-a.jpg');background-position:center 20%"></div><div class="velo-b"></div>
+ <div class="cont">1 / 6</div>
+ <div class="abajo"><h1>Lo que ve tu cliente <span class="oro">antes de pedir</span></h1><p class="p"><b>(y tú no).</b> Y cómo lo arregla DKitchen.</p></div>
+ <div class="firma">DKitchen<i>.</i></div><div class="desliza">Desliza →</div>
+</section>
+
+<!-- 2 -->
+<section class="l" id="s2">
+ <div class="foto" style="background-image:url('img/02-a.jpg');background-size:175%;background-position:92% 40%;filter:contrast(1.05)"></div><div class="velo-t"></div>
+ <div class="cont">2 / 6</div>
+ 
+ <div class="arriba"><h2>Precios <span class="oro">tachados.</span></h2><p class="p">Tu cliente piensa: <b>«¿hoy cobran más?»</b><br>Y la confianza se va antes de pedir.</p></div>
+ <div class="firma">DKitchen<i>.</i></div>
+</section>
+
+<!-- 3 -->
+<section class="l" id="s3">
+ <div class="foto" style="background-image:url('img/04-a.jpg');background-position:center 6%"></div><div class="velo-b"></div>
+ <div class="cont">3 / 6</div>
+ <div class="abajo"><h2>Sin fotos, pide <span class="oro">lo de siempre.</span></h2><p class="p">Y tu <b>plato estrella</b> se queda en cocina.<br>Lo que no se ve, no se vende.</p></div>
+ <div class="firma">DKitchen<i>.</i></div>
+</section>
+
+<!-- 4 -->
+<section class="l" id="s4">
+ <div class="foto" style="background-image:url('img/03-b_carta.jpg');background-size:165%;background-position:38% 62%"></div>
+ <div class="velo-t" style="background:linear-gradient(0deg,rgba(11,8,7,.85) 0%,transparent 30%,transparent 62%,rgba(11,8,7,.9) 85%,var(--tinta) 100%)"></div>
+ <div class="cont">4 / 6</div>
+ <div class="arriba"><h2>Con DKitchen, lo ve <span class="oro">así.</span></h2></div>
+ <div class="abajo" style="bottom:120px"><p class="p">Escanea el QR de la mesa: <b>foto</b>, precio claro<br>y <b>aviso al camarero.</b></p></div>
+ <div class="firma">DKitchen<i>.</i></div>
+</section>
+
+<!-- 5 -->
+<section class="l" id="s5">
+ <div class="foto" style="background-image:url('img/flow-08-b.jpg');filter:blur(14px) brightness(.35);transform:scale(1.1)"></div>
+ <div class="halo"></div>
+ <div class="movil"><div class="scr"></div></div>
+ <div class="cont">5 / 6</div>
+ <div class="abajo" style="bottom:120px;text-shadow:0 4px 30px #000"><h2 style="font-size:92px">Alérgenos UE <span class="oro">en cada plato.</span></h2><p class="p">DKitchen los marca por ti. Sin preguntar<br>al camarero. <b>Siempre al día.</b></p></div>
+ <div class="firma" style="display:none"></div>
+</section>
+
+<!-- 6 -->
+<section class="l" id="s6">
+ <div class="foto" style="background-image:url('img/flow-08-b.jpg');background-position:center 30%"></div><div class="velo-b"></div>
+ <div class="cont">6 / 6</div><div style="position:absolute;left:72px;top:110px;text-align:center"><div class="qr" data-u="https://dkitchencorporate.es/qr?utm_source=instagram&utm_medium=social&utm_campaign=lote1&utm_content=carrusel" style="width:220px;height:220px"></div><div style="font:700 24px Inter;margin-top:14px;color:var(--oro);letter-spacing:1px">ESCANÉALO Y PRUEBA</div></div>
+ <div class="lacre"><div><span class="n">1€</span><span class="t">primer mes<br>sin<br>permanencia</span></div></div>
+ <div class="abajo" style="bottom:130px"><h2>Mañana abres con <span class="oro">otra carta.</span></h2><p class="p">Sube tu carta a DKitchen, imprime tu QR<br>y cambia precios <b>desde el móvil.</b></p>
+ <span class="cta">dkitchencorporate.es/qr</span>
+ <p class="letra">Después 29 € + IVA/mes. Sin permanencia.</p></div>
+ <div class="firma">DKitchen<i>.</i></div>
+</section>
+
+<script>document.getElementById('s'+(location.hash.slice(1)||1)).classList.add('on')</script>
+<script>document.querySelectorAll(".qr").forEach(e=>{const q=qrcode(0,"M");q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,"fill=\"#0B0807\"")})</script></body></html>

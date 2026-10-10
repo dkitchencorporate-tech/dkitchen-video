@@ -124,23 +124,6 @@ const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
     ajustes: []
   },
   {
-    id: 'v1-la-carta-en-llamas',
-    titulo: 'V1: La carta en llamas (primera pieza)',
-    linea: 'HyperFrames 0.8.140',
-    duracion: '—',
-    estado: 'pendiente_aprobacion',
-    videoUrl: '/media/v1-la-carta-en-llamas/reel.mp4?v=20261010-03',
-    contactSheetUrl: '/media/v1-la-carta-en-llamas/contact_sheet.jpg?v=20261010-03',
-    lufs: '-14 LUFS',
-    bitrate: 'H.264 High (máster)',
-    formato: '1080x1920 (9:16 Vertical)',
-    fps: 30,
-    fecha: '06/10/2026',
-    descripcion: 'Primera pieza del estudio (render de Actions 37609112102).',
-    zonasSeguras: 'cumplidas',
-    ajustes: []
-  },
-  {
     id: 'pieza-02',
     titulo: 'Pieza 02 (Master 30s): Hostelero, tu Carta en 60s · Motion Reveal Hook Directo',
     linea: 'HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Anillos Shockwave + Zero Clutter + 5.5s Mega-CTA)',

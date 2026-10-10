@@ -20,13 +20,13 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
 .lacre{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a01d44 0%,var(--vino) 50%,#4a081d 100%);box-shadow:0 1.6mm 4mm rgba(30,25,32,.35);display:grid;place-items:center;text-align:center;color:#fff}
 .lacre>div{border:.45mm solid rgba(217,178,92,.75);border-radius:50%;display:grid;place-content:center}
 .lacre .n{font:800 14mm/.85 'Bricolage Grotesque';color:var(--oro-claro);letter-spacing:-.05em}
-.lacre .t{font:800 2.9mm/1.15 Inter;letter-spacing:.3mm;text-transform:uppercase;margin-top:.8mm}
+.lacre .t{font:800 2.9mm/1.1 Inter;letter-spacing:0;text-transform:uppercase;margin-top:.8mm}
 /* ===== CARA 1: dolor → solución → oferta ===== */
 .c1-foto{position:absolute;left:0;right:0;top:0;height:112mm;background:url(img/papel.jpg) center 38%/cover}
 .c1-foto::after{content:"";position:absolute;inset:auto 0 0 0;height:22mm;background:linear-gradient(180deg,transparent,var(--crema))}
 .c1-marca{position:absolute;left:11mm;top:10mm;background:var(--papel);padding:1.6mm 3mm;border-radius:1.6mm}
 .c1-etq{position:absolute;right:11mm;top:11mm;font:800 2.9mm Inter;letter-spacing:.45mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1.5mm 2.6mm;border-radius:1mm}
-.c1-lacre{right:11mm;top:84mm;width:34mm;height:34mm;transform:rotate(-8deg)}
+.c1-lacre{right:11mm;top:24mm;width:34mm;height:34mm;transform:rotate(-8deg)}
 .c1-lacre>div{width:27.5mm;height:27.5mm}
 .c1-gancho{position:absolute;left:11mm;right:50mm;top:96mm;font:800 3mm Inter;letter-spacing:.4mm;text-transform:uppercase;color:var(--vino)}
 .c1-tit{position:absolute;left:11mm;right:11mm;top:103mm;font-size:13mm}
@@ -40,34 +40,34 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
 /* ===== CARA 2: cómo funciona + qué incluye + Signature ===== */
 .c2-cab{position:absolute;left:11mm;right:11mm;top:11mm;display:flex;justify-content:space-between;align-items:baseline}
 .c2-cab .k{font-size:9.5mm}
-.c2-movil{position:absolute;right:11mm;top:24mm;width:46mm;height:62mm;border-radius:3mm;background:url(img/mano-carta.jpg) 44% 52%/240%;box-shadow:0 1mm 3.5mm rgba(30,25,32,.25)}
-.pasos{position:absolute;left:11mm;width:78mm;top:25mm}
+.c2-movil{position:absolute;right:11mm;top:22mm;width:46mm;height:58mm;border-radius:3mm;background:url(img/mano-carta.jpg) 44% 52%/240%;box-shadow:0 1mm 3.5mm rgba(30,25,32,.25)}
+.pasos{position:absolute;left:11mm;width:78mm;top:24mm}
 .paso{display:flex;gap:3mm;margin-bottom:4.2mm}
 .paso .n{flex:0 0 9mm;font:800 8mm/1 'Bricolage Grotesque';color:var(--vino)}
 .paso h3{font:800 3.6mm/1.2 Inter}
 .paso p{font:400 2.95mm/1.38 Inter;color:var(--gris);margin-top:.6mm}
-.incl{position:absolute;left:11mm;right:11mm;top:92mm}
+.incl{position:absolute;left:11mm;right:11mm;top:86mm}
 .incl h4{font:800 3mm Inter;letter-spacing:.4mm;text-transform:uppercase;color:var(--vino)}
 .chips{display:flex;flex-wrap:wrap;gap:1.6mm;margin-top:2mm}
 .chips span{font:700 2.95mm Inter;padding:1.3mm 2.5mm;border-radius:10mm;background:var(--papel);border:.3mm solid #E3D6C2}
-.precio{position:absolute;left:11mm;right:11mm;top:117mm;font:600 3.2mm/1.4 Inter;color:var(--gris)}
+.precio{position:absolute;left:11mm;right:50mm;top:114mm;font:600 3.2mm/1.4 Inter;color:var(--gris)}
 .precio b{color:var(--vino)}
-.sig{position:absolute;left:8mm;right:8mm;bottom:8mm;height:74mm;border-radius:4mm;background:var(--papel);border:.5mm solid var(--vino);padding:5mm 5mm 4mm}
+.sig{position:absolute;left:8mm;right:8mm;bottom:8mm;height:82mm;border-radius:4mm;background:var(--papel);border:.5mm solid var(--vino);padding:5mm 5mm 4mm}
 .sig .tag{display:inline-block;font:800 2.9mm Inter;letter-spacing:.45mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1.2mm 2.4mm;border-radius:1mm}
-.sig h2{font-size:8.6mm;margin-top:2.4mm}
+.sig h2{font-size:7.4mm;margin-top:2.2mm}
 .sig .cuenta{display:flex;gap:3mm;margin-top:3.2mm}
 .sig .cuenta div{flex:1;background:var(--crema);border-radius:2mm;padding:2.4mm 2.6mm}
 .sig .cuenta small{display:block;font:700 2.4mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--gris)}
 .sig .cuenta b{display:block;font:800 6.2mm/1.05 'Bricolage Grotesque';letter-spacing:-.03em;margin-top:.8mm}
 .sig .cuenta .mal b{color:#9B1C1C;text-decoration:line-through;text-decoration-thickness:.5mm}
 .sig .cuenta .bien b{color:var(--vino)}
-.sig .pie{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3.4mm}
+.sig .pie{position:absolute;left:5mm;right:5mm;bottom:5mm;display:flex;justify-content:space-between;align-items:flex-end}
 .sig .pie p{font:600 2.85mm/1.4 Inter;color:var(--gris);max-width:88mm}
 .sig .pie p b{color:var(--tinta)}
 .sig .qrw{flex:0 0 22mm;text-align:center}
 .sig .qrw .qr{width:22mm;height:22mm;padding:1.5mm}
 .sig .qrw span{display:block;font:800 2.9mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--vino);margin-top:1mm}
-.vend{position:absolute;right:11mm;top:117mm;font:700 2.9mm Inter;color:var(--gris)}
+.vend{position:absolute;right:11mm;top:116mm;font:700 2.9mm Inter;color:var(--gris)}
 .vend i{display:inline-block;width:22mm;border-bottom:.3mm solid var(--vino);margin-left:1mm}
 .sig-txt{font:500 3.4mm/1.4 Inter;color:var(--gris);margin-top:2.6mm}.sig-txt b{color:var(--tinta)}
 .sig .pie p.pie-corp{font:600 3mm/1.45 Inter;color:var(--tinta);max-width:none}.pie-corp small{font:500 2.85mm Inter;color:var(--gris)}
@@ -78,7 +78,7 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
  <div class="c1-foto"></div>
  <div class="c1-marca marca">DKitchen<i>.</i></div>
  <div class="c1-etq">Para bares y restaurantes</div>
- <div class="lacre c1-lacre"><div><span class="n">1€</span><span class="t">primer<br>mes</span></div></div>
+ <div class="lacre c1-lacre"><div><span class="n">1€</span><span class="t">+ IVA<br>1.er mes</span></div></div>
  <div class="c1-gancho">Lo que ve tu cliente antes de pedir</div>
  <h1 class="k c1-tit">Cada precio tachado te <span class="vino">cuesta una mesa.</span></h1>
  <p class="c1-sol">Con <b>DKitchen</b> tu carta vive en el móvil de tu cliente: <b>foto de cada plato, precio claro y alérgenos.</b> La cambias desde tu móvil en segundos. Sin reimprimir nunca más.</p>

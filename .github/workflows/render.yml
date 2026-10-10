@@ -62,6 +62,8 @@ jobs:
         run: |
           if [ -f "$TARGET_CARPETA/audio.mp3" ]; then
             echo "[Audio] Pista de audio ya existente en $TARGET_CARPETA. Conservando master."
+          elif grep -q "\"motor_audio\": \"audio_elevenlabs_completo\"" "$TARGET_CARPETA/guion.json" 2>/dev/null; then
+            node scripts/audio_elevenlabs_completo.cjs "$TARGET_CARPETA"
           elif [ -f "scripts/generar_audio_envolvente.cjs" ]; then
             node scripts/generar_audio_envolvente.cjs "$TARGET_CARPETA"
           elif [ -f "scripts/generar_audio_pieza.cjs" ]; then
@@ -99,6 +101,8 @@ jobs:
             ${{ inputs.carpeta }}/reel.mp4
             ${{ inputs.carpeta }}/contact_sheet.jpg
             ${{ inputs.carpeta }}/control_calidad.txt
+            ${{ inputs.carpeta }}/audio_log.txt
+            ${{ inputs.carpeta }}/audio.mp3
 
       - name: Disparar despliegue automático a Vercel Admin
         if: success()

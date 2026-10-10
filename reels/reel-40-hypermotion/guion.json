@@ -1,0 +1,81 @@
+{
+  "titulo": "Reel 40 s hypermotion: la carta que vende",
+  "version": "1.0.0",
+  "duracion_total_video": 40.0,
+  "corte_voz_segundo": 39.4,
+  "fps": 30,
+  "motor_audio": "audio_elevenlabs_completo",
+  "voz11": {
+    "nombre": "Enzo - Viral Reels (DKitchen)",
+    "voice_id": "4L2A19qwD3pMcNlt484F",
+    "public_owner_id": "46231efdaff48008dd5586316e9049a4bb9d25910df078cf5f0ff47c4b671d4f",
+    "modelo": "eleven_v3",
+    "modelo_reserva": "eleven_multilingual_v2",
+    "ajustes": { "stability": 0.35, "similarity_boost": 0.8, "style": 0.7, "use_speaker_boost": true },
+    "volumen": 1.7
+  },
+  "musica11": {
+    "prompt": "Viral Instagram reel instrumental, 40 seconds. Aggressive modern phonk-trap hybrid at 128 BPM with Spanish flamenco guitar stabs and palmas claps. Starts instantly with a hard 808 hit and tape-stop, tense minimal groove under a voice from 0 to 10 seconds, a reversed riser into a massive drop at 10.2 seconds, driving energetic section with punchy kicks and hi-hat rolls until 25 seconds, half-time breakdown with ticking clock texture from 25 to 30 seconds, rebuild from 30 seconds, big final hit at 34 seconds and confident outro with a clean ending at 40 seconds. No vocals.",
+    "volumen": 0.62
+  },
+  "sfx11": {
+    "golpe": { "prompt": "Deep cinematic sub bass boom impact with short tail, trailer hit", "segundos": 1.5, "fallback": "assets/sfx/impact-bass-1.mp3" },
+    "whoosh": { "prompt": "Fast aggressive air whoosh swipe transition, very short", "segundos": 0.6, "fallback": "assets/sfx/whoosh-short.mp3" },
+    "obturador": { "prompt": "Crisp camera shutter click with tiny glitch stutter", "segundos": 0.4, "fallback": "assets/sfx/click.mp3" },
+    "rotulador": { "prompt": "Marker pen aggressively crossing out text on paper, scratch", "segundos": 0.7, "fallback": "assets/sfx/glitch-1.mp3" },
+    "riser": { "prompt": "Reversed cymbal riser building tension, ends abruptly", "segundos": 1.4, "fallback": "assets/sfx/riser.mp3" },
+    "tic": { "prompt": "Single sharp mechanical stopwatch tick", "segundos": 0.3, "fallback": "assets/sfx/key-press.mp3" },
+    "ding": { "prompt": "Bright satisfying cash register ding notification", "segundos": 0.8, "fallback": "assets/sfx/chime.mp3" },
+    "escaneo": { "prompt": "Futuristic laser scan beep sweep, short", "segundos": 0.9, "fallback": "assets/sfx/sparkle.mp3" }
+  },
+  "eventos_sfx": [
+    { "sfx": "golpe", "t": 0.0, "vol": 0.9 },
+    { "sfx": "obturador", "t": 0.4, "vol": 0.45 }, { "sfx": "obturador", "t": 0.8, "vol": 0.45 }, { "sfx": "obturador", "t": 1.2, "vol": 0.45 }, { "sfx": "obturador", "t": 1.6, "vol": 0.45 },
+    { "sfx": "obturador", "t": 2.0, "vol": 0.45 }, { "sfx": "obturador", "t": 2.4, "vol": 0.45 }, { "sfx": "obturador", "t": 2.8, "vol": 0.45 },
+    { "sfx": "whoosh", "t": 3.15, "vol": 0.6 },
+    { "sfx": "rotulador", "t": 4.15, "vol": 0.7 },
+    { "sfx": "whoosh", "t": 5.05, "vol": 0.6 },
+    { "sfx": "golpe", "t": 7.05, "vol": 0.7 },
+    { "sfx": "riser", "t": 8.8, "vol": 0.6 },
+    { "sfx": "golpe", "t": 10.2, "vol": 1.0 },
+    { "sfx": "whoosh", "t": 11.4, "vol": 0.6 },
+    { "sfx": "obturador", "t": 13.4, "vol": 0.4 }, { "sfx": "obturador", "t": 14.55, "vol": 0.4 }, { "sfx": "obturador", "t": 15.7, "vol": 0.4 }, { "sfx": "obturador", "t": 16.85, "vol": 0.4 },
+    { "sfx": "whoosh", "t": 19.15, "vol": 0.6 },
+    { "sfx": "obturador", "t": 19.5, "vol": 0.5 }, { "sfx": "obturador", "t": 20.12, "vol": 0.5 }, { "sfx": "obturador", "t": 20.74, "vol": 0.5 }, { "sfx": "obturador", "t": 21.36, "vol": 0.5 },
+    { "sfx": "golpe", "t": 22.1, "vol": 0.7 },
+    { "sfx": "whoosh", "t": 24.95, "vol": 0.6 },
+    { "sfx": "tic", "t": 25.5, "vol": 0.6 }, { "sfx": "tic", "t": 26.5, "vol": 0.6 }, { "sfx": "tic", "t": 27.5, "vol": 0.6 }, { "sfx": "tic", "t": 28.5, "vol": 0.6 },
+    { "sfx": "rotulador", "t": 27.6, "vol": 0.6 },
+    { "sfx": "ding", "t": 28.0, "vol": 0.8 },
+    { "sfx": "whoosh", "t": 29.95, "vol": 0.6 },
+    { "sfx": "escaneo", "t": 30.8, "vol": 0.7 },
+    { "sfx": "riser", "t": 32.6, "vol": 0.6 },
+    { "sfx": "golpe", "t": 34.0, "vol": 1.0 },
+    { "sfx": "golpe", "t": 34.9, "vol": 0.6 },
+    { "sfx": "ding", "t": 35.9, "vol": 0.5 }
+  ],
+  "tramos_voz": [
+    { "id": "gancho", "tiempo_inicio": 0.15, "texto": "[urgent] ¡Para! Si tienes un bar, esto te está costando clientes." },
+    { "id": "problema", "tiempo_inicio": 3.35, "texto": "Precios tachados... pizarras borradas..." },
+    { "id": "consecuencia", "tiempo_inicio": 7.15, "texto": "Sin fotos, tu cliente pide lo de siempre. Y tu plato estrella... ni lo prueba." },
+    { "id": "giro", "tiempo_inicio": 10.3, "texto": "[excited] ¡Con De-Kitchen!" },
+    { "id": "producto", "tiempo_inicio": 11.7, "texto": "Tu carta vive en su móvil: foto de cada plato, alérgenos y tres idiomas." },
+    { "id": "pedido", "tiempo_inicio": 16.3, "texto": "Y pide desde la mesa, sin esperar." },
+    { "id": "cocinas", "tiempo_inicio": 19.4, "texto": "Tapas, pizza, burger, fries... ¡cualquier cocina!" },
+    { "id": "diseno", "tiempo_inicio": 22.2, "texto": "Con un diseño que hace que el plato se venda solo." },
+    { "id": "precio", "tiempo_inicio": 25.2, "texto": "¿Cambiar un precio? [pause] Cuatro segundos. Sin imprenta." },
+    { "id": "qr", "tiempo_inicio": 30.2, "texto": "Tu cliente escanea, mira... y pide." },
+    { "id": "cta", "tiempo_inicio": 34.25, "texto": "[confident] El primer mes, un euro. Sin permanencia. Entra en De-Kitchen Corporate punto es." }
+  ],
+  "escenas": [
+    { "numero": 1, "nombre": "GANCHO_RAFAGA", "tiempo_inicio": 0.0, "tiempo_fin": 3.2 },
+    { "numero": 2, "nombre": "PROBLEMA", "tiempo_inicio": 3.2, "tiempo_fin": 7.0 },
+    { "numero": 3, "nombre": "CONSECUENCIA", "tiempo_inicio": 7.0, "tiempo_fin": 10.2 },
+    { "numero": 4, "nombre": "GIRO_DKITCHEN", "tiempo_inicio": 10.2, "tiempo_fin": 11.4 },
+    { "numero": 5, "nombre": "PRODUCTO_MOVIL_3D", "tiempo_inicio": 11.4, "tiempo_fin": 19.2 },
+    { "numero": 6, "nombre": "MOSAICO_COCINAS", "tiempo_inicio": 19.2, "tiempo_fin": 25.0 },
+    { "numero": 7, "nombre": "PRECIO_4S", "tiempo_inicio": 25.0, "tiempo_fin": 30.0 },
+    { "numero": 8, "nombre": "QR_ESCANEO", "tiempo_inicio": 30.0, "tiempo_fin": 34.0 },
+    { "numero": 9, "nombre": "MEGA_CTA", "tiempo_inicio": 34.0, "tiempo_fin": 40.0 }
+  ]
+}

@@ -160,6 +160,10 @@ function mezclarPistasFinales() {
     let filterComplex = '';
     const inputs = [];
 
+    // Volúmenes de música configurables desde guion.json (musica.voz / musica.cierre)
+    const musVoz = Number((guionData.musica || {}).voz ?? 0.08);
+    const musCierre = Number((guionData.musica || {}).cierre ?? 0.45);
+
     // Input 0: Música de fondo en loop
     inputs.push(`-stream_loop -1 -i "${musicaPath}"`);
 
@@ -182,7 +186,7 @@ function mezclarPistasFinales() {
     
     // Música con ducking profundo: volumen 0.08 durante la locución para que la voz mande con máxima claridad y presencia.
     // Al terminar la voz en corteVoz (t >= corteVoz), la música sube a 0.45 para rellenar el cierre visual del Mega-CTA.
-    filterComplex += `[0:a]atrim=0:${duracionTotal},asetpts=PTS-STARTPTS,volume=enable='between(t,0,${corteVoz})':volume=0.08,volume=enable='gte(t,${corteVoz})':volume=0.45[a_musica];`;
+    filterComplex += `[0:a]atrim=0:${duracionTotal},asetpts=PTS-STARTPTS,volume=enable='between(t,0,${corteVoz})':volume=${musVoz},volume=enable='gte(t,${corteVoz})':volume=${musCierre}[a_musica];`;
     mixInputs.push('[a_musica]');
 
     let idx = 1;
@@ -219,6 +223,17 @@ function mezclarPistasFinales() {
       const boomMs = Math.round(boomTime * 1000); // 24500 ms
       filterComplex += `[${idx}:a]adelay=${boomMs}|${boomMs},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=0.25[a_boom];`;
       mixInputs.push('[a_boom]');
+      idx++;
+    }
+
+    // SFX sincronizados con los cortes: guion.sfx = [{ archivo: "assets/sfx/whoosh.mp3", t: 3.2, vol: 0.3 }]
+    for (const ev of (Array.isArray(guionData.sfx) ? guionData.sfx : [])) {
+      const ruta = path.resolve(String(ev.archivo || ""));
+      if (!/^[w/.-]+.mp3$/.test(String(ev.archivo || "")) || !fs.existsSync(ruta)) continue;
+      inputs.push(`-i "${ruta}"`);
+      const ms = Math.max(0, Math.round(Number(ev.t || 0) * 1000));
+      filterComplex += `[${idx}:a]adelay=${ms}|${ms},apad=whole_dur=${duracionTotal},asetpts=PTS-STARTPTS,volume=${Number(ev.vol ?? 0.25)}[a_sfx${idx}];`;
+      mixInputs.push(`[a_sfx${idx}]`);
       idx++;
     }
 

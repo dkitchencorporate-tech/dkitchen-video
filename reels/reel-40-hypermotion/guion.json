@@ -281,12 +281,12 @@
     {
       "id": "producto",
       "tiempo_inicio": 11.7,
-      "texto": "Tu carta vive en su móvil: foto de cada plato, alérgenos y tres idiomas."
+      "texto": "Tu carta vive en su móvil: foto de cada plato, precio claro y alérgenos."
     },
     {
       "id": "pedido",
       "tiempo_inicio": 16.3,
-      "texto": "Y pide desde la mesa, sin esperar."
+      "texto": "Y te llama desde la mesa, sin esperar."
     },
     {
       "id": "cocinas",
@@ -306,7 +306,7 @@
     {
       "id": "qr",
       "tiempo_inicio": 30.2,
-      "texto": "Tu cliente escanea, mira... y pide."
+      "texto": "Tu cliente escanea, mira... y elige."
     },
     {
       "id": "cta",

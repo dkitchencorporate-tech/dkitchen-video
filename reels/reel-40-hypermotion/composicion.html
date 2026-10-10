@@ -86,7 +86,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
  <audio id="master-audio" src="assets/audio.mp3" data-start="0" data-duration="40"></audio>
  <div class="grano" data-layout-allow-occlusion="true"></div><div class="vig" data-layout-allow-occlusion="true"></div>
  <div id="leak" data-layout-allow-occlusion="true" data-layout-allow-overflow="true"></div>
- <div id="cap" class="cap3d" data-layout-allow-occlusion="true"><span id="cap0">Si tienes un bar, esto <b>te cuesta clientes.</b></span><span id="cap1">Cada tachón le dice al cliente: <b>«hoy cobran más»</b></span><span id="cap2">Sin fotos, nadie descubre <b>tu plato estrella.</b></span><span id="cap3"><b>Foto de cada plato</b>, alérgenos UE y 3 idiomas</span><span id="cap4">El cliente <b>pide desde la mesa.</b> Sin esperas.</span><span id="cap5">Tapas, pizza, burger, fries: <b>cualquier cocina</b></span><span id="cap6">Un diseño que hace que <b>el plato se venda solo</b></span><span id="cap7">Cambias el precio desde el móvil: <b>4 segundos</b></span><span id="cap8">Imprimes tu QR una vez. <b>La carta cambia sola.</b></span></div><div class="capitulo" id="chap0">01 · EL PROBLEMA</div><div class="capitulo" id="chap1">02 · LO QUE PIERDES</div><div class="capitulo" id="chap2">03 · LA SOLUCIÓN</div><div class="capitulo" id="chap3">04 · PARA TU COCINA</div><div class="capitulo" id="chap4">05 · LA PRUEBA</div><div class="capitulo" id="chap5">06 · CÓMO FUNCIONA</div>
+ <div id="cap" class="cap3d" data-layout-allow-occlusion="true"><span id="cap0">Si tienes un bar, esto <b>te cuesta clientes.</b></span><span id="cap1">Cada tachón le dice al cliente: <b>«hoy cobran más»</b></span><span id="cap2">Sin fotos, nadie descubre <b>tu plato estrella.</b></span><span id="cap3"><b>Foto de cada plato</b>, precio claro y alérgenos UE</span><span id="cap4">Avisa al camarero <b>desde la mesa.</b> Sin esperas.</span><span id="cap5">Tapas, pizza, burger, fries: <b>cualquier cocina</b></span><span id="cap6">Un diseño que hace que <b>el plato se venda solo</b></span><span id="cap7">Cambias el precio desde el móvil: <b>4 segundos</b></span><span id="cap8">Imprimes tu QR una vez. <b>La carta cambia sola.</b></span></div><div class="capitulo" id="chap0">01 · EL PROBLEMA</div><div class="capitulo" id="chap1">02 · LO QUE PIERDES</div><div class="capitulo" id="chap2">03 · LA SOLUCIÓN</div><div class="capitulo" id="chap3">04 · PARA TU COCINA</div><div class="capitulo" id="chap4">05 · LA PRUEBA</div><div class="capitulo" id="chap5">06 · CÓMO FUNCIONA</div>
  <div id="flash" data-layout-allow-occlusion="true"></div><div id="barra"></div>
 
  <!-- S1 · 0–3.2 · GANCHO: ráfaga de platos + tipografía cinética -->
@@ -150,8 +150,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
   <div id="escena3d"><div id="movil"><div id="pantalla"><div id="notch"></div><img id="carta" src="assets/v40/carta-larga.jpg" alt="Carta real DKitchen" data-layout-allow-overflow="true"></div></div></div>
   <div class="chip" id="ch1" style="left:40px;top:560px">Foto de <b>cada plato</b></div>
   <div class="chip" id="ch2" style="right:40px;top:820px"><b>Alérgenos</b> UE</div>
-  <div class="chip" id="ch3" style="left:60px;top:1100px"><b>ES · EN · FR</b></div>
-  <div class="chip" id="ch4" style="right:50px;top:1360px">Pide <b>desde la mesa</b></div>
+  <div class="chip" id="ch3" style="left:60px;top:1100px"><b>150 reservas</b> al mes</div>
+  <div class="chip" id="ch4" style="right:50px;top:1360px">Llama al <b>camarero</b></div>
  </div>
 
  <!-- S6 · 19.2–25.1 · CUALQUIER COCINA -->
@@ -185,7 +185,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--tinta);col
   <div class="safe" style="top:960px">
    <div class="k line" style="font-size:140px"><span id="s8a">Escanea.</span></div>
    <div class="k line oro" style="font-size:140px"><span id="s8b">Mira.</span></div>
-   <div class="k line" style="font-size:140px"><span id="s8c">Pide.</span></div>
+   <div class="k line" style="font-size:140px"><span id="s8c">Elige.</span></div>
   </div>
  </div>
 
@@ -311,7 +311,7 @@ tl.fromTo("#para",{opacity:1,scale:3,rotate:-6},{scale:1,rotate:-3,duration:.28,
 tl.to("#para",{x:"+=18",yoyo:true,repeat:7,duration:.04,ease:"none"},0.28);
 tl.set("#para",{opacity:0},0.72);flash(0.72,.9);
 // subtítulos descriptivos que entran en 3D
-[[0.15,2.9,"Si tienes un bar, esto <b>te cuesta clientes.</b>"],[3.35,6.9,"Cada tachón le dice al cliente: <b>«hoy cobran más»</b>"],[7.15,10.1,"Sin fotos, nadie descubre <b>tu plato estrella.</b>"],[11.7,16.2,"<b>Foto de cada plato</b>, alérgenos UE y 3 idiomas"],[16.3,19.1,"El cliente <b>pide desde la mesa.</b> Sin esperas."],[19.4,22.1,"Tapas, pizza, burger, fries: <b>cualquier cocina</b>"],[22.2,24.9,"Un diseño que hace que <b>el plato se venda solo</b>"],[25.2,29.9,"Cambias el precio desde el móvil: <b>4 segundos</b>"],[30.2,33.9,"Imprimes tu QR una vez. <b>La carta cambia sola.</b>"]].forEach((c,i)=>{tl.fromTo("#cap"+i,{opacity:0,rotateX:-90,y:30},{opacity:1,rotateX:0,y:0,duration:.35,ease:"back.out(1.6)"},c[0]);tl.to("#cap"+i,{opacity:0,rotateX:90,y:-20,duration:.2,ease:"power2.in"},c[1]-.2)});
+[[0.15,2.9,"Si tienes un bar, esto <b>te cuesta clientes.</b>"],[3.35,6.9,"Cada tachón le dice al cliente: <b>«hoy cobran más»</b>"],[7.15,10.1,"Sin fotos, nadie descubre <b>tu plato estrella.</b>"],[11.7,16.2,"<b>Foto de cada plato</b>, precio claro y alérgenos UE"],[16.3,19.1,"Avisa al camarero <b>desde la mesa.</b> Sin esperas."],[19.4,22.1,"Tapas, pizza, burger, fries: <b>cualquier cocina</b>"],[22.2,24.9,"Un diseño que hace que <b>el plato se venda solo</b>"],[25.2,29.9,"Cambias el precio desde el móvil: <b>4 segundos</b>"],[30.2,33.9,"Imprimes tu QR una vez. <b>La carta cambia sola.</b>"]].forEach((c,i)=>{tl.fromTo("#cap"+i,{opacity:0,rotateX:-90,y:30},{opacity:1,rotateX:0,y:0,duration:.35,ease:"back.out(1.6)"},c[0]);tl.to("#cap"+i,{opacity:0,rotateX:90,y:-20,duration:.2,ease:"power2.in"},c[1]-.2)});
 [[3.2,7,"01 · EL PROBLEMA"],[7,10.2,"02 · LO QUE PIERDES"],[11.4,19.2,"03 · LA SOLUCIÓN"],[19.2,25,"04 · PARA TU COCINA"],[25,30,"05 · LA PRUEBA"],[30,34,"06 · CÓMO FUNCIONA"]].forEach((c,i)=>{tl.fromTo("#chap"+i,{opacity:0,x:-60},{opacity:1,x:0,duration:.35,ease:"expo.out"},c[0]+.1);tl.to("#chap"+i,{opacity:0,duration:.15},c[1]-.15)});
 // mosaico en 3D: empieza inclinado y se aplana
 tl.fromTo("#mosaico",{rotateX:38},{rotateX:0,duration:3.4,ease:"expo.inOut"},19.2);

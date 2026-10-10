@@ -18,52 +18,18 @@ jobs:
         with:
           node-version: 20
 
-      - name: Descargar artefactos de vídeo para previsualización privada del admin
+      - name: Descargar artefactos de vídeo (TODAS las piezas de admin/medios.json)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_RUN: ${{ inputs.run_id }}
+          INPUT_CARPETA: ${{ inputs.carpeta }}
         run: |
-          mkdir -p admin/public/media/pieza-01
-          mkdir -p admin/public/media/pieza-02
-
-          # Función auxiliar para descargar el último artefacto 'entrega-*'
-          descargar_ultimo_artefacto() {
-            local pieza_dir="$1"
-            echo "[Admin] Buscando último artefacto para $pieza_dir..."
-            
-            # Buscar el último run exitoso de 'Renderizar reel'
-            local run_ids=$(gh run list --workflow="Renderizar reel" --status="success" --limit 10 --json databaseId -q '.[].databaseId')
-            local encontrado=false
-
-            for rid in $run_ids; do
-              local art_name=$(gh run view "$rid" --json artifacts -q '.artifacts[] | select(.name | startswith("entrega-")) | .name' | head -n 1)
-              if [ -n "$art_name" ]; then
-                echo "[Admin] Descargando $art_name (Run $rid) en admin/public/media/$pieza_dir..."
-                rm -rf "admin/public/media/$pieza_dir/*"
-                if gh run download "$rid" -n "$art_name" -D "admin/public/media/$pieza_dir"; then
-                  encontrado=true
-                  break
-                fi
-              fi
-            done
-
-            if [ "$encontrado" = false ]; then
-              echo "[AVISO] No se pudo obtener automáticamente el último artefacto dinámico para $pieza_dir"
-            fi
-          }
-
-          # 1. Si se pasa run_id explícito, descargarlo prioritariamente en la carpeta seleccionada:
-          if [ -n "${{ inputs.run_id }}" ]; then
-            TARGET_SLUG=$(basename "${{ inputs.carpeta }}")
-            echo "[Admin] Descargando artefacto de render específico: ${{ inputs.run_id }} en $TARGET_SLUG..."
-            mkdir -p "admin/public/media/$TARGET_SLUG"
-            rm -rf "admin/public/media/$TARGET_SLUG/*"
-            gh run download "${{ inputs.run_id }}" -n "entrega-${{ inputs.run_id }}" -D "admin/public/media/$TARGET_SLUG" || echo "[AVISO] No se pudo descargar entrega-${{ inputs.run_id }}"
-          else
-            # 2. Descarga dinámica de los últimos artefactos sin run ID hardcodeados a mano
-            descargar_ultimo_artefacto "pieza-01"
-            descargar_ultimo_artefacto "pieza-02"
-          fi
-
+          # Cada pieza se descarga de SU render; un run_id nuevo solo sustituye la entrada de su carpeta.
+          node scripts/medios_admin.cjs "$(basename "$INPUT_CARPETA")" "$INPUT_RUN" | while read SLUG RID; do
+            mkdir -p "admin/public/media/$SLUG"
+            echo "[Admin] $SLUG <- entrega-$RID"
+            gh run download "$RID" -n "entrega-$RID" -D "admin/public/media/$SLUG" || echo "[AVISO] No se pudo descargar entrega-$RID para $SLUG"
+          done
           ls -la admin/public/media/* || true
 
       - name: Instalar Vercel CLI y Dependencias

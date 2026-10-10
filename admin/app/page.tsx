@@ -107,6 +107,40 @@ interface PiezaBoveda {
 
 const PIEZAS_VIDEOS_INICIALES: PiezaEstudio[] = [
   {
+    id: 'reel-40-hypermotion',
+    titulo: 'Reel 40 s hypermotion: la carta que vende (Claude Code)',
+    linea: 'HyperFrames 0.8.140 · 9 escenas · móvil 3D con la carta real · subtítulos 3D',
+    duracion: '40.0s',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/reel-40-hypermotion/reel.mp4?v=20261010-03',
+    contactSheetUrl: '/media/reel-40-hypermotion/contact_sheet.jpg?v=20261010-03',
+    lufs: '-14 LUFS · 100 % ElevenLabs: voz Enzo, música original y 8 SFX a medida',
+    bitrate: 'H.264 High (máster)',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: '10/10/2026',
+    descripcion: 'Gancho «¡Para!» en 0,7 s, ráfaga de 8 platos, problema (precios tachados, pizarras borradas), consecuencia («0 fotos»), giro «con DKitchen», móvil 3D con la carta real Bar & Tapas, mosaico «cualquier cocina», prueba del precio en 4 s, QR con escaneo y CTA de 1 € el primer mes. Solo funciones incluidas en el plan Local.',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
+    id: 'v1-la-carta-en-llamas',
+    titulo: 'V1: La carta en llamas (primera pieza)',
+    linea: 'HyperFrames 0.8.140',
+    duracion: '—',
+    estado: 'pendiente_aprobacion',
+    videoUrl: '/media/v1-la-carta-en-llamas/reel.mp4?v=20261010-03',
+    contactSheetUrl: '/media/v1-la-carta-en-llamas/contact_sheet.jpg?v=20261010-03',
+    lufs: '-14 LUFS',
+    bitrate: 'H.264 High (máster)',
+    formato: '1080x1920 (9:16 Vertical)',
+    fps: 30,
+    fecha: '06/10/2026',
+    descripcion: 'Primera pieza del estudio (render de Actions 37609112102).',
+    zonasSeguras: 'cumplidas',
+    ajustes: []
+  },
+  {
     id: 'pieza-02',
     titulo: 'Pieza 02 (Master 30s): Hostelero, tu Carta en 60s · Motion Reveal Hook Directo',
     linea: 'HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Anillos Shockwave + Zero Clutter + 5.5s Mega-CTA)',
@@ -357,7 +391,7 @@ export default function DashboardAdmin() {
   const [boveda, setBoveda] = useState<PiezaBoveda[]>([]);
 
   // Estados de selección
-  const [videoSeleccionadoId, setVideoSeleccionadoId] = useState<string>('v1-la-carta-en-llamas');
+  const [videoSeleccionadoId, setVideoSeleccionadoId] = useState<string>('reel-40-hypermotion');
   const [formatoExpSeleccionado, setFormatoExpSeleccionado] = useState<string>('noche-de-maridaje');
   const [vistaRelacionExp, setVistaRelacionExp] = useState<'16x9' | '4x5'>('16x9');
   const [flyerSeleccionadoId, setFlyerSeleccionadoId] = useState<string>('flyer-propuesta-a');

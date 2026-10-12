@@ -7,7 +7,7 @@
 /* Corporativa (12/10, karc0): para guardarla y llamar; se entrega con el flyer. Sin foto y sin «invitación».
    85×55 mm + 3 mm de sangrado = 91×61 mm. Zona segura: 6,5 mm desde el borde del PDF. */
 @page{size:91mm 61mm;margin:0}
-:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#544C57}
+:root{--tinta:#0D090F;--vino:#8C0D37;--oro:#F2C14E;--crema:#FFFAF2;--papel:#FFFFFF;--gris:#3B3440}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
 .cara{position:relative;width:91mm;height:61mm;overflow:hidden;background:var(--crema);break-after:page}
@@ -45,7 +45,7 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
  <div class="a-raya"></div>
  <p class="a-quien">Tu asesor DKitchen<small>Carta digital QR · App propia · Eventos</small></p>
  <div class="a-datos">
-  <span><svg viewBox="0 0 24 24"><path fill="#1F6B4A" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>WhatsApp y teléfono · 622 652 659</span>
+  <span><svg viewBox="0 0 24 24"><path fill="#128C4F" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>WhatsApp y teléfono · 622 652 659</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="#6E0C2B" stroke-width="2.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>dkitchen@dkitchencorporate.es</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="#6E0C2B" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>dkitchencorporate.es · @dkitchen_es</span>
  </div>
@@ -62,5 +62,5 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
  <div class="b-pie"><span><b>Carta QR</b> desde 1 € + IVA el 1.er mes</span><span>622 652 659</span></div>
 </section>
 
-<script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#1E1920"')})</script>
+<script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#0D090F"')})</script>
 </body></html>

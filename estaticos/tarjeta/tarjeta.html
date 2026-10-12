@@ -1,61 +1,63 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="pdf">
-<title>Tarjeta de visita DKitchen</title>
+<title>Tarjeta de visita DKitchen v3</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;700;800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;600;700;800&display=block" rel="stylesheet">
 <style>
-/* 85×55 mm + 3 mm de sangrado = 91×61 mm. Zona segura: 6 mm desde el borde del PDF. Fondo claro. */
+/* v3 (12/10, karc0): 85×55 mm + 3 mm de sangrado = 91×61 mm. Zona segura: 6 mm desde el borde del PDF. QR /q/ editables y medidos. */
 @page{size:91mm 61mm;margin:0}
-:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#5A525D}
+:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#544C57}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
 .cara{position:relative;width:91mm;height:61mm;overflow:hidden;background:var(--crema);break-after:page}
-.k{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.04em;line-height:.92}
+.k{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.04em;line-height:.95}
 .vino{color:var(--vino)}
-.qr{background:#fff;border-radius:1.6mm;padding:1.3mm;box-shadow:0 .5mm 1.8mm rgba(30,25,32,.18)}
-.qr svg{display:block;width:100%;height:100%}
-.marca{font:800 5.2mm 'Bricolage Grotesque';letter-spacing:-.03em}.marca i{font-style:normal;color:var(--vino)}
-/* cara 1: persona + carta QR */
-.f-foto{position:absolute;right:0;top:0;bottom:0;width:34mm;background:url(img/mano-carta.jpg) 46% 45%/cover}
-.f-foto::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--crema) 0%,rgba(247,241,230,0) 35%)}
-.f-marca{position:absolute;left:7mm;top:7mm}
-.f-tit{position:absolute;left:7mm;width:50mm;top:17mm;font-size:5.6mm}
-.f-nombre{position:absolute;left:7mm;bottom:19mm;font:800 3.4mm Inter}
-.f-cargo{position:absolute;left:7mm;bottom:15.2mm;font:500 2.6mm Inter;color:var(--gris)}
-.f-contacto{position:absolute;left:7mm;bottom:6.5mm;font:700 2.6mm/1.45 Inter}
-.f-qr{position:absolute;right:6.5mm;bottom:6.5mm;width:17mm;height:17mm}
-.f-sello{position:absolute;right:6.5mm;top:6.5mm;width:13mm;height:13mm;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a01d44,var(--vino) 55%,#4a081d);display:grid;place-content:center;text-align:center;color:#fff;transform:rotate(-8deg);box-shadow:0 .6mm 1.6mm rgba(0,0,0,.35)}
-.f-sello b{font:800 5mm/.85 'Bricolage Grotesque';color:var(--oro)}.f-sello span{font:800 1.3mm Inter;letter-spacing:.15mm;text-transform:uppercase}
-/* cara 2: Signature */
-.t-tag{position:absolute;left:7mm;top:7mm;font:800 2mm Inter;letter-spacing:.35mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1mm 2mm;border-radius:.8mm}
-.t-tit{position:absolute;left:7mm;width:52mm;top:13.5mm;font-size:5.4mm}
-.t-txt{position:absolute;left:7mm;width:52mm;top:31mm;font:500 2.45mm/1.42 Inter;color:var(--gris)}
-.t-txt b{color:var(--tinta)}
-.t-precio{position:absolute;left:7mm;bottom:6.5mm;font:800 3.6mm 'Bricolage Grotesque';color:var(--vino)}
-.t-precio small{font:700 2.2mm Inter;color:var(--gris);margin-left:1mm}
-.t-qrw{position:absolute;right:6.5mm;top:50%;transform:translateY(-50%);width:20mm;text-align:center}
-.t-qrw .qr{width:20mm;height:20mm}
-.t-qrw span{display:block;font:800 1.9mm Inter;letter-spacing:.2mm;text-transform:uppercase;color:var(--vino);margin-top:1mm}
-.t-marca{position:absolute;right:6.5mm;bottom:5.5mm;font-size:3.6mm}
+.marca{position:absolute;left:7mm;top:7mm;font:800 5.4mm 'Bricolage Grotesque';letter-spacing:-.03em}.marca i{font-style:normal;color:var(--vino)}
+.inv{position:absolute;right:7mm;top:7.6mm;font:800 2mm Inter;letter-spacing:.3mm;text-transform:uppercase;background:var(--vino);color:#fff;padding:1mm 1.8mm;border-radius:.8mm}
+.foto{position:absolute;left:0;right:0;top:0;height:27mm;background:url(img/mano-carta.jpg) center 45%/cover}
+.foto::after{content:"";position:absolute;inset:auto 0 0 0;height:12mm;background:linear-gradient(180deg,transparent,var(--crema))}
+.marca.s{background:var(--papel);padding:.8mm 1.8mm;border-radius:1mm;top:6mm}
+.a-tit{position:absolute;left:7mm;right:7mm;top:22mm;font-size:5.4mm}
+.a-sub{position:absolute;left:7mm;right:7mm;top:35mm;font:600 2.6mm/1.35 Inter;color:var(--gris)}
+.a-sub b{color:var(--tinta)}
+.a-pie{position:absolute;left:7mm;right:7mm;bottom:6.5mm;display:flex;justify-content:space-between;align-items:flex-end;font:700 2.6mm/1.45 Inter}
+.a-pie small{display:block;font:500 2.4mm Inter;color:var(--gris)}
+.wa{color:#1F6B4A}
+/* cara B */
+.b-tit{position:absolute;left:7mm;right:7mm;top:15.5mm;font-size:4.6mm}
+.b-qrs{position:absolute;left:7mm;right:7mm;top:26mm;display:flex;gap:3mm}
+.b-qr{flex:1;display:flex;gap:2mm;align-items:center;background:var(--papel);border-radius:1.6mm;padding:1.8mm;box-shadow:0 .4mm 1.4mm rgba(30,25,32,.12)}
+.b-qr .qr{flex:0 0 16mm;height:16mm;background:#fff}
+.b-qr .qr svg{display:block;width:100%;height:100%}
+.b-qr b{display:block;font:800 2.9mm/1.05 'Bricolage Grotesque';color:var(--vino)}
+.b-qr span{display:block;font:600 2.3mm/1.25 Inter;color:var(--gris);margin-top:.6mm}
+.b-tres{position:absolute;left:7mm;right:7mm;bottom:6mm;display:flex;justify-content:space-between;font:700 2.4mm Inter;color:var(--tinta)}
+.b-tres span b{color:var(--vino)}
 </style></head><body>
 
+<!-- CARA A · Quién somos y contacto -->
 <section class="cara">
- <div class="f-foto"></div>
- <div class="f-marca marca">DKitchen<i>.</i></div>
- <h1 class="k f-tit">Tu carta, en el móvil <span class="vino">de tu cliente.</span></h1>
- <div class="f-nombre" id="nombre">DKitchen Asesor</div>
- <div class="f-cargo">dkitchen@dkitchencorporate.es</div>
- <div class="f-contacto"><span id="tel">WhatsApp 622 652 659</span><br>dkitchencorporate.es · @dkitchen_es</div>
- <div class="f-sello"><b>1€</b><span>+ IVA</span></div>
- <div class="qr f-qr" data-u="https://dkitchencorporate.es/qr?utm_source=tarjeta&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara1-qr"></div>
+ <div class="foto"></div>
+ <div class="marca s">DKitchen<i>.</i></div>
+ <span class="inv">Invitación de lanzamiento</span>
+ <h1 class="k a-tit">Tu restaurante, <span class="vino">con marca propia.</span></h1>
+ <p class="a-sub">Carta digital QR desde <b>1 € + IVA el primer mes</b>, tu propia app de pedidos y eventos que llenan tus días flojos.</p>
+ <div class="a-pie">
+  <div>Tu asesor DKitchen<small>dkitchen@dkitchencorporate.es</small></div>
+  <div style="text-align:right"><span class="wa">WhatsApp 622 652 659</span><small>dkitchencorporate.es</small></div>
+ </div>
 </section>
 
+<!-- CARA B · Útil: pruébala en tu mesa -->
 <section class="cara">
- <div class="t-tag">DKitchen Signature</div>
- <h2 class="k t-tit">Tu propia app. <span class="vino">Cero comisiones.</span></h2>
- <p class="t-txt"><b>Tus clientes piden y pagan en tu app</b>, con tu marca. La comanda llega a cocina y los datos son tuyos.</p>
- <div class="t-precio">Sin comisión por pedido<small></small></div>
- <div class="t-qrw"><div class="qr" data-u="https://dkitchencorporate.es/signature?utm_source=tarjeta&utm_medium=print&utm_campaign=baza_oct26&utm_content=cara2-signature"></div><span>Calcula lo que pierdes</span></div>
+ <div class="marca">DKitchen<i>.</i></div>
+ <span class="inv">Guárdala junto a la caja</span>
+ <h2 class="k b-tit">Pruébala ahora, <span class="vino">desde tu mesa.</span></h2>
+ <div class="b-qrs">
+  <div class="b-qr"><div class="qr" data-u="https://dkitchencorporate.es/q/t-carta"></div><div><b>Mira las demos</b><span>Cartas reales, como las verá tu cliente.</span></div></div>
+  <div class="b-qr"><div class="qr" data-u="https://dkitchencorporate.es/q/t-contacto"></div><div><b>Habla con tu asesor</b><span>Cuéntanos tu caso y te escribimos.</span></div></div>
+ </div>
+ <div class="b-tres"><span><b>Carta QR</b> · 1 €</span><span><b>App propia</b> · fundador</span><span><b>Eventos</b> · 0 % comisión</span></div>
 </section>
 
 <script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#1E1920"')})</script>

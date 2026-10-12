@@ -10,7 +10,8 @@
 :root{--tinta:#0D090F;--vino:#5C0820;--oro:#F2C14E;--crema:#FFFAF2;--gris:#3B3440;--verde:#128C4F}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
-.cara{position:relative;width:89mm;height:44mm;overflow:hidden;background:var(--crema);break-after:page}
+.cara{position:relative;width:89mm;height:44mm;overflow:hidden;background:var(--crema);break-after:page;outline:1.5mm solid var(--crema)}
+.cara.b{outline-color:var(--tinta)}
 .marca{font:800 6.4mm/1 'Bricolage Grotesque';letter-spacing:-.035em}.marca i{font-style:normal;color:var(--vino)}
 .filo{position:absolute;left:0;top:0;bottom:0;width:7.2mm;background:var(--vino)}
 .filo::after{content:"";position:absolute;right:0;top:0;bottom:0;width:.8mm;background:var(--oro)}
@@ -60,7 +61,7 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
   <div class="b-qr"><div class="qr" data-u="https://dkitchencorporate.es/q/t-carta"></div><div><b>Ver demos</b><span>Cartas reales, como las ve tu cliente.</span></div></div>
   <div class="b-qr"><div class="qr" data-u="https://dkitchencorporate.es/q/t-contacto"></div><div><b>Hablar con tu asesor</b><span>Cuéntanos tu caso y te escribimos.</span></div></div>
  </div>
- <div class="b-pie"><span><b>Carta QR</b> desde 1 € + IVA el 1.er mes</span><span>622 652 659</span></div>
+ <div class="b-pie"><span><b>Carta QR</b> desde 1 € + IVA el 1.er mes</span><span><svg viewBox="0 0 24 24" style="width:2.7mm;height:2.7mm;vertical-align:-.55mm;margin-right:1mm"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>WhatsApp 622 652 659</span></div>
 </section>
 
 <script>document.querySelectorAll('.qr').forEach(function(e){var q=qrcode(0,'M');q.addData(e.dataset.u);q.make();e.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true}).replace(/fill="#000000"/g,'fill="#0D090F"')})</script>

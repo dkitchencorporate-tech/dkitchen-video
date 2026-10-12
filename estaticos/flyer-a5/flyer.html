@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="pdf">
-<meta name="capturar" content="img/pwa-sevenfood.png 390x844 https://sevenfood.dkitchencorporate.es/">
-<meta name="capturar" content="img/pwa-wingboss.png 390x844 https://wingboss.dkitchencorporate.es/">
-<meta name="capturar" content="img/pwa-bokadipan.png 390x844 https://bokadipan.dkitchencorporate.es/">
-<title>Flyer A5 v5 DKitchen · Invitación de lanzamiento</title>
+<title>Flyer A5 v6 DKitchen · Invitación de lanzamiento</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600;700;800&display=block" rel="stylesheet">
 <style>
@@ -65,6 +62,26 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
 .q2{top:151mm}
 .cierre{top:184mm;font:700 3.1mm/1.35 Inter}
 .cierre b{color:var(--vino)}
+
+/* v6 cara 2: sin móviles (las demos están tras el QR); gancho con cifras */
+.h-tit{top:22mm;font-size:10.2mm}
+.calc{top:50mm;background:var(--tinta);color:#fff;border-radius:3mm;padding:4mm 4.4mm}
+.calc .et{font:800 2.9mm Inter;letter-spacing:.4mm;text-transform:uppercase;color:var(--oro)}
+.calc .fila{display:flex;align-items:baseline;justify-content:space-between;gap:3mm;margin-top:2mm;font:600 3.2mm/1.3 Inter;color:rgba(255,255,255,.8)}
+.calc .fila b{font:800 6.4mm/1 'Bricolage Grotesque';color:#fff;letter-spacing:-.03em;white-space:nowrap}
+.calc .fila.o b{color:var(--oro)}
+.calc small{display:block;margin-top:2mm;font:500 2.85mm Inter;color:rgba(255,255,255,.6)}
+.cuatro{top:91mm;display:grid;grid-template-columns:1fr 1fr;gap:2.4mm}
+.cuatro div{background:var(--papel);border-radius:2.4mm;padding:2.6mm 2.8mm;border-left:.9mm solid var(--vino);font:600 2.95mm/1.3 Inter;color:var(--gris)}
+.cuatro b{display:block;font:800 3.4mm/1.15 Inter;color:var(--tinta);margin-bottom:.6mm}
+.fund6{top:122mm;display:flex;align-items:center;gap:3.4mm;background:var(--vino);color:#fff;border-radius:2.6mm;padding:3mm 3.6mm}
+.fund6 .p{font:800 8.4mm/1 'Bricolage Grotesque';letter-spacing:-.04em;white-space:nowrap}
+.fund6 .p s{font:700 3.4mm Inter;color:rgba(255,255,255,.6);letter-spacing:0;margin-left:1mm}
+.fund6 span{font:600 2.95mm/1.35 Inter;color:rgba(255,255,255,.9)}
+.fund6 span b{color:var(--oro)}
+.q6{top:146mm}
+.cierre6{top:180mm;font:700 3.1mm/1.35 Inter}
+.cierre6 b{color:var(--vino)}
 </style></head><body>
 
 <!-- CARA 1 · CARTA QR (puerta de entrada) + franja Experience -->
@@ -82,32 +99,37 @@ body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
  </div>
  <div class="ab func"><b>Te lo dejamos funcionando.</b><span>Cargamos tu carta, la conectamos con lo que ya tienes y formamos a tu equipo.</span></div>
  <div class="ab qrs q1">
-  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/demos/carta?utm_source=flyer&utm_medium=print&utm_campaign=baza_oct26&utm_content=v4-carta"></div><div><b>Mira cómo queda</b><span>Cartas de autor en vivo. Pruébalas como un cliente.</span></div></div>
-  <div class="qrbox"><div class="qr" data-u="https://wa.me/34622652659?text=Hola%2C%20vengo%20del%20flyer%20y%20quiero%20una%20demo%20en%20vivo%20con%20la%20carta%20de%20mi%20local."></div><div><b>Te hacemos una demo</b><span>Escríbenos por WhatsApp y la preparamos con tu carta.</span></div></div>
+  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/q/f-carta"></div><div><b>Mira cómo queda</b><span>Cartas de autor en vivo. Pruébalas como un cliente.</span></div></div>
+  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/q/f-carta-wa"></div><div><b>Te hacemos una demo</b><span>Cuéntanos tu caso y te la preparamos con tu carta.</span></div></div>
  </div>
  <p class="ab precio"><b>Plan Local: 1 € + IVA el primer mes</b>, después 29 € + IVA/mes. Sin permanencia.</p>
  <div class="franja"><b>DKitchen Experience.</b> ¿Tienes un día flojo? Lo convertimos en un evento con entradas: concepto, web y anuncios. La taquilla, 100 % tuya. Pregúntanos.</div>
  <div class="pie"><b>DKitchen Corporate</b> · WhatsApp 622 652 659 · dkitchencorporate.es · @dkitchen_es<small>Precios sin IVA (21 %). Condiciones en dkitchencorporate.es/terms</small></div>
 </section>
 
-<!-- CARA 2 · SIGNATURE (3 apps arriba) -->
+<!-- CARA 2 · SIGNATURE (v6: gancho con cifras; las demos están tras el QR) -->
 <section class="cara">
- <div class="banda"></div>
  <div class="marca">DKitchen<i>.</i></div>
  <span class="inv">DKitchen Signature</span>
- <div class="moviles">
-  <div class="tel l"><div class="m"><div style="background-image:url(img/pwa-sevenfood.png)"></div></div><p>Comida rápida</p></div>
-  <div class="tel"><div class="m"><div style="background-image:url(img/pwa-wingboss.png)"></div></div><p>Alitas y combos</p></div>
-  <div class="tel r"><div class="m"><div style="background-image:url(img/pwa-bokadipan.png)"></div></div><p>Bocadillería</p></div>
+ <h2 class="ab k h-tit">Cada pedido por plataforma <span class="vino">se lleva un trozo de tu margen.</span></h2>
+ <div class="ab calc">
+  <p class="et">Haz la cuenta con un local normal</p>
+  <p class="fila">600 pedidos al mes · ticket de 25 € · 25 % de comisión <b>3.750 €/mes</b></p>
+  <p class="fila o">Tu propia app con DKitchen Signature, como fundador <b>69 €/mes</b></p>
+  <small>Ejemplo orientativo. Calcula el tuyo con tus cifras al escanear el QR.</small>
  </div>
- <h2 class="ab k tit2">Tu propia app de pedidos, <span class="vino">con tu marca.</span></h2>
- <p class="ab sub2">Tus clientes piden y pagan en tu app. <b>Sin comisión por pedido</b> y con los datos de tus clientes en tu mano.</p>
- <div class="ab fund"><span class="p">500 €<s>700 €</s></span><span><b>Precio de fundador hasta el 10/01 o hasta llenar 100 plazas.</b> Entrada en pago único y 69 €/mes el primer año, con 2 meses incluidos.</span></div>
- <div class="ab qrs q2">
-  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/signature?utm_source=flyer&utm_medium=print&utm_campaign=baza_oct26&utm_content=v4-signature"></div><div><b>Descubre Signature</b><span>Cómo funciona, apps en modo demo y la oferta de fundador.</span></div></div>
-  <div class="qrbox"><div class="qr" data-u="https://wa.me/34622652659?text=Hola%2C%20vengo%20del%20flyer%20y%20quiero%20saber%20c%C3%B3mo%20quedar%C3%ADa%20la%20app%20de%20mi%20local%20(Signature)."></div><div><b>Te la enseñamos</b><span>Escríbenos por WhatsApp y vamos a tu local.</span></div></div>
+ <div class="ab cuatro">
+  <div><b>0 % de comisión</b>Tus clientes piden y pagan en tu app, con tu marca.</div>
+  <div><b>Los clientes son tuyos</b>Sabes quién compra y le avisas en su móvil.</div>
+  <div><b>Cocina en orden</b>Cada comanda llega a pantalla. En un pico, pausas.</div>
+  <div><b>Te hacen volver</b>Puntos, niveles y premios por repetir.</div>
  </div>
- <p class="ab cierre"><b>Te la entregamos con tu marca</b>, conectada a tu cocina y lista para vender.</p>
+ <div class="ab fund6"><span class="p">500 €<s>700 €</s></span><span><b>Precio de fundador hasta el 10/01 o hasta llenar 100 plazas.</b> Entrada en pago único y 69 €/mes el primer año, con 2 meses incluidos.</span></div>
+ <div class="ab qrs q6">
+  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/q/f-sig"></div><div><b>Mira apps reales</b><span>Pide como un cliente en 3 apps hechas con DKitchen y calcula tu ahorro.</span></div></div>
+  <div class="qrbox"><div class="qr" data-u="https://dkitchencorporate.es/q/f-sig-wa"></div><div><b>Te la enseñamos</b><span>Cuéntanos tu caso y un asesor te escribe por WhatsApp.</span></div></div>
+ </div>
+ <p class="ab cierre6"><b>Te la entregamos con tu marca</b>, conectada a tu cocina y lista para vender.</p>
  <div class="pie"><b>DKitchen Corporate</b> · WhatsApp 622 652 659 · dkitchencorporate.es · @dkitchen_es<small>Precios sin IVA (21 %). Condiciones en dkitchencorporate.es/terms</small></div>
 </section>
 

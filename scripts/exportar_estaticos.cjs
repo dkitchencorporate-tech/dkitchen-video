@@ -60,13 +60,21 @@ const url = (f, h) => 'file://' + path.join(carpeta, f) + (h ? '#' + h : '');
       await p.waitForTimeout(1000);
       await p.pdf({ path: path.join(salida, `${base}.pdf`), printBackground: true, preferCSSPageSize: true });
       console.log(`[Estáticos] ${base}.pdf`);
-      // vistas de revisión de cada cara
+      // Cada cara en su propio PDF (las imprentas suelen pedirlas por separado) y en PNG de alta resolución (~600 ppp).
       const caras = await p.$$('.cara');
-      await p.setViewportSize({ width: 1200, height: 1700 });
       for (let i = 0; i < caras.length; i++) {
-        await caras[i].screenshot({ path: path.join(salida, `${base}-cara${i + 1}.png`) });
+        await p.pdf({ path: path.join(salida, `${base}-cara${i + 1}.pdf`), printBackground: true, preferCSSPageSize: true, pageRanges: String(i + 1) });
       }
       await p.close();
+      const hd = await (await b.newContext({ deviceScaleFactor: 6.3 })).newPage();
+      await hd.goto(url(f), { waitUntil: 'networkidle', timeout: 90000 });
+      await hd.evaluate(() => document.fonts.ready);
+      await hd.waitForTimeout(800);
+      const carasHd = await hd.$$('.cara');
+      for (let i = 0; i < carasHd.length; i++) {
+        await carasHd[i].screenshot({ path: path.join(salida, `${base}-cara${i + 1}.png`) });
+      }
+      await hd.close();
     }
   }
   await b.close();

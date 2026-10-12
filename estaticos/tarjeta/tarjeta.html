@@ -1,59 +1,58 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="pdf">
-<title>Tarjeta de visita DKitchen · corporativa</title>
+<title>Tarjeta de visita DKitchen · 89×44 corporativa</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;600;700;800&display=block" rel="stylesheet">
 <style>
-/* Corporativa (12/10, karc0): para guardarla y llamar; se entrega con el flyer. Sin foto y sin «invitación».
-   85×55 mm + 3 mm de sangrado = 91×61 mm. Zona segura: 6,5 mm desde el borde del PDF. */
-@page{size:91mm 61mm;margin:0}
-:root{--tinta:#0D090F;--vino:#5C0820;--oro:#F2C14E;--crema:#FFFAF2;--papel:#FFFFFF;--gris:#3B3440}
+/* Formato de la imprenta (12/10): 89 × 44 mm + 3 mm de sangrado = 95 × 50 mm. Zona segura: 6 mm desde el borde del PDF.
+   Todo vectorial (texto y QR en SVG): nítido a cualquier resolución. Corporativa: sin foto y sin «invitación». */
+@page{size:95mm 50mm;margin:0}
+:root{--tinta:#0D090F;--vino:#5C0820;--oro:#F2C14E;--crema:#FFFAF2;--gris:#3B3440;--verde:#128C4F}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{background:#777;font-family:Inter,sans-serif;color:var(--tinta)}
-.cara{position:relative;width:91mm;height:61mm;overflow:hidden;background:var(--crema);break-after:page}
-.marca{font:800 7.4mm 'Bricolage Grotesque';letter-spacing:-.035em;line-height:1}.marca i{font-style:normal;color:var(--vino)}
-/* cara A: identidad y contacto */
-.filo{position:absolute;left:0;top:0;bottom:0;width:4mm;background:var(--vino)}
-.a-marca{position:absolute;left:10mm;top:9mm}
-.a-lema{position:absolute;left:10mm;top:18.5mm;font:600 2.6mm Inter;letter-spacing:.25mm;text-transform:uppercase;color:var(--gris)}
-.a-raya{position:absolute;left:10mm;top:25mm;width:12mm;height:.5mm;background:var(--oro)}
-.a-quien{position:absolute;left:10mm;top:29.5mm;font:800 3.3mm Inter}
-.a-quien small{display:block;font:500 2.5mm Inter;color:var(--gris);margin-top:.6mm}
-.a-datos{position:absolute;left:10mm;right:7mm;bottom:7mm;display:grid;gap:.9mm;font:600 2.6mm Inter}
-.a-datos span{display:flex;align-items:center;gap:1.6mm}
-.a-datos svg{width:2.8mm;height:2.8mm;flex:0 0 auto}
-/* cara B: QR para conservar */
+.cara{position:relative;width:95mm;height:50mm;overflow:hidden;background:var(--crema);break-after:page}
+.marca{font:800 7mm/1 'Bricolage Grotesque';letter-spacing:-.035em}.marca i{font-style:normal;color:var(--vino)}
+.filo{position:absolute;left:0;top:0;bottom:0;width:6.5mm;background:var(--vino)}
+.filo::after{content:"";position:absolute;right:0;top:0;bottom:0;width:.6mm;background:var(--oro)}
+.a-izq{position:absolute;left:11mm;top:7.5mm;width:38mm}
+.a-lema{margin-top:2mm;font:700 1.95mm/1.35 Inter;letter-spacing:.22mm;text-transform:uppercase;color:var(--gris)}
+.a-raya{margin-top:2.6mm;width:10mm;height:.5mm;background:var(--oro)}
+.a-quien{margin-top:2.6mm;font:800 2.9mm Inter}
+.a-quien small{display:block;margin-top:.5mm;font:600 2.2mm/1.3 Inter;color:var(--gris)}
+.a-der{position:absolute;right:6mm;top:7.5mm;bottom:7mm;width:36mm;border-left:.25mm solid rgba(13,9,15,.15);padding-left:3.4mm;display:flex;flex-direction:column;justify-content:center;gap:2.2mm}
+.dato{display:flex;align-items:center;gap:1.6mm;font:700 2.35mm/1.2 Inter;white-space:nowrap}
+.dato small{display:block;font:600 1.85mm Inter;color:var(--gris);letter-spacing:.1mm;text-transform:uppercase}
+.dato svg{width:3.2mm;height:3.2mm;flex:0 0 auto}
 .b{background:var(--tinta);color:#fff}
-.b-marca{position:absolute;left:7mm;top:7mm;color:#fff;font-size:5mm}
-.b-marca i{color:var(--oro)}
-.b-txt{position:absolute;right:7mm;top:7.6mm;font:600 2.4mm Inter;color:rgba(255,255,255,.6);text-align:right}
-.b-qrs{position:absolute;left:7mm;right:7mm;top:17mm;display:flex;gap:3mm}
+.b .marca{position:absolute;left:6mm;top:6.5mm;font-size:5mm;color:#fff}.b .marca i{color:var(--oro)}
+.b-txt{position:absolute;right:6mm;top:6.8mm;font:600 1.9mm/1.3 Inter;color:rgba(255,255,255,.62);text-align:right}
+.b-qrs{position:absolute;left:6mm;right:6mm;top:14mm;display:flex;gap:4mm}
 .b-qr{flex:1;display:flex;gap:2.2mm;align-items:center}
-.b-qr .qr{flex:0 0 18mm;height:18mm;background:#fff;border-radius:1.4mm;padding:1.3mm}
+.b-qr .qr{flex:0 0 19mm;height:19mm;background:#fff;border-radius:1.2mm;padding:1.1mm}
 .b-qr .qr svg{display:block;width:100%;height:100%}
-.b-qr b{display:block;font:800 3mm/1.1 'Bricolage Grotesque';color:var(--oro)}
-.b-qr span{display:block;font:600 2.3mm/1.3 Inter;color:rgba(255,255,255,.75);margin-top:.6mm}
-.b-pie{position:absolute;left:7mm;right:7mm;bottom:6.5mm;border-top:.25mm solid rgba(255,255,255,.18);padding-top:1.8mm;display:flex;justify-content:space-between;font:700 2.4mm Inter;color:rgba(255,255,255,.85)}
-.b-pie b{color:var(--oro);font-weight:800}
+.b-qr b{display:block;font:800 2.8mm/1.1 'Bricolage Grotesque';color:var(--oro)}
+.b-qr span{display:block;margin-top:.6mm;font:600 2mm/1.3 Inter;color:rgba(255,255,255,.78)}
+.b-pie{position:absolute;left:6mm;right:6mm;bottom:5.6mm;border-top:.25mm solid rgba(255,255,255,.18);padding-top:1.4mm;display:flex;justify-content:space-between;font:700 2mm Inter;color:rgba(255,255,255,.88)}
+.b-pie b{color:var(--oro)}
 </style></head><body>
 
-<!-- CARA A · Identidad y contacto -->
 <section class="cara">
  <div class="filo"></div>
- <div class="marca a-marca">DKitchen<i>.</i></div>
- <p class="a-lema">Tecnología y marca para hostelería</p>
- <div class="a-raya"></div>
- <p class="a-quien">Tu asesor DKitchen<small>Carta digital QR · App propia · Eventos</small></p>
- <div class="a-datos">
-  <span><svg viewBox="0 0 24 24"><path fill="#128C4F" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>WhatsApp y teléfono · 622 652 659</span>
-  <span><svg viewBox="0 0 24 24" fill="none" stroke="#6E0C2B" stroke-width="2.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>dkitchen@dkitchencorporate.es</span>
-  <span><svg viewBox="0 0 24 24" fill="none" stroke="#6E0C2B" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>dkitchencorporate.es · @dkitchen_es</span>
+ <div class="a-izq">
+  <div class="marca">DKitchen<i>.</i></div>
+  <p class="a-lema">Tecnología y marca<br>para hostelería</p>
+  <div class="a-raya"></div>
+  <p class="a-quien">Tu asesor DKitchen<small>Carta QR · App propia · Eventos</small></p>
+ </div>
+ <div class="a-der">
+  <div class="dato"><svg viewBox="0 0 24 24"><path fill="#128C4F" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span><small>WhatsApp y teléfono</small>622 652 659</span></div>
+  <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="#5C0820" stroke-width="2.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><small>Correo</small>dkitchen@dkitchencorporate.es</span></div>
+  <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="#5C0820" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span><small>Web · redes</small>dkitchencorporate.es · @dkitchen_es</span></div>
  </div>
 </section>
 
-<!-- CARA B · QR para guardar -->
 <section class="cara b">
- <div class="marca b-marca">DKitchen<i>.</i></div>
+ <div class="marca">DKitchen<i>.</i></div>
  <p class="b-txt">Guárdala: escanea<br>cuando lo necesites</p>
  <div class="b-qrs">
   <div class="b-qr"><div class="qr" data-u="https://dkitchencorporate.es/q/t-carta"></div><div><b>Ver demos</b><span>Cartas reales, como las ve tu cliente.</span></div></div>

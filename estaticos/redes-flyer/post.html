@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="exportar" content="png 1080x1350 paginas=1,2">
+<title>Posts estáticos del flyer v6 (redes, 12/10)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@500;600;700;800&display=block" rel="stylesheet">
+<style>
+/* 2 posts 1080×1350 (feed IG y FB) adaptados de las 2 caras del flyer v6. Sin QR: CTA a WhatsApp y enlace en la bio. */
+:root{--tinta:#1E1920;--vino:#6E0C2B;--oro:#D9B25C;--crema:#F7F1E6;--papel:#FFFDF8;--gris:#544C57}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--crema);font-family:Inter,sans-serif;color:var(--tinta)}
+.p{position:absolute;inset:0;display:none}
+.k{font-family:'Bricolage Grotesque';font-weight:800;letter-spacing:-.04em;line-height:.95}
+.vino{color:var(--vino)}
+.ab{position:absolute;left:72px;right:72px}
+.marca{position:absolute;left:72px;top:64px;background:var(--papel);padding:10px 22px;border-radius:14px;font:800 44px 'Bricolage Grotesque';letter-spacing:-.03em}.marca i{font-style:normal;color:var(--vino)}
+.inv{position:absolute;right:72px;top:74px;font:800 22px Inter;letter-spacing:3px;text-transform:uppercase;background:var(--vino);color:#fff;padding:12px 20px;border-radius:8px}
+.cta{position:absolute;left:72px;right:72px;bottom:64px;display:flex;align-items:center;justify-content:space-between;background:var(--tinta);color:#fff;border-radius:22px;padding:28px 34px}
+.cta b{font:800 34px 'Bricolage Grotesque';letter-spacing:-.02em}
+.cta span{font:700 26px Inter;color:var(--oro)}
+/* post 1 · carta QR */
+.foto{position:absolute;left:0;right:0;top:0;height:560px;background:url(../flyer-a5/img/papel.jpg) center 42%/cover}
+.foto::after{content:"";position:absolute;inset:auto 0 0 0;height:200px;background:linear-gradient(180deg,transparent,var(--crema))}
+.lacre{position:absolute;right:72px;top:390px;width:230px;height:230px;transform:rotate(-8deg);border-radius:50%;background:radial-gradient(circle at 35% 30%,#a01d44 0%,var(--vino) 50%,#4a081d 100%);box-shadow:0 14px 34px rgba(30,25,32,.35);display:grid;place-items:center;text-align:center;color:#fff}
+.lacre>div{width:186px;height:186px;border:3px solid rgba(217,178,92,.8);border-radius:50%;display:grid;place-content:center}
+.lacre .n{font:800 92px/.85 'Bricolage Grotesque';color:var(--oro);letter-spacing:-4px}
+.lacre .t{font:800 22px/1.1 Inter;margin-top:6px}
+.t1{top:560px;right:330px;font-size:86px}
+.s1{top:780px;font:600 32px/1.4 Inter;color:var(--gris)}
+.s1 b{color:var(--tinta)}
+.tres{top:900px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tres div{background:var(--papel);border-radius:18px;padding:24px;border-top:7px solid var(--vino);font:600 24px/1.3 Inter;color:var(--gris)}
+.tres b{display:block;font:800 28px/1.15 Inter;color:var(--tinta);margin-bottom:6px}
+.precio1{top:1080px;font:700 28px/1.35 Inter}
+.precio1 b{color:var(--vino)}
+/* post 2 · Signature */
+.t2{top:180px;font-size:84px}
+.calc{top:390px;background:var(--tinta);color:#fff;border-radius:26px;padding:40px 44px}
+.calc .et{font:800 24px Inter;letter-spacing:3px;text-transform:uppercase;color:var(--oro)}
+.calc .fila{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-top:22px;font:600 28px/1.3 Inter;color:rgba(255,255,255,.82)}
+.calc .fila b{font:800 62px/1 'Bricolage Grotesque';color:#fff;letter-spacing:-2px;white-space:nowrap}
+.calc .fila.o b{color:var(--oro)}
+.calc small{display:block;margin-top:18px;font:500 22px Inter;color:rgba(255,255,255,.6)}
+.cuatro{top:770px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cuatro div{background:var(--papel);border-radius:18px;padding:22px 24px;border-left:7px solid var(--vino);font:600 24px/1.3 Inter;color:var(--gris)}
+.cuatro b{display:block;font:800 28px/1.15 Inter;color:var(--tinta);margin-bottom:4px}
+.fund{top:1060px;display:flex;align-items:center;gap:26px;background:var(--vino);color:#fff;border-radius:22px;padding:22px 30px}
+.fund .p2{font:800 70px/1 'Bricolage Grotesque';letter-spacing:-3px;white-space:nowrap}
+.fund .p2 s{font:700 28px Inter;color:rgba(255,255,255,.6);letter-spacing:0;margin-left:8px}
+.fund span{font:600 24px/1.35 Inter;color:rgba(255,255,255,.92)}
+.fund span b{color:var(--oro)}
+</style></head><body>
+
+<div class="p" id="p1">
+ <div class="foto"></div>
+ <div class="marca">DKitchen<i>.</i></div>
+ <span class="inv">Invitación de lanzamiento</span>
+ <div class="lacre"><div><span class="n">1€</span><span class="t">+ IVA<br>primer mes</span></div></div>
+ <h1 class="ab k t1">Cada precio tachado te <span class="vino">cuesta una mesa.</span></h1>
+ <p class="ab s1">Tu carta digital con QR: <b>cambias un precio en el móvil y ya está en todas las mesas.</b> Y te la dejamos funcionando.</p>
+ <div class="ab tres">
+  <div><b>Carta que vende</b>Fotos, precios claros y alérgenos.</div>
+  <div><b>Llama al camarero</b>Desde la mesa, con un toque.</div>
+  <div><b>Reservas y sala</b>Avisos al momento y app para tu equipo.</div>
+ </div>
+ <p class="ab precio1"><b>Plan Local: 1 € + IVA el primer mes</b>, después 29 € + IVA/mes. Sin permanencia.</p>
+ <div class="cta"><b>Pide tu demo en vivo</b><span>WhatsApp 622 652 659 · enlace en la bio</span></div>
+</div>
+
+<div class="p" id="p2">
+ <div class="marca">DKitchen<i>.</i></div>
+ <span class="inv">DKitchen Signature</span>
+ <h1 class="ab k t2">Cada pedido por plataforma <span class="vino">se lleva un trozo de tu margen.</span></h1>
+ <div class="ab calc">
+  <p class="et">Haz la cuenta con un local normal</p>
+  <p class="fila">600 pedidos al mes · ticket de 25 € · 25 % de comisión <b>3.750 €/mes</b></p>
+  <p class="fila o">Tu propia app con DKitchen Signature, como fundador <b>69 €/mes</b></p>
+  <small>Ejemplo orientativo. Calcula el tuyo en dkitchencorporate.es/signature</small>
+ </div>
+ <div class="ab cuatro">
+  <div><b>0 % de comisión</b>Tus clientes piden y pagan en tu app.</div>
+  <div><b>Los clientes son tuyos</b>Sabes quién compra y le avisas.</div>
+  <div><b>Cocina en orden</b>Comandas en pantalla; en un pico, pausas.</div>
+  <div><b>Te hacen volver</b>Puntos, niveles y premios por repetir.</div>
+ </div>
+ <div class="ab fund"><span class="p2">500 €<s>700 €</s></span><span><b>Precio de fundador hasta el 10/01 o 100 plazas.</b> Pago único y 69 €/mes el primer año. Precios + IVA.</span></div>
+ <div class="cta"><b>Mira apps reales en modo demo</b><span>Enlace en la bio</span></div>
+</div>
+
+<script>var n=(location.hash||'#1').slice(1);document.getElementById('p'+(+n)).style.display='block';</script>
+</body></html>

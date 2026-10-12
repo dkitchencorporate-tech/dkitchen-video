@@ -18,6 +18,19 @@ const url = (f, h) => 'file://' + path.join(carpeta, f) + (h ? '#' + h : '');
   for (const f of fs.readdirSync(carpeta).filter((x) => x.endsWith('.html'))) {
     const base = f.replace(/\.html$/, '');
     const html = fs.readFileSync(path.join(carpeta, f), 'utf8');
+    // Capturas de webs reales antes de exportar (12/10, flyer v3): <meta name="capturar" content="img/x.png 390x844 https://…">
+    for (const [, cap] of html.matchAll(/<meta name="capturar" content="([^"]+)"/g)) {
+      const [destino, dimCap, web] = cap.split(/\s+/);
+      const [cw, ch] = dimCap.split('x').map(Number);
+      const pc = await b.newPage({ viewport: { width: cw, height: ch }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+      await pc.goto(web, { waitUntil: 'networkidle', timeout: 90000 }).catch(() => {});
+      await pc.waitForTimeout(4000);
+      fs.mkdirSync(path.dirname(path.join(carpeta, destino)), { recursive: true });
+      await pc.screenshot({ path: path.join(carpeta, destino) });
+      fs.copyFileSync(path.join(carpeta, destino), path.join(salida, path.basename(destino)));
+      console.log(`[Estáticos] captura ${destino} ← ${web}`);
+      await pc.close();
+    }
     const meta = (html.match(/<meta name="exportar" content="([^"]+)"/) || [])[1];
     if (!meta) { console.log(`[Estáticos] ${f}: sin meta exportar, se omite`); continue; }
     const [tipo, dim] = meta.split(/\s+/);

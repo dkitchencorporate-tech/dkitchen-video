@@ -24,7 +24,13 @@ const url = (f, h) => 'file://' + path.join(carpeta, f) + (h ? '#' + h : '');
       const [cw, ch] = dimCap.split('x').map(Number);
       const pc = await b.newPage({ viewport: { width: cw, height: ch }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
       await pc.goto(web, { waitUntil: 'networkidle', timeout: 90000 }).catch(() => {});
-      await pc.waitForTimeout(4000);
+      await pc.waitForTimeout(2500);
+      // Cierra avisos de cookies para que no salgan en la captura.
+      for (const t of ['Solo esenciales', 'Rechazar', 'Aceptar', 'Entendido']) {
+        const bt = pc.getByRole('button', { name: t }).first();
+        if (await bt.isVisible().catch(() => false)) { await bt.click().catch(() => {}); break; }
+      }
+      await pc.waitForTimeout(1500);
       fs.mkdirSync(path.dirname(path.join(carpeta, destino)), { recursive: true });
       await pc.screenshot({ path: path.join(carpeta, destino) });
       fs.copyFileSync(path.join(carpeta, destino), path.join(salida, path.basename(destino)));

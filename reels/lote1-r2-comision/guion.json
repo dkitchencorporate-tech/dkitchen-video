@@ -19,13 +19,13 @@
     {
       "id": "t1",
       "inicio": 0.3,
-      "fin_max": 3.0,
+      "fin_max": 3,
       "texto": "¿Sabes cuánto te quedas de cada pedido de veinte euros?"
     },
     {
       "id": "t2",
       "inicio": 3.4,
-      "fin_max": 9.0,
+      "fin_max": 9,
       "texto": "Si vendes trescientos euros al día por plataformas, pagas unos dos mil setecientos al mes de comisión."
     },
     {
@@ -56,7 +56,7 @@
   "planos": [
     {
       "n": 1,
-      "ini": 0.0,
+      "ini": 0,
       "fin": 1.8,
       "material": "assets/f1-impresora.mp4"
     },
@@ -102,26 +102,84 @@
     {
       "n": 8,
       "ini": 12.4,
-      "fin": 14.0,
+      "fin": 14,
       "material": "assets/f5-local-lleno.mp4"
     },
     {
       "n": 9,
-      "ini": 14.0,
+      "ini": 14,
       "fin": 15.6,
       "material": "assets/f6-plato.mp4"
     },
     {
       "n": 10,
       "ini": 15.6,
-      "fin": 18.0,
+      "fin": 18,
       "material": "assets/f6-plato.mp4"
     },
     {
       "n": 11,
-      "ini": 18.0,
-      "fin": 20.0,
+      "ini": 18,
+      "fin": 20,
       "material": "assets/f1-impresora.mp4"
+    }
+  ],
+  "nota_audio": "Voz y efectos: API de ElevenLabs (orden de karc0 31/10, flujo «Voz y efectos (ElevenLabs)»). Música: karc0 a mano.",
+  "sfx_api": [
+    {
+      "id": "impresora",
+      "segundos": 1.8,
+      "prompt": "Thermal receipt printer printing a long ticket in a quiet restaurant kitchen, close mechanical buzz and paper feed, no music"
+    },
+    {
+      "id": "golpe-sordo",
+      "segundos": 1,
+      "prompt": "Deep soft cinematic sub bass thud impact, short tail, no music"
+    },
+    {
+      "id": "sello",
+      "segundos": 0.8,
+      "prompt": "Heavy rubber stamp slamming on paper on a wooden counter, punchy, no music"
+    },
+    {
+      "id": "hojas",
+      "segundos": 1.6,
+      "prompt": "Fast flurry of paper calendar pages flipping and flying past, airy whoosh, no music"
+    },
+    {
+      "id": "riser",
+      "segundos": 2.2,
+      "prompt": "Tense reversed cymbal riser building suspense, ending abruptly, no music"
+    },
+    {
+      "id": "luces-fuera",
+      "segundos": 1.2,
+      "prompt": "Big electrical switch turning off the lights in a bar, deep clunk with fading hum, no music"
+    },
+    {
+      "id": "cortina-luz",
+      "segundos": 1.4,
+      "prompt": "Warm shimmering cinematic swoosh sweep, magical light reveal transition, no music"
+    },
+    {
+      "id": "notificacion",
+      "segundos": 0.6,
+      "prompt": "Soft premium glassy phone notification ping, elegant, single, no music"
+    },
+    {
+      "id": "interruptor",
+      "segundos": 0.5,
+      "prompt": "Crisp satisfying UI toggle switch click, single, no music"
+    },
+    {
+      "id": "tecleo",
+      "segundos": 1.4,
+      "prompt": "Light fast typing on a phone touchscreen keyboard, five soft taps, no music"
+    },
+    {
+      "id": "envio",
+      "segundos": 0.7,
+      "prompt": "Short smooth message sent swoosh sound, modern app, no music"
     }
   ]
 }

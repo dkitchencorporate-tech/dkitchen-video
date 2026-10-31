@@ -1,0 +1,45 @@
+# Voz y efectos de sonido con la API de ElevenLabs (orden de karc0, 31/10/2026). Solo en la nube.
+name: Voz y efectos (ElevenLabs)
+on:
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: Carpeta del reel (reels/<pieza>) con guion.json
+        required: true
+jobs:
+  voz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Validar entrada
+        env:
+          INPUT_CARPETA: ${{ inputs.carpeta }}
+        run: |
+          [[ "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]] || { echo "Carpeta no valida"; exit 1; }
+          [ -f "$INPUT_CARPETA/guion.json" ] || { echo "Falta guion.json"; exit 1; }
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Generar voz y efectos
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          CARPETA: ${{ inputs.carpeta }}
+        run: node scripts/hf/voz_api.cjs "$CARPETA"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voz-efectos
+          path: |
+            ${{ inputs.carpeta }}/audio/originales/voz-*.mp3
+            ${{ inputs.carpeta }}/assets/sfx/*.mp3
+            ${{ inputs.carpeta }}/audio/informe_voz_api.txt
+      - name: Guardar en la rama
+        env:
+          CARPETA: ${{ inputs.carpeta }}
+        run: |
+          git config user.name "dkitchen-bot"; git config user.email "bot@dkitchencorporate.es"
+          git add "$CARPETA/audio" "$CARPETA/assets/sfx"
+          git commit -m "voz y efectos API: $CARPETA" && git pull --rebase && git push || echo "Sin cambios"

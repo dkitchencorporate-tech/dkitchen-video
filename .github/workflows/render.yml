@@ -77,7 +77,7 @@ jobs:
         run: |
           git config user.name "dkitchen-render[bot]"
           git config user.email "render@dkitchencorporate.es"
-          git add "$TARGET_CARPETA/audio/"*.mp3 "$TARGET_CARPETA/index.html" 2>/dev/null || true
+          git add -f "$TARGET_CARPETA/audio/"*.mp3 "$TARGET_CARPETA/index.html"
           if git diff --cached --quiet; then echo "Nada que guardar"; else
             git commit -m "chore(p6): pistas de audio y carve de $TARGET_CARPETA (run ${{ github.run_id }})"
             git push origin "HEAD:${{ github.ref_name }}"

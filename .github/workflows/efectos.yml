@@ -1,0 +1,60 @@
+# Aplica los efectos de tools/effects (claude-video-effects, MIT) a los clips de un reel. Solo en la nube.
+name: Aplicar efectos
+on:
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: Carpeta del reel (reels/<pieza>) con efectos/plan.json
+        required: true
+      solo_stills:
+        description: 'true = solo fotogramas de control (storyboard), sin vídeo'
+        required: false
+        default: 'false'
+jobs:
+  efectos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Validar entrada
+        env: { INPUT_CARPETA: "${{ inputs.carpeta }}", INPUT_STILLS: "${{ inputs.solo_stills }}" }
+        run: |
+          [[ "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]] || { echo "Carpeta no válida"; exit 1; }
+          [[ "$INPUT_STILLS" =~ ^(true|false)$ ]] || { echo "solo_stills no válido"; exit 1; }
+          [ -f "$INPUT_CARPETA/efectos/plan.json" ] || { echo "Falta $INPUT_CARPETA/efectos/plan.json"; exit 1; }
+      - name: Instalar dependencias
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -r tools/effects/requirements.txt
+      - name: Aplicar efectos
+        env: { CARPETA: "${{ inputs.carpeta }}", SOLO_STILLS: "${{ inputs.solo_stills }}" }
+        run: |
+          python - <<'PY'
+          import json, os, subprocess, sys
+          c = os.environ['CARPETA']; solo = os.environ['SOLO_STILLS'] == 'true'
+          plan = json.load(open(f'{c}/efectos/plan.json', encoding='utf-8'))
+          os.makedirs('stills', exist_ok=True)
+          for i, clip in enumerate(plan['clips']):
+              ent, sal = os.path.join(c, clip['entrada']), os.path.join(c, clip['salida'])
+              for p in (clip['entrada'], clip['salida']):
+                  if '..' in p or p.startswith('/'): sys.exit(f'Ruta no válida: {p}')
+              tmp = f'/tmp/plan_{i}.json'; json.dump({'effects': clip['efectos']}, open(tmp, 'w'))
+              fx = ['python', 'tools/effects/scripts/fx.py', '--plan', tmp, ent]
+              if clip.get('stills'):
+                  subprocess.run(fx + [f'stills/{i:02d}.png', '--still', clip['stills']], check=True)
+              if not solo:
+                  os.makedirs(os.path.dirname(sal), exist_ok=True)
+                  subprocess.run(fx + [sal], check=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with: { name: stills-efectos, path: stills/, if-no-files-found: ignore }
+      - name: Guardar clips procesados en la rama
+        if: inputs.solo_stills == 'false'
+        env: { CARPETA: "${{ inputs.carpeta }}" }
+        run: |
+          git config user.name "dkitchen-bot"; git config user.email "bot@dkitchencorporate.es"
+          git add "$CARPETA" && git commit -m "efectos: $CARPETA" && git push || echo "Sin cambios"

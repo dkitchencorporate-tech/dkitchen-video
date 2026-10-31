@@ -20,6 +20,14 @@ Fuente de verdad para producir reels en este repo. Si otro documento (README de 
 - `reels/plantilla-p6/` es solo el **esqueleto técnico** (audio, carve, QC). Su aspecto no es una referencia de diseño.
 - Textos, precios y funciones: solo los de `05 REFERENCIA/MAPA_PRECIOS_Y_FUNCIONES.md` (en el repo de la web: `src/lib/pricing-config.ts`). Ejemplo: «Desde 1 €» = plan Local → 2 idiomas, pedido desde la mesa; nunca 3 idiomas.
 
+## 1 ter. PUERTA DE CALIDAD INNEGOCIABLE (karc0, 31/10 noche) — no se salta nunca
+- El nivel de edición, diseño y efectos es **el más alto siempre**, con o sin avatar. karc0 no quiere rechazar ediciones una y otra vez: **el director rechaza antes que él** todo lo que no impacte.
+- **Sin avatar hablante por ahora:** primero una base de reels sin avatar; los personajes son una decisión posterior. La voz es **Álvaro** en todos.
+- **Storyboard = styleframes reales:** fotogramas renderizados en la nube con el material real (clips o fotos de Flow, grabaciones), los efectos, el grade y la tipografía finales. **Nunca bocetos de cajas o CSS** (el storyboard v1 del Reel 2 se rechazó por eso).
+- Cada reel combina como mínimo: (1) material real en movimiento con grade de cine; (2) **profundidad por capas**: tipografía o elementos detrás de la persona u objeto (`tools/effects`, segmentación); (3) UI de cristal o producto 3D con **cifras reales animadas**; (4) tipografía editorial con jerarquía (Bricolage 800 + Cormorant itálica); (5) transiciones motivadas (match-cut, whip, push-in); (6) diseño sonoro por golpe sincronizado (whoosh, tick, impacto, riser); (7) cambio de plano cada 1,5–3 s.
+- **Referencias:** `reels/reel-40-hypermotion` (suelo) + el estilo de `tools/effects` (capas detrás del sujeto, cristal, notificaciones, interruptores, push-in lentos).
+- **Autorrevisión del director** antes de enseñar nada: los 7 puntos anteriores + gancho en 1,5 s + legibilidad en móvil + coherencia con precios; cada punto 0–1; **menos de 9/10 no se enseña a karc0**.
+
 ## 2. Marca (Gran Reserva)
 - **Colores** (`marca/tokens.css`): vino `#6E0C2B` (oscuro `#4A081D`), oro `#D9B25C` (brillante `#F0C96F`), negro `#0A080C`/`#050406`, papel `#F7F5F2`. Dolor/pérdida en `#FF5A82`; valor/beneficio en oro.
 - **Tipografía** (`marca/fuentes.css`, local, OFL): Bricolage Grotesque 800 para titulares y cifras · Inter para texto técnico · Cormorant Garamond itálica para la palabra de valor. No se cargan fuentes de internet.

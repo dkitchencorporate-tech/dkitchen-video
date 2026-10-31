@@ -1,0 +1,6 @@
+/* Fuentes de marca DKitchen, servidas en local (OFL, Google Fonts, subconjunto latino: incluye ñ, tildes, ¿¡ y €).
+   Las composiciones importan este archivo; ningún reel carga fuentes desde internet. */
+@font-face { font-family: 'Bricolage Grotesque'; src: url('fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cormorant Garamond'; src: url('fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cormorant Garamond'; src: url('fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }

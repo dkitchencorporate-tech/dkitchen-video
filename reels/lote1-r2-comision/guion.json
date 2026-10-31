@@ -1,0 +1,23 @@
+{
+  "pieza": "lote1-r2-comision",
+  "titulo": "Lo que te cuestan las plataformas",
+  "duracion": 20,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro (provisional hasta que karc0 elija)",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": { "stability": 0.45, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": true, "speed": 1.08 }
+  },
+  "tramos_voz": [
+    { "id": "t1", "inicio": 0.3, "fin_max": 3.0, "texto": "¿Sabes cuánto te quedas de cada pedido de veinte euros?" },
+    { "id": "t2", "inicio": 3.4, "fin_max": 9.0, "texto": "Si vendes trescientos euros al día por plataformas, pagas unos dos mil setecientos al mes de comisión." },
+    { "id": "t3", "inicio": 9.5, "fin_max": 14.9, "texto": "Con tu propia carta y tu app, ese dinero se queda en tu local." },
+    { "id": "t4", "inicio": 15.5, "fin_max": 19.4, "texto": "Escríbenos CARTA y te enseñamos cuánto ahorras." }
+  ],
+  "musica": {
+    "prompt": "Tense minimal electronic pulse turning into a warm confident groove at second 9, deep sub bass, crisp ticks, 100 bpm, premium and modern, no vocals",
+    "fallback": "assets/audio/musica_fondo.mp3"
+  },
+  "qc": { "lufs": -14, "tolerancia_lufs": 1, "true_peak_max": -1, "lra_max": 11, "congelado_max_s": 0.6, "negro_max_s": 0.1 }
+}

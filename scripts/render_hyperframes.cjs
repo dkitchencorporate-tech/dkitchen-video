@@ -123,7 +123,7 @@ try {
 }
 
 // 5. ANÁLISIS DE SONORIDAD Y METADATOS CON FFMPEG
-let loudnessReport = 'EBU R128: -14.0 LUFS integrado';
+let loudnessReport = 'EBU R128: NO MEDIDO';
 try {
   const probeOutput = execSync(`"${ffmpegPath}" -i "${salidaVideo}" -af "ebur128" -f null -`, {
     stdio: ['pipe', 'pipe', 'pipe'],
@@ -162,7 +162,7 @@ Pieza: ${path.basename(carpetaAbs)}
 Motor: HyperFrames CLI v0.8.140 (GSAP 3.14.2 + Chromium Headless Deterministic Capture)
 Arquetipo: 03 Editorial Gastronómico Gran Reserva
 Fecha: ${new Date().toISOString()}
-Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
+Estado: SIN VALIDAR (modo heredado: este informe NO mide zonas seguras, contraste, negros ni congelados; no sirve como aprobación. Usar el modo P6.)
 
 [VÍDEO]
 - Resolución: 1080x1920 (9:16 Vertical)
@@ -171,9 +171,8 @@ Estado: APROBADO TÉCNICAMENTE PARA REVISIÓN DE DIRECCIÓN
 - Tamaño de archivo: ${sizeMB} MB
 - Motor: HyperFrames v0.8.140 con renderizado determinista sub-píxel
 - Composición: HTML5 + CSS3 + GSAP 3.14.2
-- Backgrounds: B-Roll Real de Alta Gastronomía (Rubia Gallega, Atún Balfegó, Bodega Gran Reserva)
-- Safe Zones: 100% CUMPLIDAS (Caja 870x1280 px: Y: 220-1500, X: 70-940)
-- Accesibilidad & Contraste: 60/60 checks WCAG AA superados (0 oclusiones)
+- Zonas seguras: NO MEDIDAS
+- Contraste: NO MEDIDO
 
 [AUDIO]
 - Voz de marca: Álvaro (ElevenLabs ID: bIHbv24MWmeRgasZH58o) acelerado

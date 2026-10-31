@@ -1,8 +1,8 @@
 # FICHA · Lote 1 · Reel 3 «Así funciona en 15 segundos» — 15 s
 Encargo cerrado del director (31/10/2026). Base: `reels/plantilla-p6/` + `P6_GUIA_PRODUCCION.md`.
-**Bloqueo:** pendiente de la decisión de karc0 sobre el recorrido (el pedido desde la mesa es exclusivo de Signature y no puede acabar en «desde 1 €»). Hasta entonces, recorrido provisional solo con funciones de Carta QR.
+**Decisión de karc0 (31/10):** recorrido SOLO con funciones de Carta QR (el pedido desde la mesa es de Signature y no puede acabar en «Desde 1 €»). Un reel de Signature irá en un lote posterior.
 
-## Recorrido provisional (funciones de Carta QR)
+## Recorrido (funciones de Carta QR)
 | # | Archivo | Tiempo | Imagen y movimiento | Texto en pantalla |
 |---|---|---|---|---|
 | 1 | `compositions/escanea.html` | 0–3 | Móvil 3D que se inclina hacia un QR (SVG de la plantilla) con onda táctil | «Escanea» |

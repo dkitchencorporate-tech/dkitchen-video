@@ -49,5 +49,6 @@ jobs:
       - name: Guardar en la rama
         run: |
           git config user.name "dkitchen-bot"; git config user.email "bot@dkitchencorporate.es"
-          git add "$CARPETA/audio" "$CARPETA/assets/sfx"
-          git commit -m "voz y efectos API: $CARPETA" && git pull --rebase && git push || echo "Sin cambios"
+          git add -f "$CARPETA/audio" "$CARPETA/assets/sfx"   # -f: el .gitignore raíz excluye reels/**/*.mp3
+          git commit -m "voz y efectos API: $CARPETA" || { echo "Sin cambios"; exit 0; }
+          git push || { git fetch --depth=20 origin "$GITHUB_REF_NAME" && git rebase "origin/$GITHUB_REF_NAME" && git push; }

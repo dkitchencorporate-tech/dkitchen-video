@@ -18,10 +18,6 @@ on:
         description: Fotogramas por segundo (estándar DKitchen = 30)
         required: false
         default: '30'
-      forzar_audio:
-        description: 'Regenerar voz y música aunque ya existan (gasta créditos de ElevenLabs)'
-        required: false
-        default: 'no'
 
 jobs:
   render:
@@ -71,10 +67,10 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           TARGET_CARPETA: ${{ inputs.carpeta }}
           TARGET_FPS: ${{ inputs.fps }}
-          FORZAR_AUDIO: ${{ inputs.forzar_audio == 'si' && '1' || '0' }}
+          # La API de ElevenLabs está desactivada: karc0 genera voz y música a mano (audio/originales/).
         run: node scripts/hf/producir.cjs "$TARGET_CARPETA" "$TARGET_FPS"
 
-      - name: Guardar audio y carve en la rama (misma voz en los siguientes renders, sin gastar créditos)
+      - name: Guardar audio y carve en la rama (pistas procesadas y carve)
         if: env.MODO == 'p6' && always()
         env:
           TARGET_CARPETA: ${{ inputs.carpeta }}

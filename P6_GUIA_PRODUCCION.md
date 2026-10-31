@@ -8,7 +8,7 @@ Fuente de verdad para producir reels en este repo. Si otro documento (README de 
 4. **QC medido y bloqueante.** El informe `control_calidad.txt` lo escribe `producir.cjs` con valores reales. Prohibido escribir a mano «aprobado», «100 % cumplidas», cifras de WCAG o LUFS. Un reel con el flujo en rojo no se entrega.
 5. **Marca única en `/marca`** (tokens, fuentes locales, sonidos). El flujo la copia en cada reel; no se duplica ni se edita dentro del reel.
 6. **Precios** solo los de la web (`src/lib/pricing-config.ts` del repo de la web): hoy Carta 9 €, Local 29 € (entrada por 1 €), Sala 79 €. **Acción única** del lote 1: «Escríbenos CARTA». Nombres de locales ocultos.
-7. **Imágenes específicas**: no se generan con IA dentro del flujo. El director escribe el prompt, karc0 la genera en Flow y la deja en `reels/<pieza>/assets/`. Sin texto, sin manos ni logotipos inventados.
+7. **Imágenes y audio**: no se generan con IA dentro del flujo. El director escribe el prompt o la instrucción, karc0 genera la imagen en Flow (y la voz y la música en ElevenLabs) y la deja en `reels/<pieza>/assets/`. Sin texto, sin manos ni logotipos inventados.
 
 ## 2. Marca (Gran Reserva)
 - **Colores** (`marca/tokens.css`): vino `#6E0C2B` (oscuro `#4A081D`), oro `#D9B25C` (brillante `#F0C96F`), negro `#0A080C`/`#050406`, papel `#F7F5F2`. Dolor/pérdida en `#FF5A82`; valor/beneficio en oro.
@@ -20,6 +20,8 @@ Fuente de verdad para producir reels en este repo. Si otro documento (README de 
 - 1080 × 1920, 9:16, 30 fps, 15–30 s.
 - Márgenes: **arriba 250 px · abajo 420 px · derecha 140 px · izquierda 60 px** → caja segura x 60–940, y 250–1500.
 - Todo texto, precio, CTA y subtítulo va dentro de un contenedor con `left: var(--safe-left); right: var(--safe-right); top: var(--safe-top); bottom: var(--safe-bottom)`. Fuera de la caja solo puede haber atmósfera, fotos a sangre y partículas.
+- **Margen de cámara:** lo que va dentro de `#camara` crece hasta un 4,5 % por el dolly; deja **40 px libres** dentro de la caja (titulares ≤ 760 px de ancho). Las animaciones de entrada no pueden cruzar el borde (recorridos de 20–30 px cerca de los límites).
+- **Fotograma 0 = miniatura en redes:** la imagen o el titular clave ya está en pantalla en 0 s (el check avisa con `first_frame_empty`).
 - La hoja de contactos dibuja la caja en rojo: el director la revisa fotograma a fotograma.
 
 ## 4. Estructura de un reel (copiar `reels/plantilla-p6/`)
@@ -52,12 +54,12 @@ reels/<pieza>/
 - Componer 2–4 reglas atómicas por escena; los blueprints solo si la escena encaja entera.
 
 ## 7. Audio (hyperframes-audio) — la mezcla la hace HyperFrames
-- **Voz**: ElevenLabs Multilingual v2, voz de `guion.json.voz` (la elige karc0; por defecto Álvaro `bIHbv24MWmeRgasZH58o`, speed 1,08). Una locución por tramo (`<audio id="voz-<tramo>" data-audio-group="voz">`), con la misma `data-start` que `guion.json`. `audio_pistas.cjs` la genera, la ajusta a su ventana (atempo como mucho 1,15; si no cabe, **falla**: hay que acortar el texto) y escribe la `data-duration` real.
+- **Origen del audio (karc0, 31/10):** la voz y la música las genera **karc0 a mano** en ElevenLabs con las instrucciones de la FICHA de cada reel y las deja en `reels/<pieza>/audio/originales/` (`voz-<tramo>.mp3`, `musica.mp3`). El flujo **no llama a la API** (solo con `USAR_API_ELEVENLABS=1`, que no se activa sin orden del director).
+- **Voz**: Multilingual v2, la voz elegida por karc0. Un `<audio id="voz-<tramo>" data-audio-group="voz">` por tramo, con la misma `data-start` que `guion.json`. `audio_pistas.cjs` recorta el silencio inicial, la ajusta a su ventana (acelera ×1,15 como mucho; si no cabe, **falla** y se pide a karc0 que la regenere más rápida) y escribe la `data-duration` real.
 - **Bus de voz** `<hf-audio-group id="voz">` con la cadena de la plantilla (equivale a `voice-clean`: highpass 80 → menos barro 250 Hz → compresor 3:1 → claridad 3 kHz → limitador −1).
-- **Música**: ElevenLabs Music instrumental (licencia del plan) en `<audio id="musica" data-audio-group="musica">`, con fundido de entrada y salida en `data-automation`. **Voiceover carve obligatorio** contra el grupo `voz` (fuerza 0,8): lo escribe `carve.mjs` en Actions. Nunca carve sobre la voz; nunca música ni efectos dentro del grupo `voz`.
+- **Música**: ElevenLabs Music instrumental (licencia del plan; la genera karc0, al menos 1 s más larga que el reel) en `<audio id="musica" data-audio-group="musica">`, con fundido de entrada y salida en `data-automation`. **Voiceover carve obligatorio** contra el grupo `voz` (fuerza 0,8): lo escribe `carve.mjs` en Actions. Nunca carve sobre la voz; nunca música ni efectos dentro del grupo `voz`.
 - **Efectos**: grupo `sfx`, uno en cada corte, volumen 0,6–0,8.
 - **Máster**: `producir.cjs` normaliza a **−14 LUFS ±1, pico real ≤ −1 dBTP, LRA ≤ 11** (loudnorm en dos pasadas) y lo mide después.
-- La voz y la música quedan guardadas en la rama tras el primer render: los siguientes renders reutilizan la misma voz y no gastan créditos (`forzar_audio = si` para regenerar).
 
 ## 8. Cómo se renderiza (lo lanza Antigravity o el director, nunca en local)
 GitHub → Actions → **Renderizar reel** → rama del encargo → `carpeta = reels/<pieza>` → Run.

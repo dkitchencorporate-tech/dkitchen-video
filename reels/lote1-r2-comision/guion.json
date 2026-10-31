@@ -18,14 +18,14 @@
   "tramos_voz": [
     {
       "id": "t1",
-      "inicio": 0.3,
-      "fin_max": 3,
+      "inicio": 0.2,
+      "fin_max": 3.1,
       "texto": "¿Sabes cuánto te quedas de cada pedido de veinte euros?"
     },
     {
       "id": "t2",
-      "inicio": 3.4,
-      "fin_max": 9,
+      "inicio": 3.2,
+      "fin_max": 9.1,
       "texto": "Si vendes trescientos euros al día por plataformas, pagas unos dos mil setecientos al mes de comisión."
     },
     {

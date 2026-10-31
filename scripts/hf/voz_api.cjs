@@ -23,7 +23,10 @@ const informe = []; let fallos = 0;
       };
       const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${g.voz.voice_id}?output_format=mp3_44100_128`, { method: 'POST', headers: Object.assign({ Accept: 'audio/mpeg' }, H), body: JSON.stringify(body) });
       if (!r.ok) { informe.push(`voz ${t.id}: ERROR ${r.status} ${(await r.text()).slice(0, 160)}`); break; }
-      fs.writeFileSync(f, Buffer.from(await r.arrayBuffer()));
+      const crudo = f.replace(/\.mp3$/, '.crudo.mp3'); fs.writeFileSync(crudo, Buffer.from(await r.arrayBuffer()));
+      // recorta el silencio del principio y del final (ElevenLabs deja ~0,2-0,4 s) para medir la voz real
+      execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', crudo, '-af', 'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.04,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.08,areverse', '-c:a', 'libmp3lame', '-b:a', '192k', f]);
+      fs.unlinkSync(crudo);
       const d = dur(f);
       informe.push(`voz ${t.id}: ${d.toFixed(2)} s (hueco ${hueco.toFixed(2)} s, speed ${speed}) ${d <= hueco ? 'CABE' : 'NO CABE'}`);
       if (d <= hueco) { ok = true; break; }

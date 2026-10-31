@@ -1,0 +1,32 @@
+{
+  "clips": [
+    {
+      "entrada": "assets/f2-dueno-ticket.mp4",
+      "salida": "assets/fx/f2.mp4",
+      "efectos": [
+        {
+          "fx": "backdrop-word",
+          "start": 0.0,
+          "end": 1.6,
+          "text": "−30 %",
+          "color": "#FF5A82",
+          "font": "bold"
+        }
+      ]
+    },
+    {
+      "entrada": "assets/f4-dueno-solo.mp4",
+      "salida": "assets/fx/f4.mp4",
+      "efectos": [
+        {
+          "fx": "spotlight",
+          "start": 0.0,
+          "end": 2.4,
+          "text": "2.700 €",
+          "color": "#D9B25C",
+          "font": "bold"
+        }
+      ]
+    }
+  ]
+}

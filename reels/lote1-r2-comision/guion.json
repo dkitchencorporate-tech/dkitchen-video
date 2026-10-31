@@ -1,0 +1,185 @@
+{
+  "pieza": "lote1-r2-comision",
+  "titulo": "El ticket (v2) — Lo que te cuestan las plataformas",
+  "duracion": 20,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro (elegida por karc0 el 31/10)",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.35,
+      "use_speaker_boost": true,
+      "speed": 1.08
+    }
+  },
+  "tramos_voz": [
+    {
+      "id": "t1",
+      "inicio": 0.2,
+      "fin_max": 3.1,
+      "texto": "¿Sabes cuánto te quedas de cada pedido de veinte euros?"
+    },
+    {
+      "id": "t2",
+      "inicio": 3.2,
+      "fin_max": 9.1,
+      "texto": "Si vendes trescientos euros al día por plataformas, pagas unos dos mil setecientos al mes de comisión."
+    },
+    {
+      "id": "t3",
+      "inicio": 9.5,
+      "fin_max": 14.9,
+      "texto": "Con tu propia carta y tu app, ese dinero se queda en tu local."
+    },
+    {
+      "id": "t4",
+      "inicio": 15.6,
+      "fin_max": 19.4,
+      "texto": "Escríbenos CARTA y te enseñamos cuánto ahorras."
+    }
+  ],
+  "musica": {
+    "prompt": "Tense dark minimal electronic pulse with ticking clock and deep sub bass, building tension until a short silence at 9.0 seconds, then a warm confident premium groove drop at 9.2 seconds, 100 bpm, cinematic, instrumental only, no vocals, clean ending at 20 seconds",
+    "fallback": "assets/audio/musica_fondo.mp3"
+  },
+  "qc": {
+    "lufs": -14,
+    "tolerancia_lufs": 1,
+    "true_peak_max": -1,
+    "lra_max": 11,
+    "congelado_max_s": 0.6,
+    "negro_max_s": 0.1
+  },
+  "planos": [
+    {
+      "n": 1,
+      "ini": 0,
+      "fin": 1.8,
+      "material": "assets/f1-impresora.mp4"
+    },
+    {
+      "n": 2,
+      "ini": 1.8,
+      "fin": 3.4,
+      "material": "assets/fx/f2.mp4",
+      "efecto": "backdrop-word −30 %"
+    },
+    {
+      "n": 3,
+      "ini": 3.4,
+      "fin": 5.2,
+      "material": "assets/f3-cocina.mp4"
+    },
+    {
+      "n": 4,
+      "ini": 5.2,
+      "fin": 6.8,
+      "material": "assets/f3-cocina.mp4"
+    },
+    {
+      "n": 5,
+      "ini": 6.8,
+      "fin": 9.2,
+      "material": "assets/fx/f4.mp4",
+      "efecto": "spotlight 2.700 €"
+    },
+    {
+      "n": 6,
+      "ini": 9.2,
+      "fin": 10.6,
+      "material": "assets/f4-dueno-solo.mp4 → assets/f5-local-lleno.mp4",
+      "efecto": "swipe moody→warm"
+    },
+    {
+      "n": 7,
+      "ini": 10.6,
+      "fin": 12.4,
+      "material": "assets/g1-signature.mp4 + assets/f5-local-lleno.mp4"
+    },
+    {
+      "n": 8,
+      "ini": 12.4,
+      "fin": 14,
+      "material": "assets/f5-local-lleno.mp4"
+    },
+    {
+      "n": 9,
+      "ini": 14,
+      "fin": 15.6,
+      "material": "assets/f6-plato.mp4"
+    },
+    {
+      "n": 10,
+      "ini": 15.6,
+      "fin": 18,
+      "material": "assets/f6-plato.mp4"
+    },
+    {
+      "n": 11,
+      "ini": 18,
+      "fin": 20,
+      "material": "assets/f1-impresora.mp4"
+    }
+  ],
+  "nota_audio": "Voz y efectos: API de ElevenLabs (orden de karc0 31/10, flujo «Voz y efectos (ElevenLabs)»). Música: karc0 a mano.",
+  "sfx_api": [
+    {
+      "id": "impresora",
+      "segundos": 1.8,
+      "prompt": "Thermal receipt printer printing a long ticket in a quiet restaurant kitchen, close mechanical buzz and paper feed, no music"
+    },
+    {
+      "id": "golpe-sordo",
+      "segundos": 1,
+      "prompt": "Deep soft cinematic sub bass thud impact, short tail, no music"
+    },
+    {
+      "id": "sello",
+      "segundos": 0.8,
+      "prompt": "Heavy rubber stamp slamming on paper on a wooden counter, punchy, no music"
+    },
+    {
+      "id": "hojas",
+      "segundos": 1.6,
+      "prompt": "Fast flurry of paper calendar pages flipping and flying past, airy whoosh, no music"
+    },
+    {
+      "id": "riser",
+      "segundos": 2.2,
+      "prompt": "Tense reversed cymbal riser building suspense, ending abruptly, no music"
+    },
+    {
+      "id": "luces-fuera",
+      "segundos": 1.2,
+      "prompt": "Big electrical switch turning off the lights in a bar, deep clunk with fading hum, no music"
+    },
+    {
+      "id": "cortina-luz",
+      "segundos": 1.4,
+      "prompt": "Warm shimmering cinematic swoosh sweep, magical light reveal transition, no music"
+    },
+    {
+      "id": "notificacion",
+      "segundos": 0.6,
+      "prompt": "Soft premium glassy phone notification ping, elegant, single, no music"
+    },
+    {
+      "id": "interruptor",
+      "segundos": 0.5,
+      "prompt": "Crisp satisfying UI toggle switch click, single, no music"
+    },
+    {
+      "id": "tecleo",
+      "segundos": 1.4,
+      "prompt": "Light fast typing on a phone touchscreen keyboard, five soft taps, no music"
+    },
+    {
+      "id": "envio",
+      "segundos": 0.7,
+      "prompt": "Short smooth message sent swoosh sound, modern app, no music"
+    }
+  ]
+}

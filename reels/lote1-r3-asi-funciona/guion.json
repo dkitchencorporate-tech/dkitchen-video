@@ -1,0 +1,62 @@
+{
+  "pieza": "lote1-r3-asi-funciona",
+  "titulo": "Así funciona en 15 segundos",
+  "duracion": 15,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro (provisional hasta que karc0 elija)",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.35,
+      "use_speaker_boost": true,
+      "speed": 1.08
+    }
+  },
+  "tramos_voz": [
+    {
+      "id": "t1",
+      "inicio": 0.3,
+      "fin_max": 2.9,
+      "texto": "Tu cliente escanea el código de la mesa."
+    },
+    {
+      "id": "t2",
+      "inicio": 3.1,
+      "fin_max": 6.6,
+      "texto": "Elige su plato, con foto y alérgenos."
+    },
+    {
+      "id": "t3",
+      "inicio": 6.9,
+      "fin_max": 9.4,
+      "texto": "Lo pide desde el móvil."
+    },
+    {
+      "id": "t4",
+      "inicio": 9.7,
+      "fin_max": 12.6,
+      "texto": "Y la comanda le llega al camarero al momento."
+    },
+    {
+      "id": "t5",
+      "inicio": 12.9,
+      "fin_max": 14.8,
+      "texto": "Desde un euro. Escríbenos CARTA."
+    }
+  ],
+  "musica": {
+    "prompt": "Light upbeat modern pop-electronic bed with soft plucks and claps, 112 bpm, friendly and quick, clean ending at 15 seconds, no vocals",
+    "fallback": "assets/audio/musica_fondo.mp3"
+  },
+  "qc": {
+    "lufs": -14,
+    "tolerancia_lufs": 1,
+    "true_peak_max": -1,
+    "lra_max": 11,
+    "congelado_max_s": 0.6,
+    "negro_max_s": 0.1
+  }
+}

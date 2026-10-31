@@ -1,0 +1,12 @@
+{
+  "name": "dkitchen-reel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.8.223 check",
+    "render": "npx --yes hyperframes@0.8.223 render --quality delivery --fps 30 --strict"
+  },
+  "devDependencies": {
+    "@hyperframes/core": "0.8.223"
+  }
+}

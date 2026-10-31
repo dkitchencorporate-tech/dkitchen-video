@@ -1,0 +1,24 @@
+{
+  "pieza": "lote1-r1-carta-baza",
+  "titulo": "Le hicimos la carta a un bar de Baza",
+  "duracion": 25,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro (provisional hasta que karc0 elija)",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": { "stability": 0.45, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": true, "speed": 1.08 }
+  },
+  "tramos_voz": [
+    { "id": "t1", "inicio": 0.3, "fin_max": 2.15, "texto": "Esta era la carta de un bar de Baza." },
+    { "id": "t2", "inicio": 2.4, "fin_max": 5.8, "texto": "En veinticuatro horas le hicimos esta." },
+    { "id": "t3", "inicio": 6.4, "fin_max": 14.8, "texto": "Fotos de cada plato, alérgenos, en inglés para los turistas y un botón para llamar al camarero." },
+    { "id": "t4", "inicio": 16.2, "fin_max": 20.6, "texto": "Y la cambia él mismo, desde el móvil." },
+    { "id": "t5", "inicio": 21.3, "fin_max": 24.6, "texto": "¿Quieres ver la tuya? Escríbenos CARTA." }
+  ],
+  "musica": {
+    "prompt": "Warm cinematic lo-fi instrumental, Spanish guitar plucks over soft Rhodes and brushed drums, 90 bpm, hopeful build after the first 2 seconds, elegant, no vocals",
+    "fallback": "assets/audio/musica_fondo.mp3"
+  },
+  "qc": { "lufs": -14, "tolerancia_lufs": 1, "true_peak_max": -1, "lra_max": 11, "congelado_max_s": 0.6, "negro_max_s": 0.1 }
+}

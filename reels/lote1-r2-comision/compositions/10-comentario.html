@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 10</title></head>
+  <body>
+    <template id="10-comentario">
+      <style>
+        @font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }
+        #root { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 200px; isolation: isolate; }
+        #bg-blur { position: absolute; inset: 0; filter: blur(20px); transform: scale(1.1); z-index: -1; }
+        .barra { width: 80%; background: #F7F5F2; border-radius: 40px; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 20px 40px rgba(0,0,0,0.5); opacity: 0; transform: translateY(50px); }
+        .input-texto { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 60px; color: #6E0C2B; }
+        .cursor { display: inline-block; width: 4px; height: 60px; background: #6E0C2B; margin-left: 5px; opacity: 1; }
+        .btn-enviar { width: 80px; height: 80px; background: #D9B25C; border-radius: 50%; display: flex; align-items: center; justify-content: center; transform: scale(0); }
+        .btn-enviar svg { width: 40px; height: 40px; fill: #6E0C2B; transform: rotate(45deg); margin-left: -5px; }
+      </style>
+      <div id="root" data-composition-id="10-comentario" data-width="1080" data-height="1920">
+        <video id="bg-blur" src="assets/f6-plato.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="2.4" muted></video>
+        <div class="barra" id="barra">
+           <div class="input-texto"><span id="escrito"></span><span class="cursor" id="cursor"></span></div>
+           <div class="btn-enviar" id="btn-env">
+              <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+           </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.to("#barra", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.2)" }, 0.2);
+
+        const texto = "CARTA";
+        const obj = { len: 0 };
+        tl.to(obj, {
+           len: texto.length,
+           duration: 0.5,
+           ease: "steps(5)",
+           onUpdate: () => {
+              document.getElementById("escrito").innerText = texto.substring(0, Math.floor(obj.len));
+           }
+        }, 0.8);
+
+        tl.to("#btn-env", { scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 1.4);
+        tl.to("#btn-env", { scale: 0.8, duration: 0.1, yoyo: true, repeat: 1 }, 1.8);
+        tl.to("#cursor", { opacity: 0, duration: 0.1, repeat: 3, yoyo: true, repeatDelay: 0.4 }, 0);
+        tl.to("#cursor", { opacity: 0, duration: 0.1, overwrite: true }, 1.8);
+
+        window.__timelines["10-comentario"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

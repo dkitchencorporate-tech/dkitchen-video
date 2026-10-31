@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 8</title></head>
+  <body>
+    <template id="8-notificaciones">
+      <style>
+        @font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }
+        @font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+        #root { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; isolation: isolate; }
+        .notificacion { width: 80%; background: rgba(255,255,255,0.15); backdrop-filter: blur(15px); border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.3); font-family: 'Inter', sans-serif; font-size: 40px; color: #F7F5F2; display: flex; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); opacity: 0; transform: translateY(50px); }
+        .icono { width: 80px; height: 80px; background: #6E0C2B; border-radius: 16px; margin-right: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #D9B25C; }
+        .texto-noti b { color: #D9B25C; font-family: 'Bricolage Grotesque', sans-serif; }
+      </style>
+      <div id="root" data-composition-id="8-notificaciones" data-width="1080" data-height="1920">
+        <video id="vid" src="assets/f5-local-lleno.mp4" width="1080" height="1920" style="object-fit: cover; position: absolute; inset: 0; z-index: -1;" data-start="0.0" data-duration="1.6" muted></video>
+        <div class="notificacion" id="noti1">
+            <div class="icono">🔔</div>
+            <div class="texto-noti">Nuevo pedido <br><b>0 % comisión</b></div>
+        </div>
+        <div class="notificacion" id="noti2">
+            <div class="icono">👤</div>
+            <div class="texto-noti">Cliente nuevo <br><b>tuyo</b></div>
+        </div>
+        <div class="notificacion" id="noti3">
+            <div class="icono">⭐</div>
+            <div class="texto-noti">Reseña <br><b>★★★★★</b></div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.to("#noti1", { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.2);
+        tl.to("#noti2", { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.6);
+        tl.to("#noti3", { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 1.0);
+        window.__timelines["8-notificaciones"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

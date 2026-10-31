@@ -1,0 +1,54 @@
+# Voz y efectos de sonido con la API de ElevenLabs (orden de karc0, 31/10/2026). Solo en la nube.
+name: Voz y efectos (ElevenLabs)
+# Disparo: workflow_dispatch (cuando esté en main) o push de reels/<pieza>/audio/pedir_voz.txt en cualquier rama.
+on:
+  push:
+    paths: ['reels/*/audio/pedir_voz.txt']
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: Carpeta del reel (reels/<pieza>) con guion.json
+        required: false
+jobs:
+  voz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 2 }
+      - name: Carpeta del reel
+        env:
+          INPUT_CARPETA: ${{ inputs.carpeta }}
+        run: |
+          C="$INPUT_CARPETA"
+          if [ -z "$C" ]; then C=$(git diff --name-only HEAD~1 HEAD | grep 'audio/pedir_voz.txt$' | head -1 | sed 's#/audio/pedir_voz.txt##'); fi
+          echo "CARPETA=$C" >> "$GITHUB_ENV"
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Validar entrada
+        env:
+          INPUT_CARPETA: ${{ env.CARPETA }}
+        run: |
+          [[ "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]] || { echo "Carpeta no valida"; exit 1; }
+          [ -f "$INPUT_CARPETA/guion.json" ] || { echo "Falta guion.json"; exit 1; }
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Generar voz y efectos
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: node scripts/hf/voz_api.cjs "$CARPETA"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voz-efectos
+          path: |
+            ${{ env.CARPETA }}/audio/originales/voz-*.mp3
+            ${{ env.CARPETA }}/assets/sfx/*.mp3
+            ${{ env.CARPETA }}/audio/informe_voz_api.txt
+      - name: Guardar en la rama
+        run: |
+          git config user.name "dkitchen-bot"; git config user.email "bot@dkitchencorporate.es"
+          git add -f "$CARPETA/audio" "$CARPETA/assets/sfx"   # -f: el .gitignore raíz excluye reels/**/*.mp3
+          git commit -m "voz y efectos API: $CARPETA" || { echo "Sin cambios"; exit 0; }
+          git push || { git fetch --depth=20 origin "$GITHUB_REF_NAME" && git rebase "origin/$GITHUB_REF_NAME" && git push; }

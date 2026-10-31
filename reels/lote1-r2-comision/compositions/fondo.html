@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Fondo</title></head>
+  <body>
+    <template id="fondo">
+      <style>
+        #root { position: absolute; inset: 0; }
+        .halo { position: absolute; border-radius: 50%; filter: blur(60px); }
+        #halo-vino { width: 1400px; height: 1400px; left: -420px; top: -260px; background: radial-gradient(circle, rgba(110,12,43,0.85) 0%, rgba(22,14,24,0) 70%); }
+        #halo-oro { width: 1100px; height: 1100px; left: 260px; top: 1040px; background: radial-gradient(circle, rgba(217,178,92,0.38) 0%, rgba(14,12,18,0) 70%); }
+        #rejilla { position: absolute; inset: 0; opacity: 0.15; background-image: radial-gradient(rgba(247,245,242,0.55) 1.5px, transparent 1.5px); background-size: 36px 36px; }
+      </style>
+      <div id="root" data-composition-id="fondo" data-width="1080" data-height="1920">
+        <div id="halo-vino" class="halo"></div>
+        <div id="halo-oro" class="halo"></div>
+        <div id="rejilla"></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        window.__timelines["fondo"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

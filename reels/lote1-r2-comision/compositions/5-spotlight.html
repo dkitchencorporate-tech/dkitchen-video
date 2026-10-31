@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 5</title></head>
+  <body>
+    <template id="5-spotlight">
+      <style>
+        @font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+        #root { position: absolute; inset: 0; }
+        .nota-legal { position: absolute; bottom: var(--safe-bottom); left: var(--safe-left); right: var(--safe-right); font-family: 'Inter', sans-serif; font-size: 24px; color: #F7F5F2; opacity: 0.7; text-align: center; }
+      </style>
+      <div id="root" data-composition-id="5-spotlight" data-width="1080" data-height="1920">
+        <!-- El efecto spotlight en el clip fx se procesará, aquí ponemos el clip procesado -->
+        <video id="vid" src="assets/fx/f4.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="2.4" muted></video>
+        <div id="nota" class="nota-legal">Cálculo orientativo con una comisión media del 30 %; depende de tu contrato.</div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#nota", { opacity: 0 }, { opacity: 0.7, duration: 1 }, 0);
+        window.__timelines["5-spotlight"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

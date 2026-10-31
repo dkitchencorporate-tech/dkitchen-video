@@ -1,0 +1,36 @@
+# Muestras de voz para que karc0 elija la voz del lote 1 (P6). Solo en la nube.
+# v2 31/10: formato mp3_44100_128 (plan actual) y voces sin personajes
+name: Muestras de voz
+on:
+  push:
+    branches: [claude/p6-config]
+    paths: ['.github/workflows/muestras-voz.yml']
+  workflow_dispatch:
+    inputs:
+      frase:
+        description: Frase de prueba
+        required: false
+        default: '¿Tu carta sigue en papel? Escríbenos CARTA y te la hacemos gratis en veinticuatro horas.'
+      voces:
+        description: 'IDs de voz concretos separados por comas (vacío = Álvaro + 2 voces de España de la biblioteca)'
+        required: false
+        default: ''
+
+jobs:
+  muestras:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Generar muestras
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          FRASE: ${{ inputs.frase || '¿Tu carta sigue en papel? Escríbenos CARTA y te la hacemos gratis en veinticuatro horas.' }}
+          VOCES: ${{ inputs.voces }}
+        run: node scripts/hf/muestras_voz.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: muestras-voz-${{ github.run_id }}
+          path: muestras/

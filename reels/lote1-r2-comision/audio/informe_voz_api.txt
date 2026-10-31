@@ -1,7 +1,7 @@
-voz t1: 2.90 s (hueco 2.90 s, speed 1.08) CABE
-voz t2: 5.69 s (hueco 5.90 s, speed 1.08) CABE
-voz t3: 3.74 s (hueco 5.40 s, speed 1.08) CABE
-voz t4: 2.66 s (hueco 3.80 s, speed 1.08) CABE
+voz t1: 2.77 s (hueco 2.90 s, speed 1.08) CABE
+voz t2: 5.36 s (hueco 5.90 s, speed 1.08) CABE
+voz t3: 3.66 s (hueco 5.40 s, speed 1.08) CABE
+voz t4: 2.59 s (hueco 3.80 s, speed 1.08) CABE
 sfx impresora: 1.80 s
 sfx golpe-sordo: 1.04 s
 sfx sello: 0.84 s

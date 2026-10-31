@@ -7,9 +7,9 @@ Encargo cerrado del director (31/10/2026). Base: `reels/plantilla-p6/` + `P6_GUI
 |---|---|---|---|---|
 | 1 | `compositions/papel.html` | 0–2,2 | `assets/carta-papel.jpg` a sangre, Ken Burns lento (scale 1,0→1,08) + viñeta; grano sutil (registry) | «Esta era la carta de un bar de Baza.» |
 | 2 | `compositions/qr.html` | 2,2–6,0 | Corte seco con whoosh. `assets/movil-qr.jpg` con zoom de entrada (punch-in 1,15→1) | «En 24 h le hicimos esta.» |
-| 3 | `compositions/demo.html` | 6,0–16,0 | Móvil 3D (rotateY −18°→8°, preserve-3d) con `assets/demo.mp4` (grabación de preparar.cjs) dentro de la pantalla; `touch-indicator` en cada toque | Chips que entran uno a uno: «Fotos · Alérgenos · 3 idiomas · Llamar al camarero» |
+| 3 | `compositions/demo.html` | 6,0–16,0 | Móvil 3D (rotateY −18°→8°, preserve-3d) con `assets/demo.mp4` (grabación de preparar.cjs) dentro de la pantalla; `touch-indicator` en cada toque | Chips que entran uno a uno: «Fotos · Alérgenos · Inglés · Llamar al camarero» (Local = español + inglés; nunca «3 idiomas»: `05 REFERENCIA/MAPA_PRECIOS_Y_FUNCIONES.md`) |
 | 4 | `compositions/panel.html` | 16,0–21,0 | Maqueta HTML del panel del local en un segundo móvil: el precio pasa de **12,50 €** a **13,00 €** (contador) y en el primer móvil la carta se actualiza con un destello oro | «La cambia él mismo, desde el móvil.» |
-| 5 | `compositions/cta.html` | 21,0–25,0 | CTA de la plantilla (velo vino, logotipo, botón CARTA) | «¿La quieres gratis? Escríbenos CARTA» |
+| 5 | `compositions/cta.html` | 21,0–25,0 | CTA de la plantilla (velo vino, logotipo, botón CARTA) | «Escríbenos CARTA · tu carta hecha en 24 h, gratis» |
 
 ## Recursos
 - `assets/demo.mp4`: lo graba `preparar.cjs` en Actions con Playwright (viewport 390×844, deviceScaleFactor 2, `recordVideo`), sobre la demo `dkitchencorporate.es/m/<demo>` que fije el director al colocar las fotos. Recorrido: bajar por la carta con fotos → abrir un plato → alérgenos → cambiar a inglés → pulsar «Llamar al camarero». **Antes de grabar, inyectar CSS que oculte el nombre y el logotipo del local** (cabecera, título, pie); sin nombre en ningún fotograma.
@@ -21,4 +21,4 @@ Encargo cerrado del director (31/10/2026). Base: `reels/plantilla-p6/` + `P6_GUI
 Tramos en `guion.json` (voz por tramo, música con carve, whoosh en 2,2 / 6,0 / 16,0 / 21,0; `cierre` en 24,0).
 
 ## Texto del post (lo publica karc0)
-¿Tu carta sigue en papel? Le hicimos esta a un bar de Baza en 24 h: fotos, alérgenos, 3 idiomas y botón para llamar al camarero. Escríbenos CARTA y te hacemos la tuya gratis. 👉 dkitchencorporate.es/carta-de-autor #hosteleria #baza #granada #cartadigital
+¿Tu carta sigue en papel? Le hicimos esta a un bar de Baza en 24 h: fotos, alérgenos, en inglés y botón para llamar al camarero. Escríbenos CARTA y en 24 h te enseñamos la tuya hecha, gratis. 👉 dkitchencorporate.es/carta-de-autor #hosteleria #baza #granada #cartadigital

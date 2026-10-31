@@ -10,6 +10,16 @@ Fuente de verdad para producir reels en este repo. Si otro documento (README de 
 6. **Precios** solo los de la web (`src/lib/pricing-config.ts` del repo de la web): hoy Carta 9 €, Local 29 € (entrada por 1 €), Sala 79 €. **Acción única** del lote 1: «Escríbenos CARTA». Nombres de locales ocultos.
 7. **Imágenes y audio**: no se generan con IA dentro del flujo. El director escribe el prompt o la instrucción, karc0 genera la imagen en Flow (y la voz y la música en ElevenLabs) y la deja en `reels/<pieza>/assets/`. Sin texto, sin manos ni logotipos inventados.
 
+## 1 bis. Nivel de diseño exigido (karc0, 31/10) — lo primero que se revisa
+- **Suelo de calidad:** el reel de 40 s `reels/reel-40-hypermotion` (aprobado por karc0 como excepción; los demás tienen que ser **mejores**). Un reel por debajo de ese nivel no se entrega aunque el QC técnico pase.
+- **Prohibido:** escenas de solo texto sobre un fondo de color. Como máximo, un golpe tipográfico de ≤ 2 s por reel, y siempre sobre imagen o vídeo.
+- **Obligatorio en cada reel:** material real que se mueve (clips de vídeo de Flow, grabaciones reales de la web o de las demos hechas con Playwright, capturas del panel), producto en **3D** (móvil o tableta con perspectiva y grabación dentro), **cifras animadas** (contadores, barras, comparativas) cuando haya dato, y un ejemplo de **cómo funciona de verdad**.
+- **Ritmo:** un cambio de plano cada 1,5–3 s; golpe visual en el segundo 0 (miniatura) y gancho en los primeros 1,5 s.
+- **Clips de vídeo:** los genera karc0 en Flow (o Antigravity) con prompts cerrados del director (`Alex-DK`); 9:16, 4–8 s, sin texto ni logotipos.
+- **Antes del render final:** storyboard con los fotogramas clave de cada escena, aprobado por karc0.
+- `reels/plantilla-p6/` es solo el **esqueleto técnico** (audio, carve, QC). Su aspecto no es una referencia de diseño.
+- Textos, precios y funciones: solo los de `05 REFERENCIA/MAPA_PRECIOS_Y_FUNCIONES.md` (en el repo de la web: `src/lib/pricing-config.ts`). Ejemplo: «Desde 1 €» = plan Local → 2 idiomas, pedido desde la mesa; nunca 3 idiomas.
+
 ## 2. Marca (Gran Reserva)
 - **Colores** (`marca/tokens.css`): vino `#6E0C2B` (oscuro `#4A081D`), oro `#D9B25C` (brillante `#F0C96F`), negro `#0A080C`/`#050406`, papel `#F7F5F2`. Dolor/pérdida en `#FF5A82`; valor/beneficio en oro.
 - **Tipografía** (`marca/fuentes.css`, local, OFL): Bricolage Grotesque 800 para titulares y cifras · Inter para texto técnico · Cormorant Garamond itálica para la palabra de valor. No se cargan fuentes de internet.

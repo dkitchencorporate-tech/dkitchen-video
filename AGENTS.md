@@ -1,3 +1,5 @@
+# ⚠ DKITCHEN: LEE PRIMERO 00_LEEME_AGENTES.md (manda sobre todo lo de abajo)
+
 # OpenMontage & DKitchen Studio
 
 > **DKitchen · P6 (31/10/2026):** para cualquier vídeo o reel de DKitchen, lee primero `P6_GUIA_PRODUCCION.md` y trabaja solo con `reels/plantilla-p6/`, `scripts/hf/` y `marca/`. Esa guía manda sobre este archivo y sobre AGENT_GUIDE.md. Render solo en GitHub Actions.

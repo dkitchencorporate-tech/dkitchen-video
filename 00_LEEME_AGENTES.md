@@ -4,8 +4,8 @@ Válido para Antigravity, Jules (Google), Claude Code en la nube o cualquier otr
 ## 0. Quién hace qué
 - **Agente ejecutor (tú):** produces el reel completo en una rama propia: composiciones, plan de efectos, sincronía con el audio y ajustes hasta que el QC pase. Haces el trabajo pesado.
 - **Director (Claude Code):** escribe la ficha y el plano a plano, revisa tus fotogramas y el render contra la guía, da el APROBADO y fusiona. Solo él fusiona a `main` o a `claude/p6-config`.
-- **karc0 (Alex, dueño):** genera a mano en Flow (imágenes y clips) y en ElevenLabs (voz y música) y aprueba la pieza final. **Nunca sale en cámara.** No usa terminales.
-- **Prohibido:** llamar a la API de ElevenLabs; generar imágenes, voces o música con IA desde el flujo; inventar precios; tocar otros repos.
+- **karc0 (Alex, dueño):** genera a mano en Flow (imágenes y clips) y la música en ElevenLabs, y aprueba la pieza final. **Nunca sale en cámara.** No usa terminales.
+- **Prohibido:** llamar a la API de ElevenLabs o a cualquier IA generativa por tu cuenta (la voz y los efectos solo con el flujo «Voz y efectos (ElevenLabs)»: sube `reels/<pieza>/audio/pedir_voz.txt`); inventar precios; tocar otros repos. **Voz y efectos de sonido (karc0, 31/10 noche):** se generan con la API de ElevenLabs **solo** mediante el flujo «Voz y efectos (ElevenLabs)» (`scripts/hf/voz_api.cjs`): se dispara subiendo `reels/<pieza>/audio/pedir_voz.txt` y lee `guion.json` (`tramos_voz`, `voz`, `sfx_api`); recorta silencios y comprueba que cada frase cabe en su hueco. Ningún agente llama a la API por su cuenta. **La música la genera karc0 a mano**; imágenes y clips, karc0 en Flow.
 
 ## 1. Lee en este orden (completos)
 1. `P6_GUIA_PRODUCCION.md`: reglas, **§1 bis nivel de diseño** y **§1 ter PUERTA DE CALIDAD INNEGOCIABLE**, marca, formato y zona segura, audio y checklist.

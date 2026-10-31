@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena · gancho</title></head>
+  <body>
+    <template id="gancho">
+      <style>
+        #root { position: absolute; inset: 0; }
+        /* Todo el texto vive en la caja segura (tokens.css): x 60–940, y 250–1500 */
+        #gancho-caja { position: absolute; left: var(--safe-left); right: var(--safe-right); top: var(--safe-top); bottom: var(--safe-bottom); display: flex; flex-direction: column; justify-content: center; align-items: center; perspective: 1200px; }
+        #gancho-cifra { font-family: var(--font-display); font-weight: 800; font-size: 220px; line-height: 0.9; color: #F0C96F; text-shadow: 0 0 40px rgba(217,178,92,0.35); }
+        #gancho-linea { width: 520px; height: 6px; margin: 34px 0; border-radius: 9999px; background: linear-gradient(90deg, #6E0C2B, #D9B25C); }
+        #gancho-titulo { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; max-width: 760px; text-align: center; }
+        #gancho-titulo span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 84px; line-height: 1.04; color: #F7F5F2; }
+        #gancho-titulo span.serif { font-family: var(--font-serif); font-style: italic; font-weight: 600; color: #D9B25C; }
+      </style>
+
+      <div id="root" data-composition-id="gancho" data-width="1080" data-height="1920">
+        <div id="gancho-caja">
+          <div id="gancho-cifra">−30 %</div>
+          <div id="gancho-linea"></div>
+          <div id="gancho-titulo"><span>Tu</span><span>carta</span><span>te</span><span>cuesta</span><span class="serif">dinero</span></div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        // La cifra ya está en pantalla en el fotograma 0 (miniatura de redes): solo termina de asentarse
+        tl.fromTo("#gancho-cifra", { scale: 0.9, opacity: 0.8, rotationX: -25 }, { scale: 1, opacity: 1, rotationX: 0, duration: 0.6, ease: "back.out(1.5)" }, 0);
+        tl.fromTo("#gancho-linea", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.7);
+        tl.fromTo("#gancho-titulo span", { y: 60, rotationX: -80, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.55, ease: "back.out(1.5)", stagger: 0.1 }, 0.9);
+        // Respiración continua: nada se queda quieto más de 0,6 s
+        tl.to("#gancho-cifra", { y: -18, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, 1.0);
+        tl.to("#gancho-titulo", { scale: 1.03, duration: 5.2, ease: "sine.inOut" }, 1.6);
+        // Salida hacia la siguiente escena
+        tl.to("#gancho-caja", { opacity: 0, y: -80, duration: 0.4, ease: "power2.in" }, 7.1);
+        window.__timelines["gancho"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

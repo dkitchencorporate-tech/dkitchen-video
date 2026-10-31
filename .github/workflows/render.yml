@@ -1,15 +1,17 @@
-# Renderizado de piezas (HyperFrames + OpenMontage) con generación de audio ElevenLabs y QC estricto
-# DKitchen Studio - Calidad Gran Reserva
+# Renderizado de piezas DKitchen en la nube (nunca en el portátil).
+# Modo P6 (31/10/2026): si la carpeta tiene hyperframes.json, el reel es un proyecto HyperFrames propio
+#   → scripts/hf/producir.cjs (pistas de audio separadas + carve + check + render + masterizado + QC medido que bloquea).
+# Modo heredado: carpetas antiguas con composicion.html (piezas 01/02, reel-01…) siguen el flujo anterior.
 name: Renderizar reel
 on:
   workflow_dispatch:
     inputs:
       carpeta:
-        description: Carpeta de la pieza (contiene composicion o MasterPiece)
+        description: Carpeta de la pieza (reels/<pieza>)
         required: true
-        default: reels/pieza-01
+        default: reels/plantilla-p6
       motor:
-        description: 'Motor de renderizado (hyperframes | remotion)'
+        description: 'Motor de renderizado (hyperframes | remotion). Solo modo heredado.'
         required: false
         default: 'hyperframes'
       fps:
@@ -20,7 +22,7 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     permissions:
       contents: write
       actions: write
@@ -31,29 +33,26 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
 
-      - name: Instalar dependencias
-        run: |
-          sudo apt-get update && sudo apt-get install -y ffmpeg
-          npm i -g hyperframes@0.8.140
-          npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
-          npx playwright install --with-deps chromium
-          pip install google-api-python-client google-auth
-          npm --prefix remotion-composer install
-
-      - name: Validar y Sanitizar Parámetros de Entrada (S9)
+      - name: Validar y sanear parámetros de entrada (S9)
         env:
           INPUT_CARPETA: ${{ inputs.carpeta }}
           INPUT_FPS: ${{ inputs.fps }}
           INPUT_MOTOR: ${{ inputs.motor }}
         run: |
           if [[ ! "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]]; then
-            echo "[ERROR FATAL S9] La carpeta '$INPUT_CARPETA' no cumple con el patrón seguro ^reels/[a-z0-9-]+$"
-            exit 1
+            echo "[ERROR FATAL S9] La carpeta '$INPUT_CARPETA' no cumple el patrón ^reels/[a-z0-9-]+$"; exit 1
           fi
-          if [[ ! "$INPUT_FPS" =~ ^(24|30|60)$ ]]; then
-            echo "[ERROR FATAL S9] Los FPS '$INPUT_FPS' deben ser 24, 30 o 60."
-            exit 1
-          fi
+          if [[ ! "$INPUT_FPS" =~ ^(24|30|60)$ ]]; then echo "[ERROR FATAL S9] FPS debe ser 24, 30 o 60"; exit 1; fi
+          if [[ ! "$INPUT_MOTOR" =~ ^(hyperframes|remotion)$ ]]; then echo "[ERROR FATAL S9] Motor no válido"; exit 1; fi
+          if [ -f "$INPUT_CARPETA/hyperframes.json" ]; then echo "MODO=p6" >> "$GITHUB_ENV"; else echo "MODO=heredado" >> "$GITHUB_ENV"; fi
+
+      - name: Instalar dependencias
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          npm i playwright ffmpeg-static @elevenlabs/elevenlabs-js
+          npx playwright install --with-deps chromium
+          pip install google-api-python-client google-auth
+          if [ "$MODO" = "heredado" ]; then npm --prefix remotion-composer install; fi
 
       - name: Preparar recursos de la pieza (capturas en la VM)
         env:
@@ -61,58 +60,77 @@ jobs:
         run: |
           if [ -f "$TARGET_CARPETA/preparar.cjs" ]; then node "$TARGET_CARPETA/preparar.cjs"; else echo "[Preparar] Sin preparar.cjs"; fi
 
-      - name: Generar Audio con ElevenLabs (Voz de Marca y Música)
+      # ---------- MODO P6 ----------
+      - name: Producir reel P6 (audio + carve + check + render + master + QC)
+        if: env.MODO == 'p6'
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          TARGET_CARPETA: ${{ inputs.carpeta }}
+          TARGET_FPS: ${{ inputs.fps }}
+          # La API de ElevenLabs está desactivada: karc0 genera voz y música a mano (audio/originales/).
+        run: node scripts/hf/producir.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+
+      - name: Guardar audio y carve en la rama (pistas procesadas y carve)
+        if: env.MODO == 'p6' && always()
+        env:
+          TARGET_CARPETA: ${{ inputs.carpeta }}
+        run: |
+          git config user.name "dkitchen-render[bot]"
+          git config user.email "render@dkitchencorporate.es"
+          git add -f "$TARGET_CARPETA/audio/"*.mp3 "$TARGET_CARPETA/index.html"
+          if git diff --cached --quiet; then echo "Nada que guardar"; else
+            git commit -m "chore(p6): pistas de audio y carve de $TARGET_CARPETA (run ${{ github.run_id }})"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
+
+      # ---------- MODO HEREDADO ----------
+      - name: Generar audio (heredado)
+        if: env.MODO == 'heredado'
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           TARGET_CARPETA: ${{ inputs.carpeta }}
         run: |
-          if [ -f "$TARGET_CARPETA/audio.mp3" ]; then
-            echo "[Audio] Pista de audio ya existente en $TARGET_CARPETA. Conservando master."
-          elif grep -q "\"motor_audio\": \"audio_elevenlabs_completo\"" "$TARGET_CARPETA/guion.json" 2>/dev/null; then
-            node scripts/audio_elevenlabs_completo.cjs "$TARGET_CARPETA"
-          elif [ -f "scripts/generar_audio_envolvente.cjs" ]; then
-            node scripts/generar_audio_envolvente.cjs "$TARGET_CARPETA"
-          elif [ -f "scripts/generar_audio_pieza.cjs" ]; then
-            node scripts/generar_audio_pieza.cjs "$TARGET_CARPETA"
-          else
-            echo "[AVISO] No se encontró script de generación de audio. Saltando generación de voz."
-          fi
+          if [ -f "$TARGET_CARPETA/audio.mp3" ]; then echo "[Audio] Pista existente, se conserva."
+          elif grep -q "\"motor_audio\": \"audio_elevenlabs_completo\"" "$TARGET_CARPETA/guion.json" 2>/dev/null; then node scripts/audio_elevenlabs_completo.cjs "$TARGET_CARPETA"
+          elif [ -f "scripts/generar_audio_envolvente.cjs" ]; then node scripts/generar_audio_envolvente.cjs "$TARGET_CARPETA"
+          else echo "[AVISO] Sin script de audio."; fi
 
-      - name: Renderizar vídeo y generar Control de Calidad
+      - name: Renderizar (heredado)
+        if: env.MODO == 'heredado'
         env:
           TARGET_CARPETA: ${{ inputs.carpeta }}
           TARGET_FPS: ${{ inputs.fps }}
           TARGET_MOTOR: ${{ inputs.motor }}
         run: |
-          if [ "$TARGET_MOTOR" = "remotion" ]; then
-            echo "[Motor] Ejecutando Remotion + Three.js WebGL (Opción Alternativa)..."
-            node scripts/render_remotion.cjs "$TARGET_CARPETA" "$TARGET_FPS"
-          else
-            echo "[Motor] Ejecutando HyperFrames CLI v0.8.140 (Opción Prioritaria)..."
-            node scripts/render_hyperframes.cjs "$TARGET_CARPETA" "$TARGET_FPS"
-          fi
+          if [ "$TARGET_MOTOR" = "remotion" ]; then node scripts/render_remotion.cjs "$TARGET_CARPETA" "$TARGET_FPS"
+          else node scripts/render_hyperframes.cjs "$TARGET_CARPETA" "$TARGET_FPS"; fi
 
-      - name: Entregar a Google Drive (Estricto para producción)
+      # ---------- ENTREGA ----------
+      - name: Guardar artefactos (también si el QC falla, para revisar)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: entrega-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            ${{ inputs.carpeta }}/reel.mp4
+            ${{ inputs.carpeta }}/contact_sheet.jpg
+            ${{ inputs.carpeta }}/control_calidad.txt
+            ${{ inputs.carpeta }}/check.json
+            ${{ inputs.carpeta }}/audio_log.txt
+            ${{ inputs.carpeta }}/audio.mp3
+
+      - name: Entregar a Google Drive (solo si todo ha pasado)
+        if: success()
         env:
           GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
           TARGET_CARPETA: ${{ inputs.carpeta }}
         run: python scripts/entrega_drive.py "$TARGET_CARPETA"
 
-      - name: Guardar artefactos en GitHub Actions
-        uses: actions/upload-artifact@v4
-        with:
-          name: entrega-${{ github.run_id }}
-          path: |
-            ${{ inputs.carpeta }}/reel.mp4
-            ${{ inputs.carpeta }}/contact_sheet.jpg
-            ${{ inputs.carpeta }}/control_calidad.txt
-            ${{ inputs.carpeta }}/audio_log.txt
-            ${{ inputs.carpeta }}/audio.mp3
-
-      - name: Disparar despliegue automático a Vercel Admin
+      - name: Disparar despliegue del panel de piezas
         if: success()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run deploy-admin.yml -f run_id=${{ github.run_id }} -f carpeta=${{ inputs.carpeta }} || echo "[AVISO] No se pudo disparar deploy-admin automáticamente"
+          gh workflow run deploy-admin.yml -f run_id=${{ github.run_id }} -f carpeta=${{ inputs.carpeta }} || echo "[AVISO] No se pudo disparar deploy-admin"

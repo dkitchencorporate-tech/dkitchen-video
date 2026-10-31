@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 6</title></head>
+  <body>
+    <template id="6-swipe">
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        .clip-container { position: absolute; inset: 0; width: 100%; height: 100%; }
+        #clip1 { filter: sepia(0.5) hue-rotate(-30deg) brightness(0.8); } /* moody */
+        #clip2 { filter: sepia(0.3) saturate(1.5) brightness(1.1) hue-rotate(15deg); } /* warm */
+        .mask { width: 100%; height: 100%; clip-path: inset(0 100% 0 0); }
+      </style>
+      <div id="root" data-composition-id="6-swipe" data-width="1080" data-height="1920">
+        <div class="clip-container" id="clip1-container">
+           <video id="clip1-vid" src="assets/f4-dueno-solo.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="1.4" muted></video>
+        </div>
+        <div class="clip-container mask" id="clip2-mask">
+           <div class="clip-container" id="clip2-container">
+              <video id="clip2-vid" src="assets/f5-local-lleno.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="1.4" muted></video>
+           </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.to("#clip2-mask", { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "power2.inOut" }, 0.2);
+        window.__timelines["6-swipe"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

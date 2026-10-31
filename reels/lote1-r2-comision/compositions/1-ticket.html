@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 1</title></head>
+  <body>
+    <template id="1-ticket">
+      <style>
+        @font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+        #root { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        .texto-oro { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: italic; font-size: 140px; color: #D9B25C; text-shadow: 0 0 20px rgba(0,0,0,0.5); }
+      </style>
+      <div id="root" data-composition-id="1-ticket" data-width="1080" data-height="1920">
+        <video id="vid" src="assets/f1-impresora.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="1.8" muted></video>
+        <div id="texto" class="texto-oro">20 €</div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#texto", { scale: 1, opacity: 1 }, { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out" }, 0);
+        window.__timelines["1-ticket"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena · CTA</title></head>
+  <body>
+    <template id="cta">
+      <style>
+        #root { position: absolute; inset: 0; }
+        #cta-velo { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, rgba(110,12,43,0.95) 0%, rgba(74,8,29,0.9) 45%, rgba(5,4,6,0) 80%); opacity: 0; }
+        #cta-caja { position: absolute; left: var(--safe-left); right: var(--safe-right); top: var(--safe-top); bottom: var(--safe-bottom); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 44px; perspective: 1200px; }
+        #cta-logo { width: 420px; height: 105px; }
+        #cta-frase { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 20px; max-width: 860px; text-align: center; }
+        #cta-frase span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 84px; line-height: 1.05; color: #F7F5F2; }
+        #cta-frase span.oro { color: #F0C96F; }
+        #cta-boton { padding: 26px 70px; border-radius: 9999px; background: #6E0C2B; border: 3px solid #D9B25C; color: #F0C96F; font-family: var(--font-display); font-weight: 800; font-size: 64px; letter-spacing: 6px; box-shadow: 0 0 40px rgba(217,178,92,0.35); }
+        #cta-web { font-family: var(--font-body); font-weight: 600; font-size: 38px; color: #E8E5E0; }
+      </style>
+
+      <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
+        <div id="cta-velo"></div>
+        <div id="cta-caja">
+          <svg id="cta-logo" viewBox="0 0 400 100" role="img" aria-label="DKitchen">
+            <rect x="10" y="15" width="70" height="70" rx="18" fill="#6E0C2B" stroke="#D9B25C" stroke-width="3" />
+            <path d="M30 32 L50 32 C58 32 64 38 64 50 C64 62 58 68 50 68 L30 68 Z" fill="none" stroke="#D9B25C" stroke-width="6" stroke-linejoin="round" />
+            <path d="M42 32 L42 68" stroke="#D9B25C" stroke-width="6" stroke-linecap="round" />
+            <text x="100" y="65" font-family="Bricolage Grotesque" font-size="52" font-weight="800" fill="#F7F5F2" letter-spacing="-1.5">DKitchen</text>
+          </svg>
+          <div id="cta-frase"><span>Escríbenos</span><span class="oro">CARTA</span></div>
+          <div id="cta-boton">CARTA</div>
+          <div id="cta-web">dkitchencorporate.es</div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#cta-velo", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 0);
+        tl.fromTo("#cta-logo", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.3);
+        tl.fromTo("#cta-frase span", { y: 60, rotationX: -80, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.55, ease: "back.out(1.5)", stagger: 0.14 }, 0.6);
+        tl.fromTo("#cta-boton", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, 1.2);
+        tl.fromTo("#cta-web", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 1.6);
+        // Pulso del botón hasta el final (finito, dentro de la duración)
+        tl.to("#cta-boton", { scale: 1.06, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 7 }, 2.0);
+        window.__timelines["cta"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

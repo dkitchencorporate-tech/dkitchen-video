@@ -42,9 +42,12 @@
   --shadow-lg: 0 24px 60px rgba(10, 8, 12, 0.28);
   --shadow-oro: 0 0 40px rgba(217, 178, 92, 0.35);
 
-  /* ZONAS SEGURAS (1080x1920) */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  /* ZONAS SEGURAS (1080x1920) — FUENTE ÚNICA (31/10/2026). La más estricta de las tres versiones anteriores.
+     Caja segura resultante: x 60–940, y 250–1500 (880 x 1250 px). Ningún texto, precio ni CTA fuera de ella. */
   --safe-top: 250px;
-  --safe-bottom: 340px;
-  --safe-right: 120px;
+  --safe-bottom: 420px;
+  --safe-right: 140px;
   --safe-left: 60px;
 }

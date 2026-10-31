@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>DKitchen · El ticket (v2)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="marca/tokens.css" />
+    <link rel="stylesheet" href="marca/fuentes.css" />
+    <style>
+      @font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+      body { margin: 0; background: #050406; }
+      #raiz { position: relative; width: 100%; height: 100%; overflow: hidden; background: #050406; font-family: var(--font-body); color: var(--papel); }
+      #camara { position: absolute; inset: 0; transform-origin: center center; }
+      .clip { position: absolute; display: none; }
+      .clip.hf-active { display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="raiz" data-composition-id="lote1-r2-comision" data-start="0" data-width="1080" data-height="1920" data-duration="20">
+      <div id="fondo" data-composition-id="fondo" data-composition-src="compositions/fondo.html" class="clip hf-active" data-start="0" data-duration="20" data-track-index="0" data-width="1080" data-height="1920"></div>
+
+      <div id="camara">
+        <!-- PLANOS -->
+        <!-- 1 -->
+        <div id="escena1" data-composition-id="1-ticket" data-composition-src="compositions/1-ticket.html" class="clip hf-active" data-start="0.0" data-duration="1.8" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 2 -->
+        <div id="escena2" data-composition-id="2-dueno-ticket" data-composition-src="compositions/2-dueno-ticket.html" class="clip" data-start="1.8" data-duration="1.6" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 3 -->
+        <div id="escena3" data-composition-id="3-cocina" data-composition-src="compositions/3-cocina.html" class="clip" data-start="3.4" data-duration="1.8" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 4 -->
+        <div id="escena4" data-composition-id="4-calendario" data-composition-src="compositions/4-calendario.html" class="clip" data-start="5.2" data-duration="1.6" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 5 -->
+        <div id="escena5" data-composition-id="5-spotlight" data-composition-src="compositions/5-spotlight.html" class="clip" data-start="6.8" data-duration="2.4" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 6 -->
+        <div id="escena6" data-composition-id="6-swipe" data-composition-src="compositions/6-swipe.html" class="clip" data-start="9.2" data-duration="1.4" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 7 -->
+        <div id="escena7" data-composition-id="7-app" data-composition-src="compositions/7-app.html" class="clip" data-start="10.6" data-duration="1.8" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 8 -->
+        <div id="escena8" data-composition-id="8-notificaciones" data-composition-src="compositions/8-notificaciones.html" class="clip" data-start="12.4" data-duration="1.6" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 9 -->
+        <div id="escena9" data-composition-id="9-interruptores" data-composition-src="compositions/9-interruptores.html" class="clip" data-start="14.0" data-duration="1.6" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 10 -->
+        <div id="escena10" data-composition-id="10-comentario" data-composition-src="compositions/10-comentario.html" class="clip" data-start="15.6" data-duration="2.4" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <!-- 11 -->
+        <div id="escena11" data-composition-id="11-cierre" data-composition-src="compositions/11-cierre.html" class="clip" data-start="18.0" data-duration="2.0" data-track-index="1" data-width="1080" data-height="1920"></div>
+      </div>
+
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" class="clip hf-active" data-start="0" data-duration="20" data-track-index="2" data-width="1080" data-height="1920"></div>
+
+      <!-- Pista 10: Voz (estos los sobreescribe audio_pistas.cjs si existen, o los deja karc0) -->
+      <hf-audio-group id="voz" data-label="Voz" data-volume="1"></hf-audio-group>
+      <audio id="voz-t1" src="audio/originales/voz-t1.mp3" data-start="0.2" data-duration="2.9" data-track-index="10" data-audio-group="voz"></audio>
+      <audio id="voz-t2" src="audio/originales/voz-t2.mp3" data-start="3.2" data-duration="5.9" data-track-index="10" data-audio-group="voz"></audio>
+      <audio id="voz-t3" src="audio/originales/voz-t3.mp3" data-start="9.5" data-duration="5.4" data-track-index="10" data-audio-group="voz"></audio>
+      <audio id="voz-t4" src="audio/originales/voz-t4.mp3" data-start="15.6" data-duration="3.8" data-track-index="10" data-audio-group="voz"></audio>
+
+      <!-- Pista 11: Música -->
+      <hf-audio-group id="musica" data-label="Música" data-volume="1"></hf-audio-group>
+      <audio id="musica-bg" src="audio/originales/musica.mp3" data-start="0" data-duration="20" data-track-index="11" data-audio-group="musica"></audio>
+
+      <!-- Pista 12-22: SFX referenciados a los de sfx/ -->
+      <!-- impresora, golpe-sordo, sello, hojas, riser, luces-fuera, cortina-luz, notificacion, interruptor, tecleo, envio -->
+      <hf-audio-group id="sfx" data-label="SFX" data-volume="0.8"></hf-audio-group>
+      <!-- Track indices offset to avoid overlap warnings -->
+      <audio id="sfx-impresora" src="assets/sfx/impresora.mp3" data-start="0.0" data-duration="1.8" data-track-index="12" data-audio-group="sfx"></audio>
+      <audio id="sfx-golpe" src="assets/sfx/golpe-sordo.mp3" data-start="1.8" data-duration="1.0" data-track-index="13" data-audio-group="sfx"></audio>
+      <!-- wait, "hojas" in 5.2 -->
+      <audio id="sfx-hojas" src="assets/sfx/hojas.mp3" data-start="5.2" data-duration="1.6" data-track-index="14" data-audio-group="sfx"></audio>
+      <audio id="sfx-riser" src="assets/sfx/riser.mp3" data-start="6.8" data-duration="2.2" data-track-index="15" data-audio-group="sfx"></audio>
+      <audio id="sfx-luces-fuera" src="assets/sfx/luces-fuera.mp3" data-start="9.2" data-duration="1.2" data-track-index="16" data-audio-group="sfx"></audio>
+      <audio id="sfx-cortina-luz" src="assets/sfx/cortina-luz.mp3" data-start="10.6" data-duration="1.4" data-track-index="17" data-audio-group="sfx"></audio>
+      <audio id="sfx-sello" src="assets/sfx/sello.mp3" data-start="11.1" data-duration="0.8" data-track-index="18" data-audio-group="sfx"></audio>
+      <audio id="sfx-notificacion" src="assets/sfx/notificacion.mp3" data-start="12.6" data-duration="0.6" data-track-index="19" data-audio-group="sfx"></audio>
+      <audio id="sfx-interruptor" src="assets/sfx/interruptor.mp3" data-start="14.2" data-duration="0.5" data-track-index="20" data-audio-group="sfx"></audio>
+      <audio id="sfx-tecleo" src="assets/sfx/tecleo.mp3" data-start="15.6" data-duration="1.4" data-track-index="21" data-audio-group="sfx"></audio>
+      <audio id="sfx-envio" src="assets/sfx/envio.mp3" data-start="17.0" data-duration="0.7" data-track-index="22" data-audio-group="sfx"></audio>
+      <audio id="sfx-cierre" src="marca/sonido/cierre.mp3" data-start="19.0" data-duration="1.0" data-track-index="23" data-audio-group="sfx"></audio>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#camara",
+        { scale: 1, rotationZ: 0 },
+        { scale: 1.045, rotationZ: 1.5, duration: 20, ease: "none" }, 0);
+      window.__timelines["lote1-r2-comision"] = tl;
+    </script>
+  </body>
+</html>

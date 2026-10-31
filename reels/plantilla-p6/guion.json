@@ -1,0 +1,22 @@
+{
+  "pieza": "plantilla-p6",
+  "titulo": "Plantilla P6 · prueba del flujo completo",
+  "duracion": 15,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": { "stability": 0.45, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": true, "speed": 1.08 }
+  },
+  "tramos_voz": [
+    { "id": "t1", "inicio": 0.4, "fin_max": 6.9, "texto": "¿Tu carta sigue en papel?" },
+    { "id": "t2", "inicio": 7.8, "fin_max": 13.6, "texto": "Escríbenos CARTA y te la hacemos gratis en veinticuatro horas." }
+  ],
+  "nota_audio": "Plantilla de prueba interna: voz = muestra de Álvaro partida en dos; música = assets/audio/musica_fondo.mp3 (licencia sin verificar, NO publicar).",
+  "musica": {
+    "prompt": "Warm cinematic lo-fi instrumental for a premium Spanish restaurant brand, soft vinyl texture, mellow Rhodes chords, light brushed drums, 88 bpm, elegant and confident, no vocals",
+    "fallback": "assets/audio/musica_fondo.mp3"
+  },
+  "qc": { "lufs": -14, "tolerancia_lufs": 1, "true_peak_max": -1, "lra_max": 11, "congelado_max_s": 0.6, "negro_max_s": 0.1 }
+}

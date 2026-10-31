@@ -1,6 +1,7 @@
 # DIRECTRICES CREATIVAS Y ESTÁNDAR AUDIOVISUAL INAMOVIBLE - DKITCHEN STUDIO
 
 > **ESTATUS:** MANDATORIO Y VINCULANTE PARA TODOS LOS AGENTES Y PIPELINES (ANTIGRAVITY, CLAUDE, CODEX, CURSOR, RUNNERS).
+> **P6 (31/10/2026):** el procedimiento operativo vigente está en `P6_GUIA_PRODUCCION.md`; si algo choca, manda la guía.
 > **PROHIBICIÓN ESTRICTA:** Queda terminantemente prohibido generar o entregar piezas planas, fondos negros mudos, tipografía sin movimiento cinético o montajes sin rigor audiovisual y sonoro.
 
 ---
@@ -20,11 +21,11 @@
 
 3. **Caja Segura Estricta (TikTok, Instagram Reels, YouTube Shorts):**
    - **Dimensiones Canvas:** 1080 × 1920 px (9:16 vertical).
-   - **Caja Segura Auditada:** 940 × 1280 px.
+   - **Caja Segura:** x 60–940, y 250–1500 (880 × 1250 px). Fuente única: `marca/tokens.css` (31/10/2026).
    - **Márgenes Obligatorios:**
-     - Franja superior libre: **220 px mínimo** (avatares, historias y cabecera de la red social).
+     - Franja superior libre: **250 px mínimo** (avatares, historias y cabecera de la red social).
      - Franja inferior libre: **420 px mínimo** (caption, música, botones de me gusta y compartir).
-     - Franja lateral derecha libre: **140 px** (botones de interacción de TikTok/Instagram).
+     - Franja lateral derecha libre: **140 px** · izquierda: **60 px** (botones de interacción de TikTok/Instagram).
    - *Ningún elemento interactivo, texto de gancho o precio puede invadir estas áreas.*
 
 4. **Cinética Tipográfica de Alto Impacto:**
@@ -63,7 +64,6 @@ Ninguna herramienta debe quedar en desuso; cada pipeline debe combinar la potenc
 | Servicio | Rol Obligatorio en la Pipeline | Vía de Integración |
 | :--- | :--- | :--- |
 | **ElevenLabs API** | Generación de locución comercial ultra-realista y efectos de sala | API REST / SDK Node / Python en GitHub Actions |
-| **CapCut API / Engine** | Postproducción, efectos de tendencia, subtítulos cinéticos con plantillas de autor y stickers nativos | API Token / Webhook / PySceneDetect pipeline |
 | **Nano Banana / Flow** | B-Roll hiperrealista gastronómico, planos detalle de cocina en marcha y fotografía de platos | API REST de generación y caching en `/assets` |
 | **Playwright + GSAP (HyperFrames)** | Composición 3D Motion, Canvas orgánico y renderizado frame a frame sin pérdidas a 30 fps | Runner GitHub Actions (`renderizar.cjs`) |
 | **Vercel Engine** | Despliegue inmediato del panel de control multi-dispositivo y visualizador de piezas | GitHub Actions (`deploy-admin.yml`) |
@@ -75,8 +75,8 @@ Ninguna herramienta debe quedar en desuso; cada pipeline debe combinar la potenc
 Antes de solicitar aprobación a la dirección (karc0), la pieza debe superar:
 - [ ] 0 fotogramas negros detectados (`blackdetect`).
 - [ ] 0 fotogramas congelados detectados (`freezedetect`).
-- [ ] Caja segura 940×1280 cumplida al 100%.
-- [ ] Sonoridad medida entre −14 y −15.5 LUFS con locución activa y clara.
+- [ ] Caja segura (x 60–940, y 250–1500) revisada por dirección en la hoja de contactos.
+- [ ] Sonoridad medida −14 LUFS ±1, pico real ≤ −1 dBTP, LRA ≤ 11 (QC medido de `scripts/hf/producir.cjs`).
 - [ ] Presencia de elementos 3D / interacción viva y cero estaticidad visual.
 - [ ] Hoja de contactos `contact_sheet.jpg` generada y legible.
 - [ ] Publicación en el panel administrativo Vercel con selector funcional.

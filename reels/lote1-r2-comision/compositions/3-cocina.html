@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena 3</title></head>
+  <body>
+    <template id="3-cocina">
+      <style>
+        @font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }
+        #root { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; perspective: 1200px; }
+        .tarjeta-cristal { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); padding: 40px; text-align: center; }
+        .texto-bricolage { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 80px; color: #F7F5F2; }
+        .texto-pequeno { font-size: 40px; color: #D9B25C; display: block; }
+      </style>
+      <div id="root" data-composition-id="3-cocina" data-width="1080" data-height="1920">
+        <video id="vid" src="assets/f3-cocina.mp4" width="1080" height="1920" style="object-fit: cover;" data-start="0.0" data-duration="1.8" muted></video>
+        <div id="tarjeta" class="tarjeta-cristal">
+           <div class="texto-bricolage"><span id="contador">0</span> €/día</div>
+           <svg width="200" height="80" viewBox="0 0 200 80">
+              <path id="grafica" d="M0 70 L 50 60 L 100 40 L 150 20 L 200 10" fill="none" stroke="#D9B25C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+           </svg>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const cont = { val: 0 };
+        tl.fromTo("#tarjeta", { rotationY: -20, opacity: 0, scale: 0.9 }, { rotationY: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0);
+        tl.to(cont, {
+            val: 300,
+            duration: 1.0,
+            ease: "power2.out",
+            onUpdate: function() {
+                document.getElementById("contador").innerHTML = Math.round(cont.val);
+            }
+        }, 0.2);
+        const l = document.getElementById('grafica').getTotalLength();
+        gsap.set("#grafica", {strokeDasharray: l, strokeDashoffset: l});
+        tl.to("#grafica", { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 0.2);
+        window.__timelines["3-cocina"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -52,7 +52,7 @@ async function postBinario(ruta, cuerpo, salida) {
     const ventana = Number(t.fin_max) - Number(t.inicio);
     if (forzar || !fs.existsSync(final)) {
       const crudo = path.join(dirAudio, `_crudo-${t.id}.mp3`);
-      const ok = await postBinario(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_192`, { text: t.texto, model_id: v.modelo || 'eleven_multilingual_v2', voice_settings: v.ajustes || { stability: 0.45, similarity_boost: 0.8, style: 0.35, use_speaker_boost: true, speed: 1.08 } }, crudo);
+      const ok = await postBinario(`/v1/text-to-speech/${v.voice_id}?output_format=mp3_44100_128`, { text: t.texto, model_id: v.modelo || 'eleven_multilingual_v2', voice_settings: v.ajustes || { stability: 0.45, similarity_boost: 0.8, style: 0.35, use_speaker_boost: true, speed: 1.08 } }, crudo);
       if (!ok) { fallos++; continue; }
       const d0 = dur(crudo);
       const filtros = ['silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.05'];

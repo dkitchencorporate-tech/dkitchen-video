@@ -1,4 +1,5 @@
 # Muestras de voz para que karc0 elija la voz del lote 1 (P6). Solo en la nube.
+# v2 31/10: formato mp3_44100_128 (plan actual) y voces sin personajes
 name: Muestras de voz
 on:
   push:

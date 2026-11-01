@@ -27,6 +27,9 @@ async function anonimizar(p, nombre) {
       const a = (img.alt || '') + ' ' + (img.src || '');
       if (/logo/i.test(a) || partes.some((s) => a.toLowerCase().includes(s.toLowerCase()))) img.style.visibility = 'hidden';
     }
+    // Nunca la ciudad ni la especialidad del local: frases con «Baza», «La Perdiz»…
+    const w2 = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let m;
+    while ((m = w2.nextNode())) { if (/\bBaza\b|perdiz|Cúllar|Cullar/i.test(m.nodeValue)) { m.nodeValue = m.nodeValue.replace(/\s*en\s+(Baza|Cúllar|Cullar)\b/gi, '').replace(/\.?\s*La perdiz,?\s*nuestra especialidad\.?/gi, '').replace(/\b(Baza|Cúllar|Cullar)\b/gi, ''); } }
     document.title = 'Carta';
   }, nombre);
 }
@@ -64,23 +67,29 @@ async function anonimizar(p, nombre) {
   await p.screenshot({ path: path.join(SALIDA, 'inicio.jpg'), type: 'jpeg', quality: 90 });
 
   // Pedido desde la mesa: 2 platos (segunda sección si existe, más apetecible que las bebidas)
-  await p.getByRole('button', { name: /^Pedir/ }).first().click();
-  await p.waitForTimeout(900);
-  const anadir = p.getByRole('dialog').getByRole('button', { name: /^Añadir$/ });
+  const dlg = p.locator('[aria-labelledby="pedido-titulo"]');
+  for (const b of [p.locator('button', { hasText: /^\s*Pedir\s*$/ }).last(), p.getByText('Pedir desde la mesa').first()]) {
+    if (await dlg.count()) break;
+    await b.scrollIntoViewIfNeeded().catch(() => {}); await b.click({ timeout: 5000, force: true }).catch((e) => console.log('[Preparar] clic pedir:', String(e.message).slice(0, 120)));
+    await p.waitForTimeout(1200);
+  }
+  await p.evaluate(() => scrollTo(0, 0));
+  await dlg.waitFor({ timeout: 8000 });
+  const anadir = dlg.getByRole('button', { name: /^Añadir$/ });
   const n = await anadir.count();
   const idx = n > 8 ? [4, 6] : [0, 1];
   await anadir.nth(idx[0]).click(); await p.waitForTimeout(250);
   await anadir.nth(idx[1] - 1).click(); await p.waitForTimeout(250);
-  await p.getByRole('dialog').getByRole('button', { name: /Añadir otro/ }).first().click().catch(() => {});
+  await dlg.getByRole('button', { name: /Añadir otro/ }).first().click().catch(() => {});
   await p.getByRole('textbox', { name: 'Número de mesa' }).fill('4');
   await anonimizar(p, nombre);
   await p.evaluate(() => { for (const el of document.querySelectorAll('[role=dialog] p')) if (/Demostración/.test(el.textContent)) el.textContent = 'Lo confirma el camarero. Se paga en la barra.'; });
   await p.waitForTimeout(400);
   await p.screenshot({ path: path.join(SALIDA, 'pedido.jpg'), type: 'jpeg', quality: 90 });
 
-  await p.getByRole('dialog').getByRole('button', { name: /Enviar al camarero/ }).click();
+  await dlg.getByRole('button', { name: /Enviar al camarero/ }).click();
   await p.waitForTimeout(1200);
-  const tarjeta = p.getByRole('dialog').locator('div.bg-white', { hasText: 'Confirmar' }).first();
+  const tarjeta = dlg.locator('div.bg-white', { hasText: 'Confirmar' }).first();
   await tarjeta.screenshot({ path: path.join(SALIDA, 'camarero.png') });
   fs.writeFileSync(path.join(SALIDA, 'demo.txt'), `${slug}\n`);
   console.log(`[Preparar] capturas de ${slug} listas (carta ${alto} px)`);

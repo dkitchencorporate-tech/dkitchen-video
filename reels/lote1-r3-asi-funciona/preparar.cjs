@@ -55,43 +55,44 @@ async function anonimizar(p, nombre) {
   }
   if (!usada) { console.error('[Preparar] ninguna demo válida'); process.exit(1); }
   const [slug, nombre] = usada;
+  const URL = `https://dkitchencorporate.es/m/${slug}?mesa=4`;
+  const dbg = async (n) => p.screenshot({ path: path.join(SALIDA, `dbg-${n}.jpg`), type: 'jpeg', quality: 60 }).catch(() => {});
+  await p.goto(URL, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(3000);
+  await p.getByRole('button', { name: /Solo esenciales|Rechazar|Aceptar todo/i }).first().click({ timeout: 2500 }).catch(() => {});
   await anonimizar(p, nombre);
-  // Barras flotantes fuera de la captura larga (se ven en las capturas de pantalla, no en la carta entera)
-  const alto = Math.min(await p.evaluate(() => document.documentElement.scrollHeight), 5200);
-  await p.evaluate(() => { for (const el of document.querySelectorAll('*')) { const s = getComputedStyle(el); if (s.position === 'fixed' || s.position === 'sticky') el.dataset.r3fijo = '1', el.style.visibility = 'hidden'; } });
-  await p.setViewportSize({ width: 390, height: alto }); await p.waitForTimeout(1200);
-  await p.screenshot({ path: path.join(SALIDA, 'carta.jpg'), type: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 390, height: alto } });
-  await p.setViewportSize({ width: 390, height: 844 });
-  await p.evaluate(() => { for (const el of document.querySelectorAll('[data-r3fijo]')) el.style.visibility = ''; scrollTo(0, 0); });
-  await p.waitForTimeout(600);
   await p.screenshot({ path: path.join(SALIDA, 'inicio.jpg'), type: 'jpeg', quality: 90 });
 
-  // Pedido desde la mesa: 2 platos (segunda sección si existe, más apetecible que las bebidas)
+  // 1) Pedido desde la mesa en la página recién cargada (sin tocar estilos)
   const dlg = p.locator('[aria-labelledby="pedido-titulo"]');
-  for (const b of [p.locator('button', { hasText: /^\s*Pedir\s*$/ }).last(), p.getByText('Pedir desde la mesa').first()]) {
-    if (await dlg.count()) break;
-    await b.scrollIntoViewIfNeeded().catch(() => {}); await b.click({ timeout: 5000, force: true }).catch((e) => console.log('[Preparar] clic pedir:', String(e.message).slice(0, 120)));
-    await p.waitForTimeout(1200);
-  }
-  await p.evaluate(() => scrollTo(0, 0));
-  await dlg.waitFor({ timeout: 8000 });
+  const botones = await p.evaluate(() => [...document.querySelectorAll('button')].map((b) => b.innerText.trim()).filter((t) => /pedir/i.test(t)));
+  console.log('[Preparar] botones con «pedir»:', JSON.stringify(botones));
+  await p.getByRole('button', { name: /^Pedir$/ }).last().click();
+  await p.waitForTimeout(1500); await dbg('1-abierto');
+  console.log('[Preparar] diálogo visible:', await dlg.isVisible());
   const anadir = dlg.getByRole('button', { name: /^Añadir$/ });
-  const n = await anadir.count();
+  const n = await anadir.count(); console.log('[Preparar] platos con Añadir:', n);
   const idx = n > 8 ? [4, 6] : [0, 1];
-  await anadir.nth(idx[0]).click(); await p.waitForTimeout(250);
-  await anadir.nth(idx[1] - 1).click(); await p.waitForTimeout(250);
+  await anadir.nth(idx[0]).click(); await p.waitForTimeout(400); await dbg('2-uno');
+  await anadir.nth(idx[1] - 1).click(); await p.waitForTimeout(400);
   await dlg.getByRole('button', { name: /Añadir otro/ }).first().click().catch(() => {});
-  await p.getByRole('textbox', { name: 'Número de mesa' }).fill('4');
+  await dlg.getByRole('textbox', { name: 'Número de mesa' }).fill('4');
   await anonimizar(p, nombre);
   await p.evaluate(() => { for (const el of document.querySelectorAll('[role=dialog] p')) if (/Demostración/.test(el.textContent)) el.textContent = 'Lo confirma el camarero. Se paga en la barra.'; });
-  await p.waitForTimeout(400);
+  await p.waitForTimeout(500);
   await p.screenshot({ path: path.join(SALIDA, 'pedido.jpg'), type: 'jpeg', quality: 90 });
+  await dlg.getByRole('button', { name: /Enviar al camarero/ }).click({ timeout: 8000 });
+  await p.waitForTimeout(1500); await dbg('3-enviado');
+  await dlg.locator('div.bg-white', { hasText: 'Confirmar' }).first().screenshot({ path: path.join(SALIDA, 'camarero.png') });
 
-  await dlg.getByRole('button', { name: /Enviar al camarero/ }).click();
-  await p.waitForTimeout(1200);
-  const tarjeta = dlg.locator('div.bg-white', { hasText: 'Confirmar' }).first();
-  await tarjeta.screenshot({ path: path.join(SALIDA, 'camarero.png') });
+  // 2) Carta larga en una carga nueva, sin las barras flotantes
+  await p.goto(URL, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(2500);
+  for (let y = 0; y < 5200; y += 350) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(160); }
+  await p.evaluate(() => scrollTo(0, 0)); await anonimizar(p, nombre);
+  const alto = Math.min(await p.evaluate(() => document.documentElement.scrollHeight), 5200);
+  await p.evaluate(() => { for (const el of document.querySelectorAll('*')) { const s = getComputedStyle(el); if (s.position === 'fixed' || s.position === 'sticky') el.style.visibility = 'hidden'; } });
+  await p.setViewportSize({ width: 390, height: alto }); await p.waitForTimeout(1200);
+  await p.screenshot({ path: path.join(SALIDA, 'carta.jpg'), type: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 390, height: alto } });
   fs.writeFileSync(path.join(SALIDA, 'demo.txt'), `${slug}\n`);
   console.log(`[Preparar] capturas de ${slug} listas (carta ${alto} px)`);
   await b.close();
-})().catch((e) => { console.error('[Preparar] ERROR:', e.message); process.exit(1); });
+})().catch(async (e) => { console.error('[Preparar] ERROR:', e.message.slice(0, 300)); process.exit(1); });

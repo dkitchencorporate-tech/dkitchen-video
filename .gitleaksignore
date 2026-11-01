@@ -1,3 +1,7 @@
 # Falsos positivos de OpenMontage aguas arriba (modelo y documentacion)
 2b6d717f006044cf5f22db6b6a4c3c729e141254:tools/video/jimeng_video.py:generic-api-key:46
 46d5514a0a4f90b074f3fda22f48e56b58e31e72:.agents/skills/website-to-video/references/capabilities.md:generic-api-key:382
+# 02/11/2026 Claude: claves de EJEMPLO inventadas en la documentación de skills/insforge (no son secretos)
+2ed6daff715e3c59d0d5522c93385c5c4332b511:skills/insforge/SKILL.md:generic-api-key:56
+2ed6daff715e3c59d0d5522c93385c5c4332b511:skills/insforge/storage/s3-gateway.md:generic-api-key:53
+2ed6daff715e3c59d0d5522c93385c5c4332b511:skills/insforge/storage/s3-gateway.md:generic-api-key:54

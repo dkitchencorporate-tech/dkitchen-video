@@ -1,0 +1,32 @@
+# Capturas reales de un reel (Playwright en la VM): ejecuta reels/<pieza>/preparar.cjs y sube assets/capturas
+# como artefacto para revisar el material ANTES de componer o renderizar. Solo en la nube (02/11/2026).
+name: Preparar capturas
+on:
+  workflow_dispatch:
+    inputs:
+      carpeta:
+        description: Carpeta del reel (reels/<pieza>) con preparar.cjs
+        required: true
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Validar entrada
+        env: { INPUT_CARPETA: "${{ inputs.carpeta }}" }
+        run: |
+          [[ "$INPUT_CARPETA" =~ ^reels/[a-z0-9-]+$ ]] || { echo "Carpeta no válida"; exit 1; }
+          [ -f "$INPUT_CARPETA/preparar.cjs" ] || { echo "Falta preparar.cjs"; exit 1; }
+      - run: npm i playwright && npx playwright install --with-deps chromium
+      - name: Capturar
+        env: { CARPETA: "${{ inputs.carpeta }}" }
+        run: node "$CARPETA/preparar.cjs"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capturas-${{ github.run_id }}
+          path: ${{ inputs.carpeta }}/assets/capturas/
+          if-no-files-found: warn

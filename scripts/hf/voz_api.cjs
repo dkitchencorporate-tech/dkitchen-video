@@ -40,6 +40,14 @@ const informe = []; let fallos = 0;
     const f = path.join(dSfx, `${s.id}.mp3`); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer()));
     informe.push(`sfx ${s.id}: ${dur(f).toFixed(2)} s`);
   }
+  // Música por API (Alex, 02/11/2026: la música de los reels la genera Claude con la API, como la voz).
+  // Solo si guion.json trae musica.api = true. Dura 1 s más que el reel (fundido de salida en index.html).
+  if (g.musica && g.musica.api && g.musica.prompt) {
+    const ms = Math.round((Number(g.duracion) + 1) * 1000);
+    const r = await fetch('https://api.elevenlabs.io/v1/music?output_format=mp3_44100_128', { method: 'POST', headers: H, body: JSON.stringify({ prompt: g.musica.prompt, music_length_ms: ms, model_id: 'music_v1' }) });
+    if (!r.ok) { informe.push(`musica: ERROR ${r.status} ${(await r.text()).slice(0, 200)}`); fallos++; }
+    else { const f = path.join(dVoz, 'musica.mp3'); fs.writeFileSync(f, Buffer.from(await r.arrayBuffer())); informe.push(`musica: ${dur(f).toFixed(2)} s (pedido ${ms / 1000} s)`); }
+  }
   fs.writeFileSync(path.join(carpeta, 'audio', 'informe_voz_api.txt'), informe.join('\n') + '\n');
   console.log(informe.join('\n'));
   if (fallos) { console.error(`${fallos} fallo(s): revisar el informe`); process.exit(1); }

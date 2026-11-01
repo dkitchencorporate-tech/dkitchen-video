@@ -69,14 +69,17 @@ async function anonimizar(p, nombre) {
   await p.getByRole('button', { name: /^Pedir$/ }).last().click();
   await p.waitForTimeout(1500); await dbg('1-abierto');
   console.log('[Preparar] diálogo visible:', await dlg.isVisible());
+  const mesaIn = dlg.getByRole('textbox', { name: 'Número de mesa' });
+  if (!(await mesaIn.inputValue())) { await mesaIn.click(); await p.keyboard.type('4', { delay: 80 }); }
+  await p.waitForTimeout(500); await dbg('0-mesa');
+  console.log('[Preparar] tras la mesa, diálogo visible:', await dlg.isVisible());
   const anadir = dlg.getByRole('button', { name: /^Añadir$/ });
   const n = await anadir.count(); console.log('[Preparar] platos con Añadir:', n);
   const idx = n > 8 ? [4, 6] : [0, 1];
   await anadir.nth(idx[0]).click(); await p.waitForTimeout(400); await dbg('2-uno');
-  await anadir.nth(idx[1] - 1).click(); await p.waitForTimeout(400);
+  await anadir.nth(idx[1] - 1).click(); await p.waitForTimeout(400); await dbg('2b-dos');
   await dlg.getByRole('button', { name: /Añadir otro/ }).first().click().catch(() => {});
-  await dlg.getByRole('textbox', { name: 'Número de mesa' }).fill('4');
-  await anonimizar(p, nombre);
+  await p.waitForTimeout(400); await dbg('2c-mas');
   await p.evaluate(() => { for (const el of document.querySelectorAll('[role=dialog] p')) if (/Demostración/.test(el.textContent)) el.textContent = 'Lo confirma el camarero. Se paga en la barra.'; });
   await p.waitForTimeout(500);
   await p.screenshot({ path: path.join(SALIDA, 'pedido.jpg'), type: 'jpeg', quality: 90 });

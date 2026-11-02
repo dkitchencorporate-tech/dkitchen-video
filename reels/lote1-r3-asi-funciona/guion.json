@@ -37,13 +37,13 @@
     {
       "id": "t4",
       "inicio": 9.7,
-      "fin_max": 12.6,
+      "fin_max": 12.45,
       "texto": "Y la comanda le llega al camarero al momento."
     },
     {
       "id": "t5",
-      "inicio": 12.9,
-      "fin_max": 14.8,
+      "inicio": 12.6,
+      "fin_max": 14.9,
       "texto": "Desde un euro. Escríbenos CARTA."
     }
   ],

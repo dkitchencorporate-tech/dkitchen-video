@@ -1,1 +1,1 @@
-Pedido de voz y música por API para lote1-r3-asi-funciona (Claude, 02/11/2026): voz Álvaro (tramos t1–t5) y música (musica.api).
+Pedido 2 (02/11/2026): t5 adelantado a 12,6 s (hueco 2,3 s).

@@ -119,6 +119,8 @@ jobs:
             ${{ inputs.carpeta }}/check.json
             ${{ inputs.carpeta }}/audio_log.txt
             ${{ inputs.carpeta }}/audio.mp3
+            ${{ inputs.carpeta }}/assets/capturas/*.jpg
+            ${{ inputs.carpeta }}/assets/capturas/*.png
 
       - name: Entregar a Google Drive (solo si todo ha pasado)
         if: success()

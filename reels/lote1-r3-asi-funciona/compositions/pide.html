@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena · Pide</title></head>
+  <body>
+    <template id="pide">
+      <style>
+        #root { position: absolute; inset: 0; }
+        #pid-cifra { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 200px; line-height: 0.9; letter-spacing: -6px; color: #F0C96F; text-shadow: 0 0 60px rgba(240,201,111,0.35), 0 20px 60px rgba(5,4,6,0.8); font-variant-numeric: tabular-nums; }
+        #pid-esc { position: absolute; left: 290px; top: 330px; width: 500px; height: 1082px; perspective: 1400px; }
+        #pid-movil { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; border-radius: 72px; background: linear-gradient(145deg, #2a2428, #0d0b0e 40%, #1c181b); padding: 14px; box-shadow: 0 60px 120px -20px rgba(0,0,0,0.9), 0 0 0 2px rgba(217,178,92,0.35), inset 0 0 0 2px rgba(255,255,255,0.06); }
+        #pid-pantalla { position: relative; width: 472px; height: 1054px; border-radius: 58px; overflow: hidden; background: #0B0A09; }
+        #pid-isla { position: absolute; left: 176px; top: 18px; width: 120px; height: 34px; border-radius: 20px; background: #000; z-index: 9; }
+        #pid-fondo { position: absolute; inset: 0; background-image: url('assets/capturas/carta.jpg'); background-size: 472px auto; background-position: 0 -2350px; filter: brightness(0.5); }
+        #pid-hoja { position: absolute; left: 0; top: 16px; width: 472px; }
+        #pid-onda { position: absolute; left: 196px; top: 690px; width: 80px; height: 80px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; }
+        #pid-envio { position: absolute; left: 29px; right: 29px; top: 698px; height: 63px; border-radius: 20px; background: rgba(240,201,111,0.0); }
+      </style>
+
+      <div id="root" data-composition-id="pide" data-width="1080" data-height="1920">
+        <div id="pid-cifra">0,00 €</div>
+        <div id="pid-esc">
+          <div id="pid-movil">
+            <div id="pid-pantalla">
+              <div id="pid-fondo"></div>
+              <img id="pid-hoja" src="assets/capturas/pedido.jpg" alt="" />
+              <div id="pid-envio"></div>
+              <div id="pid-onda"></div>
+              <div id="pid-isla"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const cifra = document.getElementById("pid-cifra");
+        const fmt = (n) => n.toFixed(2).replace(".", ",") + " €";
+        const contador = { v: 0 };
+        tl.fromTo("#pid-movil", { rotationY: 6, rotationX: 2, scale: 0.94 }, { rotationY: -6, rotationX: 3, scale: 0.9, duration: 2.8, ease: "sine.inOut" }, 0);
+        // La hoja del pedido real sube desde abajo (como en el móvil)
+        tl.fromTo("#pid-hoja", { y: 1054 }, { y: 0, duration: 0.45, ease: "power3.out" }, 0);
+        // Cifra real del pedido (2 × 22 € + 18 €) contando detrás del móvil
+        tl.fromTo("#pid-cifra", { y: 40, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.15);
+        tl.fromTo(contador, { v: 0 }, { v: 62, duration: 1.1, ease: "power2.out", onUpdate: () => { cifra.textContent = fmt(contador.v); } }, 0.25);
+        // Toque en «Enviar al camarero»
+        tl.fromTo("#pid-onda", { scale: 0.3, opacity: 1 }, { scale: 2.6, opacity: 0, duration: 0.55, ease: "power2.out" }, 1.6);
+        tl.fromTo("#pid-envio", { backgroundColor: "rgba(240,201,111,0)" }, { backgroundColor: "rgba(240,201,111,0.35)", duration: 0.12, ease: "none", yoyo: true, repeat: 1 }, 1.6);
+        tl.fromTo("#pid-hoja", { scale: 1 }, { scale: 0.985, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 1.6);
+        tl.to("#pid-cifra", { y: -30, opacity: 0, duration: 0.3, ease: "power2.in" }, 2.5);
+        window.__timelines["pide"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

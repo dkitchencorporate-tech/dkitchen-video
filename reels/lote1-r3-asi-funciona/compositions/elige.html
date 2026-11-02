@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head><meta charset="UTF-8" /><title>Escena · Elige</title></head>
+  <body>
+    <template id="elige">
+      <style>
+        #root { position: absolute; inset: 0; }
+        #eli-pal { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; display: flex; justify-content: center; align-items: baseline; gap: 18px; perspective: 1200px; }
+        #eli-pal span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 196px; line-height: 0.9; letter-spacing: -8px; color: #F7F5F2; text-shadow: 0 20px 60px rgba(5,4,6,0.7); }
+        #eli-pal em { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 104px; color: #F0C96F; }
+        #eli-esc { position: absolute; left: 290px; top: 330px; width: 500px; height: 1082px; perspective: 1400px; }
+        #eli-movil { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; border-radius: 72px; background: linear-gradient(145deg, #2a2428, #0d0b0e 40%, #1c181b); padding: 14px; box-shadow: 0 60px 120px -20px rgba(0,0,0,0.9), 0 0 0 2px rgba(217,178,92,0.35), inset 0 0 0 2px rgba(255,255,255,0.06); }
+        #eli-pantalla { position: relative; width: 472px; height: 1054px; border-radius: 58px; overflow: hidden; background: #0B0A09; }
+        #eli-isla { position: absolute; left: 176px; top: 18px; width: 120px; height: 34px; border-radius: 20px; background: #000; z-index: 9; }
+        #eli-carta { position: absolute; left: 0; top: 0; width: 472px; }
+        #eli-brillo { position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0) 65%); }
+        #eli-onda { position: absolute; left: 196px; top: 560px; width: 80px; height: 80px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.25); opacity: 0; }
+        #eli-chip { position: absolute; left: 500px; top: 900px; padding: 18px 28px; border-radius: 26px; background: rgba(20,16,20,0.72); border: 1.5px solid rgba(217,178,92,0.6); backdrop-filter: blur(12px); font-family: var(--font-body); font-weight: 700; font-size: 30px; color: #F7F5F2; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        #eli-chip b { color: #F0C96F; }
+      </style>
+
+      <div id="root" data-composition-id="elige" data-width="1080" data-height="1920">
+        <div id="eli-pal"><span>Elige</span><em>con foto</em></div>
+        <div id="eli-esc">
+          <div id="eli-movil">
+            <div id="eli-pantalla">
+              <img id="eli-carta" src="assets/capturas/carta.jpg" alt="" />
+              <div id="eli-brillo"></div>
+              <div id="eli-onda"></div>
+              <div id="eli-isla"></div>
+            </div>
+          </div>
+        </div>
+        <div id="eli-chip">Foto <b>·</b> precio <b>·</b> alérgenos</div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#eli-movil", { rotationY: -8, rotationX: 4, scale: 0.88 }, { rotationY: 6, rotationX: 2, scale: 0.94, duration: 3.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#eli-pal span, #eli-pal em", { y: 40, rotationX: -75, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.5, ease: "back.out(1.5)", stagger: 0.14 }, 0.05);
+        // Scroll real por la carta (captura de producción a página completa): rápido al principio, se posa en un plato
+        tl.fromTo("#eli-carta", { y: 0 }, { y: -1150, duration: 1.2, ease: "power2.inOut" }, 0.15);
+        tl.to("#eli-carta", { y: -2350, duration: 1.3, ease: "power3.out" }, 1.35);
+        tl.fromTo("#eli-brillo", { x: -520 }, { x: 520, duration: 1.1, ease: "power1.inOut" }, 0.4);
+        tl.fromTo("#eli-chip", { x: 60, opacity: 0, rotationY: -30 }, { x: 0, opacity: 1, rotationY: 0, duration: 0.5, ease: "back.out(1.6)" }, 2.2);
+        // Toque en el plato elegido
+        tl.fromTo("#eli-onda", { scale: 0.3, opacity: 1 }, { scale: 2.4, opacity: 0, duration: 0.55, ease: "power2.out" }, 2.9);
+        tl.to("#eli-pal, #eli-chip", { y: -30, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.5);
+        window.__timelines["elige"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

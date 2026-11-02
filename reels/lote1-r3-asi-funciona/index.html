@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>DKitchen · Así funciona en 15 segundos</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="marca/tokens.css" />
+    <link rel="stylesheet" href="marca/fuentes.css" />
+    <style>
+      /* Fuentes locales también aquí, en el propio archivo (lint font_family_without_font_face) */
+      @font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }
+      @font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }
+      @font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+      body { margin: 0; background: #050406; }
+      #raiz { position: relative; width: 100%; height: 100%; overflow: hidden; background: #050406; font-family: var(--font-body); color: var(--papel); }
+      /* Atmósfera: nunca negro plano (directriz 1.2) */
+      #fondo { position: absolute; inset: 0; }
+      .halo { position: absolute; border-radius: 50%; filter: blur(60px); }
+      #halo-vino { width: 1400px; height: 1400px; left: -420px; top: -260px; background: radial-gradient(circle, rgba(110,12,43,0.85) 0%, rgba(22,14,24,0) 70%); }
+      #halo-oro { width: 1100px; height: 1100px; left: 260px; top: 1040px; background: radial-gradient(circle, rgba(217,178,92,0.38) 0%, rgba(14,12,18,0) 70%); }
+      #rejilla { position: absolute; inset: 0; opacity: 0.15; background-image: radial-gradient(rgba(247,245,242,0.55) 1.5px, transparent 1.5px); background-size: 36px 36px; }
+      .particula { position: absolute; border-radius: 50%; background: #F0C96F; box-shadow: 0 0 12px rgba(240,201,111,0.8); }
+      /* Cámara: envoltorio sin data-start; mueve todo el reel (directriz 1.1) */
+      #camara { position: absolute; inset: 0; transform-origin: 50% 45%; }
+      /* Subtítulos quemados sin cajas, dentro de la caja segura */
+      #subs { position: absolute; left: calc(var(--safe-left) + 20px); right: calc(var(--safe-right) + 20px); bottom: calc(var(--safe-bottom) + 30px); height: 230px; }
+      .sub { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-content: flex-end; justify-content: center; gap: 0 18px; opacity: 0; }
+      .sub span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 58px; line-height: 1.12; color: #FFFFFF; text-shadow: 0 4px 18px rgba(5,4,6,0.9), 0 0 2px rgba(5,4,6,1); }
+      .sub span.oro { color: #F0C96F; }
+      .sub span.vino { color: #FF5A82; }
+    </style>
+  </head>
+  <body>
+    <div id="raiz" data-composition-id="lote1-r3-asi-funciona" data-start="0" data-width="1080" data-height="1920" data-duration="15">
+
+      <!-- PISTA 0 · Atmósfera continua -->
+      <div id="fondo" class="clip" data-start="0" data-duration="15" data-track-index="0" data-layout-allow-overflow>
+        <div id="halo-vino" class="halo"></div>
+        <div id="halo-oro" class="halo"></div>
+        <div id="rejilla"></div>
+        <div id="particulas"></div>
+      </div>
+
+      <!-- PISTA 1 · Escenas con material real de producción (preparar.cjs) dentro de la cámara -->
+      <div id="camara">
+        <div id="escanea" data-composition-id="escanea" data-composition-src="compositions/escanea.html"
+             data-start="0" data-duration="3" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <div id="elige" data-composition-id="elige" data-composition-src="compositions/elige.html"
+             data-start="3" data-duration="3.8" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <div id="pide" data-composition-id="pide" data-composition-src="compositions/pide.html"
+             data-start="6.8" data-duration="2.8" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <div id="camarero" data-composition-id="camarero" data-composition-src="compositions/camarero.html"
+             data-start="9.6" data-duration="3.2" data-track-index="1" data-width="1080" data-height="1920"></div>
+        <div id="cta" data-composition-id="cta" data-composition-src="compositions/cta.html"
+             data-start="12.8" data-duration="2.2" data-track-index="1" data-width="1080" data-height="1920"></div>
+      </div>
+
+      <!-- PISTA 2 · Subtítulos (un grupo por tramo de voz) -->
+      <div id="subs" class="clip" data-start="0" data-duration="15" data-track-index="2">
+        <div class="sub" id="sub-t1"><span>Tu</span><span>cliente</span><span>escanea</span><span>el</span><span>código</span><span>de la</span><span class="oro">mesa</span></div>
+        <div class="sub" id="sub-t2"><span>Elige</span><span>su</span><span>plato,</span><span>con</span><span class="oro">foto</span><span>y</span><span class="oro">alérgenos</span></div>
+        <div class="sub" id="sub-t3"><span>Lo</span><span>pide</span><span>desde</span><span>el</span><span class="oro">móvil</span></div>
+        <div class="sub" id="sub-t4"><span>Y la</span><span>comanda</span><span>llega</span><span>al</span><span class="oro">camarero</span><span>al momento</span></div>
+        <div class="sub" id="sub-t5"><span>Desde</span><span class="oro">1 €.</span><span>Escríbenos</span><span class="oro">CARTA</span></div>
+      </div>
+
+      <!-- AUDIO · Voz de Álvaro por tramos (API de ElevenLabs vía flujo; data-duration la reescribe audio_pistas.cjs) -->
+      <hf-audio-group id="voz" data-label="Voz" data-volume="1"
+        data-fx-chain='{"version":1,"nodes":[{"type":"highpass","id":"v1","label":"Remove Rumble","params":{"frequency":80,"q":0.707,"poles":"2"}},{"type":"peaking","id":"v2","label":"Reduce Mud","params":{"frequency":250,"gain":-3,"q":1.2}},{"type":"compressor","id":"v3","label":"Even Out Loudness","params":{"threshold":-20,"ratio":3,"attack":10,"release":180,"knee":2.83,"makeup":3,"mix":1}},{"type":"peaking","id":"v4","label":"Add Clarity","params":{"frequency":3000,"gain":2.5,"q":1}},{"type":"limiter","id":"v5","label":"Peak Ceiling","params":{"limit":-1,"attack":5,"release":50,"level_out":0}}]}'></hf-audio-group>
+      <audio id="voz-t1" data-audio-group="voz" src="audio/voz-t1.mp3" data-start="0.3" data-duration="2.60" data-track-index="10" data-volume="1"></audio>
+      <audio id="voz-t2" data-audio-group="voz" src="audio/voz-t2.mp3" data-start="3.1" data-duration="3.50" data-track-index="10" data-volume="1"></audio>
+      <audio id="voz-t3" data-audio-group="voz" src="audio/voz-t3.mp3" data-start="6.9" data-duration="2.50" data-track-index="10" data-volume="1"></audio>
+      <audio id="voz-t4" data-audio-group="voz" src="audio/voz-t4.mp3" data-start="9.7" data-duration="2.90" data-track-index="10" data-volume="1"></audio>
+      <audio id="voz-t5" data-audio-group="voz" src="audio/voz-t5.mp3" data-start="12.9" data-duration="1.90" data-track-index="10" data-volume="1"></audio>
+
+      <!-- AUDIO · Música (API, 02/11) con fundidos; el carve contra «voz» lo escribe carve.mjs en Actions -->
+      <audio id="musica" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="15" data-track-index="11" data-volume="0.5"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.5},{"t":14.2,"v":0.5},{"t":15,"v":0}]}]}'></audio>
+
+      <!-- AUDIO · Efectos en cada corte y en cada toque (grupo «sfx») -->
+      <audio id="sfx-w1" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="2.8" data-duration="0.55" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-p1" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="1.85" data-duration="0.4" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-w2" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="6.6" data-duration="0.55" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-p2" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="5.9" data-duration="0.4" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-p3" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="8.4" data-duration="0.4" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-w3" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="9.5" data-duration="0.55" data-track-index="12" data-volume="0.75"></audio>
+      <audio id="sfx-i1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="10.05" data-duration="0.8" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-t1" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="10.5" data-duration="0.3" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-p4" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="11.5" data-duration="0.4" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-w4" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="12.7" data-duration="0.55" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-c1" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="14" data-duration="1" data-track-index="12" data-volume="0.8"></audio>
+    </div>
+
+    <script>
+      // Partículas deterministas (semilla fija, nunca Math.random)
+      function mulberry32(a) { return function () { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      const rnd = mulberry32(20261031);
+      const caja = document.getElementById("particulas");
+      const particulas = [];
+      for (let i = 0; i < 28; i++) {
+        const p = document.createElement("div");
+        p.className = "particula";
+        const tam = 3 + rnd() * 6;
+        p.style.width = tam + "px"; p.style.height = tam + "px";
+        p.style.left = Math.round(rnd() * 1080) + "px"; p.style.top = Math.round(rnd() * 1920) + "px";
+        p.style.opacity = (0.25 + rnd() * 0.5).toFixed(2);
+        caja.appendChild(p);
+        particulas.push({ el: p, dy: -(120 + rnd() * 260), dx: (rnd() - 0.5) * 120 });
+      }
+
+      const D = 15;
+      const tl = gsap.timeline({ paused: true });
+      // Halos que respiran (curva sinusoidal, repeticiones finitas)
+      tl.to("#halo-vino", { x: 160, y: 120, scale: 1.12, duration: D / 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+      tl.to("#halo-oro", { x: -140, y: -90, scale: 1.18, duration: D / 3, ease: "sine.inOut", yoyo: true, repeat: 2 }, 0);
+      // Polvo de oro subiendo durante todo el reel
+      particulas.forEach((p) => tl.to(p.el, { y: p.dy, x: p.dx, duration: D, ease: "none" }, 0));
+      // Cámara: dolly suave + giro de 1,5° (cero estaticidad)
+      tl.fromTo("#camara", { scale: 1, rotation: -0.75 }, { scale: 1.045, rotation: 0.75, duration: D, ease: "sine.inOut" }, 0);
+      // Subtítulos por tramo: palabra a palabra con rotateX y back.out (directriz 1.4)
+      function subtitulo(id, inicio, fin) {
+        tl.set("#" + id, { opacity: 1 }, inicio);
+        tl.fromTo("#" + id + " span", { y: 22, rotationX: -70, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)", stagger: 0.12 }, inicio);
+        tl.to("#" + id, { opacity: 0, duration: 0.25, ease: "power2.in" }, fin - 0.25);
+      }
+      subtitulo("sub-t1", 0.3, 3.05);
+      subtitulo("sub-t2", 3.1, 6.75);
+      subtitulo("sub-t3", 6.9, 9.55);
+      subtitulo("sub-t4", 9.7, 12.75);
+      subtitulo("sub-t5", 12.9, 14.95);
+      window.__timelines["lote1-r3-asi-funciona"] = tl;
+    </script>
+  </body>
+</html>

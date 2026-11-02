@@ -5,7 +5,7 @@
   "fps": 30,
   "voz": {
     "voice_id": "bIHbv24MWmeRgasZH58o",
-    "nombre": "Álvaro (provisional hasta que karc0 elija)",
+    "nombre": "Álvaro",
     "modelo": "eleven_multilingual_v2",
     "ajustes": {
       "stability": 0.45,
@@ -48,8 +48,9 @@
     }
   ],
   "musica": {
-    "prompt": "Light upbeat modern pop-electronic bed with soft plucks and claps, 112 bpm, friendly and quick, clean ending at 15 seconds, no vocals",
-    "fallback": "assets/audio/musica_fondo.mp3"
+    "api": true,
+    "prompt": "Instrumental only, no vocals. Light, upbeat modern pop-electronic bed for a premium restaurant tech brand: soft plucks, warm synth chords, gentle claps, 112 bpm, friendly and quick, builds slightly at the end and resolves cleanly at 15 seconds.",
+    "nota": "Generada por Claude con la API (orden de Alex, 02/11/2026)."
   },
   "qc": {
     "lufs": -14,

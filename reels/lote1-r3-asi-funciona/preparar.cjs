@@ -93,8 +93,8 @@ async function anonimizar(p, nombre) {
   await p.evaluate(() => scrollTo(0, 0)); await anonimizar(p, nombre);
   const alto = Math.min(await p.evaluate(() => document.documentElement.scrollHeight), 5200);
   await p.evaluate(() => { for (const el of document.querySelectorAll('*')) { const s = getComputedStyle(el); if (s.position === 'fixed' || s.position === 'sticky') el.style.visibility = 'hidden'; } });
-  await p.setViewportSize({ width: 390, height: alto }); await p.waitForTimeout(1200);
-  await p.screenshot({ path: path.join(SALIDA, 'carta.jpg'), type: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 390, height: alto } });
+  await p.waitForTimeout(800); // ventana normal (390×844): la portada mide una pantalla, como en el móvil
+  await p.screenshot({ path: path.join(SALIDA, 'carta.jpg'), type: 'jpeg', quality: 88, fullPage: true });
   fs.writeFileSync(path.join(SALIDA, 'demo.txt'), `${slug}\n`);
   console.log(`[Preparar] capturas de ${slug} listas (carta ${alto} px)`);
   await b.close();

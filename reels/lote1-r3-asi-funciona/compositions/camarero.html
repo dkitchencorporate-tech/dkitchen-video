@@ -6,9 +6,9 @@
       <style>
         #root { position: absolute; inset: 0; }
         #cam-pal { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; display: flex; justify-content: center; align-items: baseline; gap: 22px; perspective: 1200px; }
-        #cam-pal span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 150px; line-height: 0.95; letter-spacing: -5px; color: #F7F5F2; text-shadow: 0 20px 60px rgba(5,4,6,0.7); }
-        #cam-pal em { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 150px; color: #F0C96F; }
-        .cam-esc { position: absolute; top: 330px; width: 500px; height: 1082px; perspective: 1400px; }
+        #cam-pal span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 130px; line-height: 0.95; letter-spacing: -4px; color: #F7F5F2; text-shadow: 0 20px 60px rgba(5,4,6,0.7); }
+        #cam-pal em { display: inline-block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 130px; color: #F0C96F; }
+        .cam-esc { position: absolute; top: 380px; width: 500px; height: 1082px; perspective: 1400px; }
         #cam-esc-a { left: 290px; }
         #cam-esc-b { left: 290px; }
         .cam-movil { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; border-radius: 72px; background: linear-gradient(145deg, #2a2428, #0d0b0e 40%, #1c181b); padding: 14px; box-shadow: 0 60px 120px -20px rgba(0,0,0,0.9), 0 0 0 2px rgba(217,178,92,0.35), inset 0 0 0 2px rgba(255,255,255,0.06); }
@@ -18,7 +18,7 @@
         /* Móvil del camarero: fondo de app oscuro y la comanda REAL tal como la enseña la demo («Así le llega al camarero») */
         #cam-app { position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(110,12,43,0.55), rgba(11,10,9,1) 60%); }
         #cam-cab { position: absolute; left: 32px; right: 32px; top: 86px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-body); font-weight: 700; font-size: 26px; color: #F7F5F2; }
-        #cam-cab small { font-weight: 600; font-size: 20px; color: #F0C96F; letter-spacing: 3px; }
+        #cam-cab small { font-weight: 600; font-size: 24px; color: #F0C96F; letter-spacing: 3px; }
         #cam-campana { width: 62px; height: 62px; border-radius: 50%; background: #6E0C2B; border: 2px solid #D9B25C; display: flex; align-items: center; justify-content: center; }
         #cam-aro { position: absolute; left: 378px; top: 74px; width: 62px; height: 62px; border-radius: 50%; border: 4px solid #F0C96F; opacity: 0; }
         #cam-tarjeta { position: absolute; left: 16px; top: 200px; width: 440px; border-radius: 22px; box-shadow: 0 30px 70px rgba(0,0,0,0.65), 0 0 0 3px rgba(240,201,111,0); }
@@ -29,7 +29,7 @@
       </style>
 
       <div id="root" data-composition-id="camarero" data-width="1080" data-height="1920">
-        <div id="cam-pal"><span>Al</span><em>momento</em></div>
+        <div id="cam-pal" data-layout-allow-occlusion><span>Al</span><em>momento</em></div>
         <div class="cam-esc" id="cam-esc-a">
           <div class="cam-movil" id="cam-movil-a">
             <div class="cam-pantalla">

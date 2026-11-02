@@ -6,9 +6,9 @@
       <style>
         #root { position: absolute; inset: 0; }
         #esc-pal { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; display: flex; justify-content: center; perspective: 1200px; }
-        #esc-pal span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 212px; line-height: 0.9; letter-spacing: -7px; color: #F7F5F2; text-shadow: 0 20px 60px rgba(5,4,6,0.7); }
+        #esc-pal span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 172px; line-height: 0.9; letter-spacing: -6px; color: #F7F5F2; text-shadow: 0 20px 60px rgba(5,4,6,0.7); }
         #esc-pal span.oro { color: #F0C96F; }
-        #esc-esc { position: absolute; left: 290px; top: 330px; width: 500px; height: 1082px; perspective: 1400px; }
+        #esc-esc { position: absolute; left: 290px; top: 380px; width: 500px; height: 1082px; perspective: 1400px; }
         #esc-movil { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; border-radius: 72px; background: linear-gradient(145deg, #2a2428, #0d0b0e 40%, #1c181b); padding: 14px; box-shadow: 0 60px 120px -20px rgba(0,0,0,0.9), 0 0 0 2px rgba(217,178,92,0.35), inset 0 0 0 2px rgba(255,255,255,0.06); }
         #esc-pantalla { position: relative; width: 472px; height: 1054px; border-radius: 58px; overflow: hidden; background: #0B0A09; }
         #esc-isla { position: absolute; left: 176px; top: 18px; width: 120px; height: 34px; border-radius: 20px; background: #000; z-index: 9; }
@@ -20,14 +20,14 @@
         #esc-e3 { left: 46px; top: 600px; border-bottom-width: 8px; border-left-width: 8px; border-bottom-left-radius: 22px; }
         #esc-e4 { left: 356px; top: 600px; border-bottom-width: 8px; border-right-width: 8px; border-bottom-right-radius: 22px; }
         #esc-laser { position: absolute; left: 70px; top: 320px; width: 332px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, rgba(240,201,111,0), #F0C96F, rgba(240,201,111,0)); box-shadow: 0 0 24px 6px rgba(240,201,111,0.55); }
-        #esc-aviso { position: absolute; left: 60px; right: 60px; top: 720px; padding: 22px 26px; border-radius: 26px; background: rgba(247,245,242,0.14); border: 1px solid rgba(247,245,242,0.25); backdrop-filter: blur(14px); font-family: var(--font-body); font-weight: 600; font-size: 26px; color: #F7F5F2; text-align: center; }
+        #esc-aviso { position: absolute; left: 60px; right: 60px; top: 720px; padding: 22px 26px; border-radius: 26px; background: rgba(247,245,242,0.14); border: 1px solid rgba(247,245,242,0.25); backdrop-filter: blur(14px); font-family: var(--font-body); font-weight: 600; font-size: 30px; color: #F7F5F2; text-align: center; }
         #esc-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
         #esc-carta { position: absolute; inset: 0; background-image: url('assets/capturas/inicio.jpg'); background-size: 472px auto; background-position: top center; opacity: 0; }
         #esc-onda { position: absolute; left: 196px; top: 440px; width: 80px; height: 80px; border-radius: 50%; border: 5px solid #F0C96F; opacity: 0; }
       </style>
 
       <div id="root" data-composition-id="escanea" data-width="1080" data-height="1920">
-        <div id="esc-pal"><span>Esca</span><span class="oro">nea</span></div>
+        <div id="esc-pal" data-layout-allow-occlusion><span>Esca</span><span class="oro">nea</span></div>
         <div id="esc-esc">
           <div id="esc-movil">
             <div id="esc-pantalla">

@@ -5,8 +5,8 @@
     <template id="pide">
       <style>
         #root { position: absolute; inset: 0; }
-        #pid-cifra { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 200px; line-height: 0.9; letter-spacing: -6px; color: #F0C96F; text-shadow: 0 0 60px rgba(240,201,111,0.35), 0 20px 60px rgba(5,4,6,0.8); font-variant-numeric: tabular-nums; }
-        #pid-esc { position: absolute; left: 290px; top: 330px; width: 500px; height: 1082px; perspective: 1400px; }
+        #pid-cifra { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 250px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 160px; line-height: 0.9; letter-spacing: -5px; color: #F0C96F; text-shadow: 0 0 60px rgba(240,201,111,0.35), 0 20px 60px rgba(5,4,6,0.8); font-variant-numeric: tabular-nums; }
+        #pid-esc { position: absolute; left: 290px; top: 380px; width: 500px; height: 1082px; perspective: 1400px; }
         #pid-movil { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; border-radius: 72px; background: linear-gradient(145deg, #2a2428, #0d0b0e 40%, #1c181b); padding: 14px; box-shadow: 0 60px 120px -20px rgba(0,0,0,0.9), 0 0 0 2px rgba(217,178,92,0.35), inset 0 0 0 2px rgba(255,255,255,0.06); }
         #pid-pantalla { position: relative; width: 472px; height: 1054px; border-radius: 58px; overflow: hidden; background: #0B0A09; }
         #pid-isla { position: absolute; left: 176px; top: 18px; width: 120px; height: 34px; border-radius: 20px; background: #000; z-index: 9; }
@@ -17,7 +17,7 @@
       </style>
 
       <div id="root" data-composition-id="pide" data-width="1080" data-height="1920">
-        <div id="pid-cifra">0,00 €</div>
+        <div id="pid-cifra" data-layout-allow-occlusion>0,00 €</div>
         <div id="pid-esc">
           <div id="pid-movil">
             <div id="pid-pantalla">

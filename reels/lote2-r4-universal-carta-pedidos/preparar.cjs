@@ -1,48 +1,67 @@
 // SOLO en la VM de GitHub Actions (paso «Preparar recursos de la pieza»).
-// Captura pantallas reales y anonimizadas (/m/<slug> + /demo/panel?local=<slug>) sin nombres de locales ni ciudades.
 'use strict';
 const { chromium, devices } = require('playwright');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
 const SALIDA = path.join(__dirname, 'assets', 'capturas');
-const DEMOS = [
-  ['la-parra-baza', 'Restaurante La Parra'],
-  ['dama-de-baza', 'Hotel Restaurante Dama de Baza'],
-  ['bar-sebas', 'Restaurante Bar Sebas'],
-  ['cafe-bar-urbano', 'Café Bar Urbano'],
-  ['pizzeria-venecia', 'Pizzería Venecia'],
-];
+const DEMOS = [["tortilleria-la-mala","Tortillería La Mala"],["la-parra-baza","Restaurante La Parra"],["bar-sebas","Restaurante Bar Sebas"],["cafe-bar-urbano","Café Bar Urbano"]];
+const EXTRA = ["La Mala","La Parra","Bar Sebas","tortilleria"];
 
 async function anonimizar(p, nombre) {
-  await p.evaluate((nombreLocal) => {
-    const partes = [nombreLocal, ...nombreLocal.split(/\s+/).filter((w) => w.length > 4 && !/^(Restaurante|Hotel|Bar|Café|Pizzería)$/i.test(w))];
-    const esc = (s) => s.replace(/[.*+?^$${}()|[\]\\]/g, '\\$&');
-    const re = new RegExp(partes.map(esc).join('|'), 'gi');
+  await p.evaluate(({ nombreLocal, extras }) => {
+    const rawParts = [
+      nombreLocal,
+      ...extras,
+      ...nombreLocal.split(/\s+/).filter((w) => w.length > 3 && !/^(Restaurante|Hotel|Bar|Café|Cafe|Pizzería|Pizzeria|Tortillería|Tortilleria|Marisquería|Marisqueria|The|Las|Los)$/i.test(w)),
+    ].filter(Boolean);
+    const spChars = '.*+?^()|[]\\' + '{' + '}' + '$';
+    const esc = (s) => s.split('').map((ch) => (spChars.indexOf(ch) >= 0 ? '\\' + ch : ch)).join('');
+    const re = new RegExp(rawParts.map(esc).join('|'), 'gi');
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let n;
     while ((n = w.nextNode())) {
       if (re.test(n.nodeValue)) {
         re.lastIndex = 0;
-        n.nodeValue = n.nodeValue.replace(re, 'Tu restaurante').replace(/(Tu restaurante\s*)+/g, 'Tu restaurante ');
+        n.nodeValue = n.nodeValue.replace(re, 'Tu local').replace(/(Tu local\s*)+/g, 'Tu local ');
       }
-      if (/\bBaza\b|perdiz|Cúllar|Cullar|Guadix|Almería|Jaén|Granada/i.test(n.nodeValue)) {
+      if (/\bBaza\b|perdiz|Cúllar|Cullar|Guadix|Almería|Jaén|Granada|Caniles|Huéscar|Zújar/i.test(n.nodeValue)) {
         n.nodeValue = n.nodeValue
-          .replace(/\s*en\s+(Baza|Cúllar|Cullar|Guadix|Almería|Jaén|Granada)\b/gi, '')
+          .replace(/\s*en\s+(Baza|Cúllar|Cullar|Guadix|Almería|Jaén|Granada|Caniles|Huéscar|Zújar)\b/gi, '')
           .replace(/\.?\s*La perdiz,?\s*nuestra especialidad\.?/gi, '')
-          .replace(/\b(Baza|Cúllar|Cullar|Guadix|Almería|Jaén|Granada)\b/gi, '');
+          .replace(/\b(Baza|Cúllar|Cullar|Guadix|Almería|Jaén|Granada|Caniles|Huéscar|Zújar)\b/gi, '');
       }
     }
     for (const img of document.querySelectorAll('img')) {
       const a = (img.alt || '') + ' ' + (img.src || '');
-      if (/logo/i.test(a) || partes.some((s) => a.toLowerCase().includes(s.toLowerCase()))) img.style.visibility = 'hidden';
+      if (/logo|emblema/i.test(a) || rawParts.some((s) => a.toLowerCase().includes(s.toLowerCase()))) {
+        img.style.visibility = 'hidden';
+      }
     }
     document.title = 'Carta Digital';
-  }, nombre);
+  }, { nombreLocal: nombre, extras: EXTRA });
 }
 
 (async () => {
   fs.mkdirSync(SALIDA, { recursive: true });
+
+  // Si falta musica.mp3 propia o es más corta de guion, extender limpiamente desde la cama musical de R4
+  const musDst = path.join(__dirname, 'audio', 'originales', 'musica.mp3');
+  const musSrc = path.resolve(__dirname, '../lote2-r4-universal-carta-pedidos/audio/originales/musica.mp3');
+  const g = JSON.parse(fs.readFileSync(path.join(__dirname, 'guion.json'), 'utf8'));
+  const targetSec = Math.ceil(Number(g.duracion || 15) + 1.5);
+  if (!fs.existsSync(musDst) && fs.existsSync(musSrc)) {
+    fs.mkdirSync(path.dirname(musDst), { recursive: true });
+    execFileSync('ffmpeg', [
+      '-y', '-v', 'error', '-stream_loop', '2', '-i', musSrc,
+      '-t', String(targetSec),
+      '-af', `afade=t=in:st=0:d=0.4,afade=t=out:st=${(targetSec - 1.2).toFixed(2)}:d=1.2`,
+      '-ar', '48000', '-b:a', '192k', musDst,
+    ]);
+    console.log('[Preparar] musica.mp3 generada (' + targetSec + ' s)');
+  }
+
   const b = await chromium.launch();
   const ctx = await b.newContext({ ...devices['iPhone 13'], deviceScaleFactor: 3, locale: 'es-ES' });
   const p = await ctx.newPage();
@@ -85,7 +104,7 @@ async function anonimizar(p, nombre) {
   await dlg.getByRole('button', { name: /Añadir otro/ }).first().click().catch(() => {});
   await p.evaluate(() => {
     for (const el of document.querySelectorAll('[role=dialog] p')) {
-      if (/Demostración/.test(el.textContent)) el.textContent = 'Lo confirma tu equipo en sala al momento.';
+      if (/Demostración/.test(el.textContent)) el.textContent = 'Lo confirma tu equipo al momento.';
     }
   });
   await p.waitForTimeout(450);
@@ -108,7 +127,7 @@ async function anonimizar(p, nombre) {
   await p.waitForTimeout(600);
   await p.screenshot({ path: path.join(SALIDA, 'carta.jpg'), type: 'jpeg', quality: 88, fullPage: true });
 
-  await p.goto(`https://dkitchencorporate.es/demo/panel?local=${slug}`, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  await p.goto(`https://dkitchencorporate.es/demo/panel?local=${slug}&preview=1`, { waitUntil: 'domcontentloaded', timeout: 60000 });
   await p.waitForTimeout(2500);
   await p.getByRole('button', { name: /Solo esenciales|Rechazar|Aceptar todo/i }).first().click({ timeout: 2500 }).catch(() => {});
   await anonimizar(p, nombre);

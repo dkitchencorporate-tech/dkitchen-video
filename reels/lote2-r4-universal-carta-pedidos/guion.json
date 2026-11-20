@@ -1,0 +1,62 @@
+{
+  "pieza": "lote2-r4-universal-carta-pedidos",
+  "titulo": "Tu carta, tus pedidos y tu sala sin comisiones",
+  "duracion": 16,
+  "fps": 30,
+  "voz": {
+    "voice_id": "bIHbv24MWmeRgasZH58o",
+    "nombre": "Álvaro",
+    "modelo": "eleven_multilingual_v2",
+    "ajustes": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.35,
+      "use_speaker_boost": true,
+      "speed": 1.08
+    }
+  },
+  "tramos_voz": [
+    {
+      "id": "t1",
+      "inicio": 0.25,
+      "fin_max": 3.1,
+      "texto": "Tu cliente escanea el código desde su mesa."
+    },
+    {
+      "id": "t2",
+      "inicio": 3.3,
+      "fin_max": 6.9,
+      "texto": "Ve cada plato con foto, precio y alérgenos."
+    },
+    {
+      "id": "t3",
+      "inicio": 7.1,
+      "fin_max": 9.8,
+      "texto": "Pide y confirma directo desde su móvil."
+    },
+    {
+      "id": "t4",
+      "inicio": 10.0,
+      "fin_max": 13.1,
+      "texto": "Y la comanda entra al panel de tu sala al momento."
+    },
+    {
+      "id": "t5",
+      "inicio": 13.25,
+      "fin_max": 15.85,
+      "texto": "Desde un euro al mes. Escríbenos CARTA."
+    }
+  ],
+  "musica": {
+    "api": true,
+    "prompt": "Instrumental only, no vocals. Warm modern luxury hospitality beat with clean marimba plucks, soft deep bass pulse and crisp finger snaps, 110 bpm, confident and sleek, gentle drop at 10 seconds and clean resolution at 16 seconds."
+  },
+  "qc": {
+    "lufs": -14,
+    "tolerancia_lufs": 1,
+    "true_peak_max": -1,
+    "lra_max": 11,
+    "congelado_max_s": 0.6,
+    "negro_max_s": 0.1
+  }
+}

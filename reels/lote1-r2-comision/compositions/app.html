@@ -16,14 +16,14 @@
         #app-notif b { font-family: var(--font-display); font-size: 32px; color: #F7F5F2; }
         #app-notif span { font-family: var(--font-display); font-weight: 800; font-size: 34px; color: #10B981; }
         #app-chips { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 920px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; opacity: 0; }
-        .app-chip { padding: 14px 24px; border-radius: 999px; background: rgba(110,12,43,0.92); border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 26px; color: #F7F5F2; }
+        .app-chip { padding: 14px 26px; border-radius: 999px; background: rgba(110,12,43,0.92); border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 29px; color: #F7F5F2; }
       </style>
       <div id="root" data-composition-id="app" data-width="1080" data-height="1920">
         <div id="app-pal" data-layout-allow-occlusion><span>0 %</span><em>comisiones</em></div>
         <div id="app-esc">
           <div id="app-movil" data-layout-allow-occlusion>
-            <div id="app-pantalla">
-              <img id="app-img" src="assets/capturas/carta.jpg" alt="" />
+            <div id="app-pantalla" data-layout-allow-overflow>
+              <img id="app-img" data-layout-allow-overflow src="assets/capturas/carta.jpg" alt="" />
             </div>
           </div>
         </div>

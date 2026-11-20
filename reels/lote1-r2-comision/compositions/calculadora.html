@@ -12,9 +12,9 @@
         #cal-dia { margin-top: 12px; font-family: var(--font-display); font-weight: 800; font-size: 112px; color: #F0C96F; font-variant-numeric: tabular-nums; line-height: 1; }
         #cal-bar { margin: 28px auto; height: 14px; width: 100%; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
         #cal-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #F0C96F, #FF5A82); border-radius: 999px; }
-        #cal-mes-lbl { font-family: var(--font-body); font-size: 26px; font-weight: 700; color: #FF94AF; text-transform: uppercase; letter-spacing: 2px; }
+        #cal-mes-lbl { font-family: var(--font-body); font-size: 30px; font-weight: 700; color: #FF94AF; text-transform: uppercase; letter-spacing: 2px; }
         #cal-mes { margin-top: 10px; font-family: var(--font-display); font-weight: 800; font-size: 138px; color: #FF5A82; line-height: 0.95; font-variant-numeric: tabular-nums; text-shadow: 0 0 50px rgba(255,90,130,0.38); }
-        #cal-nota { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 1070px; text-align: center; font-family: var(--font-body); font-size: 22px; color: rgba(247,245,242,0.72); }
+        #cal-nota { position: absolute; left: var(--safe-left); right: var(--safe-right); top: 1080px; text-align: center; font-family: var(--font-body); font-size: 28px; color: rgba(247,245,242,0.82); }
       </style>
       <div id="root" data-composition-id="calculadora" data-width="1080" data-height="1920">
         <div id="cal-tit" data-layout-allow-occlusion>Haz la cuenta <em>al mes</em></div>
@@ -25,7 +25,7 @@
           <div id="cal-mes-lbl">Se va en comisiones</div>
           <div id="cal-mes">0 €</div>
         </div>
-        <div id="cal-nota">*Cálculo orientativo con una comisión media del 30 %; depende de tu contrato.</div>
+        <div id="cal-nota" data-layout-ignore>*Cálculo orientativo con una comisión media del 30 %; depende de tu contrato.</div>
       </div>
       <script>
         const tl = gsap.timeline({ paused: true });
@@ -33,11 +33,11 @@
         const mesEl = document.getElementById("cal-mes");
         const d = { v: 0 }, m = { v: 0 };
         tl.fromTo("#cal-tit", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.05);
-        tl.fromTo("#cal-box", { y: 60, opacity: 0, scale: 0.92 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "power3.out" }, 0.2);
+        tl.fromTo("#cal-box", { y: 60, opacity: 0, scale: 0.92 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "power3.out" }, 0.15);
+        tl.fromTo("#cal-nota", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.35);
         tl.to(d, { v: 300, duration: 1.5, ease: "power2.out", onUpdate: () => { diaEl.textContent = Math.round(d.v) + " €/día"; } }, 0.5);
         tl.to("#cal-fill", { width: "100%", duration: 3.4, ease: "power2.inOut" }, 1.2);
         tl.to(m, { v: 2700, duration: 2.3, ease: "power3.out", onUpdate: () => { mesEl.textContent = Math.round(m.v).toLocaleString("es-ES") + " €"; } }, 2.1);
-        tl.fromTo("#cal-nota", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.5);
         tl.to("#cal-box", { scale: 1.03, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 4.6);
         tl.to("#cal-tit, #cal-box, #cal-nota", { y: -28, opacity: 0, duration: 0.35, ease: "power2.in" }, 5.85);
         window.__timelines["calculadora"] = tl;

@@ -1,57 +1,40 @@
 {
   "pieza": "lote2-r4-universal-carta-pedidos",
-  "titulo": "Tu carta, tus pedidos y tu sala sin comisiones",
-  "duracion": 15,
+  "titulo": "Dueño de bar: cambia precios y agotados en 4 segundos desde tu móvil",
+  "duracion": 18,
   "fps": 30,
   "voz": {
-    "voice_id": "bIHbv24MWmeRgasZH58o",
-    "nombre": "Álvaro",
-    "modelo": "eleven_multilingual_v2",
-    "ajustes": {
-      "stability": 0.45,
-      "similarity_boost": 0.8,
-      "style": 0.35,
-      "use_speaker_boost": true,
-      "speed": 1.08
-    }
+    "model": "edge-tts",
+    "voice": "es-ES-AlvaroNeural",
+    "rate": "+14%"
   },
   "tramos_voz": [
     {
       "id": "t1",
-      "inicio": 0.3,
-      "fin_max": 2.9,
-      "texto": "Tu cliente escanea el código de la mesa."
+      "inicio": 0.15,
+      "fin_max": 3.7,
+      "texto": "Dueño de bar o restaurante: ¿sigues tachando precios en cartas de papel?"
     },
     {
       "id": "t2",
-      "inicio": 3.1,
-      "fin_max": 6.6,
-      "texto": "Elige su plato, con foto y alérgenos."
+      "inicio": 3.85,
+      "fin_max": 8.85,
+      "texto": "Con De-Kitchen cambias un precio o marcas un plato agotado desde tu móvil en cuatro segundos."
     },
     {
       "id": "t3",
-      "inicio": 6.9,
-      "fin_max": 9.4,
-      "texto": "Lo pide desde el móvil."
+      "inicio": 9.05,
+      "fin_max": 13.7,
+      "texto": "Al instante tus mesas ven fotos reales, alérgenos claros y la carta en español e inglés."
     },
     {
       "id": "t4",
-      "inicio": 9.7,
-      "fin_max": 12.45,
-      "texto": "Y la comanda le llega al camarero al momento."
-    },
-    {
-      "id": "t5",
-      "inicio": 12.6,
-      "fin_max": 14.9,
-      "texto": "Desde un euro. Escríbenos CARTA."
+      "inicio": 13.95,
+      "fin_max": 17.75,
+      "texto": "Desde un euro el primer mes. Escríbenos CARTA y te la montamos."
     }
   ],
-  "musica": {
-    "api": true,
-    "prompt": "Instrumental only, no vocals. Light, upbeat modern pop-electronic bed for a premium restaurant tech brand: soft plucks, warm synth chords, gentle claps, 112 bpm, friendly and quick, builds slightly at the end and resolves cleanly at 15 seconds.",
-    "nota": "Generada por Claude con la API (orden de Alex, 02/11/2026)."
-  },
+  "musica": "Miami Viceroy — Kevin MacLeod (CC-BY 4.0)",
   "qc": {
     "lufs": -14,
     "tolerancia_lufs": 1,

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Tu App Cero</title></head><body>
+<template id="tu_app_cero">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ac-bg { position: absolute; inset: -60px; background-image: url('assets/media/bg-tapas-barra.jpg'); background-size: cover; background-position: center; filter: blur(10px) brightness(0.42) saturate(1.15); }
+    #ac-tit { position: absolute; left: 95px; right: 175px; top: 266px; display: flex; justify-content: center; align-items: baseline; gap: 16px; }
+    #ac-tit span { font-family: var(--font-display); font-weight: 800; font-size: 108px; line-height: 0.92; color: #F0C96F; text-shadow: 0 12px 40px rgba(0,0,0,0.85); }
+    #ac-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 700; font-size: 86px; color: #F7F5F2; }
+    #ac-esc { position: absolute; left: 265px; top: 382px; width: 470px; height: 730px; perspective: 1400px; }
+    #ac-movil { position: absolute; inset: 0; transform-style: preserve-3d; border-radius: 58px; background: linear-gradient(145deg, #2b2429, #0c0a0d 45%, #1d181c); padding: 12px; box-shadow: 0 46px 90px rgba(0,0,0,0.92), 0 0 0 2.5px rgba(217,178,92,0.5); }
+    #ac-screen { position: relative; width: 446px; height: 706px; border-radius: 48px; overflow: hidden; background: #0E0B0F; }
+    #ac-isla { position: absolute; left: 163px; top: 14px; width: 120px; height: 28px; border-radius: 18px; background: #000; z-index: 12; }
+    #ac-hdr { position: relative; z-index: 6; background: linear-gradient(180deg, #171116 0%, #0E0B0F 100%); padding: 48px 22px 14px; border-bottom: 1.5px solid rgba(217,178,92,0.3); display: flex; justify-content: space-between; align-items: center; }
+    #ac-hdr b { font-family: var(--font-display); font-size: 30px; color: #F7F5F2; }
+    #ac-hdr span { padding: 6px 14px; border-radius: 999px; background: #6E0C2B; border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 28px; color: #F0C96F; }
+    #ac-feed { position: relative; padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; }
+    .ac-dish { border-radius: 24px; overflow: hidden; background: #1A1419; border: 1.5px solid rgba(247,245,242,0.14); box-shadow: 0 12px 24px rgba(0,0,0,0.45); }
+    .ac-dish img { width: 100%; height: 215px; object-fit: cover; display: block; }
+    .ac-info { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .ac-info div b { display: block; font-family: var(--font-display); font-size: 29px; color: #F7F5F2; line-height: 1.1; }
+    .ac-info div span { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 800; font-size: 30px; color: #F0C96F; }
+    .ac-btn { padding: 10px 20px; border-radius: 999px; background: #6E0C2B; border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 28px; color: #F7F5F2; }
+    #ac-ripple { position: absolute; left: 318px; top: 342px; width: 70px; height: 70px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; z-index: 15; }
+    #ac-notif { position: absolute; left: 105px; right: 185px; top: 960px; border-radius: 26px; background: rgba(11,30,22,0.96); border: 2.5px solid #10B981; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 24px 54px rgba(0,0,0,0.78); opacity: 0; }
+    #ac-notif b { font-family: var(--font-display); font-size: 31px; color: #F7F5F2; }
+    #ac-notif span { font-family: var(--font-display); font-weight: 800; font-size: 33px; color: #34D399; }
+    #ac-chips { position: absolute; left: 95px; right: 175px; top: 1118px; display: flex; justify-content: center; gap: 12px; opacity: 0; }
+    .ac-chip { padding: 11px 22px; border-radius: 999px; background: rgba(110,12,43,0.95); border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 28px; color: #F7F5F2; }
+  </style>
+  <div id="root" data-composition-id="tu_app_cero" data-width="1080" data-height="1920">
+    <div id="ac-bg" data-layout-allow-overflow></div>
+    <div id="ac-tit" data-layout-allow-occlusion><span>0 %</span><em>comisiones</em></div>
+    <div id="ac-esc">
+      <div id="ac-movil" data-layout-allow-occlusion>
+        <div id="ac-screen" data-layout-allow-overflow>
+          <div id="ac-isla"></div>
+          <div id="ac-hdr"><b>Tu Carta</b><span>Directo</span></div>
+          <div id="ac-feed" data-layout-allow-overflow>
+            <div class="ac-dish"><img src="assets/media/plato-burger-hero.jpg" alt="" /><div class="ac-info"><div><b>Double Smash</b><span>13,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
+            <div class="ac-dish"><img src="assets/media/plato-pizza.jpg" alt="" /><div class="ac-info"><div><b>Pizza Trufada</b><span>14,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
+            <div class="ac-dish"><img src="assets/media/plato-tacos.jpg" alt="" /><div class="ac-info"><div><b>Tacos Cochinita</b><span>11,00 €</span></div><span class="ac-btn">Pedir</span></div></div>
+          </div>
+          <div id="ac-ripple"></div>
+        </div>
+      </div>
+    </div>
+    <div id="ac-notif" data-layout-allow-occlusion><b>Nuevo pedido directo</b><span>100 % PARA TI</span></div>
+    <div id="ac-chips" data-layout-allow-occlusion><span class="ac-chip">Tu carta</span><span class="ac-chip">Tu panel</span><span class="ac-chip">En tu caja</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ac-bg", { scale: 1.0, x: 10 }, { scale: 1.08, x: -12, duration: 4.8, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ac-tit span, #ac-tit em", { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.6)", stagger: 0.1 }, 0.04);
+    tl.fromTo("#ac-movil", { rotationY: -16, rotationX: 7, scale: 0.88 }, { rotationY: 8, rotationX: 2, scale: 0.94, duration: 4.7, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ac-feed", { y: 0 }, { y: -330, duration: 2.3, ease: "power2.inOut" }, 0.5);
+    tl.fromTo("#ac-ripple", { scale: 0.3, opacity: 1 }, { scale: 2.4, opacity: 0, duration: 0.55, ease: "power2.out" }, 1.6);
+    tl.fromTo("#ac-notif", { y: 40, opacity: 0, scale: 0.92 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 2.1);
+    tl.fromTo("#ac-chips", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 2.7);
+    tl.to("#ac-tit, #ac-notif, #ac-chips", { y: -22, opacity: 0, duration: 0.3, ease: "power2.in" }, 4.45);
+    window.__timelines["tu_app_cero"] = tl;
+  </script>
+</template></body></html>

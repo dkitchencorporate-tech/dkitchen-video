@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Carta de Autor</title></head><body>
+<template id="carta_autor">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ca-bg { position: absolute; inset: -60px; background-image: url('assets/media/10-broll-wine.jpg'); background-size: cover; background-position: center; filter: blur(10px) brightness(0.45) saturate(1.1); }
+    #ca-tit { position: absolute; left: 95px; right: 175px; top: 266px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 66px; line-height: 1.02; color: #F7F5F2; }
+    #ca-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 80px; }
+    #ca-esc { position: absolute; left: 265px; top: 375px; width: 470px; height: 730px; perspective: 1400px; }
+    #ca-movil { position: absolute; inset: 0; transform-style: preserve-3d; border-radius: 58px; background: linear-gradient(145deg, #2b2429, #0c0a0d 45%, #1d181c); padding: 12px; box-shadow: 0 46px 90px rgba(0,0,0,0.92), 0 0 0 2.5px rgba(217,178,92,0.5); }
+    #ca-screen { position: relative; width: 446px; height: 706px; border-radius: 48px; overflow: hidden; background: #100C10; }
+    #ca-isla { position: absolute; left: 163px; top: 14px; width: 120px; height: 28px; border-radius: 18px; background: #000; z-index: 12; }
+    #ca-feed { position: relative; display: flex; flex-direction: column; gap: 16px; }
+    #ca-hero { position: relative; height: 230px; overflow: hidden; }
+    #ca-hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.68); }
+    #ca-hero-txt { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 22px; background: linear-gradient(180deg, transparent 20%, rgba(12,8,12,0.92) 100%); }
+    #ca-hero-txt b { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 40px; color: #F0C96F; line-height: 1; }
+    #ca-hero-txt span { font-family: var(--font-body); font-size: 28px; color: #F7F5F2; }
+    .ca-dish { margin: 0 18px; border-radius: 22px; overflow: hidden; background: #1A1419; border: 1.5px solid rgba(217,178,92,0.28); }
+    .ca-dish img { width: 100%; height: 210px; object-fit: cover; display: block; }
+    .ca-meta { padding: 14px 18px; display: flex; justify-content: space-between; align-items: baseline; }
+    .ca-meta b { font-family: var(--font-display); font-size: 29px; color: #F7F5F2; }
+    .ca-meta span { font-family: var(--font-display); font-weight: 800; font-size: 31px; color: #F0C96F; }
+    .ca-alg { padding: 0 18px 14px; font-family: var(--font-body); font-size: 28px; color: #D9B25C; }
+    #ca-ripple { position: absolute; left: 320px; top: 430px; width: 70px; height: 70px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; z-index: 15; }
+    #ca-badge { position: absolute; left: 105px; right: 185px; top: 1122px; text-align: center; opacity: 0; }
+    #ca-badge span { display: inline-block; padding: 12px 28px; border-radius: 999px; background: rgba(110,12,43,0.95); border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 29px; color: #F0C96F; }
+  </style>
+  <div id="root" data-composition-id="carta_autor" data-width="1080" data-height="1920">
+    <div id="ca-bg" data-layout-allow-overflow></div>
+    <div id="ca-tit" data-layout-allow-occlusion>Carta <em>de Autor</em></div>
+    <div id="ca-esc">
+      <div id="ca-movil" data-layout-allow-occlusion>
+        <div id="ca-screen" data-layout-allow-overflow>
+          <div id="ca-isla"></div>
+          <div id="ca-feed" data-layout-allow-overflow>
+            <div id="ca-hero"><img src="assets/media/hero-cata.jpg" alt="" /><div id="ca-hero-txt"><b>Tu Restaurante</b><span>Cocina de temporada</span></div></div>
+            <div class="ca-dish"><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="ca-meta"><b>Mariscada de la Casa</b><span>34,00 €</span></div><div class="ca-alg">Crustáceos · Moluscos</div></div>
+            <div class="ca-dish"><img src="assets/media/plato-tajin.jpg" alt="" /><div class="ca-meta"><b>Tajín de Cordero</b><span>21,50 €</span></div><div class="ca-alg">Especias · Sin gluten</div></div>
+            <div class="ca-dish"><img src="assets/media/plato-postre.jpg" alt="" /><div class="ca-meta"><b>Postre Frutos Rojos</b><span>9,50 €</span></div><div class="ca-alg">Gluten · Huevo · Lácteos</div></div>
+          </div>
+          <div id="ca-ripple"></div>
+        </div>
+      </div>
+    </div>
+    <div id="ca-badge" data-layout-allow-occlusion><span>+ Ticket medio por mesa · Fotos que venden</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ca-bg", { scale: 1.0, x: 10 }, { scale: 1.08, x: -12, duration: 5.7, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ca-tit", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.6)" }, 0.05);
+    tl.fromTo("#ca-movil", { rotationY: -16, rotationX: 7, scale: 0.88 }, { rotationY: 8, rotationX: 2, scale: 0.94, duration: 5.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ca-feed", { y: 0 }, { y: -620, duration: 4.5, ease: "power2.inOut" }, 0.4);
+    tl.fromTo("#ca-ripple", { scale: 0.3, opacity: 1 }, { scale: 2.4, opacity: 0, duration: 0.55, ease: "power2.out" }, 3.4);
+    tl.fromTo("#ca-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.6)" }, 1.6);
+    tl.to("#ca-tit, #ca-badge", { y: -22, opacity: 0, duration: 0.28, ease: "power2.in" }, 5.35);
+    window.__timelines["carta_autor"] = tl;
+  </script>
+</template></body></html>

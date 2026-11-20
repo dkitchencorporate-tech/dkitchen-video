@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Sala en Vivo</title></head><body>
+<template id="sala_en_vivo">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #sv-bg { position: absolute; inset: -60px; background-image: url('assets/media/plato-carne.jpg'); background-size: cover; background-position: center; filter: blur(14px) brightness(0.36); }
+    #sv-tit { position: absolute; left: 95px; right: 175px; top: 266px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 68px; line-height: 1.02; color: #F7F5F2; }
+    #sv-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 82px; }
+    .sv-esc { position: absolute; top: 382px; width: 410px; height: 700px; perspective: 1300px; }
+    #sv-esc-a { left: 105px; }
+    #sv-esc-b { left: 390px; }
+    .sv-movil { position: absolute; inset: 0; transform-style: preserve-3d; border-radius: 52px; background: linear-gradient(145deg, #2b2429, #0c0a0d 45%, #1d181c); padding: 10px; box-shadow: 0 42px 86px rgba(0,0,0,0.92), 0 0 0 2.5px rgba(217,178,92,0.48); }
+    .sv-screen { position: relative; width: 390px; height: 680px; border-radius: 42px; overflow: hidden; background: #100C10; padding: 44px 18px 18px; }
+    #sv-mesa-img { width: 100%; height: 185px; border-radius: 18px; object-fit: cover; display: block; margin-bottom: 14px; }
+    .sv-row { display: flex; justify-content: space-between; font-family: var(--font-body); font-size: 28px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.12); color: #F7F5F2; }
+    #sv-bell-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    #sv-bell-row b { font-family: var(--font-display); font-size: 30px; color: #F0C96F; }
+    #sv-campana { width: 54px; height: 54px; border-radius: 50%; background: #6E0C2B; border: 2px solid #D9B25C; display: flex; align-items: center; justify-content: center; }
+    #sv-order { border-radius: 22px; background: #FAF7F2; color: #161214; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
+    #sv-order h4 { margin: 0 0 10px; font-family: var(--font-display); font-size: 32px; color: #6E0C2B; }
+    #sv-order p { margin: 6px 0; font-family: var(--font-body); font-size: 28px; font-weight: 600; }
+    #sv-ok-btn { margin-top: 14px; width: 100%; text-align: center; padding: 14px; border-radius: 14px; background: #6E0C2B; color: #F0C96F; font-family: var(--font-display); font-weight: 800; font-size: 28px; }
+    #sv-sello { margin-top: 18px; padding: 16px; border-radius: 18px; background: rgba(16,185,129,0.2); border: 2px solid #10B981; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 30px; color: #34D399; opacity: 0; }
+    #sv-ripple { position: absolute; left: 160px; top: 365px; width: 66px; height: 66px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; }
+    #sv-badge { position: absolute; left: 105px; right: 185px; top: 1122px; text-align: center; opacity: 0; }
+    #sv-badge span { display: inline-block; padding: 12px 26px; border-radius: 999px; background: rgba(110,12,43,0.95); border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 29px; color: #F7F5F2; }
+  </style>
+  <div id="root" data-composition-id="sala_en_vivo" data-width="1080" data-height="1920">
+    <div id="sv-bg" data-layout-allow-overflow></div>
+    <div id="sv-tit" data-layout-allow-occlusion>Mesa a <em>sala</em></div>
+    <div class="sv-esc" id="sv-esc-a">
+      <div class="sv-movil" id="sv-movil-a" data-layout-allow-occlusion>
+        <div class="sv-screen">
+          <img id="sv-mesa-img" src="assets/media/plato-mariscada.jpg" alt="" />
+          <div class="sv-row"><span>Mesa 6</span><b style="color:#F0C96F">55,50 €</b></div>
+          <div class="sv-row"><span>Mariscada</span><span>34,00 €</span></div>
+          <div class="sv-row" style="border:none"><span>Tajín</span><span>21,50 €</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sv-esc" id="sv-esc-b">
+      <div class="sv-movil" id="sv-movil-b" data-layout-allow-occlusion>
+        <div class="sv-screen">
+          <div id="sv-bell-row"><b>Panel de Sala</b><div id="sv-campana"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C96F" stroke-width="2.2" stroke-linecap="round"><path d="M12 4a7 7 0 0 0-7 7v3h14v-3a7 7 0 0 0-7-7ZM3 17h18M12 2v2" /></svg></div></div>
+          <div id="sv-order">
+            <h4>Mesa 6 · 55,50 €</h4>
+            <p>1x Mariscada Casa</p>
+            <p>1x Tajín Cordero</p>
+            <div id="sv-ok-btn">Confirmar pedido</div>
+          </div>
+          <div id="sv-sello">✓ En cocina · Sin esperas</div>
+          <div id="sv-ripple"></div>
+        </div>
+      </div>
+    </div>
+    <div id="sv-badge" data-layout-allow-occlusion><span>Aviso al camarero y comanda directa</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sv-bg", { scale: 1.0 }, { scale: 1.09, duration: 4.4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#sv-tit", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 0.05);
+    tl.fromTo("#sv-movil-a", { rotationY: 16, scale: 0.82, opacity: 0.78 }, { rotationY: 18, scale: 0.78, opacity: 0.7, duration: 4.3, ease: "sine.inOut" }, 0);
+    tl.fromTo("#sv-movil-b", { x: 180, rotationY: -22, scale: 0.84, opacity: 0.2 }, { x: 0, rotationY: -8, scale: 0.94, opacity: 1, duration: 0.55, ease: "power3.out" }, 0.05);
+    tl.fromTo("#sv-order", { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.4)" }, 0.4);
+    tl.fromTo("#sv-campana", { rotation: -16 }, { rotation: 16, duration: 0.08, ease: "sine.inOut", yoyo: true, repeat: 7 }, 0.5);
+    tl.fromTo("#sv-ripple", { scale: 0.3, opacity: 1 }, { scale: 2.3, opacity: 0, duration: 0.5, ease: "power2.out" }, 1.55);
+    tl.fromTo("#sv-sello", { y: 20, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 1.85);
+    tl.fromTo("#sv-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 2.2);
+    tl.to("#sv-tit, #sv-badge", { y: -22, opacity: 0, duration: 0.28, ease: "power2.in" }, 4.08);
+    window.__timelines["sala_en_vivo"] = tl;
+  </script>
+</template></body></html>

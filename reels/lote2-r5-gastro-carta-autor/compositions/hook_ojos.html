@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Hook Ojos</title></head><body>
+<template id="hook_ojos">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ho-bg { position: absolute; inset: -60px; background-image: url('assets/media/11-broll-steak.jpg'); background-size: cover; background-position: center; filter: brightness(0.76) contrast(1.06) saturate(1.12); }
+    #ho-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,6,9,0.88) 0%, rgba(10,6,9,0.22) 44%, rgba(10,6,9,0.34) 68%, rgba(5,4,6,0.95) 95%); }
+    #ho-pill { position: absolute; left: 95px; right: 175px; top: 270px; text-align: center; }
+    #ho-pill span { display: inline-block; padding: 12px 28px; border-radius: 999px; background: rgba(110,12,43,0.95); border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 29px; letter-spacing: 1.5px; color: #F0C96F; box-shadow: 0 12px 30px rgba(0,0,0,0.65); }
+    #ho-tit { position: absolute; left: 95px; right: 175px; top: 356px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 74px; line-height: 1.02; color: #F7F5F2; text-shadow: 0 14px 36px rgba(0,0,0,0.85); }
+    #ho-tit em { display: block; margin-top: 6px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 98px; }
+    #ho-ban { position: absolute; left: 105px; right: 185px; top: 1020px; border-radius: 26px; background: rgba(14,10,14,0.92); border: 2px solid rgba(255,90,130,0.62); padding: 24px 30px; text-align: center; box-shadow: 0 30px 70px rgba(0,0,0,0.85); }
+    #ho-ban span { font-family: var(--font-display); font-weight: 800; font-size: 34px; color: #F7F5F2; line-height: 1.18; display: block; }
+    #ho-ban b { color: #FF5A82; }
+  </style>
+  <div id="root" data-composition-id="hook_ojos" data-width="1080" data-height="1920">
+    <div id="ho-bg" data-layout-allow-overflow></div>
+    <div id="ho-veil"></div>
+    <div id="ho-pill" data-layout-allow-occlusion><span>SI TIENES UN RESTAURANTE</span></div>
+    <div id="ho-tit" data-layout-allow-occlusion>Tus clientes comen<em>por los ojos</em></div>
+    <div id="ho-ban" data-layout-allow-occlusion><span>Un PDF sin fotos <b>te hace perder ventas</b></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ho-bg", { scale: 1.0, y: 12 }, { scale: 1.10, y: -18, duration: 3.8, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ho-pill", { y: -8, opacity: 0.95 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0);
+    tl.fromTo("#ho-tit", { y: 14, opacity: 0.95 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0);
+    tl.fromTo("#ho-ban", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 1.1);
+    tl.to("#ho-pill, #ho-tit, #ho-ban", { y: -24, opacity: 0, duration: 0.28, ease: "power2.in" }, 3.48);
+    window.__timelines["hook_ojos"] = tl;
+  </script>
+</template></body></html>

@@ -5,47 +5,46 @@
     <template id="cta">
       <style>
         #root { position: absolute; inset: 0; }
-        #cta-foto { position: absolute; inset: -80px; background-image: url('assets/capturas/inicio.jpg'); background-size: cover; background-position: center 35%; filter: blur(16px) brightness(0.55) saturate(1.15); }
-        #cta-velo { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(110,12,43,0.55) 0%, rgba(74,8,29,0.82) 50%, rgba(5,4,6,0.95) 90%); }
-        #cta-caja { position: absolute; left: var(--safe-left); right: var(--safe-right); top: var(--safe-top); bottom: calc(var(--safe-bottom) + 260px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; perspective: 1200px; text-align: center; }
+        #cta-foto { position: absolute; inset: -80px; background-image: url('assets/media/10-broll-wine.jpg'); background-size: cover; background-position: center 45%; filter: blur(18px) brightness(0.45) saturate(1.15); }
+        #cta-velo { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, rgba(110,12,43,0.58) 0%, rgba(74,8,29,0.86) 52%, rgba(5,4,6,0.96) 90%); }
+        #cta-caja { position: absolute; left: 95px; right: 175px; top: 270px; height: 950px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 26px; perspective: 1200px; text-align: center; }
         #cta-logo { width: 380px; height: 95px; }
-        #cta-sin { display: flex; gap: 0 20px; flex-wrap: wrap; justify-content: center; }
-        #cta-sin span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 70px; line-height: 1.05; color: #F7F5F2; }
+        #cta-sin { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        #cta-sin span { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 66px; line-height: 1.05; color: #F7F5F2; }
+        #cta-sin span.oro { color: #F0C96F; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 78px; font-weight: 700; }
         #cta-precio { display: flex; align-items: baseline; justify-content: center; gap: 20px; }
-        #cta-precio b { font-family: var(--font-display); font-weight: 800; font-size: 168px; line-height: 0.95; letter-spacing: -5px; color: #F0C96F; text-shadow: 0 0 50px rgba(240,201,111,0.35); }
+        #cta-precio b { font-family: var(--font-display); font-weight: 800; font-size: 164px; line-height: 0.92; letter-spacing: -5px; color: #F0C96F; text-shadow: 0 0 50px rgba(240,201,111,0.38); }
         #cta-precio em { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 62px; color: #F7F5F2; line-height: 1; }
-        #cta-iva { font-family: var(--font-body); font-weight: 600; font-size: 28px; color: #E8E5E0; margin-top: -12px; }
-        #cta-boton { padding: 24px 62px; border-radius: 9999px; background: #6E0C2B; border: 3px solid #D9B25C; color: #F7F5F2; font-family: var(--font-display); font-weight: 800; font-size: 52px; box-shadow: 0 0 40px rgba(217,178,92,0.35); }
-        #cta-boton b { color: #F0C96F; letter-spacing: 4px; }
+        #cta-iva { font-family: var(--font-body); font-weight: 600; font-size: 28px; color: #E8E5E0; margin-top: -10px; }
+        #cta-boton { padding: 24px 58px; border-radius: 9999px; background: #6E0C2B; border: 3px solid #D9B25C; color: #F7F5F2; font-family: var(--font-display); font-weight: 800; font-size: 50px; box-shadow: 0 0 40px rgba(217,178,92,0.40); }
+        #cta-boton b { color: #F0C96F; letter-spacing: 3px; }
       </style>
-
       <div id="root" data-composition-id="cta" data-width="1080" data-height="1920">
-        <div id="cta-foto"></div>
+        <div id="cta-foto" data-layout-allow-overflow></div>
         <div id="cta-velo"></div>
-        <div id="cta-caja">
+        <div id="cta-caja" data-layout-allow-occlusion>
           <svg id="cta-logo" viewBox="0 0 400 100" role="img" aria-label="DKitchen">
             <rect x="10" y="15" width="70" height="70" rx="18" fill="#6E0C2B" stroke="#D9B25C" stroke-width="3" />
             <path d="M30 32 L50 32 C58 32 64 38 64 50 C64 62 58 68 50 68 L30 68 Z" fill="none" stroke="#D9B25C" stroke-width="6" stroke-linejoin="round" />
             <path d="M42 32 L42 68" stroke="#D9B25C" stroke-width="6" stroke-linecap="round" />
             <text x="100" y="65" font-family="Bricolage Grotesque" font-size="52" font-weight="800" fill="#F7F5F2" letter-spacing="-1.5">DKitchen</text>
           </svg>
-          <div id="cta-sin"><span>Diseño</span><span>de Autor.</span><span>Sin</span><span>comisiones.</span></div>
+          <div id="cta-sin"><span>Tu cocina merece</span><span class="oro">esta carta.</span></div>
           <div id="cta-precio"><em>desde</em><b>1 €</b></div>
-          <div id="cta-iva">el primer mes · + IVA</div>
+          <div id="cta-iva">el primer mes · + IVA · Sin permanencia</div>
           <div id="cta-boton">Escríbenos <b>CARTA</b></div>
         </div>
       </div>
-
       <script>
         const tl = gsap.timeline({ paused: true });
-        tl.fromTo("#cta-foto", { scale: 1.12 }, { scale: 1.0, duration: 2.2, ease: "sine.out" }, 0);
-        tl.fromTo("#cta-velo", { opacity: 0.4 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0);
-        tl.fromTo("#cta-logo", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, 0.05);
-        tl.fromTo("#cta-sin span", { y: 50, rotationX: -80, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.08 }, 0.15);
-        tl.fromTo("#cta-precio b", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.8)" }, 0.55);
-        tl.fromTo("#cta-precio em, #cta-iva", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.7);
-        tl.fromTo("#cta-boton", { y: 40, scale: 0.7, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)" }, 0.95);
-        tl.to("#cta-boton", { scale: 1.05, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.45);
+        tl.fromTo("#cta-foto", { scale: 1.12 }, { scale: 1.0, duration: 4.10, ease: "sine.out" }, 0);
+        tl.fromTo("#cta-velo", { opacity: 0.45 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
+        tl.fromTo("#cta-logo", { y: -24, opacity: 0.2 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, 0.05);
+        tl.fromTo("#cta-sin span", { y: 36, rotationX: -75, opacity: 0 }, { y: 0, rotationX: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)", stagger: 0.1 }, 0.12);
+        tl.fromTo("#cta-precio b", { scale: 0.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.48, ease: "back.out(1.8)" }, 0.45);
+        tl.fromTo("#cta-precio em, #cta-iva", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.6);
+        tl.fromTo("#cta-boton", { y: 32, scale: 0.72, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)" }, 0.85);
+        tl.to("#cta-boton", { scale: 1.05, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 8 }, 1.3);
         window.__timelines["cta"] = tl;
       </script>
     </template>

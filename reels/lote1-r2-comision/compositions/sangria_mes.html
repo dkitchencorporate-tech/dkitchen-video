@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Sangría Mes</title></head><body>
+<template id="sangria_mes">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #sm-bg { position: absolute; inset: -60px; background-image: url('assets/media/11-broll-steak.jpg'); background-size: cover; background-position: center; filter: blur(8px) brightness(0.32) saturate(1.1); }
+    #sm-tit { position: absolute; left: 95px; right: 175px; top: 270px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 74px; line-height: 1.02; color: #F7F5F2; }
+    #sm-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 88px; }
+    #sm-box { position: absolute; left: 100px; right: 180px; top: 445px; border-radius: 32px; background: rgba(15,11,16,0.92); border: 2px solid rgba(255,90,130,0.52); padding: 36px 34px; text-align: center; box-shadow: 0 50px 100px rgba(0,0,0,0.85); }
+    #sm-lbl { font-family: var(--font-body); font-size: 28px; font-weight: 700; color: #E8E5E0; letter-spacing: 2px; text-transform: uppercase; }
+    #sm-dia { margin-top: 10px; font-family: var(--font-display); font-weight: 800; font-size: 106px; color: #F0C96F; font-variant-numeric: tabular-nums; line-height: 1; }
+    #sm-sub { margin-top: 8px; font-family: var(--font-body); font-size: 30px; font-weight: 600; color: #D9B25C; }
+    #sm-bar { margin: 24px auto; height: 16px; width: 100%; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
+    #sm-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #F0C96F, #FF5A82); border-radius: 999px; }
+    #sm-mes-lbl { font-family: var(--font-body); font-size: 30px; font-weight: 700; color: #FF94AF; text-transform: uppercase; letter-spacing: 2px; }
+    #sm-mes { margin-top: 8px; font-family: var(--font-display); font-weight: 800; font-size: 128px; color: #FF5A82; line-height: 0.96; font-variant-numeric: tabular-nums; text-shadow: 0 0 48px rgba(255,90,130,0.42); }
+    #sm-nota { position: absolute; left: 95px; right: 175px; top: 1075px; text-align: center; font-family: var(--font-body); font-size: 28px; color: rgba(247,245,242,0.88); line-height: 1.25; }
+  </style>
+  <div id="root" data-composition-id="sangria_mes" data-width="1080" data-height="1920">
+    <div id="sm-bg" data-layout-allow-overflow></div>
+    <div id="sm-tit" data-layout-allow-occlusion>Haz la cuenta <em>al mes</em></div>
+    <div id="sm-box" data-layout-allow-occlusion>
+      <div id="sm-lbl">Vendes en plataformas</div>
+      <div id="sm-dia">0 €/día</div>
+      <div id="sm-sub">× 30 días = 9.000 €/mes</div>
+      <div id="sm-bar"><div id="sm-fill"></div></div>
+      <div id="sm-mes-lbl">Se va en comisiones</div>
+      <div id="sm-mes">0 €</div>
+    </div>
+    <div id="sm-nota" data-layout-allow-occlusion>*Cálculo orientativo con una comisión media del 30 %; depende de tu contrato.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const diaEl = document.getElementById("sm-dia");
+    const mesEl = document.getElementById("sm-mes");
+    const d = { v: 0 }, m = { v: 0 };
+    tl.fromTo("#sm-bg", { scale: 1.0, rotation: -0.5 }, { scale: 1.10, rotation: 0.5, duration: 5.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#sm-tit", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.05);
+    tl.fromTo("#sm-box", { y: 50, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.15);
+    tl.fromTo("#sm-nota", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.35);
+    tl.to(d, { v: 300, duration: 1.4, ease: "power2.out", onUpdate: () => { diaEl.textContent = Math.round(d.v) + " €/día"; } }, 0.45);
+    tl.fromTo("#sm-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.25);
+    tl.to("#sm-fill", { width: "100%", duration: 3.1, ease: "power2.inOut" }, 1.1);
+    tl.to(m, { v: 2700, duration: 2.0, ease: "power3.out", onUpdate: () => { mesEl.textContent = "−" + Math.round(m.v).toLocaleString("es-ES") + " €"; } }, 1.9);
+    tl.to("#sm-box", { scale: 1.03, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 4.2);
+    tl.to("#sm-tit, #sm-box, #sm-nota", { y: -24, opacity: 0, duration: 0.3, ease: "power2.in" }, 5.25);
+    window.__timelines["sangria_mes"] = tl;
+  </script>
+</template></body></html>

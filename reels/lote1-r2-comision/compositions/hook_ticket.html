@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /><title>Hook Ticket</title></head><body>
+<template id="hook_ticket">
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ht-bg { position: absolute; inset: -60px; background-image: url('assets/media/bg-ticket-cocina.jpg'); background-size: cover; background-position: center 45%; filter: brightness(0.46) contrast(1.08); }
+    #ht-veil { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, rgba(20,10,14,0.3) 0%, rgba(5,4,6,0.92) 85%); }
+    #ht-pill { position: absolute; left: 110px; right: 190px; top: 270px; text-align: center; }
+    #ht-pill span { display: inline-block; padding: 12px 28px; border-radius: 999px; background: rgba(110,12,43,0.94); border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 29px; letter-spacing: 1.5px; color: #F0C96F; box-shadow: 0 12px 30px rgba(0,0,0,0.65); }
+    #ht-tit { position: absolute; left: 95px; right: 175px; top: 350px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 80px; line-height: 1.0; color: #F7F5F2; }
+    #ht-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 96px; }
+    #ht-card { position: absolute; left: 105px; right: 185px; top: 485px; border-radius: 28px; background: #FAF7F2; color: #141210; padding: 34px 36px; box-shadow: 0 46px 90px rgba(0,0,0,0.88); border-top: 12px solid #6E0C2B; }
+    .ht-row { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 2px dashed #D6CFC7; font-family: var(--font-body); font-size: 31px; font-weight: 600; }
+    .ht-row b { font-family: var(--font-display); font-size: 38px; }
+    #ht-com b { color: #B01238; }
+    #ht-neto { display: flex; justify-content: space-between; align-items: baseline; padding-top: 20px; font-family: var(--font-display); font-weight: 800; font-size: 40px; color: #141210; }
+    #ht-neto b { font-size: 80px; color: #6E0C2B; font-variant-numeric: tabular-nums; }
+    #ht-sello { position: absolute; left: 260px; top: 935px; width: 480px; text-align: center; padding: 16px 32px; border-radius: 18px; border: 5px solid #FF5A82; color: #FF5A82; background: rgba(14,8,12,0.95); font-family: var(--font-display); font-weight: 800; font-size: 44px; letter-spacing: 1px; box-shadow: 0 24px 50px rgba(0,0,0,0.8); }
+  </style>
+  <div id="root" data-composition-id="hook_ticket" data-width="1080" data-height="1920">
+    <div id="ht-bg" data-layout-allow-overflow></div>
+    <div id="ht-veil"></div>
+    <div id="ht-pill" data-layout-allow-occlusion><span>HOSTELERO · ¿VENDES A DOMICILIO?</span></div>
+    <div id="ht-tit" data-layout-allow-occlusion>De cada <em>20,00 €</em></div>
+    <div id="ht-card" data-layout-allow-occlusion>
+      <div class="ht-row"><span>Total del pedido</span><b>20,00 €</b></div>
+      <div class="ht-row" id="ht-com"><span>Comisión app (~30 %)*</span><b>−6,00 €</b></div>
+      <div id="ht-neto"><span>A tu caja llegan</span><b id="ht-val">20,00 €</b></div>
+    </div>
+    <div id="ht-sello" data-layout-allow-occlusion>−30 % SE LO LLEVAN</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const val = document.getElementById("ht-val");
+    const c = { n: 20 };
+    tl.fromTo("#ht-bg", { scale: 1.08, x: -12 }, { scale: 1.0, x: 12, duration: 3.8, ease: "sine.inOut" }, 0);
+    tl.fromTo("#ht-pill", { y: -8, opacity: 0.95 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0);
+    tl.fromTo("#ht-tit", { y: 12, opacity: 0.95 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    tl.fromTo("#ht-card", { y: 36, opacity: 0.9 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0);
+    tl.fromTo("#ht-com", { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.85);
+    tl.fromTo("#ht-sello", { scale: 1.5, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: -5, duration: 0.4, ease: "back.out(2)" }, 1.65);
+    tl.to(c, { n: 14, duration: 0.75, ease: "power2.out", onUpdate: () => { val.textContent = c.n.toFixed(2).replace(".", ",") + " €"; } }, 1.55);
+    tl.to("#ht-pill, #ht-tit, #ht-card, #ht-sello", { y: -24, opacity: 0, duration: 0.3, ease: "power2.in" }, 3.45);
+    window.__timelines["hook_ticket"] = tl;
+  </script>
+</template></body></html>

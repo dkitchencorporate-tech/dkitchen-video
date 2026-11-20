@@ -1,7 +1,7 @@
 {
   "pieza": "lote2-r4-universal-carta-pedidos",
   "titulo": "Tu carta, tus pedidos y tu sala sin comisiones",
-  "duracion": 16,
+  "duracion": 15,
   "fps": 30,
   "voz": {
     "voice_id": "bIHbv24MWmeRgasZH58o",
@@ -18,38 +18,39 @@
   "tramos_voz": [
     {
       "id": "t1",
-      "inicio": 0.25,
-      "fin_max": 3.1,
-      "texto": "Tu cliente escanea el código desde su mesa."
+      "inicio": 0.3,
+      "fin_max": 2.9,
+      "texto": "Tu cliente escanea el código de la mesa."
     },
     {
       "id": "t2",
-      "inicio": 3.3,
-      "fin_max": 6.9,
-      "texto": "Ve cada plato con foto, precio y alérgenos."
+      "inicio": 3.1,
+      "fin_max": 6.6,
+      "texto": "Elige su plato, con foto y alérgenos."
     },
     {
       "id": "t3",
-      "inicio": 7.1,
-      "fin_max": 9.8,
-      "texto": "Pide y confirma directo desde su móvil."
+      "inicio": 6.9,
+      "fin_max": 9.4,
+      "texto": "Lo pide desde el móvil."
     },
     {
       "id": "t4",
-      "inicio": 10.0,
-      "fin_max": 13.1,
-      "texto": "Y la comanda entra al panel de tu sala al momento."
+      "inicio": 9.7,
+      "fin_max": 12.45,
+      "texto": "Y la comanda le llega al camarero al momento."
     },
     {
       "id": "t5",
-      "inicio": 13.25,
-      "fin_max": 15.85,
-      "texto": "Desde un euro al mes. Escríbenos CARTA."
+      "inicio": 12.6,
+      "fin_max": 14.9,
+      "texto": "Desde un euro. Escríbenos CARTA."
     }
   ],
   "musica": {
     "api": true,
-    "prompt": "Instrumental only, no vocals. Warm modern luxury hospitality beat with clean marimba plucks, soft deep bass pulse and crisp finger snaps, 110 bpm, confident and sleek, gentle drop at 10 seconds and clean resolution at 16 seconds."
+    "prompt": "Instrumental only, no vocals. Light, upbeat modern pop-electronic bed for a premium restaurant tech brand: soft plucks, warm synth chords, gentle claps, 112 bpm, friendly and quick, builds slightly at the end and resolves cleanly at 15 seconds.",
+    "nota": "Generada por Claude con la API (orden de Alex, 02/11/2026)."
   },
   "qc": {
     "lufs": -14,

@@ -13,6 +13,7 @@
     #cv-bar { position: relative; z-index: 8; padding: 48px 20px 12px; background: #171116; border-bottom: 1.5px solid rgba(217,178,92,0.3); display: flex; justify-content: space-between; align-items: center; }
     #cv-bar b { font-family: var(--font-display); font-size: 28px; color: #F7F5F2; }
     #cv-lang { padding: 6px 16px; border-radius: 999px; background: #6E0C2B; border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 28px; color: #F0C96F; }
+    #cv-mask { position: relative; height: 594px; overflow: hidden; }
     #cv-list { position: relative; padding: 14px 18px; display: flex; flex-direction: column; gap: 14px; }
     .cv-card { border-radius: 22px; overflow: hidden; background: #1A1419; border: 1.5px solid rgba(247,245,242,0.14); }
     .cv-card img { width: 100%; height: 205px; object-fit: cover; display: block; }
@@ -30,12 +31,14 @@
       <div id="cv-movil" data-layout-allow-occlusion>
         <div id="cv-screen" data-layout-allow-overflow>
           <div id="cv-isla"></div>
-          <div id="cv-bar"><b id="cv-hdr-txt">Tu Carta · ES / EN</b><span id="cv-lang">EN</span></div>
-          <div id="cv-list" data-layout-allow-overflow>
-            <div class="cv-card"><img src="assets/media/plato-tortilla-trufa.jpg" alt="" /><div class="cv-meta"><b id="cv-d1">Tortilla de trufa · EN</b><span>14,50 €</span></div><div class="cv-alg">Alérgenos: Huevo · Lácteos</div></div>
-            <div class="cv-card"><img src="assets/media/plato-tortilla-chorizo.jpg" alt="" /><div class="cv-meta"><b>Tortilla con chorizo</b><span>13,50 €</span></div><div class="cv-alg">Alérgenos: Huevo</div></div>
-            <div class="cv-card"><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="cv-meta"><b>Mariscada del día</b><span>28,00 €</span></div><div class="cv-alg">Alérgenos: Crustáceos</div></div>
-            <div class="cv-card"><img src="assets/media/plato-tostadas.jpg" alt="" /><div class="cv-meta"><b>Tostadas de jamón</b><span>5,50 €</span></div><div class="cv-alg">Alérgenos: Gluten</div></div>
+          <div id="cv-bar" data-layout-allow-occlusion><b id="cv-hdr-txt" data-layout-allow-occlusion>Tu Carta · ES / EN</b><span id="cv-lang" data-layout-allow-occlusion>EN</span></div>
+          <div id="cv-mask" data-layout-allow-overflow>
+            <div id="cv-list" data-layout-allow-overflow>
+              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tortilla-trufa.jpg" alt="" /><div class="cv-meta"><b id="cv-d1">Tortilla de trufa · EN</b><span>14,50 €</span></div><div class="cv-alg">Alérgenos: Huevo · Lácteos</div></div>
+              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tortilla-chorizo.jpg" alt="" /><div class="cv-meta"><b>Tortilla con chorizo</b><span>13,50 €</span></div><div class="cv-alg">Alérgenos: Huevo</div></div>
+              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="cv-meta"><b>Mariscada del día</b><span>28,00 €</span></div><div class="cv-alg">Alérgenos: Crustáceos</div></div>
+              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tostadas.jpg" alt="" /><div class="cv-meta"><b>Tostadas de jamón</b><span>5,50 €</span></div><div class="cv-alg">Alérgenos: Gluten</div></div>
+            </div>
           </div>
         </div>
       </div>

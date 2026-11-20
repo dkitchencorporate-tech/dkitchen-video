@@ -14,14 +14,15 @@
     #ac-hdr { position: relative; z-index: 6; background: linear-gradient(180deg, #171116 0%, #0E0B0F 100%); padding: 48px 22px 14px; border-bottom: 1.5px solid rgba(217,178,92,0.3); display: flex; justify-content: space-between; align-items: center; }
     #ac-hdr b { font-family: var(--font-display); font-size: 30px; color: #F7F5F2; }
     #ac-hdr span { padding: 6px 14px; border-radius: 999px; background: #6E0C2B; border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 28px; color: #F0C96F; }
-    #ac-feed { position: relative; padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; }
+    #ac-mask { position: relative; height: 602px; overflow: hidden; }
+    #ac-feed { position: relative; padding: 14px 20px; display: flex; flex-direction: column; gap: 14px; }
     .ac-dish { border-radius: 24px; overflow: hidden; background: #1A1419; border: 1.5px solid rgba(247,245,242,0.14); box-shadow: 0 12px 24px rgba(0,0,0,0.45); }
-    .ac-dish img { width: 100%; height: 215px; object-fit: cover; display: block; }
-    .ac-info { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .ac-dish img { width: 100%; height: 192px; object-fit: cover; display: block; }
+    .ac-info { padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
     .ac-info div b { display: block; font-family: var(--font-display); font-size: 29px; color: #F7F5F2; line-height: 1.1; }
     .ac-info div span { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 800; font-size: 30px; color: #F0C96F; }
     .ac-btn { padding: 10px 20px; border-radius: 999px; background: #6E0C2B; border: 2px solid #D9B25C; font-family: var(--font-display); font-weight: 800; font-size: 28px; color: #F7F5F2; }
-    #ac-ripple { position: absolute; left: 318px; top: 342px; width: 70px; height: 70px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; z-index: 15; }
+    #ac-ripple { position: absolute; left: 318px; top: 318px; width: 70px; height: 70px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; z-index: 15; }
     #ac-notif { position: absolute; left: 105px; right: 185px; top: 960px; border-radius: 26px; background: rgba(11,30,22,0.96); border: 2.5px solid #10B981; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 24px 54px rgba(0,0,0,0.78); opacity: 0; }
     #ac-notif b { font-family: var(--font-display); font-size: 31px; color: #F7F5F2; }
     #ac-notif span { font-family: var(--font-display); font-weight: 800; font-size: 33px; color: #34D399; }
@@ -35,11 +36,13 @@
       <div id="ac-movil" data-layout-allow-occlusion>
         <div id="ac-screen" data-layout-allow-overflow>
           <div id="ac-isla"></div>
-          <div id="ac-hdr"><b>Tu Carta</b><span>Directo</span></div>
-          <div id="ac-feed" data-layout-allow-overflow>
-            <div class="ac-dish"><img src="assets/media/plato-burger-hero.jpg" alt="" /><div class="ac-info"><div><b>Double Smash</b><span>13,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
-            <div class="ac-dish"><img src="assets/media/plato-pizza.jpg" alt="" /><div class="ac-info"><div><b>Pizza Trufada</b><span>14,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
-            <div class="ac-dish"><img src="assets/media/plato-tacos.jpg" alt="" /><div class="ac-info"><div><b>Tacos Cochinita</b><span>11,00 €</span></div><span class="ac-btn">Pedir</span></div></div>
+          <div id="ac-hdr" data-layout-allow-occlusion><b data-layout-allow-occlusion>Tu Carta</b><span data-layout-allow-occlusion>Directo</span></div>
+          <div id="ac-mask" data-layout-allow-overflow>
+            <div id="ac-feed" data-layout-allow-overflow>
+              <div class="ac-dish" data-layout-ignore><img src="assets/media/plato-burger-hero.jpg" alt="" /><div class="ac-info"><div><b>Double Smash</b><span>13,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
+              <div class="ac-dish" data-layout-ignore><img src="assets/media/plato-pizza.jpg" alt="" /><div class="ac-info"><div><b>Pizza Trufada</b><span>14,50 €</span></div><span class="ac-btn">Pedir</span></div></div>
+              <div class="ac-dish" data-layout-ignore><img src="assets/media/plato-tacos.jpg" alt="" /><div class="ac-info"><div><b>Tacos Cochinita</b><span>11,00 €</span></div><span class="ac-btn">Pedir</span></div></div>
+            </div>
           </div>
           <div id="ac-ripple"></div>
         </div>

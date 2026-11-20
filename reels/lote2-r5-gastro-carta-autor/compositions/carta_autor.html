@@ -19,9 +19,9 @@
     #ca-feed { position: relative; padding: 14px 18px; display: flex; flex-direction: column; gap: 14px; }
     .ca-dish { border-radius: 22px; overflow: hidden; background: #1A1419; border: 1.5px solid rgba(217,178,92,0.28); }
     .ca-dish img { width: 100%; height: 196px; object-fit: cover; display: block; }
-    .ca-meta { padding: 12px 18px; display: flex; justify-content: space-between; align-items: baseline; }
-    .ca-meta b { font-family: var(--font-display); font-size: 29px; color: #F7F5F2; }
-    .ca-meta span { font-family: var(--font-display); font-weight: 800; font-size: 31px; color: #F0C96F; }
+    .ca-meta { padding: 12px 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .ca-meta b { font-family: var(--font-display); font-size: 28px; color: #F7F5F2; }
+    .ca-meta span { font-family: var(--font-display); font-weight: 800; font-size: 29px; color: #F0C96F; white-space: nowrap; flex-shrink: 0; }
     .ca-alg { padding: 0 18px 12px; font-family: var(--font-body); font-size: 28px; color: #D9B25C; }
     #ca-ripple { position: absolute; left: 320px; top: 430px; width: 70px; height: 70px; border-radius: 50%; border: 5px solid #F0C96F; background: rgba(240,201,111,0.3); opacity: 0; z-index: 15; }
     #ca-badge { position: absolute; left: 105px; right: 185px; top: 1122px; text-align: center; opacity: 0; }
@@ -37,9 +37,9 @@
           <div id="ca-hero" data-layout-allow-occlusion><img src="assets/media/hero-cata.jpg" alt="" /><div id="ca-hero-txt" data-layout-allow-occlusion><b data-layout-allow-occlusion>Tu Restaurante</b><span data-layout-allow-occlusion>Cocina de temporada</span></div></div>
           <div id="ca-mask" data-layout-allow-overflow>
             <div id="ca-feed" data-layout-allow-overflow>
-              <div class="ca-dish" data-layout-ignore><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="ca-meta"><b>Mariscada de la Casa</b><span>34,00 €</span></div><div class="ca-alg">Crustáceos · Moluscos</div></div>
+              <div class="ca-dish" data-layout-ignore><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="ca-meta"><b>Mariscada Casa</b><span>34,00 €</span></div><div class="ca-alg">Crustáceos · Moluscos</div></div>
               <div class="ca-dish" data-layout-ignore><img src="assets/media/plato-tajin.jpg" alt="" /><div class="ca-meta"><b>Tajín de Cordero</b><span>21,50 €</span></div><div class="ca-alg">Especias · Sin gluten</div></div>
-              <div class="ca-dish" data-layout-ignore><img src="assets/media/plato-postre.jpg" alt="" /><div class="ca-meta"><b>Postre Frutos Rojos</b><span>9,50 €</span></div><div class="ca-alg">Gluten · Huevo · Lácteos</div></div>
+              <div class="ca-dish" data-layout-ignore><img src="assets/media/plato-postre.jpg" alt="" /><div class="ca-meta"><b>Postre Frutos</b><span>9,50 €</span></div><div class="cv-alg ca-alg">Gluten · Huevo · Lácteos</div></div>
             </div>
           </div>
           <div id="ca-ripple"></div>
@@ -53,7 +53,7 @@
     tl.fromTo("#ca-bg", { scale: 1.0, x: 10 }, { scale: 1.08, x: -12, duration: 5.7, ease: "sine.inOut" }, 0);
     tl.fromTo("#ca-tit", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.6)" }, 0.05);
     tl.fromTo("#ca-movil", { rotationY: -16, rotationX: 7, scale: 0.88 }, { rotationY: 8, rotationX: 2, scale: 0.94, duration: 5.6, ease: "sine.inOut" }, 0);
-    tl.fromTo("#ca-feed", { y: 0 }, { y: -420, duration: 4.5, ease: "power2.inOut" }, 0.4);
+    tl.fromTo("#ca-feed", { y: 0 }, { y: -460, duration: 4.5, ease: "power2.inOut" }, 0.4);
     tl.fromTo("#ca-ripple", { scale: 0.3, opacity: 1 }, { scale: 2.4, opacity: 0, duration: 0.55, ease: "power2.out" }, 3.4);
     tl.fromTo("#ca-badge", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, ease: "back.out(1.6)" }, 1.6);
     tl.to("#ca-tit, #ca-badge", { y: -22, opacity: 0, duration: 0.28, ease: "power2.in" }, 5.35);

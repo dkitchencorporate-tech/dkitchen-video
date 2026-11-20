@@ -4,8 +4,8 @@
   <style>
     #root { position: absolute; inset: 0; }
     #cv-bg { position: absolute; inset: -60px; background-image: url('assets/media/bg-tapas-barra.jpg'); background-size: cover; background-position: center; filter: blur(10px) brightness(0.42); }
-    #cv-tit { position: absolute; left: 95px; right: 175px; top: 266px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 62px; line-height: 1.04; color: #F7F5F2; }
-    #cv-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 74px; }
+    #cv-tit { position: absolute; left: 95px; right: 175px; top: 274px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 58px; line-height: 1.02; color: #F7F5F2; white-space: nowrap; }
+    #cv-tit em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #F0C96F; font-size: 70px; }
     #cv-esc { position: absolute; left: 265px; top: 375px; width: 470px; height: 720px; perspective: 1400px; }
     #cv-movil { position: absolute; inset: 0; transform-style: preserve-3d; border-radius: 58px; background: linear-gradient(145deg, #2b2429, #0c0a0d 45%, #1d181c); padding: 12px; box-shadow: 0 46px 90px rgba(0,0,0,0.92), 0 0 0 2.5px rgba(217,178,92,0.5); }
     #cv-screen { position: relative; width: 446px; height: 696px; border-radius: 48px; overflow: hidden; background: #0E0B0F; }
@@ -19,14 +19,14 @@
     .cv-card img { width: 100%; height: 205px; object-fit: cover; display: block; }
     .cv-meta { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .cv-meta b { font-family: var(--font-display); font-size: 28px; color: #F7F5F2; }
-    .cv-meta span { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: #F0C96F; }
+    .cv-meta span { font-family: var(--font-display); font-weight: 800; font-size: 29px; color: #F0C96F; white-space: nowrap; flex-shrink: 0; }
     .cv-alg { padding: 0 16px 12px; font-family: var(--font-body); font-size: 28px; color: #D9B25C; }
     #cv-chips { position: absolute; left: 95px; right: 175px; top: 1118px; display: flex; justify-content: center; gap: 12px; opacity: 0; }
     .cv-chip { padding: 11px 22px; border-radius: 999px; background: rgba(110,12,43,0.95); border: 1.5px solid #D9B25C; font-family: var(--font-body); font-weight: 700; font-size: 28px; color: #F7F5F2; }
   </style>
   <div id="root" data-composition-id="carta_viva" data-width="1080" data-height="1920">
     <div id="cv-bg" data-layout-allow-overflow></div>
-    <div id="cv-tit" data-layout-allow-occlusion>Fotos · Alérgenos · <em>2 idiomas</em></div>
+    <div id="cv-tit" data-layout-allow-occlusion>Fotos y <em>2 idiomas</em></div>
     <div id="cv-esc">
       <div id="cv-movil" data-layout-allow-occlusion>
         <div id="cv-screen" data-layout-allow-overflow>
@@ -34,7 +34,7 @@
           <div id="cv-bar" data-layout-allow-occlusion><b id="cv-hdr-txt" data-layout-allow-occlusion>Tu Carta · ES / EN</b><span id="cv-lang" data-layout-allow-occlusion>EN</span></div>
           <div id="cv-mask" data-layout-allow-overflow>
             <div id="cv-list" data-layout-allow-overflow>
-              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tortilla-trufa.jpg" alt="" /><div class="cv-meta"><b id="cv-d1">Tortilla de trufa · EN</b><span>14,50 €</span></div><div class="cv-alg">Alérgenos: Huevo · Lácteos</div></div>
+              <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tortilla-trufa.jpg" alt="" /><div class="cv-meta"><b id="cv-d1">Tortilla de trufa</b><span>14,50 €</span></div><div class="cv-alg">Alérgenos: Huevo · Lácteos</div></div>
               <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tortilla-chorizo.jpg" alt="" /><div class="cv-meta"><b>Tortilla con chorizo</b><span>13,50 €</span></div><div class="cv-alg">Alérgenos: Huevo</div></div>
               <div class="cv-card" data-layout-ignore><img src="assets/media/plato-mariscada.jpg" alt="" /><div class="cv-meta"><b>Mariscada del día</b><span>28,00 €</span></div><div class="cv-alg">Alérgenos: Crustáceos</div></div>
               <div class="cv-card" data-layout-ignore><img src="assets/media/plato-tostadas.jpg" alt="" /><div class="cv-meta"><b>Tostadas de jamón</b><span>5,50 €</span></div><div class="cv-alg">Alérgenos: Gluten</div></div>

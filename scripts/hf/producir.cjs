@@ -87,7 +87,7 @@ const salida = path.join(carpeta, 'reel.mp4');
 const m1 = ff(['-i', crudo, '-af', `loudnorm=I=${qc.lufs}:TP=${qc.true_peak_max - 0.5}:LRA=${qc.lra_max}:print_format=json`, '-f', 'null', '-']);
 const js = m1.slice(m1.lastIndexOf('{'), m1.lastIndexOf('}') + 1);
 let med; try { med = JSON.parse(js); } catch (e) { corta('no se pudo medir la sonoridad del render (¿sin audio?)'); }
-ff(['-y', '-i', crudo, '-c:v', 'copy', '-af', `loudnorm=I=${qc.lufs}:TP=${qc.true_peak_max - 0.5}:LRA=${qc.lra_max}:measured_I=${med.input_i}:measured_TP=${med.input_tp}:measured_LRA=${med.input_lra}:measured_thresh=${med.input_thresh}:offset=${med.target_offset}:linear=true`, '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', salida]);
+ff(['-y', '-i', crudo, '-c:v', 'copy', '-af', `loudnorm=I=${qc.lufs}:TP=${qc.true_peak_max - 0.5}:LRA=${qc.lra_max}:measured_I=${med.input_i}:measured_TP=${med.input_tp}:measured_LRA=${med.input_lra}:measured_thresh=${med.input_thresh}:offset=${med.target_offset}:linear=true`, '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', salida]);
 if (!fs.existsSync(salida)) corta('masterizado');
 fs.unlinkSync(crudo);
 

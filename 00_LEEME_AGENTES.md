@@ -1,63 +1,39 @@
-# 00 · LÉEME PRIMERO — Cómo se producen los vídeos de DKitchen (para cualquier agente de IA)
-Válido para Antigravity, Jules (Google), Claude Code en la nube o cualquier otro agente. **Este documento manda sobre AGENTS.md, AGENT_GUIDE.md, CLAUDE.md, CODEX.md y el resto de guías heredadas del repo** (son de OpenMontage y del modo antiguo). Actualizado 31/10/2026 por Claude Code (director).
+# 00 · LÉEME PRIMERO — Cómo se producen los vídeos de DKitchen (`dkitchen-video`)
 
-## 0. Quién hace qué
-- **Agente ejecutor (tú):** produces el reel completo en una rama propia: composiciones, plan de efectos, sincronía con el audio y ajustes hasta que el QC pase. Haces el trabajo pesado.
-- **Director (Claude Code):** escribe la ficha y el plano a plano, revisa tus fotogramas y el render contra la guía, da el APROBADO y fusiona. Solo él fusiona a `main` o a `claude/p6-config`.
-- **karc0 (Alex, dueño):** genera a mano en Flow (imágenes y clips) y la música en ElevenLabs, y aprueba la pieza final. **Nunca sale en cámara.** No usa terminales.
-- **Prohibido:** llamar a la API de ElevenLabs o a cualquier IA generativa por tu cuenta (la voz y los efectos solo con el flujo «Voz y efectos (ElevenLabs)»: sube `reels/<pieza>/audio/pedir_voz.txt`); inventar precios; tocar otros repos. **Voz y efectos de sonido (karc0, 31/10 noche):** se generan con la API de ElevenLabs **solo** mediante el flujo «Voz y efectos (ElevenLabs)» (`scripts/hf/voz_api.cjs`): se dispara subiendo `reels/<pieza>/audio/pedir_voz.txt` y lee `guion.json` (`tramos_voz`, `voz`, `sfx_api`); recorta silencios y comprueba que cada frase cabe en su hueco. Ningún agente llama a la API por su cuenta. **La música la genera karc0 a mano**; imágenes y clips, karc0 en Flow.
+> Válido para **Agente DK** (cualquier agente elegido por Dirección: Antigravity, Claude u otro agente autorizado), colaboradores o flujos automatizados en la nube. **Este documento y `P6_GUIA_PRODUCCION.md` mandan sobre `AGENTS.md`, `AGENT_GUIDE.md`, `CODEX.md` y el resto de guías heredadas de OpenMontage.** Actualizado al **21/11/2026**.
 
-## 1. Lee en este orden (completos)
-1. `P6_GUIA_PRODUCCION.md`: reglas, **§1 bis nivel de diseño** y **§1 ter PUERTA DE CALIDAD INNEGOCIABLE**, marca, formato y zona segura, audio y checklist.
-2. La carpeta de tu pieza: `reels/<pieza>/FICHA.md` y `guion.json` (y el plano a plano si existe).
-3. `reels/reel-40-hypermotion/`: **el suelo de calidad**; tu pieza tiene que ser mejor.
-4. `tools/effects/DKITCHEN.md`: efectos con seguimiento de cara y capas detrás de la persona.
-5. `reels/plantilla-p6/`: esqueleto técnico (solo técnica; su aspecto NO es referencia de diseño).
+## 0. Quién hace qué (gobernanza vigente)
+- **Alex (Dirección):** aprueba la línea creativa y las piezas finales antes de publicar en las 3 redes activas (`Instagram`, `Facebook`, `TikTok`). No sale en cámara ni ejecuta renders en terminal local.
+- **Agente DK (agnóstico de modelo, misma jerarquía operativa que Dirección en ejecución y producción):** diseña guiones, storyboards, composiciones HyperFrames P6, generación/selección de fotos editoriales y capturas nítidas, prepara el audio, lanza el render en GitHub Actions (`main`), revisa `control_calidad.txt` y `contact_sheet.jpg` y entrega las piezas finales validadas.
+- **Reglas técnicas vigentes (`21/11/2026`):**
+  - **Rama única activa:** `main` (queda superada la antigua rama `claude/p6-config`).
+  - **Cero renders locales:** toda compilación/render ocurre en GitHub Actions (`Renderizar reel`, `hyperframes@0.8.223`, `1080x1920`, `30 fps`).
+  - **Audio y música:** cuando la API de ElevenLabs esté operativa se usa su flujo; mientras esté caída o sin saldo, la locución oficial usa `es-ES-AlvaroNeural` (`edge-tts`) con ritmos ajustados a cada tramo y **música instrumental CC-BY 4.0 distinta por pieza** (con atribución en la publicación).
+  - **Capturas reales limpias:** queda **prohibido** aplicar reemplazos destructivos de texto sobre capturas de pantalla reales en `preparar.cjs`. Toda imagen o pantalla dentro de mockups 3D debe verse nítida y coherente con el canon Gran Reserva.
+  - **Cero emojis y cero rastro de `"IA"`:** prohibidos los emojis y cualquier etiqueta que mencione `"IA"` hacia hosteleros o en textos sobre pantalla.
+
+## 1. Lee en este orden
+1. `P6_GUIA_PRODUCCION.md`: reglas técnicas, nivel de diseño **§1 bis**, **§1 ter Puerta de Calidad**, caja segura, audio, `-shortest` y checklist.
+2. La carpeta de tu pieza: `reels/<pieza>/FICHA.md` y `guion.json` (referencias reales recientes: `reels/lote1-r2-comision`, `reels/lote2-r4-universal-carta-pedidos`, `reels/lote2-r5-gastro-carta-autor`).
+3. `reels/reel-40-hypermotion/`: **suelo de calidad visual**.
+4. `tools/effects/DKITCHEN.md`: efectos disponibles en la nube.
+5. `reels/plantilla-p6/`: esqueleto técnico (solo técnica; su aspecto no es referencia de diseño).
 
 ## 2. Mapa del repositorio (solo lo que se usa)
-| Ruta | Qué es | Cómo se usa |
+| Ruta | Qué es | Uso |
 |---|---|---|
-| `marca/` | `tokens.css` (colores, zona segura), `fuentes.css` + fuentes locales, `logo.svg`, `sonido/` (whoosh, pop, tick, impacto-suave, cierre) | Se copia sola a cada reel. **No se edita ni se duplica.** |
-| `reels/plantilla-p6/` | Proyecto HyperFrames mínimo: `index.html` (raíz con la cámara y las escenas), `compositions/*.html` (una escena por archivo), `guion.json`, `hyperframes.json`, `package.json`, `audio/` | Se copia entera para crear un reel nuevo. |
-| `reels/<pieza>/` | Un reel = un proyecto HyperFrames propio | Todo lo de tu pieza vive aquí. |
-| `reels/<pieza>/audio/originales/` | `voz-t1.mp3…voz-tN.mp3` y `musica.mp3` que deja karc0 | No se tocan: el flujo los mide, recorta y mezcla. |
-| `reels/<pieza>/assets/` | Clips y fotos de Flow (`f1-….mp4`), grabaciones reales (`g1-….mp4`), capturas | Nombres en minúsculas y sin espacios. |
-| `reels/<pieza>/efectos/plan.json` | Plan de efectos de `tools/effects` por clip | Lo procesa el flujo «Aplicar efectos». |
-| `scripts/hf/producir.cjs` | marca → pistas de audio → carve de la música bajo la voz → `hyperframes check` → render → máster −14 LUFS → **QC medido que bloquea** | Lo ejecuta el flujo «Renderizar reel». |
-| `tools/effects/` | 45 efectos (claude-video-effects, MIT): palabra gigante detrás de la persona, spotlight, cristal con gráficas, notificaciones, interruptores, swipe antes/después, push-in… | Lo ejecuta el flujo «Aplicar efectos». |
-| `.github/workflows/render.yml` | «Renderizar reel» (entrada `carpeta` = `reels/<pieza>`) | Render final + QC. Artefactos: mp4, hoja de contactos y `control_calidad.txt`. |
-| `.github/workflows/efectos.yml` | «Aplicar efectos» (entradas `carpeta` y `solo_stills`) | `solo_stills=true` → fotogramas de control para el storyboard; `false` → clips procesados guardados en la rama. |
-| Todo lo demás (`hyperframes-studio/`, `piezas/`, `escenas/`, `remotion-composer/`, `pipeline_defs/`…) | Modo heredado | **No se usa ni se edita.** |
+| `marca/` | `tokens.css`, `fuentes.css`, fuentes locales, `logo.svg`, `sonido/` | Se copia automáticamente a cada reel. No se duplica. |
+| `reels/plantilla-p6/` | Esqueleto HyperFrames mínimo (`index.html`, `compositions/*.html`, `guion.json`, `hyperframes.json`, `package.json`, `audio/`) | Base para piezas nuevas. |
+| `reels/<pieza>/` | Proyecto HyperFrames propio de cada reel | Todo lo de la pieza vive aquí. |
+| `reels/<pieza>/audio/originales/` | Locuciones por tramo (`voz-t1.mp3`...) y `musica.mp3` distinta por pieza | Procesado y mezclado por `producir.cjs`. |
+| `reels/<pieza>/assets/` | Fotos editoriales nítidas, capturas de demos limpias y efectos `sfx/` | Nombres en minúsculas, sin espacios. |
+| `scripts/hf/producir.cjs` | Copiado de `/marca`, ajuste de pistas, `carve.mjs` bajo la voz, `hyperframes check`, render, máster `-14 LUFS`, `-shortest` (evita falso fallo `+0,10 s` AAC) y **QC bloqueante** | Ejecutado por `.github/workflows/render.yml`. |
+| `.github/workflows/render.yml` | Flujo **Renderizar reel** (`carpeta = reels/<pieza>`) | Genera `reel.mp4`, `contact_sheet.jpg`, `control_calidad.txt`, `check.json` y `audio_log.txt`. |
+| `.github/workflows/efectos.yml` | Flujo **Aplicar efectos** (`solo_stills` o clips procesados) | Procesado en Actions. |
+| Carpetas heredadas (`hyperframes-studio/`, `piezas/`, `escenas/`, `remotion-composer/`, `pipeline_defs/`) | Modo legado OpenMontage | No usar ni editar. |
 
-## 3. Cómo se produce un reel (paso a paso)
-1. **Rama:** `agente/<pieza>`, creada desde `claude/p6-config`. Nunca trabajes en `main` ni en `claude/p6-config`.
-2. **Crear la pieza:** si `reels/<pieza>/` no tiene `hyperframes.json`, copia dentro `reels/plantilla-p6/` y conserva `FICHA.md` y `guion.json` del director.
-3. **Material:** comprueba que están en `assets/` y `audio/originales/` todos los archivos que pide la ficha. Si falta alguno, **para** y deja en el reporte la lista exacta («falta f4-dueno-solo.mp4»); no lo sustituyas por otra cosa.
-4. **Efectos (si la ficha los pide):** escribe `efectos/plan.json` (formato en `tools/effects/DKITCHEN.md`) con colores de marca. Los efectos de cara solo sobre clips con persona; ventanas de 1,5–4 s.
-5. **Composición:** una escena por plano en `compositions/`, todo dentro de la caja segura (`var(--safe-*)`), animación GSAP en la línea de tiempo pausada (determinista: nada de `Math.random` sin semilla ni de relojes), contadores con un objeto animado y `toLocaleString('es-ES')`, y fotograma 0 = miniatura (titular o imagen ya en pantalla).
-6. **Sincronía:** los tiempos de cada plano salen de `guion.json` (`tramos_voz`). Golpes de sonido en cada corte y en cada cifra.
-7. **Autorrevisión (§1 ter):** puntúa los 10 puntos (material real, capas, cristal o 3D con cifras, tipografía, transiciones, sonido, ritmo de 1,5–3 s, gancho en 1,5 s, legibilidad en móvil y precios correctos). **Con menos de 9/10 no entregues: mejora.**
-8. **Entrega:** push de la rama y PR contra `claude/p6-config` con el reporte (§5). El director lanza «Aplicar efectos» y «Renderizar reel» sobre tu rama, revisa y aprueba o devuelve.
-
-## 4. Reglas que no se negocian
-- **Nivel de diseño máximo siempre** (§1 bis y §1 ter). Prohibido: texto sobre fondo plano, plantillas genéricas, bocetos presentados como storyboard, cajas detrás del texto, logotipos o colores de terceros (plataformas de reparto) y nombres de locales reales.
-- **Precios, funciones y condiciones:** solo los de la ficha, que el director comprueba contra la web (`src/lib/pricing-config.ts`). Cifras orientativas con su nota legal. No inventes ninguna oferta.
-- **CTA única:** la que diga la ficha (lote 1: «Escríbenos CARTA…»).
-- **Voz:** la de la ficha (hoy Álvaro; se irá alternando). **Sin avatar hablante** hasta que el director lo indique.
-- **El render oficial solo en GitHub Actions**, nunca en el portátil de karc0. Si eres un agente en la nube (Jules), en tu VM puedes hacer previsualizaciones (`npx hyperframes check` o `snapshot`), pero el render que vale es el del flujo.
-- **QC:** `control_calidad.txt` lo escribe el flujo con medidas reales. Prohibido escribir a mano «aprobado», LUFS o cifras de pruebas.
-- **Secretos:** ninguno en archivos. El repo es público.
-
-## 5. Reporte de entrega (en la descripción del PR y en `reels/<pieza>/REPORTE.md`)
-Rama y commit · lista de planos con su archivo y sus tiempos · material usado (archivo por plano) · plan de efectos · autorrevisión de 10 puntos con nota · lo **no** comprobado, dicho claramente · dudas para el director. Sin capturas inventadas.
-
-## 6. Configuración para Jules (jules.google)
-- Repositorio `dkitchencorporate-tech/dkitchen-video`, rama base `claude/p6-config`.
-- **Initial Setup** (Configuration → Run and Snapshot):
-  ```bash
-  sudo apt-get update && sudo apt-get install -y ffmpeg
-  npm i --no-save playwright ffmpeg-static
-  npx playwright install --with-deps chromium
-  pip install -r tools/effects/requirements.txt
-  ```
-- Encargo tipo (lo escribe el director): «Produce `reels/<pieza>` siguiendo 00_LEEME_AGENTES.md y la ficha de la pieza. Rama `agente/<pieza>`. PR contra `claude/p6-config` con el reporte del §5.»
+## 3. Flujo de trabajo en `main`
+1. Crea o actualiza `reels/<pieza>/` en `main` (o rama de trabajo revisada antes de fusionar a `main`), verificando `guion.json`, duraciones exactas de tramos, música distinta CC-BY 4.0 y fotos/mockups nítidos dentro de la caja segura (`var(--safe-*)`: `x 60–940`, `y 250–1500`).
+2. Dispara `Renderizar reel` en GitHub Actions (`workflow_dispatch` sobre `main`) con `carpeta = reels/<pieza>`.
+3. Verifica en el artefacto `entrega-<run>`: `check.json` con `0` errores, `control_calidad.txt` = **`APTO TÉCNICAMENTE`**, y **revisión visual real fotograma a fotograma** de `contact_sheet.jpg` antes de entregar.
+4. Ningún secreto en el repositorio: `dkitchen-video` es público.

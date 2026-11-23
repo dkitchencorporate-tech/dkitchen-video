@@ -4,6 +4,8 @@
 > **P6 (31/10/2026):** el procedimiento operativo vigente está en `P6_GUIA_PRODUCCION.md`; si algo choca, manda la guía.
 > **PROHIBICIÓN ESTRICTA:** Queda terminantemente prohibido generar o entregar piezas planas, fondos negros mudos, tipografía sin movimiento cinético o montajes sin rigor audiovisual y sonoro.
 
+> **ORDEN EJECUTIVA INAMOVIBLE DE DISEÑO (23/11/2026 — OBLIGATORIA EN TODOS LOS REELS):** todo reel o vídeo debe aplicar obligatoriamente las **3 Arquitecturas Maestras A, B y C** y prohibiciones de `marca/ORDEN_DISENO_INAMOVIBLE.md` (paleta Gran Reserva, Bricolage 800 + Cormorant Italic, capturas reales de PWAs con franja segura sobre Isla Dinámica, cero tarjetas SaaS clónicas flotantes, cero avatares, cero emojis, cero rastro «IA» y prohibido compartir Néstor Pizzas como demo a prospectos).
+
 ---
 
 ## 1. PRINCIPIOS CREATIVOS DE MARCA ("GRAN RESERVA")
@@ -39,7 +41,7 @@
 5. **Elementos 3D y Micro-interacciones Reales:**
    - Los mockups de producto (smartphones, comandero, cartas digitales) deben montarse en perspectiva 3D (`perspective: 1200px`, `rotateX`, `rotateY`, `transform-style: preserve-3d`).
    - Deben incluir elementos vivos: Dynamic Island, estados "EN DIRECTO", cursores táctiles animados con efecto onda (*ripple*) y transformaciones visuales dinámicas (ej: precios cambiando en vivo).
-   - Integración de avatares UGC / portavoces en esquinas flotantes o transiciones directas para retención y humanización.
+   - Cero avatares sintéticos o caricaturas: foco absoluto en mockups 3D reales y fotografía gastronómica de autor.
 
 ---
 

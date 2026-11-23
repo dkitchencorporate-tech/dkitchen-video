@@ -2,6 +2,8 @@
 
 > Fuente de verdad técnica para producir Reels en `dkitchen-video` (rama activa: **`main`**). Si cualquier otro documento heredado de OpenMontage (`AGENTS.md`, `AGENT_GUIDE.md`, `CODEX.md`) dice otra cosa, **manda esta guía**. Mantenida bajo gobernanza **Alex (Dirección) + Agente DK** (agnóstico de modelo).
 
+> **ORDEN EJECUTIVA INAMOVIBLE DE DISEÑO (23/11/2026 — OBLIGATORIA EN TODOS LOS REELS):** todo reel o vídeo debe aplicar obligatoriamente las **3 Arquitecturas Maestras A, B y C** y prohibiciones de `marca/ORDEN_DISENO_INAMOVIBLE.md` (paleta Gran Reserva, Bricolage 800 + Cormorant Italic, capturas reales de PWAs con franja segura sobre Isla Dinámica, cero tarjetas SaaS clónicas flotantes, cero avatares, cero emojis, cero rastro «IA» y prohibido compartir Néstor Pizzas como demo a prospectos).
+
 ## 1. Reglas que no se discuten
 1. **Render solo en GitHub Actions (`Renderizar reel`, rama `main`).** Prohibido ejecutar `render`, `preview`, `npm install` ni Chromium en equipos locales ligeros. En local solo se editan HTML/JSON/scripts y comprobaciones ligeras (`node --check`).
 2. **Un reel = un proyecto HyperFrames propio** en `reels/<pieza>/`, partiendo de `reels/plantilla-p6/`. Nunca se edita `hyperframes-studio/index.html`.

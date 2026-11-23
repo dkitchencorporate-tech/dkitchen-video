@@ -2,6 +2,8 @@
 
 > Válido para **Agente DK** (cualquier agente elegido por Dirección: Antigravity, Claude u otro agente autorizado), colaboradores o flujos automatizados en la nube. **Este documento y `P6_GUIA_PRODUCCION.md` mandan sobre `AGENTS.md`, `AGENT_GUIDE.md`, `CODEX.md` y el resto de guías heredadas de OpenMontage.** Actualizado al **21/11/2026**.
 
+> **ORDEN EJECUTIVA INAMOVIBLE DE DISEÑO (23/11/2026 — OBLIGATORIA EN TODOS LOS REELS):** todo reel o vídeo debe aplicar obligatoriamente las **3 Arquitecturas Maestras A, B y C** y prohibiciones de `marca/ORDEN_DISENO_INAMOVIBLE.md` (paleta Gran Reserva, Bricolage 800 + Cormorant Italic, capturas reales de PWAs con franja segura sobre Isla Dinámica, cero tarjetas SaaS clónicas flotantes, cero avatares, cero emojis, cero rastro «IA» y prohibido compartir Néstor Pizzas como demo a prospectos).
+
 ## 0. Quién hace qué (gobernanza vigente)
 - **Alex (Dirección):** aprueba la línea creativa y las piezas finales antes de publicar en las 3 redes activas (`Instagram`, `Facebook`, `TikTok`). No sale en cámara ni ejecuta renders en terminal local.
 - **Agente DK (agnóstico de modelo, misma jerarquía operativa que Dirección en ejecución y producción):** diseña guiones, storyboards, composiciones HyperFrames P6, generación/selección de fotos editoriales y capturas nítidas, prepara el audio, lanza el render en GitHub Actions (`main`), revisa `control_calidad.txt` y `contact_sheet.jpg` y entrega las piezas finales validadas.

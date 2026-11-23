@@ -34,7 +34,7 @@
 
 ## 3. Formato y zona segura (`marca/tokens.css`)
 - `1080 × 1920` (`9:16`), `30 fps`, `15–25 s`.
-- Márgenes caja segura: **arriba `250 px` · abajo `420 px` · derecha `140 px` · izquierda `60 px`** (`x 60–940`, `y 250–1500`).
+- Márgenes caja segura: **arriba `270 px` · abajo `540 px` · derecha `190 px` · izquierda `68 px`** (`x 68–890`, `y 270–1380`).
 - Todo titular, precio, CTA y subtítulo va dentro de `var(--safe-*)` con margen adicional frente al dolly de cámara (`titulares <= 760 px` de ancho).
 - **Fotograma 0 = miniatura:** nunca dejar el frame 0 en negro o vacío (`first_frame_empty`).
 

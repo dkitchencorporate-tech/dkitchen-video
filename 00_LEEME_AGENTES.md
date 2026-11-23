@@ -35,7 +35,7 @@
 | Carpetas heredadas (`hyperframes-studio/`, `piezas/`, `escenas/`, `remotion-composer/`, `pipeline_defs/`) | Modo legado OpenMontage | No usar ni editar. |
 
 ## 3. Flujo de trabajo en `main`
-1. Crea o actualiza `reels/<pieza>/` en `main` (o rama de trabajo revisada antes de fusionar a `main`), verificando `guion.json`, duraciones exactas de tramos, música distinta CC-BY 4.0 y fotos/mockups nítidos dentro de la caja segura (`var(--safe-*)`: `x 60–940`, `y 250–1500`).
+1. Crea o actualiza `reels/<pieza>/` en `main` (o rama de trabajo revisada antes de fusionar a `main`), verificando `guion.json`, duraciones exactas de tramos, música distinta CC-BY 4.0 y fotos/mockups nítidos dentro de la caja segura (`var(--safe-*)`: `x 68–890`, `y 270–1380`).
 2. Dispara `Renderizar reel` en GitHub Actions (`workflow_dispatch` sobre `main`) con `carpeta = reels/<pieza>`.
 3. Verifica en el artefacto `entrega-<run>`: `check.json` con `0` errores, `control_calidad.txt` = **`APTO TÉCNICAMENTE`**, y **revisión visual real fotograma a fotograma** de `contact_sheet.jpg` antes de entregar.
 4. Ningún secreto en el repositorio: `dkitchen-video` es público.

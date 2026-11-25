@@ -1,41 +1,41 @@
 {
  "pieza": "ads-b2-signature-noche",
  "titulo": "DKitchen · Signature · noche",
- "duracion": 21,
+ "duracion": 27,
  "fps": 30,
  "tramos_voz": [
   {
    "id": "t1",
    "inicio": 0.15,
-   "fin_max": 4.65,
+   "fin_max": 5.1,
    "texto": "No es una web. No es un PDF. Es tu propia app."
   },
   {
    "id": "t2",
-   "inicio": 4.75,
-   "fin_max": 7.25,
+   "inicio": 5.2,
+   "fin_max": 8.12,
    "texto": "Con tu marca, tus fotos y tus precios."
   },
   {
    "id": "t3",
-   "inicio": 7.35,
-   "fin_max": 11.45,
+   "inicio": 8.2,
+   "fin_max": 13.0,
    "texto": "El cliente elige, añade extras y pide, sin que nadie coja el teléfono."
   },
   {
    "id": "t4",
-   "inicio": 11.5,
-   "fin_max": 13.75,
-   "texto": "Y cero comisión de DKitchen por pedido."
+   "inicio": 13.15,
+   "fin_max": 15.6,
+   "texto": "¿Comisión por pedido? ¡Cero!"
   },
   {
    "id": "t5",
-   "inicio": 13.9,
-   "fin_max": 20.75,
+   "inicio": 16.45,
+   "fin_max": 26.4,
    "texto": "Quinientos euros más IVA, dos meses incluidos y sesenta y nueve al mes el primer año. Escríbenos: Signature."
   }
  ],
- "musica": "Vibing Over Venus — Kevin MacLeod (CC-BY 4.0)",
+ "musica": "Original",
  "qc": {
   "lufs": -14,
   "tolerancia_lufs": 1,

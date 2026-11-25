@@ -1,0 +1,47 @@
+{
+ "pieza": "ads-a-carta-1e",
+ "titulo": "Carta QR 1 € · anuncio",
+ "duracion": 20,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "t1",
+   "inicio": 0.2,
+   "fin_max": 3.95,
+   "texto": "¿Tienes un bar? ¿Cuántos precios tachados hay en tu carta?"
+  },
+  {
+   "id": "t2",
+   "inicio": 4.1,
+   "fin_max": 7.1,
+   "texto": "Sube un precio… y toca imprimirlas todas otra vez."
+  },
+  {
+   "id": "t3",
+   "inicio": 7.2,
+   "fin_max": 10.75,
+   "texto": "Con DKitchen lo cambias en el móvil, y ya está en todas las mesas."
+  },
+  {
+   "id": "t4",
+   "inicio": 11.1,
+   "fin_max": 13.85,
+   "texto": "Y desde la mesa llaman al camarero o reservan."
+  },
+  {
+   "id": "t5",
+   "inicio": 14.15,
+   "fin_max": 19.8,
+   "texto": "Un euro más IVA el primer mes; después, veintinueve. Escríbenos: carta."
+  }
+ ],
+ "musica": "ver CREDITS.md",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

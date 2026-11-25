@@ -1,0 +1,41 @@
+{
+ "pieza": "ads-b4-signature-app",
+ "titulo": "DKitchen · Signature · anuncio",
+ "duracion": 17.1,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "t1",
+   "inicio": 0.12,
+   "fin_max": 4.42,
+   "texto": "¿Haces pedidos para llevar? ¡Que te pidan en tu propia app!"
+  },
+  {
+   "id": "t2",
+   "inicio": 4.48,
+   "fin_max": 7.13,
+   "texto": "Tu cliente elige, añade extras y pide."
+  },
+  {
+   "id": "t3",
+   "inicio": 7.19,
+   "fin_max": 9.75,
+   "texto": "Y en DKitchen no cobramos comisión por pedido."
+  },
+  {
+   "id": "t4",
+   "inicio": 9.81,
+   "fin_max": 16.37,
+   "texto": "Quinientos euros más IVA, dos meses incluidos. Escríbenos: Signature."
+  }
+ ],
+ "musica": "Original",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "pieza": "ads-a2-carta-editorial",
+ "titulo": "DKitchen · Carta QR 1 € · editorial",
+ "duracion": 21,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "t1",
+   "inicio": 0.15,
+   "fin_max": 4.35,
+   "texto": "¿Tienes un bar? Así puede verse tu carta en el móvil de tu cliente."
+  },
+  {
+   "id": "t2",
+   "inicio": 4.45,
+   "fin_max": 8.9,
+   "texto": "Tapas, hamburguesas o cocina de autor: cada local, con su propio diseño."
+  },
+  {
+   "id": "t3",
+   "inicio": 9.0,
+   "fin_max": 11.9,
+   "texto": "Cambias un precio en tu panel, y la carta se actualiza."
+  },
+  {
+   "id": "t4",
+   "inicio": 12.0,
+   "fin_max": 14.75,
+   "texto": "Y desde la mesa, llaman al camarero o reservan."
+  },
+  {
+   "id": "t5",
+   "inicio": 14.9,
+   "fin_max": 20.6,
+   "texto": "Un euro más IVA el primer mes; después, veintinueve. Escríbenos: carta."
+  }
+ ],
+ "musica": "Night Vigil — Kevin MacLeod (CC-BY 4.0)",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

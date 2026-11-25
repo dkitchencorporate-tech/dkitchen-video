@@ -13,7 +13,7 @@ const LIMPIA = `(() => {
   if (!document.getElementById('dk-st')) { const s = document.createElement('style'); s.id = 'dk-st'; s.textContent = '::-webkit-scrollbar{display:none!important}html{scroll-behavior:auto!important}*{caret-color:transparent!important}'; document.head.append(s); }
 })()`;
 (async () => {
-  const b = await chromium.launch(); const dir = path.join(R, 'assets/video'); fs.mkdirSync(dir, { recursive: true });
+  const b = await chromium.launch({ args: ['--lang=es-ES'], env: { ...process.env, LANG: 'es_ES.UTF-8', LANGUAGE: 'es' } }); const dir = path.join(R, 'assets/video'); fs.mkdirSync(dir, { recursive: true });
   for (const n of pedir) {
     const cx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: PRUEBA ? 1 : 2.5, locale: 'es-ES', timezoneId: 'Europe/Madrid' });
     const p = await cx.newPage(); const tmp = path.join(R, '_f_' + n); fs.rmSync(tmp, { recursive: true, force: true }); fs.mkdirSync(tmp);

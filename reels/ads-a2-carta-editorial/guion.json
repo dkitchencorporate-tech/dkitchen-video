@@ -1,41 +1,41 @@
 {
  "pieza": "ads-a2-carta-editorial",
  "titulo": "DKitchen · Carta QR 1 € · editorial",
- "duracion": 21,
+ "duracion": 24.8,
  "fps": 30,
  "tramos_voz": [
   {
    "id": "t1",
-   "inicio": 0.15,
-   "fin_max": 4.35,
-   "texto": "¿Tienes un bar? Así puede verse tu carta en el móvil de tu cliente."
+   "inicio": 0.12,
+   "fin_max": 4.6,
+   "texto": "¿Tienes un bar? ¡Mira cómo puede verse tu carta en el móvil de tu cliente!"
   },
   {
    "id": "t2",
-   "inicio": 4.45,
-   "fin_max": 8.9,
+   "inicio": 4.8,
+   "fin_max": 10.4,
    "texto": "Tapas, hamburguesas o cocina de autor: cada local, con su propio diseño."
   },
   {
    "id": "t3",
-   "inicio": 9.0,
-   "fin_max": 11.9,
-   "texto": "Cambias un precio en tu panel, y la carta se actualiza."
+   "inicio": 10.5,
+   "fin_max": 13.72,
+   "texto": "Cambias un precio y tu carta cambia contigo."
   },
   {
    "id": "t4",
-   "inicio": 12.0,
-   "fin_max": 14.75,
-   "texto": "Y desde la mesa, llaman al camarero o reservan."
+   "inicio": 13.85,
+   "fin_max": 17.1,
+   "texto": "Y desde la mesa, te llaman o te reservan."
   },
   {
    "id": "t5",
-   "inicio": 14.9,
-   "fin_max": 20.6,
+   "inicio": 17.3,
+   "fin_max": 24.2,
    "texto": "Un euro más IVA el primer mes; después, veintinueve. Escríbenos: carta."
   }
  ],
- "musica": "Night Vigil — Kevin MacLeod (CC-BY 4.0)",
+ "musica": "Original",
  "qc": {
   "lufs": -14,
   "tolerancia_lufs": 1,

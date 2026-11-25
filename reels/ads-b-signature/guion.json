@@ -1,0 +1,47 @@
+{
+ "pieza": "ads-b-signature",
+ "titulo": "Signature 500 € · anuncio",
+ "duracion": 19.4,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "t1",
+   "inicio": 0.2,
+   "fin_max": 2.4,
+   "texto": "¿Tu local vive de pedidos por teléfono?"
+  },
+  {
+   "id": "t2",
+   "inicio": 2.5,
+   "fin_max": 5.45,
+   "texto": "Suena en plena cena, y la cocina no puede parar."
+  },
+  {
+   "id": "t3",
+   "inicio": 5.6,
+   "fin_max": 9.35,
+   "texto": "Con tu propia app, el cliente elige, añade extras y pide solo."
+  },
+  {
+   "id": "t4",
+   "inicio": 9.5,
+   "fin_max": 12.15,
+   "texto": "Y DKitchen te cobra cero comisión por pedido."
+  },
+  {
+   "id": "t5",
+   "inicio": 12.35,
+   "fin_max": 19.2,
+   "texto": "Quinientos euros más IVA, dos meses incluidos y sesenta y nueve al mes el primer año. Escríbenos: Signature."
+  }
+ ],
+ "musica": "ver CREDITS.md",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

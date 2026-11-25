@@ -1,0 +1,35 @@
+{
+ "pieza": "ads-a4-carta-1e",
+ "titulo": "DKitchen · Carta QR 1 € · anuncio",
+ "duracion": 15.0,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "t1",
+   "inicio": 0.12,
+   "fin_max": 4.87,
+   "texto": "¿Tienes un bar? Tu carta digital, por un euro más IVA el primer mes."
+  },
+  {
+   "id": "t2",
+   "inicio": 4.93,
+   "fin_max": 8.15,
+   "texto": "¿Sube un precio? Lo cambias tú, desde tu móvil."
+  },
+  {
+   "id": "t3",
+   "inicio": 8.21,
+   "fin_max": 14.25,
+   "texto": "Después, veintinueve más IVA. Sin permanencia. Escríbenos: carta."
+  }
+ ],
+ "musica": "Original",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

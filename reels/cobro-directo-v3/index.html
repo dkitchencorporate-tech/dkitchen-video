@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Cobro directo · reel</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+*{box-sizing:border-box}body{margin:0}
+#raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#0b0a0e}
+#fondo{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:62% 40%}
+#fondo img{position:absolute;left:0;top:0;width:1080px;height:1920px;display:block}
+.velo-sup{position:absolute;left:0;top:246px;width:1080px;height:330px;background:linear-gradient(90deg,#0b0a0e 0,#0b0a0e 600px,rgba(11,10,14,0) 690px);-webkit-mask:linear-gradient(180deg,transparent 0,#000 22px,#000 300px,transparent 330px);mask:linear-gradient(180deg,transparent 0,#000 22px,#000 300px,transparent 330px)}
+.banda{position:absolute;left:-20px;top:846px;width:612px;height:62px;transform:rotate(-2.6deg);transform-origin:0 0;background:linear-gradient(90deg,#7c1240 0,#9b1d52 60%,#8a1748 100%);box-shadow:0 1px 0 rgba(232,190,110,.35) inset,0 -1px 0 rgba(232,190,110,.35) inset}
+.banda span{position:absolute;left:78px;top:20px;font:700 19px/1 'Inter',sans-serif;letter-spacing:.2em;color:#f6dfa0;white-space:nowrap}
+.velo-inf{position:absolute;left:0;top:905px;width:575px;height:315px;background:#0b0a0e;-webkit-mask:linear-gradient(90deg,#000 0,#000 535px,transparent 575px);mask:linear-gradient(90deg,#000 0,#000 535px,transparent 575px)}
+.t{position:absolute;left:68px;margin:0}
+.kicker{top:272px;font:italic 500 26px/1 'Cormorant Garamond',serif;color:#d9b46a;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.kicker i{display:block;width:44px;height:2px;background:#d9b46a}
+.h1{top:306px;font:900 74px/1 'Inter',sans-serif;letter-spacing:-.05em;color:#fff;white-space:nowrap}
+.h2{top:380px;font:italic 500 64px/1.05 'Cormorant Garamond',serif;white-space:nowrap;background:linear-gradient(100deg,#8A6420 0%,#E9C877 22%,#FFF1C4 34%,#C99A3E 52%,#8A6420 70%,#E2BC6A 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.1em}
+.sub{top:456px;width:500px;font:500 23px/1.32 'Inter',sans-serif;color:#efe9df}
+.sub b{color:#fff;font-weight:700}
+.eti{top:930px;font:600 17px/1 'Inter',sans-serif;letter-spacing:.2em;color:#d9b46a;white-space:nowrap}
+.precio{top:954px;font:900 104px/1 'Inter',sans-serif;letter-spacing:-.05em;color:#fff;transform-origin:0 70%}
+.iva{top:1070px;font:500 24px/1 'Inter',sans-serif;color:#efe9df;white-space:nowrap}
+.iva s{position:relative;color:#8c857c;margin-left:10px;text-decoration:none}
+.iva s i{position:absolute;left:-2%;top:52%;width:104%;height:2px;background:#8c857c;transform-origin:0 50%}
+.linea{top:1106px;width:480px;height:1px;background:rgba(255,255,255,.14);transform-origin:0 50%}
+.cuota{top:1120px;width:480px;font:700 23px/1.3 'Inter',sans-serif;color:#e6c27a}
+.letra{top:1186px;width:500px;font:400 19px/1.35 'Inter',sans-serif;color:#cfc8bd}
+#destello{position:absolute;left:0;top:0;width:1080px;height:1920px;background:radial-gradient(ellipse 60% 30% at 30% 52%,rgba(163,24,74,.35),rgba(163,24,74,0) 70%);opacity:0}
+</style></head><body>
+<div id="raiz" data-composition-id="cobro-directo-v3" data-start="0" data-width="1080" data-height="1920" data-duration="8">
+  <div id="fondo" data-layout-allow-overflow>
+    <img src="assets/base_9x16.png" alt=""/>
+    <div class="velo-sup"></div>
+    <div class="velo-inf"></div>
+  </div>
+  <div id="destello" data-layout-allow-overflow></div>
+  <div class="banda" id="banda"><span id="bandatxt">STRIPE · REDSYS · SIN COMISIONES</span></div>
+  <div class="t kicker" id="k1"><i></i>Sin intermediarios · Plazas Fundador</div>
+  <h1 class="t h1" id="k2">Tus ventas,</h1>
+  <p class="t h2" id="k3">directas a tu cuenta.</p>
+  <p class="t sub" id="k4">El cliente paga en tu propia pasarela (<b>Stripe o Redsys</b>) y el dinero va a tu banco. DKitchen no retiene ventas ni cobra comisión por pedido.</p>
+  <div class="t eti" id="p1">OFERTA FUNDADOR · 100 PLAZAS</div>
+  <div class="t precio" id="p2">500 €</div>
+  <div class="t iva" id="p3">+ IVA pago único<s>700 €<i id="tacha"></i></s></div>
+  <div class="t linea" id="p4"></div>
+  <div class="t cuota" id="p5">2 meses incluidos; después, 69 €/mes + IVA el primer año.</div>
+  <div class="t letra" id="p6">Entrega en 15 días hábiles · Hasta el 10/01 o 100 plazas.</div>
+
+  <audio id="cama" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="8" data-track-index="21" data-volume="0.7" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.7},{"t":7.0,"v":0.7},{"t":7.95,"v":0}]}]}'></audio>
+  <audio id="sfx-1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="0.02" data-duration="0.9" data-track-index="22" data-volume="0.9"></audio>
+  <audio id="sfx-2" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="2.15" data-duration="0.4" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-3" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="3.1" data-duration="0.9" data-track-index="22" data-volume="0.9"></audio>
+  <audio id="sfx-4" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="3.75" data-duration="0.3" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-5" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="4.35" data-duration="0.4" data-track-index="22" data-volume="0.6"></audio>
+  <audio id="sfx-6" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="6.6" data-duration="1" data-track-index="23" data-volume="0.8"></audio>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+const sube=(q,t,d)=>tl.fromTo(q,{yPercent:70,opacity:0,rotationX:-40,transformOrigin:"0 100%"},{yPercent:0,opacity:1,rotationX:0,duration:d||.45,ease:"power4.out"},t);
+tl.fromTo("#fondo",{scale:1.0},{scale:1.06,duration:8,ease:"none"},0);
+tl.set(["#p1","#p2","#p3","#p4","#p5","#p6","#k4"],{opacity:0},0);
+// Gancho: el titular ya está en pantalla en el primer fotograma y golpea con el sonido
+tl.fromTo("#k2",{scale:1.18,opacity:.0001,transformOrigin:"0 60%"},{scale:1,opacity:1,duration:.32,ease:"power4.out"},0);
+tl.fromTo("#k1",{x:-30,opacity:0},{x:0,opacity:1,duration:.4,ease:"power3.out"},.08);
+sube("#k3",.3,.45);
+tl.fromTo("#k3",{backgroundPosition:"0% 0"},{backgroundPosition:"100% 0",duration:3,ease:"none"},.3);
+sube("#k4",.95,.5);
+// Banda de pasarelas
+tl.fromTo("#bandatxt",{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:.45,ease:"power3.out"},2.1);
+// Precio
+sube("#p1",2.85,.4);
+tl.set("#p2",{opacity:1},3.1);
+tl.fromTo("#p2",{scale:.45},{scale:1,duration:.42,ease:"back.out(1.5)"},3.1);
+tl.fromTo("#destello",{opacity:0},{opacity:1,duration:.3,ease:"power2.out"},3.1);
+tl.to("#destello",{opacity:.35,duration:1.2,ease:"sine.inOut"},3.4);
+sube("#p3",3.55,.4);
+tl.fromTo("#tacha",{scaleX:0},{scaleX:1,duration:.3,ease:"power2.out"},3.75);
+tl.set("#p4",{opacity:1},4.15);
+tl.fromTo("#p4",{scaleX:0},{scaleX:1,duration:.4,ease:"power2.out"},4.15);
+sube("#p5",4.3,.45);
+sube("#p6",4.9,.45);
+tl.to("#p2",{scale:1.04,duration:.35,ease:"sine.inOut",yoyo:true,repeat:3},5.6);
+window.__timelines["cobro-directo-v3"]=tl;
+</script></body></html>

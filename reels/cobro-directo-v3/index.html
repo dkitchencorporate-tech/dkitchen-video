@@ -2,11 +2,11 @@
 <html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Cobro directo · reel</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
 *{box-sizing:border-box}body{margin:0}
 #raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#0b0a0e}
-#fondo{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:62% 40%}
+#fondo{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 60%}
 #fondo img{position:absolute;left:0;top:0;width:1080px;height:1920px;display:block}
 .velo-sup{position:absolute;left:0;top:246px;width:1080px;height:330px;background:linear-gradient(90deg,#0b0a0e 0,#0b0a0e 600px,rgba(11,10,14,0) 690px);-webkit-mask:linear-gradient(180deg,transparent 0,#000 22px,#000 300px,transparent 330px);mask:linear-gradient(180deg,transparent 0,#000 22px,#000 300px,transparent 330px)}
 .banda{position:absolute;left:-20px;top:846px;width:612px;height:62px;transform:rotate(-2.6deg);transform-origin:0 0;background:linear-gradient(90deg,#7c1240 0,#9b1d52 60%,#8a1748 100%);box-shadow:0 1px 0 rgba(232,190,110,.35) inset,0 -1px 0 rgba(232,190,110,.35) inset}
-.banda span{position:absolute;left:78px;top:20px;font:700 19px/1 'Inter',sans-serif;letter-spacing:.2em;color:#f6dfa0;white-space:nowrap}
+.banda span{position:absolute;left:96px;top:20px;font:700 19px/1 'Inter',sans-serif;letter-spacing:.2em;color:#f6dfa0;white-space:nowrap}
 .velo-inf{position:absolute;left:0;top:905px;width:575px;height:315px;background:#0b0a0e;-webkit-mask:linear-gradient(90deg,#000 0,#000 535px,transparent 575px);mask:linear-gradient(90deg,#000 0,#000 535px,transparent 575px)}
 .t{position:absolute;left:68px;margin:0}
 .kicker{top:272px;font:italic 500 26px/1 'Cormorant Garamond',serif;color:#d9b46a;display:flex;align-items:center;gap:16px;white-space:nowrap}
@@ -55,7 +55,7 @@
 <script>
 const tl=gsap.timeline({paused:true});
 const sube=(q,t,d)=>tl.fromTo(q,{yPercent:70,opacity:0,rotationX:-40,transformOrigin:"0 100%"},{yPercent:0,opacity:1,rotationX:0,duration:d||.45,ease:"power4.out"},t);
-tl.fromTo("#fondo",{scale:1.0},{scale:1.06,duration:8,ease:"none"},0);
+tl.fromTo("#fondo",{scale:1.0},{scale:1.03,duration:8,ease:"none"},0);
 tl.set(["#p1","#p2","#p3","#p4","#p5","#p6","#k4"],{opacity:0},0);
 // Gancho: el titular ya está en pantalla en el primer fotograma y golpea con el sonido
 tl.fromTo("#k2",{scale:1.18,opacity:.0001,transformOrigin:"0 60%"},{scale:1,opacity:1,duration:.32,ease:"power4.out"},0);

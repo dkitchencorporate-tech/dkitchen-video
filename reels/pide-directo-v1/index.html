@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Pide directo a tu bar · reel</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+*{box-sizing:border-box}body{margin:0}
+#raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif}
+.lleno{position:absolute;inset:0}
+.esc{position:absolute;inset:0;perspective:2200px;perspective-origin:50% 45%}
+.h{position:absolute;left:72px;width:812px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.96}
+.h span{display:block}.s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;letter-spacing:-.01em;line-height:.98}
+.movil{position:absolute;transform-style:preserve-3d}.movil i{display:block}
+.capa{position:absolute;inset:1px}.bt{position:absolute;background:linear-gradient(180deg,#2a292b,#77736f 20%,#4b4846 80%,#222);border-radius:4px}
+.marco{position:absolute;inset:0;background:linear-gradient(118deg,#d9d4cd 0%,#8a857f 12%,#4a4745 30%,#a39d96 46%,#5b5754 62%,#cfc9c1 80%,#6b6763 100%);box-shadow:0 70px 120px -20px rgba(10,8,12,.5)}
+.bisel{width:100%;height:100%;background:#050506}.pant{position:relative;overflow:hidden}
+.pant video{position:absolute;object-fit:cover;display:block}
+.est{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;z-index:3;font-weight:600}
+.isla{position:absolute;background:#000;border-radius:99px;z-index:4}
+.refl{position:absolute;inset:-20%;z-index:5;background:linear-gradient(112deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.17) 47%,rgba(255,255,255,.05) 53%,rgba(255,255,255,0) 58%)}
+.oro{background:linear-gradient(100deg,#8A6420 0%,#E9C877 22%,#FFF1C4 34%,#C99A3E 52%,#8A6420 70%,#E2BC6A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;padding-bottom:.12em}
+.sello{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#A3184A,#6E0C2B 48%,#3E0515);box-shadow:0 26px 50px -10px rgba(62,5,21,.6),inset 0 0 0 5px rgba(217,178,92,.9),inset 0 0 0 13px rgba(62,5,21,.7),inset 0 0 0 15px rgba(217,178,92,.55);color:#F7E7BF;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:26px;line-height:1.15}
+.sello b{font-family:'Bricolage Grotesque';font-size:74px;line-height:1;letter-spacing:-.04em;color:#fff}
+.tach{position:relative;display:inline-block!important}.tach i{position:absolute;left:-2%;width:104%;height:9px;top:54%;background:#A3184A;transform-origin:0 50%}
+
+#raiz{background:#0A080C}
+#fondo{background:radial-gradient(ellipse 70% 45% at 50% 42%,#3E0515 0%,#160a10 55%,#0A080C 100%)}
+#halo{background:radial-gradient(circle at 50% 50%,rgba(163,24,74,.45),rgba(163,24,74,0) 60%);opacity:0}
+.kick{position:absolute;left:72px;margin:0;display:flex;align-items:center;gap:16px;font:italic 600 34px/1 'Cormorant Garamond',serif;color:#D9B25C;white-space:nowrap}
+.kick i{display:block;width:46px;height:2px;background:#D9B25C}
+.h{margin:0}
+.nota{position:absolute;left:72px;width:800px;margin:0;font:400 22px/1.3 'Inter',sans-serif;color:rgba(247,231,191,.55)}
+.ticket{position:absolute;width:580px;font-family:'Inter',sans-serif;color:#17191E;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+.tk-sup{background:#F7F5F2;padding:42px 46px 30px;clip-path:polygon(0 0,100% 0,100% 100%,95% 97%,90% 100%,85% 97%,80% 100%,75% 97%,70% 100%,65% 97%,60% 100%,55% 97%,50% 100%,45% 97%,40% 100%,35% 97%,30% 100%,25% 97%,20% 100%,15% 97%,10% 100%,5% 97%,0 100%)}
+.tk-cab{margin:0 0 26px;font:800 34px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.tk-cab small{font:500 22px/1.6 'Inter',sans-serif;color:#6b6763;letter-spacing:0}
+.tk-l,.tk-t,.tk-c{display:flex;justify-content:space-between;margin:0;padding:10px 0;font-size:28px;border-bottom:1.5px dashed #D6D6D1}
+.tk-t{border-bottom:0;padding-top:20px;font:800 44px/1 'Bricolage Grotesque',sans-serif}
+.tk-inf{background:#F7F5F2;margin-top:-2px;padding:28px 46px 34px;clip-path:polygon(0 3%,5% 0,10% 3%,15% 0,20% 3%,25% 0,30% 3%,35% 0,40% 3%,45% 0,50% 3%,55% 0,60% 3%,65% 0,70% 3%,75% 0,80% 3%,85% 0,90% 3%,95% 0,100% 3%,100% 100%,0 100%)}
+.tk-c{border:0;font-weight:700;color:#A3184A}
+.lista{position:absolute;left:72px;width:380px;margin:0;padding:0;list-style:none}
+.lista li{position:relative;padding:0 0 0 54px;margin:0 0 44px;font:800 50px/1.02 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;color:#fff}
+.lista li::before{content:'';position:absolute;left:0;top:8px;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E9C877,#8A6420)}
+.escmovil{position:absolute;left:470px;top:330px;width:866px;height:1800px;transform:scale(.48) rotateY(-14deg) rotateZ(2deg);transform-origin:0 0;perspective:2200px}
+.pts{position:absolute;left:330px;top:1050px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#A3184A,#6E0C2B 48%,#3E0515);box-shadow:0 26px 50px -10px rgba(62,5,21,.6),inset 0 0 0 5px rgba(217,178,92,.9),inset 0 0 0 13px rgba(62,5,21,.7),inset 0 0 0 15px rgba(217,178,92,.55);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 76px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em}
+.pts small{font:700 24px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#F7E7BF}
+.firma{position:absolute;left:72px;display:flex;align-items:center;gap:22px;font:600 28px/1.2 'Inter',sans-serif;color:#F7E7BF}
+.firma img{height:64px;width:auto}
+</style></head><body>
+<div id="raiz" data-composition-id="pide-directo-v1" data-start="0" data-width="1080" data-height="1920" data-duration="20">
+  <div class="lleno" id="fondo" data-layout-allow-overflow></div>
+  <div class="lleno" id="halo" data-layout-allow-overflow></div>
+
+  <!-- E1 · Gancho: el ticket que pierde un trozo -->
+  <p class="kick" id="k1" style="top:290px"><i></i>Pedido a domicilio · 20,00 €</p>
+  <h1 class="h" id="h1" style="top:340px;font-size:104px;color:#fff"><span>Esto no llega</span><span class="s oro" style="font-size:118px">a tu bar.</span></h1>
+  <div class="ticket" id="ticket" style="left:250px;top:640px">
+    <div class="tk-sup" id="tksup">
+      <p class="tk-cab">BAR DE TU BARRIO<br/><small>Pedido #2041 · reparto</small></p>
+      <p class="tk-l"><span>2 × Hamburguesa</span><span>14,00 €</span></p>
+      <p class="tk-l"><span>1 × Patatas</span><span>4,00 €</span></p>
+      <p class="tk-l"><span>2 × Bebida</span><span>2,00 €</span></p>
+      <p class="tk-t"><span>TOTAL</span><span>20,00 €</span></p>
+    </div>
+    <div class="tk-inf" id="tkinf"><p class="tk-c"><span>Comisión app de reparto</span><span>−6,00 €</span></p></div>
+  </div>
+
+  <!-- E2 · El dato -->
+  <p class="kick" id="k2" style="top:300px"><i></i>Lo que pagas tú, no lo cobra tu bar</p>
+  <p class="h" id="h2a" style="top:360px;font-size:78px;color:#fff">La app de reparto<br/>se queda <span class="s" style="display:inline;font-size:88px;color:#F7E7BF">hasta un</span></p>
+  <p class="h oro" id="h2b" style="top:560px;font-size:250px;letter-spacing:-.06em">30 %</p>
+  <p class="h" id="h2c" style="top:830px;font-size:78px;color:#fff">de cada pedido.</p>
+  <p class="nota" id="n2" style="top:1300px">Comisiones publicadas de las plataformas en España, 2025–2026.</p>
+
+  <!-- E3 · La app propia del bar, en uso real -->
+  <p class="kick" id="k3" style="top:300px"><i></i>En la app propia de tu bar</p>
+  <ul class="lista" id="l3" style="top:380px">
+    <li id="l3a">Sin comisión<br/>de reparto</li>
+    <li id="l3b">Va directo<br/>a su cocina</li>
+    <li id="l3c">Y tú sumas<br/><span class="s oro" style="font-size:64px">puntos</span></li>
+  </ul>
+  <div class="escmovil" id="em" data-layout-allow-overflow>
+    <div class="movil" id="m1" data-layout-allow-overflow style="width:866px;height:1800px;left:0;top:0;"><i class="capa" style="border-radius:141px;transform:translateZ(-3px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-6px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-9px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-12px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-15px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-18px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-21px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-24px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-27px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-30px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-33px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-36px);background:#55524f"></i>
+<i class="bt" style="left:-6.1px;top:305.3px;height:69.2px;width:10.2px"></i><i class="bt" style="left:-6.1px;top:417.3px;height:126.2px;width:10.2px"></i><i class="bt" style="right:-6.1px;top:458.0px;height:199.5px;width:10.2px"></i>
+<div class="marco" style="border-radius:141px;padding:15px"><div class="bisel" style="border-radius:126px;padding:18px"><div class="pant" style="width:800px;height:1734px;border-radius:108px;background:#faf6ee">
+<video id="v-flujo" src="assets/video/flujo.mp4" data-start="6.6" data-duration="7.4" data-track-index="8" data-media-start="0" data-playback-rate="1.2" muted playsinline style="left:0;top:110px;width:800px;height:1624px"></video>
+<div class="est" style="height:110px;color:#17191E;font-size:32.6px;padding:16.3px 61.1px 0" data-layout-allow-overlap data-layout-allow-occlusion data-layout-ignore><b>21:34</b><svg width="134.4" height="28.5" viewBox="0 0 66 14" fill="#17191E"><rect x="0" y="9" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="14" rx="1"/><path d="M24 5a9.5 9.5 0 0 1 14 0l-2 2a6.8 6.8 0 0 0-10 0zM28 9a4.2 4.2 0 0 1 6 0l-3 3.4z"/><rect x="43.5" y="1" width="19" height="12" rx="3.5" fill="none" stroke="#17191E" stroke-opacity=".5"/><rect x="45.5" y="3" width="13" height="8" rx="2"/><rect x="64" y="5" width="1.6" height="4" rx=".8"/></svg></div>
+<i class="isla" style="width:236.1px;height:67.2px;top:22.4px;left:281.9px"><i style="position:absolute;right:20.4px;top:20.4px;width:26.5px;height:26.5px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#31405f,#0c0f18 60%)"></i></i>
+<i class="refl"></i></div></div></div></div>
+  </div>
+  <div class="pts" id="pts">+20<small>puntos</small></div>
+
+  <!-- E4 · Cierre para compartir -->
+  <p class="kick" id="k4" style="top:330px"><i></i>Haz algo por tu bar de siempre</p>
+  <p class="h" id="h4a" style="top:400px;font-size:96px;color:#fff">¿Tiene<br/>app propia?</p>
+  <p class="h oro s" id="h4b" style="top:640px;font-size:126px;font-weight:600">Mándale<br/>este vídeo.</p>
+  <div class="firma" id="f4" style="top:1150px"><img src="marca/logo.svg" alt=""/><span>DKitchen · apps propias para bares y restaurantes</span></div>
+
+  <audio id="cama" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="20" data-track-index="21" data-volume="0.62" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.62},{"t":19,"v":0.62},{"t":19.95,"v":0}]}]}'></audio>
+  <audio id="sfx-1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="0.02" data-duration="0.9" data-track-index="22" data-volume="0.95"></audio>
+  <audio id="sfx-2" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="0.55" data-duration="0.4" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-3" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="3.25" data-duration="0.9" data-track-index="22" data-volume="0.9"></audio>
+  <audio id="sfx-4" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="6.5" data-duration="0.4" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-5" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="8.0" data-duration="0.3" data-track-index="22" data-volume="0.6"></audio>
+  <audio id="sfx-6" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="9.3" data-duration="0.3" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-7" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="11.6" data-duration="0.4" data-track-index="22" data-volume="0.8"></audio>
+  <audio id="sfx-8" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="14.2" data-duration="1" data-track-index="23" data-volume="0.85"></audio>
+</div>
+
+<script>
+const tl=gsap.timeline({paused:true});
+const E2=['#k2','#h2a','#h2b','#h2c','#n2'],E3=['#k3','#l3a','#l3b','#l3c','#em','#pts'],E4=['#k4','#h4a','#h4b','#f4'];
+tl.set([...E2,...E3,...E4],{opacity:0},0);
+const sube=(q,t,d)=>tl.fromTo(q,{yPercent:60,opacity:0},{yPercent:0,opacity:1,duration:d||.45,ease:'power4.out'},t);
+const sale=(q,t)=>tl.to(q,{opacity:0,y:-30,duration:.3,ease:'power2.in'},t);
+tl.fromTo('#fondo',{scale:1},{scale:1.06,duration:20,ease:'none'},0);
+// E1: todo visible en el fotograma 0; el trozo de la comisión se arranca y sale volando
+tl.fromTo('#h1',{scale:1.12,opacity:.0001,transformOrigin:'0 50%'},{scale:1,opacity:1,duration:.3,ease:'power4.out'},0);
+tl.fromTo('#k1',{x:-30,opacity:0},{x:0,opacity:1,duration:.35},.05);
+tl.fromTo('#ticket',{y:40,rotation:-3},{y:0,rotation:-2,duration:.5,ease:'power3.out'},0);
+tl.to('#tkinf',{x:420,y:520,rotation:38,duration:1.1,ease:'power2.in'},.55);
+tl.to('#tkinf',{opacity:0,duration:.3},1.4);
+tl.to('#halo',{opacity:1,duration:.4},.55);
+tl.to('#ticket',{rotation:1,duration:.4,ease:'back.out(3)'},.6);
+sale(['#k1','#h1'],2.75);tl.to('#ticket',{x:-700,rotation:-12,opacity:0,duration:.5,ease:'power3.in'},2.7);tl.to('#halo',{opacity:0,duration:.4},2.7);
+// E2: el dato
+sube('#k2',3.1,.4);sube('#h2a',3.2,.45);
+tl.fromTo('#h2b',{opacity:0,scale:.4,transformOrigin:'0 60%'},{opacity:1,scale:1,duration:.5,ease:'back.out(1.6)'},3.3);
+tl.fromTo('#h2b',{backgroundPosition:'0% 0'},{backgroundPosition:'100% 0',duration:3,ease:'none'},3.3);
+sube('#h2c',3.75,.45);tl.to('#n2',{opacity:1,duration:.4},4.2);
+tl.to('#h2b',{scale:1.04,duration:.35,yoyo:true,repeat:3,ease:'sine.inOut'},4.6);
+sale(E2,6.35);
+// E3: la app propia del bar, en uso real
+sube('#k3',6.6,.4);
+tl.fromTo('#em',{opacity:0,y:260},{opacity:1,y:0,duration:.7,ease:'power3.out'},6.6);
+sube('#l3a',7.9,.45);sube('#l3b',9.2,.45);sube('#l3c',10.5,.45);
+tl.fromTo('#pts',{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:-8,duration:.5,ease:'back.out(2)'},11.6);
+tl.to('#pts',{scale:1.06,duration:.3,yoyo:true,repeat:3,ease:'sine.inOut'},12.2);
+sale(E3,13.75);
+// E4: cierre para compartir
+sube('#k4',14.15,.4);sube('#h4a',14.25,.5);
+tl.fromTo('#h4b',{opacity:0,scale:.6,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.55,ease:'back.out(1.5)'},15.0);
+tl.fromTo('#h4b',{backgroundPosition:'0% 0'},{backgroundPosition:'100% 0',duration:4,ease:'none'},15.0);
+tl.to('#f4',{opacity:1,duration:.5},16.0);
+tl.to('#h4b',{scale:1.03,duration:.4,yoyo:true,repeat:5,ease:'sine.inOut'},16.4);
+window.__timelines['pide-directo-v1']=tl;
+</script></body></html>

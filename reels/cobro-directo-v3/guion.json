@@ -1,0 +1,16 @@
+{
+ "pieza": "cobro-directo-v3",
+ "titulo": "DKitchen · Cobro directo · reel orgánico",
+ "duracion": 8,
+ "fps": 30,
+ "tramos_voz": [],
+ "musica": "Original (ElevenLabs Music, reutilizada de ads-b2-signature-noche)",
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

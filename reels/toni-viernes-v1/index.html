@@ -55,9 +55,10 @@
 <div class="est" style="height:110px;color:#17191E;font-size:32.6px;padding:16.3px 61.1px 0" data-layout-allow-overlap data-layout-allow-occlusion data-layout-ignore><b>21:34</b><svg width="134.4" height="28.5" viewBox="0 0 66 14" fill="#17191E"><rect x="0" y="9" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="14" rx="1"/><path d="M24 5a9.5 9.5 0 0 1 14 0l-2 2a6.8 6.8 0 0 0-10 0zM28 9a4.2 4.2 0 0 1 6 0l-3 3.4z"/><rect x="43.5" y="1" width="19" height="12" rx="3.5" fill="none" stroke="#17191E" stroke-opacity=".5"/><rect x="45.5" y="3" width="13" height="8" rx="2"/><rect x="64" y="5" width="1.6" height="4" rx=".8"/></svg></div>
 <i class="isla" style="width:236.1px;height:67.2px;top:22.4px;left:281.9px"><i style="position:absolute;right:20.4px;top:20.4px;width:26.5px;height:26.5px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#31405f,#0c0f18 60%)"></i></i>
 <i class="refl"></i></div></div></div></div></div>
-  <p class="kick" id="k3" style="top:300px"><i></i>En la cocina de Toni</p>
-  <p class="h" id="h3" style="top:360px;font-size:118px;color:#fff"><span>Llega escrito.</span><span class="oro">Por orden.</span></p>
-  <p class="nota" id="n3" style="top:640px">Sin teléfono. Sin papelitos.</p>
+  <div class="lleno" id="vel3" style="opacity:0;background:linear-gradient(180deg,rgba(10,8,12,0) 45%,rgba(10,8,12,.85) 62%,rgba(10,8,12,.92) 100%)"></div>
+  <p class="kick" id="k3" style="top:1010px"><i></i>En la cocina de Toni</p>
+  <p class="h" id="h3" style="top:1070px;font-size:118px;color:#fff"><span>Llega escrito.</span><span class="oro">Por orden.</span></p>
+  <p class="nota" id="n3" style="top:1320px">Sin teléfono. Sin papelitos.</p>
   <p class="kick" id="k4" style="top:300px"><i></i>Y lo mejor</p>
   <p class="h" id="h4" style="top:360px;font-size:118px;color:#fff"><span>El cliente</span><span class="s oro" style="font-size:128px">vuelve.</span></p>
   <div class="pts" id="pts">+20<small>puntos</small></div>
@@ -85,7 +86,7 @@ const foto=(q,ini,fin,z0,z1,x0,x1)=>{tl.fromTo(q,{opacity:ini===0?1:0},{opacity:
 foto('#f1',0,4.9,1.18,1.05,0,0);
 tl.fromTo('#f1 img',{rotation:-1.2},{rotation:1.2,duration:.09,repeat:13,yoyo:true,ease:'sine.inOut'},0.1);
 foto('#f2',4.5,9.4,1.0,1.1,-40,40);
-foto('#f3',9.0,14.0,1.12,1.0,30,-30);
+foto('#f3',9.0,14.0,1.0,1.1,60,0);
 foto('#f4',13.6,17.2,1.0,1.12,0,0);
 // E1 caos
 tl.fromTo('#h1',{scale:1.1,opacity:.0001,transformOrigin:'0 50%'},{scale:1,opacity:1,duration:.3,ease:'power4.out'},0);
@@ -99,7 +100,7 @@ tl.fromTo('#em',{opacity:0,y:300},{opacity:1,y:0,duration:.7,ease:'power3.out'},
 tl.fromTo('#h2',{x:0},{x:14,duration:4,ease:'sine.inOut'},5.2);
 sale(['#k2','#h2'],8.95);tl.to('#em',{opacity:0,x:160,duration:.4,ease:'power2.in'},9.0);
 // E3 calma
-sube('#k3',9.3,.4);sube('#h3',9.35,.5);tl.to('#n3',{opacity:1,duration:.45},10.4);
+tl.to('#vel3',{opacity:1,duration:.5},9.0);tl.to('#vel',{opacity:.35,duration:.5},9.0);tl.to('#vel3',{opacity:0,duration:.5},13.6);tl.to('#vel',{opacity:1,duration:.5},13.6);sube('#k3',9.3,.4);sube('#h3',9.35,.5);tl.to('#n3',{opacity:1,duration:.45},10.4);
 tl.fromTo('#h3',{x:0},{x:14,duration:4,ease:'sine.inOut'},9.8);
 sale(['#k3','#h3','#n3'],13.5);
 // E4 ok + puntos

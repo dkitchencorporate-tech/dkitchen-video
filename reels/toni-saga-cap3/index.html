@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Saga Toni · Cap. 3</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+*{box-sizing:border-box}body{margin:0}
+#raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#0A080C}
+.lleno{position:absolute;inset:0}
+.px{position:absolute;image-rendering:pixelated}
+.px svg{display:block;shape-rendering:crispEdges}
+/* local en pixel art: pared de ladrillo, suelo a cuadros, horno y ventana */
+#sala{position:absolute;inset:0;background:#2a1418}
+#pared{position:absolute;left:0;right:0;top:0;height:1300px;background:
+ repeating-linear-gradient(0deg,#3d1a1f 0 6px,transparent 6px 48px),
+ repeating-linear-gradient(90deg,#3d1a1f 0 6px,transparent 6px 96px),
+ linear-gradient(#7a2e2a,#5e2224)}
+#suelo{position:absolute;left:0;right:0;top:1300px;bottom:0;background:
+ repeating-conic-gradient(#e9dfcf 0 25%,#2b2b3a 0 50%) 0 0/96px 96px}
+#mostr{position:absolute;left:0;right:0;top:1170px;height:150px;background:#6b3f22;border-top:18px solid #9a6236;box-shadow:inset 0 -18px 0 #4a2a15}
+#horno{position:absolute;left:620px;top:720px;width:280px;height:340px;background:#8a8a92;border:12px solid #4a4a52;border-radius:150px 150px 0 0;box-shadow:inset 0 -24px 0 #6a6a72}
+#boca{position:absolute;left:66px;top:150px;width:144px;height:120px;background:#140808;border-radius:72px 72px 0 0;overflow:hidden}
+#fuego{position:absolute;left:12px;right:12px;bottom:0;height:72px;background:
+ linear-gradient(0deg,#ffd24a 0 24px,#ff8a1f 24px 48px,#e03a1a 48px 72px)}
+#ventana{position:absolute;left:96px;top:760px;width:288px;height:220px;background:#141a3a;border:18px solid #9a6236;box-shadow:inset 0 0 0 6px #4a2a15}
+#luna{position:absolute;left:156px;top:36px;width:60px;height:60px;background:#f7e7bf;box-shadow:12px 0 0 #f7e7bf,0 12px 0 #f7e7bf,12px 12px 0 #f7e7bf}
+.estr{position:absolute;width:12px;height:12px;background:#f7e7bf}
+#cartel{position:absolute;left:96px;top:676px;width:288px;padding:14px 0;text-align:center;background:#1d6b3a;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;border:6px solid #0f3a20}
+/* HUD de videojuego (dentro de la zona segura) */
+#hud{position:absolute;left:68px;top:280px;width:822px;display:flex;justify-content:space-between;align-items:center;font:800 40px/1 'Bricolage Grotesque',sans-serif;color:#fff;text-shadow:4px 4px 0 #000}
+#reloj{background:#000;color:#7CFF9E;padding:12px 18px;border:6px solid #7CFF9E;letter-spacing:.08em}
+#vidas{display:flex;gap:12px}
+#ped{display:flex;gap:10px;align-items:center}
+#ped .n{position:relative;width:46px;height:46px}
+#ped .n span{position:absolute;inset:0;text-align:center;color:#ffd24a;opacity:0}
+/* titulares */
+.tit{position:absolute;left:68px;width:822px;margin:0;font:800 96px/.95 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;color:#fff;text-shadow:6px 6px 0 #000,0 0 40px rgba(0,0,0,.6)}
+.kick{position:absolute;left:68px;margin:0;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.14em;color:#ffd24a;text-shadow:4px 4px 0 #000;text-transform:uppercase}
+.oro{color:#E9C877}
+.err{position:absolute;left:68px;width:822px;text-align:center;margin:0;font:800 170px/1 'Bricolage Grotesque',sans-serif;color:#ff3b3b;letter-spacing:.04em;text-shadow:10px 10px 0 #000,-4px -4px 0 #fff}
+.tk{position:absolute;width:96px;height:120px;background:#f7f5f2;border:6px solid #000;opacity:0}
+.tk::before{content:'';position:absolute;left:12px;right:12px;top:18px;height:72px;background:repeating-linear-gradient(180deg,#6a6a72 0 6px,transparent 6px 18px)}
+#noche{position:absolute;inset:0;background:#05040a;opacity:0}
+#luzpuerta{position:absolute;left:300px;top:1150px;width:480px;height:30px;background:#ffd24a;opacity:0;filter:blur(6px)}
+#puerta{position:absolute;left:300px;top:590px;width:480px;height:590px;background:#5a3418;border:18px solid #2a160a;opacity:0}
+#puerta i{position:absolute;right:36px;top:290px;width:24px;height:24px;background:#ffd24a}
+#nota{position:absolute;left:330px;top:1140px;width:120px;height:60px;background:#f7f5f2;border:6px solid #000;opacity:0}
+#zoom{position:absolute;left:68px;top:420px;width:822px;height:820px;background:#f7f0dc;border:14px solid #000;box-shadow:18px 18px 0 #000;opacity:0;padding:90px 70px;transform:rotate(-2deg)}
+#zoom p{margin:0;font:italic 600 92px/1.08 'Cormorant Garamond',serif;color:#1a0a10}
+#zoom p span{opacity:0}
+#zoom small{position:absolute;right:60px;bottom:60px;font:800 30px/1 'Bricolage Grotesque',sans-serif;color:#6E0C2B;letter-spacing:.1em}
+#cierre{position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 42%,#6E0C2B 0%,#3E0515 55%,#1c0b12 100%);opacity:0}
+.cont{position:absolute;left:68px;top:330px;margin:0;font:800 44px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.3em;color:#7CFF9E;text-shadow:4px 4px 0 #000}
+.cta{position:absolute;left:68px;top:930px;width:790px;padding:30px 38px;background:#ffd24a;border:8px solid #000;box-shadow:14px 14px 0 #000;color:#1a0a10;font:800 60px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;transform-origin:0 50%}
+.cta small{display:block;margin-bottom:10px;font:800 28px/1 'Inter',sans-serif;letter-spacing:.12em;color:#6E0C2B}
+.firma{position:absolute;left:68px;top:1200px;width:780px;display:flex;align-items:center;gap:26px;font:500 30px/1.25 'Inter',sans-serif;color:#F7E7BF}
+.firma b{font:800 58px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;color:#fff;padding-right:26px;border-right:2px solid #D9B25C}
+.rot{position:absolute;left:68px;top:1340px;margin:0;font:500 22px/1 'Inter',sans-serif;color:rgba(247,231,191,.6)}
+
+#nota{width:auto;height:auto;background:none;border:0}
+.bur{position:absolute;max-width:520px;padding:24px 28px;background:#fff;border:8px solid #000;box-shadow:10px 10px 0 #000;font:800 44px/1.1 'Bricolage Grotesque',sans-serif;color:#1a0a10}
+.bur b{color:#6E0C2B}
+.bur::after{content:'';position:absolute;left:60px;bottom:-34px;width:30px;height:30px;background:#fff;border:8px solid #000;border-top:0;border-left:0;transform:rotate(45deg)}
+#dia{background:#000;color:#ffd24a;padding:12px 18px;border:6px solid #ffd24a;letter-spacing:.06em}
+#reto{position:absolute;left:68px;top:1060px;width:822px;text-align:center;padding:26px 0;background:#000;border:10px solid #7CFF9E;color:#7CFF9E;font:800 92px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.04em;box-shadow:12px 12px 0 #1d6b3a}
+#reto small{display:block;font-size:34px;letter-spacing:.3em;margin-bottom:12px;color:#fff}
+#movil{position:absolute;left:300px;top:690px;width:460px;height:640px;background:#f7f5f2;border:16px solid #120a0e;border-radius:36px;box-shadow:16px 16px 0 #000;padding:26px 24px;overflow:hidden}
+#movil .mt{background:#6E0C2B;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;padding:18px;text-align:center;letter-spacing:.04em;margin:-26px -24px 22px}
+#movil .mf{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:4px dashed #ccc;font:700 30px/1 'Inter',sans-serif;color:#1a0a10}
+#movil .mf i{display:block;width:56px;height:56px;border:5px solid #000}
+#movil .mf span{flex:1}#movil .mf b{color:#6E0C2B}
+#movil .mb{margin-top:24px;background:#1d6b3a;color:#fff;text-align:center;padding:20px;font:800 32px/1 'Bricolage Grotesque',sans-serif;border:5px solid #000}
+#movil .mp{position:absolute;right:24px;bottom:30px;background:#ffd24a;border:5px solid #000;padding:10px 14px;font:800 30px/1 'Bricolage Grotesque',sans-serif;transform:rotate(8deg)}
+
+#flash{position:absolute;left:68px;width:822px;top:760px;text-align:center;margin:0;font:800 150px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.02em;text-shadow:10px 10px 0 #000,-4px -4px 0 #fff}
+#pizarra{position:absolute;left:150px;top:700px;width:660px;padding:40px 46px;background:#1f3a2c;border:18px solid #6b3f22;box-shadow:14px 14px 0 #000;font:800 64px/1.25 'Bricolage Grotesque',sans-serif;color:#f7f5f2}
+#pizarra p{margin:0}#pizarra .r{color:#ff6b6b}#pizarra .y{color:#ffd24a}
+.tkr{position:absolute;width:96px;height:120px;background:#f7f5f2;border:6px solid #000;opacity:0}
+.tkr::before{content:'';position:absolute;left:12px;right:12px;top:18px;height:72px;background:repeating-linear-gradient(180deg,#6a6a72 0 6px,transparent 6px 18px)}
+</style></head><body>
+<div id="raiz" data-composition-id="toni-saga-cap3" data-start="0" data-width="1080" data-height="1920" data-duration="28">
+  <div id="sala" data-layout-allow-overflow>
+    <div id="pared"></div><div id="suelo"></div>
+    <div id="ventana" style="background:#141a3a"><div id="luna"></div></div>
+    <div id="cartel" data-layout-allow-occlusion data-layout-allow-overlap>PIZZERÍA TONI</div>
+    <div id="horno"><div id="boca"><div id="fuego"></div></div></div>
+    <div id="mostr"></div>
+    <div class="px" id="toni" style="left:160px;top:800px"></div>
+    <div class="px" id="lucia" style="left:470px;top:836px"></div>
+    <div class="px" id="gris" style="left:1100px;top:836px"></div>
+    <div class="tkr" id="tk0" style="left:220px;top:940px"></div><div class="tkr" id="tk1" style="left:520px;top:900px"></div><div class="tkr" id="tk2" style="left:360px;top:820px"></div><div class="tkr" id="tk3" style="left:640px;top:980px"></div><div class="tkr" id="tk4" style="left:150px;top:760px"></div>
+  </div>
+  <div id="hud" data-layout-allow-overlap><div id="reloj"><span>SÁB 21:00</span></div><div id="dia">DÍA 1 / 30</div><div id="vidas"><div class="px" id="c1" style="position:relative"></div><div class="px" id="c2" style="position:relative"></div><div class="px" id="c3" style="position:relative"></div></div></div>
+  <div class="px" id="tel" style="left:660px;top:780px;opacity:0"></div>
+  <p class="kick" id="k0" style="top:400px">Capítulo 3</p>
+  <p class="tit" id="t0" style="top:450px">Primer<br/><span class="oro">sábado.</span></p>
+  <p class="kick" id="k1" style="top:400px">Carta en el móvil</p>
+  <p class="tit" id="t1" style="top:450px">Piden solos.</p>
+  <div class="mv" id="m1" style="position:absolute;left:300px;top:690px;width:460px;height:640px;background:#f7f5f2;border:16px solid #120a0e;border-radius:36px;box-shadow:16px 16px 0 #000;padding:26px 24px;overflow:hidden"><div style="background:#6E0C2B;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;padding:18px;text-align:center;letter-spacing:.04em;margin:-26px -24px 22px">PIZZERÍA TONI</div><div class="mf" style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:4px dashed #ccc;font:700 30px/1 'Inter',sans-serif;color:#1a0a10"><i style="display:block;width:56px;height:56px;border:5px solid #000;background:#e0701a"></i><span style="flex:1">Margarita</span><b style="color:#6E0C2B">9 €</b></div><div class="mf" style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:4px dashed #ccc;font:700 30px/1 'Inter',sans-serif;color:#1a0a10"><i style="display:block;width:56px;height:56px;border:5px solid #000;background:#e0701a"></i><span style="flex:1">Diavola</span><b style="color:#6E0C2B">11 €</b></div><div class="mf" style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:4px dashed #ccc;font:700 30px/1 'Inter',sans-serif;color:#1a0a10"><i style="display:block;width:56px;height:56px;border:5px solid #000;background:#e0701a"></i><span style="flex:1">Cuatro quesos</span><b style="color:#6E0C2B">11 €</b></div><div class="mb" style="margin-top:24px;background:#1d6b3a;color:#fff;text-align:center;padding:20px;font:800 32px/1 'Bricolage Grotesque',sans-serif;border:5px solid #000">Pedir a la mesa</div></div>
+  <p class="kick" id="k2" style="top:400px">Aviso al camarero</p>
+  <p class="tit" id="t2" style="top:450px">Mesa 4<br/><span class="oro">llama.</span></p>
+  <div class="bur" id="b2" style="left:400px;top:640px">¡Mesa 4 pide la cuenta!</div>
+  <p class="kick" id="k3" style="top:400px">Todo va bien…</p>
+  <p class="tit" id="t3" style="top:450px">Demasiado<br/><span class="oro">bien.</span></p>
+  <p class="kick" id="k4" style="top:400px">Oleada</p>
+  <p id="f4" class="fl" style="position:absolute;left:68px;width:822px;top:720px;text-align:center;margin:0;font:800 140px/1 'Bricolage Grotesque',sans-serif;color:#ff3b3b;text-shadow:10px 10px 0 #000,-4px -4px 0 #fff">¡30 PEDIDOS!</p>
+  <div id="cierre"></div>
+  <p class="cont" id="cont">CONTINUARÁ…</p>
+  <h2 class="tit" id="t6" style="top:420px;font-size:100px">¿Aguantará<br/><span class="oro">la cocina?</span></h2>
+  <div class="cta" id="cta"><small>LA PIZZERÍA DE TONI</small>Cap. 4 · esta tarde</div>
+  <div class="firma" id="fm"><b>DKitchen</b><span>dkitchencorporate.es<br/>Apps propias para bares</span></div>
+  <p class="rot" id="rot">Recreación · personajes ficticios</p>
+  <audio id="musica" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="28" data-track-index="21" data-volume="0.5"></audio>
+  <audio id="voz-v1" data-audio-group="voz" src="audio/voz-v1.mp3" data-start="0.15" data-duration="3.80" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v2" data-audio-group="voz" src="audio/voz-v2.mp3" data-start="4.2" data-duration="4.40" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v3" data-audio-group="voz" src="audio/voz-v3.mp3" data-start="8.8" data-duration="4.10" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v4" data-audio-group="voz" src="audio/voz-v4.mp3" data-start="13.2" data-duration="4.50" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v5" data-audio-group="voz" src="audio/voz-v5.mp3" data-start="18" data-duration="4.00" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v6" data-audio-group="voz" src="audio/voz-v6.mp3" data-start="22.4" data-duration="5.00" data-track-index="24" data-volume="1"></audio>
+  <audio id="sfx-1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="0" data-duration="0.9" data-track-index="22" data-volume="1"></audio>
+  <audio id="sfx-2" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="4.1" data-duration="0.4" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-3" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="8.9" data-duration="0.4" data-track-index="22" data-volume="0.8"></audio>
+  <audio id="sfx-4" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="13.2" data-duration="0.4" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-5" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="18.0" data-duration="0.9" data-track-index="22" data-volume="1"></audio>
+  <audio id="sfx-6" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="22.2" data-duration="1" data-track-index="23" data-volume="0.85"></audio>
+</div>
+<script>
+const PAL={K:'#120a0e',W:'#f7f5f2',S:'#f1c08f',M:'#3a2414',A:'#6E0C2B',P:'#2b2b3a',B:'#1a1a1a',H:'#6b3a1e',D:'#1d6b3a',R:'#d8282c',G:'#9a9aa2',Y:'#ffd24a',O:'#e0701a',L:'#c9302c',C:'#3a7bd5',N:'#4a4a52',E:'#2a2a30'};
+const svg=(rows,p)=>{const w=rows[0].length,h=rows.length;let r='';rows.forEach((row,y)=>[...row].forEach((c,x)=>{if(c!=='.')r+=`<rect x="${x*p}" y="${y*p}" width="${p}" height="${p}" fill="${PAL[c]}"/>`;}));return `<svg width="${w*p}" height="${h*p}" viewBox="0 0 ${w*p} ${h*p}">${r}</svg>`;};
+const TONI=['....KKKKKKKK....','...KWWWWWWWWK...','..KWWWWWWWWWWK..','..KWWWWWWWWWWK..','...KWWWWWWWWK...','...KKKKKKKKKK...','...KSSSSSSSSK...','...KSKSSSSKSK...','...KSSSSSSSSK...','...KSMMMMMMSK...','...KSSMSSMSSK...','....KSSSSSSK....','..KKWWWWWWWWKK..','.KSWWWAAAAWWWSK.','.KSWWAAAAAAWWSK.','.KSKKAAAAAAKKSK.','....KAAAAAAK....','....KAAAAAAK....','....KPPKKPPK....','....KPPK.KPPK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
+// Toni con los brazos cruzados
+const TONIX=['....KKKKKKKK....','...KWWWWWWWWK...','..KWWWWWWWWWWK..','..KWWWWWWWWWWK..','...KWWWWWWWWK...','...KKKKKKKKKK...','...KSSSSSSSSK...','...KSKKSSKKSK...','...KSSSSSSSSK...','...KSMMMMMMSK...','...KSSKKKKSSK...','....KSSSSSSK....','..KKWWWWWWWWKK..','..KWWAAAAAAWWK..','..KSSSSSSSSSSK..','..KKSSSSSSSSKK..','....KAAAAAAK....','....KAAAAAAK....','....KPPKKPPK....','....KPPK.KPPK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
+const LUC=['....KKKRRKKK....','...KHHHRRHHHK...','..KHHHHHHHHHHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHSSSSSSSSHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHHSSKKSSHHK..','..KHKDDDDDDKHK..','...KDDDDDDDDK...','..KSDDDDDDDDSK..','..KSDDDWWDDDSK..','...KDDDDDDDDK...','....KCCCCCCK....','....KCCCCCCK....','....KCCKKCCK....','....KCCK.KCCK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
+const NOTA=['KKKKKKKKKKKK','KWWWWWWWWWWK','KWKKKKKKKWWK','KWWWWWWWWWWK','KWKKKKKKKKWK','KWWWWWWWWWWK','KWKKKKKWWWWK','KWWWWWWWWWWK','KKKKKKKKKKKK'];
+const TEL=['..KKKKKKKKKK..','.KRRRRRRRRRRK.','KRRKKKKKKKKRRK','KRK........KRK','KKK.KKKKKK.KKK','...KRRRRRRK...','..KRRWRWRWRK..','..KRRRRRRRRK..','..KRRWRWRWRK..','..KKKKKKKKKK..'];
+const COR=['.KK.KK.','KRRKRRK','KRRRRRK','.KRRRK.','..KRK..','...K...'];
+const GRIS=['....EEEEEEEE....','...ENNNNNNNNE...','..ENNNNNNNNNNE..','..ENNEEEEEENNE..','..ENEGGGGGGENE..','..ENEGKGGKGENE..','..ENEGGGGGGENE..','..ENEGGKKGGENE..','...ENEGGGGENE...','..ENNNNNNNNNNE..','.ENNNNNNNNNNNNE.','.EGNNNNNNNNNNGE.','.EGNNNYYYYNNNGE.','.EGNNNYYYYNNNGE.','..ENNNNNNNNNNE..','....ENNNNNNE....','....ENNEENNE....','....ENNE.ENNE...','...EBBBE.EBBBE..','...EEEEE.EEEEE..'];
+document.getElementById('toni').innerHTML=svg(TONI,18);
+document.getElementById('lucia').innerHTML=svg(LUC,18);
+document.getElementById('gris').innerHTML=svg(GRIS,18);
+document.getElementById('tel').innerHTML=svg(TEL,14);
+['c1','c2','c3'].forEach(i=>document.getElementById(i).innerHTML=svg(COR,7));
+const tl=gsap.timeline({paused:true});
+const T=[...document.querySelectorAll('.kick,.tit,.fl,.bur,.mv,[id^=pz],[id^=r]')].filter(e=>!['raiz','reloj'].includes(e.id)).concat([...document.querySelectorAll('#cont,#cta,#fm,#rot')]);
+tl.set(T,{opacity:0},0);
+const sube=(q,t)=>tl.fromTo(q,{y:40,opacity:0},{y:0,opacity:1,duration:.35,ease:'steps(4)'},t);
+const sale=(q,t)=>tl.to(q,{opacity:0,duration:.2,ease:'steps(2)'},t);
+tl.fromTo('#fuego',{scaleY:1},{scaleY:.7,duration:.25,repeat:55,yoyo:true,ease:'steps(2)',transformOrigin:'50% 100%'},0);
+tl.fromTo('#sala',{scale:1.02,x:0},{scale:1.12,x:-24,duration:28,ease:'none',transformOrigin:'45% 62%'},0);
+tl.to('#toni',{y:-14,duration:.3,repeat:40,yoyo:true,ease:'steps(1)'},0.2);
+tl.to('#lucia',{y:-10,duration:.4,repeat:30,yoyo:true,ease:'steps(1)'},0.5);
+const ES=[[0,3.9],[4.1,8.5],[8.8,12.9],[13.2,17.8],[18,22]];const S=[{"k":"Capítulo 3","t":"Primer<br/><span class=\"oro\">sábado.</span>","tel":false},{"k":"Carta en el móvil","t":"Piden solos.","movil":["Margarita|9 €","Diavola|11 €","Cuatro quesos|11 €"],"boton":"Pedir a la mesa"},{"k":"Aviso al camarero","t":"Mesa 4<br/><span class=\"oro\">llama.</span>","bur":"¡Mesa 4 pide la cuenta!"},{"k":"Todo va bien…","t":"Demasiado<br/><span class=\"oro\">bien.</span>","salta":true},{"k":"Oleada","flash":"¡30 PEDIDOS!","color":"#ff3b3b","tickets":true}];
+S.forEach((s,i)=>{const [a,z]=ES[i];
+ sube('#k'+i,a+.05);
+ if(s.t) sube('#t'+i,a+.15);
+ if(s.flash){tl.fromTo('#f'+i,{opacity:0,scale:2.2},{opacity:1,scale:1,duration:.25,ease:'steps(3)'},a+.4);tl.to('#f'+i,{scale:1.06,duration:.3,repeat:6,yoyo:true,ease:'steps(2)'},a+.7);sale('#f'+i,z-.15);tl.fromTo('#raiz',{x:0},{x:12,duration:.05,repeat:7,yoyo:true,ease:'steps(1)'},a+.4);}
+ if(s.bur){tl.fromTo('#b'+i,{opacity:0,scale:.3,transformOrigin:'20% 100%'},{opacity:1,scale:1,duration:.3,ease:'steps(4)'},a+.6);sale('#b'+i,z-.15);}
+ if(s.pizarra){tl.fromTo('#pz'+i,{opacity:0,scale:.5},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},a+.3);tl.fromTo('#pz'+i+' p',{opacity:0,x:-30},{opacity:1,x:0,duration:.2,stagger:.9,ease:'steps(2)'},a+.7);tl.to('#pz'+i,{rotation:1,duration:4,ease:'none'},a+.6);sale('#pz'+i,z-.15);}
+ if(s.movil){tl.fromTo('#m'+i,{opacity:0,y:220,scale:.6},{opacity:1,y:0,scale:1,duration:.45,ease:'steps(5)'},a+.4);tl.fromTo('#m'+i+' .mf',{opacity:0,x:-40},{opacity:1,x:0,duration:.2,stagger:.35,ease:'steps(2)'},a+.9);tl.fromTo('#m'+i+' .mb',{scale:1},{scale:1.08,duration:.25,repeat:5,yoyo:true,ease:'steps(2)'},a+2.2);if(s.puntos)tl.fromTo('#m'+i+' .mp',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.3,ease:'steps(4)'},a+2.8);sale('#m'+i,z-.15);}
+ if(s.reto){tl.fromTo('#r'+i,{opacity:0,scale:2},{opacity:1,scale:1,duration:.3,ease:'steps(4)'},a+.5);tl.to('#r'+i,{scale:1.04,duration:.3,repeat:7,yoyo:true,ease:'steps(2)'},a+.9);sale('#r'+i,z-.15);}
+ if(s.tel){tl.fromTo('#tel',{opacity:0,scale:.4},{opacity:1,scale:1,duration:.3,ease:'steps(4)'},a+.3);tl.fromTo('#tel',{x:-8,y:0},{x:8,y:-8,duration:.06,repeat:Math.floor((z-a-.6)/.06),yoyo:true,ease:'steps(1)'},a+.6);sale('#tel',z-.15);}
+ if(s.gris){tl.fromTo('#gris',{x:0},{x:-360,duration:1,ease:'steps(8)'},a+.2);tl.to('#gris',{x:200,duration:.6,ease:'steps(4)'},z-.6);}
+ if(s.tickets){[0,1,2,3,4].forEach(k=>{tl.fromTo('#tk'+k,{opacity:0,y:120,rotation:0},{opacity:1,y:-180-k*30,rotation:(k%2?1:-1)*(20+k*8),duration:1.1,ease:'steps(6)'},a+.3+k*.35);tl.to('#tk'+k,{opacity:0,y:'-=120',duration:.5,ease:'steps(3)'},z-.9+k*.1);});}
+ if(s.salta){tl.to('#toni',{y:-40,duration:.15,repeat:7,yoyo:true,ease:'steps(1)'},a+.8);}
+ sale(['#k'+i].concat(s.t?['#t'+i]:[]),z-.15);
+});
+tl.to('#cierre',{opacity:.94,duration:.3,ease:'steps(3)'},22.0);tl.fromTo('#cierre',{scale:1},{scale:1.12,duration:6,ease:'none'},22.0);
+tl.to('#hud',{opacity:0,duration:.3,ease:'steps(3)'},22.0);
+tl.fromTo('#cont',{opacity:0},{opacity:1,duration:.1,repeat:5,yoyo:true,ease:'steps(1)'},22.3);tl.set('#cont',{opacity:1},22.9);
+tl.fromTo('#t6',{opacity:0,scale:.7,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.3,ease:'steps(3)'},22.1);
+tl.fromTo('#t6',{x:0},{x:18,duration:5.6,ease:'none'},22.4);tl.fromTo('#cont',{x:0},{x:12,duration:5.6,ease:'none'},22.4);
+tl.fromTo('#cta',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},24.4);
+tl.to('#cta',{scale:1.05,duration:.35,yoyo:true,repeat:5,ease:'steps(2)'},25.0);
+tl.to('#fm',{opacity:1,duration:.4,ease:'steps(3)'},25.2);tl.to('#rot',{opacity:1,duration:.4,ease:'steps(3)'},25.4);
+window.__timelines['toni-saga-cap3']=tl;
+</script></body></html>

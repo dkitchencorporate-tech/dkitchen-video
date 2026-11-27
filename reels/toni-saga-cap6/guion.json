@@ -1,0 +1,68 @@
+{
+ "pieza": "toni-saga-cap6",
+ "titulo": "DKitchen · Saga La pizzería de Toni (piloto pixel art) · Cap. 6 · Las 40 pizzas",
+ "duracion": 28,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "v1",
+   "inicio": 0.15,
+   "fin_max": 3.95,
+   "texto": "[excited] Capítulo seis. Las cuarenta pizzas."
+  },
+  {
+   "id": "v2",
+   "inicio": 4.2,
+   "fin_max": 8.6,
+   "texto": "[happy] Es el equipo de fútbol del pueblo. ¡Han ganado!"
+  },
+  {
+   "id": "v3",
+   "inicio": 8.8,
+   "fin_max": 12.9,
+   "texto": "[focused] Prueba de fuego: cada pedido entra por orden."
+  },
+  {
+   "id": "v4",
+   "inicio": 13.2,
+   "fin_max": 17.7,
+   "texto": "[excited] Y salen todas... a tiempo."
+  },
+  {
+   "id": "v5",
+   "inicio": 18,
+   "fin_max": 22,
+   "texto": "[warm] Toni sonríe. Día siete de treinta."
+  },
+  {
+   "id": "v6",
+   "inicio": 22.4,
+   "fin_max": 27.4,
+   "texto": "[excited] ¿Quieres la app de tu pizzería? Escríbenos PIZZA."
+  }
+ ],
+ "musica": {
+  "api": true,
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "8-bit chiptune soundtrack for a retro video game finale, 29 seconds, instrumental. Festive victory fanfare for 8 seconds, focused determined rhythm, a triumphant all-clear melody at 13 seconds, warm emotional theme at 18 seconds, ends on a satisfying resolved ending chord at 28 seconds. Leaves space for a voiceover, no vocals."
+ },
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ },
+ "voz": {
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
+  "ajustes": {
+   "stability": 0.5,
+   "similarity_boost": 0.85,
+   "use_speaker_boost": true
+  }
+ },
+ "carve_fuerza": 0.8
+}

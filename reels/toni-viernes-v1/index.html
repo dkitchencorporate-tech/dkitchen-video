@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Toni, viernes 21:15 · reel</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+*{box-sizing:border-box}body{margin:0}
+#raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif}
+.lleno{position:absolute;inset:0}
+.esc{position:absolute;inset:0;perspective:2200px;perspective-origin:50% 45%}
+.h{position:absolute;left:72px;width:812px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.96}
+.h span{display:block}.s{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;letter-spacing:-.01em;line-height:.98}
+.movil{position:absolute;transform-style:preserve-3d}.movil i{display:block}
+.capa{position:absolute;inset:1px}.bt{position:absolute;background:linear-gradient(180deg,#2a292b,#77736f 20%,#4b4846 80%,#222);border-radius:4px}
+.marco{position:absolute;inset:0;background:linear-gradient(118deg,#d9d4cd 0%,#8a857f 12%,#4a4745 30%,#a39d96 46%,#5b5754 62%,#cfc9c1 80%,#6b6763 100%);box-shadow:0 70px 120px -20px rgba(10,8,12,.5)}
+.bisel{width:100%;height:100%;background:#050506}.pant{position:relative;overflow:hidden}
+.pant video{position:absolute;object-fit:cover;display:block}
+.est{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;z-index:3;font-weight:600}
+.isla{position:absolute;background:#000;border-radius:99px;z-index:4}
+.refl{position:absolute;inset:-20%;z-index:5;background:linear-gradient(112deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.17) 47%,rgba(255,255,255,.05) 53%,rgba(255,255,255,0) 58%)}
+.oro{background:linear-gradient(100deg,#8A6420 0%,#E9C877 22%,#FFF1C4 34%,#C99A3E 52%,#8A6420 70%,#E2BC6A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;padding-bottom:.12em}
+.sello{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#A3184A,#6E0C2B 48%,#3E0515);box-shadow:0 26px 50px -10px rgba(62,5,21,.6),inset 0 0 0 5px rgba(217,178,92,.9),inset 0 0 0 13px rgba(62,5,21,.7),inset 0 0 0 15px rgba(217,178,92,.55);color:#F7E7BF;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:26px;line-height:1.15}
+.sello b{font-family:'Bricolage Grotesque';font-size:74px;line-height:1;letter-spacing:-.04em;color:#fff}
+.tach{position:relative;display:inline-block!important}.tach i{position:absolute;left:-2%;width:104%;height:9px;top:54%;background:#A3184A;transform-origin:0 50%}
+
+#raiz{background:#0A080C}
+.foto{position:absolute;inset:0;overflow:hidden;opacity:0}
+.foto img{position:absolute;left:50%;top:50%;width:1536px;height:1920px;margin:-960px 0 0 -768px;object-fit:cover;display:block}
+.vel{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,12,.92) 0%,rgba(10,8,12,.7) 28%,rgba(10,8,12,0) 48%,rgba(10,8,12,0) 70%,rgba(10,8,12,.55) 100%)}
+.kick{position:absolute;left:72px;margin:0;display:flex;align-items:center;gap:16px;font:italic 600 38px/1 'Cormorant Garamond',serif;color:#E9C877;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.kick i{display:block;width:46px;height:2px;background:#E9C877}
+.h{margin:0;text-shadow:0 6px 30px rgba(0,0,0,.45)}
+.nota{position:absolute;left:72px;width:820px;margin:0;font:600 34px/1.25 'Inter',sans-serif;color:#F7E7BF;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+.escmovil{position:absolute;left:560px;top:760px;width:866px;height:1800px;transform:scale(.42) rotateY(-16deg) rotateZ(3deg);transform-origin:0 0;perspective:2200px}
+.pts{position:absolute;left:640px;top:760px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#A3184A,#6E0C2B 48%,#3E0515);box-shadow:0 26px 50px -10px rgba(0,0,0,.6),inset 0 0 0 5px rgba(217,178,92,.9),inset 0 0 0 13px rgba(62,5,21,.7),inset 0 0 0 15px rgba(217,178,92,.55);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 82px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em}
+.pts small{font:700 25px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#F7E7BF}
+.tk{position:absolute;width:150px;height:190px;background:#F7F5F2;border-radius:6px;box-shadow:0 18px 30px rgba(0,0,0,.35);opacity:0}
+.tk::before{content:'';position:absolute;left:18px;right:18px;top:26px;height:120px;background:repeating-linear-gradient(180deg,#bdb8b0 0 6px,transparent 6px 22px)}
+#cierre{position:absolute;inset:0;background:radial-gradient(ellipse 75% 50% at 50% 45%,#3E0515 0%,#160a10 60%,#0A080C 100%);opacity:0}
+.firma{position:absolute;left:72px;width:780px;display:flex;align-items:center;gap:26px;font:500 30px/1.25 'Inter',sans-serif;color:#F7E7BF}
+.firma b{font:800 58px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;color:#fff;padding-right:26px;border-right:2px solid #D9B25C}
+.rot{position:absolute;left:72px;top:1330px;margin:0;font:500 22px/1 'Inter',sans-serif;color:rgba(247,231,191,.55)}
+</style></head><body>
+<div id="raiz" data-composition-id="toni-viernes-v1" data-start="0" data-width="1080" data-height="1920" data-duration="20">
+  <div class="foto" id="f1" data-layout-allow-overflow><img src="assets/img/caos.webp" alt=""/></div>
+  <div class="foto" id="f2" data-layout-allow-overflow><img src="assets/img/sofa.webp" alt=""/></div>
+  <div class="foto" id="f3" data-layout-allow-overflow><img src="assets/img/calma.webp" alt=""/></div>
+  <div class="foto" id="f4" data-layout-allow-overflow><img src="assets/img/ok.webp" alt=""/></div>
+  <div class="lleno vel" id="vel"></div>
+  <div class="tk" id="tk0" style="left:90px;top:520px"></div><div class="tk" id="tk1" style="left:820px;top:470px"></div><div class="tk" id="tk2" style="left:160px;top:980px"></div><div class="tk" id="tk3" style="left:760px;top:1060px"></div><div class="tk" id="tk4" style="left:430px;top:360px"></div>
+  <p class="kick" id="k1" style="top:300px"><i></i>Viernes · 21:15</p>
+  <h1 class="h" id="h1" style="top:360px;font-size:118px;color:#fff"><span>El teléfono</span><span class="oro">no para.</span></h1>
+  <p class="kick" id="k2" style="top:300px"><i></i>Mientras, en su sofá…</p>
+  <p class="h" id="h2" style="top:360px;font-size:96px;color:#fff"><span>Pide en la app</span><span class="s oro" style="font-size:104px">de su pizzería.</span></p>
+  <div class="escmovil" id="em" data-layout-allow-overflow><div class="movil" id="m1" data-layout-allow-overflow style="width:866px;height:1800px;left:0;top:0;"><i class="capa" style="border-radius:141px;transform:translateZ(-3px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-6px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-9px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-12px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-15px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-18px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-21px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-24px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-27px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-30px);background:#55524f"></i><i class="capa" style="border-radius:141px;transform:translateZ(-33px);background:#3b3a3c"></i><i class="capa" style="border-radius:141px;transform:translateZ(-36px);background:#55524f"></i>
+<i class="bt" style="left:-6.1px;top:305.3px;height:69.2px;width:10.2px"></i><i class="bt" style="left:-6.1px;top:417.3px;height:126.2px;width:10.2px"></i><i class="bt" style="right:-6.1px;top:458.0px;height:199.5px;width:10.2px"></i>
+<div class="marco" style="border-radius:141px;padding:15px"><div class="bisel" style="border-radius:126px;padding:18px"><div class="pant" style="width:800px;height:1734px;border-radius:108px;background:#faf6ee">
+<video id="v-flujo" src="assets/video/flujo.mp4" data-start="5.0" data-duration="4.6" data-track-index="8" data-media-start="0" data-playback-rate="1.6" muted playsinline style="left:0;top:110px;width:800px;height:1624px"></video>
+<div class="est" style="height:110px;color:#17191E;font-size:32.6px;padding:16.3px 61.1px 0" data-layout-allow-overlap data-layout-allow-occlusion data-layout-ignore><b>21:34</b><svg width="134.4" height="28.5" viewBox="0 0 66 14" fill="#17191E"><rect x="0" y="9" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="8" rx="1"/><rect x="10" y="3" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="14" rx="1"/><path d="M24 5a9.5 9.5 0 0 1 14 0l-2 2a6.8 6.8 0 0 0-10 0zM28 9a4.2 4.2 0 0 1 6 0l-3 3.4z"/><rect x="43.5" y="1" width="19" height="12" rx="3.5" fill="none" stroke="#17191E" stroke-opacity=".5"/><rect x="45.5" y="3" width="13" height="8" rx="2"/><rect x="64" y="5" width="1.6" height="4" rx=".8"/></svg></div>
+<i class="isla" style="width:236.1px;height:67.2px;top:22.4px;left:281.9px"><i style="position:absolute;right:20.4px;top:20.4px;width:26.5px;height:26.5px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#31405f,#0c0f18 60%)"></i></i>
+<i class="refl"></i></div></div></div></div></div>
+  <p class="kick" id="k3" style="top:300px"><i></i>En la cocina de Toni</p>
+  <p class="h" id="h3" style="top:360px;font-size:118px;color:#fff"><span>Llega escrito.</span><span class="oro">Por orden.</span></p>
+  <p class="nota" id="n3" style="top:640px">Sin teléfono. Sin papelitos.</p>
+  <p class="kick" id="k4" style="top:300px"><i></i>Y lo mejor</p>
+  <p class="h" id="h4" style="top:360px;font-size:118px;color:#fff"><span>El cliente</span><span class="s oro" style="font-size:128px">vuelve.</span></p>
+  <div class="pts" id="pts">+20<small>puntos</small></div>
+  <div id="cierre"></div>
+  <p class="h" id="h5" style="top:520px;font-size:120px;color:#fff"><span>Tu pizzería,</span><span class="s oro" style="font-size:136px">con app propia.</span></p>
+  <div class="firma" id="fm" style="top:1050px"><b>DKitchen</b><span>Apps propias para bares<br/>y restaurantes</span></div>
+  <p class="rot" id="rot">Recreación · personajes ficticios</p>
+  <audio id="cama" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="20" data-track-index="21" data-volume="0.62" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.62},{"t":19,"v":0.62},{"t":19.95,"v":0}]}]}'></audio>
+  <audio id="sfx-1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="0.02" data-duration="0.9" data-track-index="22" data-volume="0.95"></audio>
+  <audio id="sfx-2" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="0.5" data-duration="0.4" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-3" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="4.5" data-duration="0.4" data-track-index="22" data-volume="0.65"></audio>
+  <audio id="sfx-4" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="6.2" data-duration="0.3" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-5" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="9.3" data-duration="0.9" data-track-index="22" data-volume="0.85"></audio>
+  <audio id="sfx-6" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="14.3" data-duration="0.4" data-track-index="23" data-volume="0.8"></audio>
+  <audio id="sfx-7" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="16.6" data-duration="1" data-track-index="22" data-volume="0.85"></audio>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+const T=['#k1','#h1','#k2','#h2','#em','#k3','#h3','#n3','#k4','#h4','#pts','#h5','#fm','#rot'];
+tl.set(T,{opacity:0},0);
+const sube=(q,t,d)=>tl.fromTo(q,{yPercent:50,opacity:0},{yPercent:0,opacity:1,duration:d||.45,ease:'power4.out'},t);
+const sale=(q,t)=>tl.to(q,{opacity:0,y:-30,duration:.3,ease:'power2.in'},t);
+// fotos: fundido cruzado solapado (sin negros) y movimiento continuo
+const foto=(q,ini,fin,z0,z1,x0,x1)=>{tl.fromTo(q,{opacity:ini===0?1:0},{opacity:1,duration:ini===0?.01:.5,ease:'none'},ini);tl.fromTo(q+' img',{scale:z0,x:x0},{scale:z1,x:x1,duration:fin-ini+.6,ease:'none'},ini);};
+foto('#f1',0,4.9,1.18,1.05,0,0);
+tl.fromTo('#f1 img',{rotation:-1.2},{rotation:1.2,duration:.09,repeat:13,yoyo:true,ease:'sine.inOut'},0.1);
+foto('#f2',4.5,9.4,1.0,1.1,-40,40);
+foto('#f3',9.0,14.0,1.12,1.0,30,-30);
+foto('#f4',13.6,17.2,1.0,1.12,0,0);
+// E1 caos
+tl.fromTo('#h1',{scale:1.1,opacity:.0001,transformOrigin:'0 50%'},{scale:1,opacity:1,duration:.3,ease:'power4.out'},0);
+tl.fromTo('#k1',{x:-30,opacity:0},{x:0,opacity:1,duration:.35},.05);
+[0,1,2,3,4].forEach((k)=>{tl.fromTo('#tk'+k,{opacity:0,y:240,rotation:0,scale:.6},{opacity:1,y:-120-k*40,rotation:(k%2?1:-1)*(25+k*9),scale:1,duration:1.6,ease:'power2.out'},.35+k*.25);tl.to('#tk'+k,{y:'-=160',x:(k%2?1:-1)*120,opacity:0,duration:1.2,ease:'power1.in'},2.4+k*.2);});
+tl.fromTo('#h1',{x:0},{x:16,duration:3.6,ease:'sine.inOut'},.6);
+sale(['#k1','#h1'],4.35);
+// E2 sofá + app real
+sube('#k2',4.6,.4);sube('#h2',4.7,.5);
+tl.fromTo('#em',{opacity:0,y:300},{opacity:1,y:0,duration:.7,ease:'power3.out'},4.9);tl.to('#em',{y:-50,rotation:-1.5,duration:4,ease:'sine.inOut'},5.6);
+tl.fromTo('#h2',{x:0},{x:14,duration:4,ease:'sine.inOut'},5.2);
+sale(['#k2','#h2'],8.95);tl.to('#em',{opacity:0,x:160,duration:.4,ease:'power2.in'},9.0);
+// E3 calma
+sube('#k3',9.3,.4);sube('#h3',9.35,.5);tl.to('#n3',{opacity:1,duration:.45},10.4);
+tl.fromTo('#h3',{x:0},{x:14,duration:4,ease:'sine.inOut'},9.8);
+sale(['#k3','#h3','#n3'],13.5);
+// E4 ok + puntos
+sube('#k4',13.85,.4);sube('#h4',13.9,.5);
+tl.fromTo('#pts',{opacity:0,scale:.2,rotation:-30},{opacity:1,scale:1,rotation:-8,duration:.5,ease:'back.out(2)'},14.3);
+tl.to('#pts',{scale:1.06,duration:.3,yoyo:true,repeat:3,ease:'sine.inOut'},14.9);tl.to('#pts',{rotation:6,duration:1.3,ease:'sine.inOut'},15.4);
+tl.fromTo('#h4',{x:0},{x:14,duration:3,ease:'sine.inOut'},14.3);
+sale(['#k4','#h4','#pts'],16.7);
+// E5 cierre (el fondo entra antes de que salga la foto: sin hueco negro)
+tl.to('#cierre',{opacity:1,duration:.6,ease:'power1.inOut'},16.6);
+tl.fromTo('#cierre',{scale:1},{scale:1.06,duration:3.6,ease:'none'},16.6);
+tl.fromTo('#h5',{opacity:0,scale:.7,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.55,ease:'back.out(1.5)'},16.85);
+tl.fromTo('#h5 .oro',{backgroundPosition:'0% 0'},{backgroundPosition:'100% 0',duration:3,ease:'none'},16.85);
+tl.fromTo('#h5',{x:0},{x:16,duration:3.1,ease:'sine.inOut'},16.9);
+tl.to('#fm',{opacity:1,duration:.5},17.5);tl.to('#rot',{opacity:1,duration:.5},17.7);
+tl.to('#h5',{scale:1.025,duration:.45,yoyo:true,repeat:3,ease:'sine.inOut'},18.1);
+window.__timelines['toni-viernes-v1']=tl;
+</script></body></html>

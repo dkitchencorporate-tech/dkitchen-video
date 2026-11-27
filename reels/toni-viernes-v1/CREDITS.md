@@ -1,0 +1,1 @@
+Personajes y escenas (Toni, la clienta) generados con IA de imagen vía Vercel AI Gateway, estilo animación 3D; personajes y local ficticios. Música original ElevenLabs Music (misma pista que ads-a2-carta-editorial). Efectos: marca/sonido. Pantallas: grabación real de la PWA demo en la VM.

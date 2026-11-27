@@ -7,21 +7,21 @@
 .px svg{display:block;shape-rendering:crispEdges}
 /* local en pixel art: pared de ladrillo, suelo a cuadros, horno y ventana */
 #sala{position:absolute;inset:0;background:#2a1418}
-#pared{position:absolute;left:0;right:0;top:0;height:1180px;background:
+#pared{position:absolute;left:0;right:0;top:0;height:1300px;background:
  repeating-linear-gradient(0deg,#3d1a1f 0 6px,transparent 6px 48px),
  repeating-linear-gradient(90deg,#3d1a1f 0 6px,transparent 6px 96px),
  linear-gradient(#7a2e2a,#5e2224)}
-#suelo{position:absolute;left:0;right:0;top:1180px;bottom:0;background:
+#suelo{position:absolute;left:0;right:0;top:1300px;bottom:0;background:
  repeating-conic-gradient(#e9dfcf 0 25%,#2b2b3a 0 50%) 0 0/96px 96px}
-#mostr{position:absolute;left:0;right:0;top:1060px;height:150px;background:#6b3f22;border-top:18px solid #9a6236;box-shadow:inset 0 -18px 0 #4a2a15}
-#horno{position:absolute;left:600px;top:560px;width:300px;height:360px;background:#8a8a92;border:12px solid #4a4a52;border-radius:150px 150px 0 0;box-shadow:inset 0 -24px 0 #6a6a72}
+#mostr{position:absolute;left:0;right:0;top:1170px;height:150px;background:#6b3f22;border-top:18px solid #9a6236;box-shadow:inset 0 -18px 0 #4a2a15}
+#horno{position:absolute;left:620px;top:720px;width:280px;height:340px;background:#8a8a92;border:12px solid #4a4a52;border-radius:150px 150px 0 0;box-shadow:inset 0 -24px 0 #6a6a72}
 #boca{position:absolute;left:66px;top:150px;width:144px;height:120px;background:#140808;border-radius:72px 72px 0 0;overflow:hidden}
 #fuego{position:absolute;left:12px;right:12px;bottom:0;height:72px;background:
  linear-gradient(0deg,#ffd24a 0 24px,#ff8a1f 24px 48px,#e03a1a 48px 72px)}
-#ventana{position:absolute;left:96px;top:420px;width:288px;height:240px;background:#141a3a;border:18px solid #9a6236;box-shadow:inset 0 0 0 6px #4a2a15}
+#ventana{position:absolute;left:96px;top:760px;width:288px;height:220px;background:#141a3a;border:18px solid #9a6236;box-shadow:inset 0 0 0 6px #4a2a15}
 #luna{position:absolute;left:156px;top:36px;width:60px;height:60px;background:#f7e7bf;box-shadow:12px 0 0 #f7e7bf,0 12px 0 #f7e7bf,12px 12px 0 #f7e7bf}
 .estr{position:absolute;width:12px;height:12px;background:#f7e7bf}
-#cartel{position:absolute;left:96px;top:330px;width:288px;padding:14px 0;text-align:center;background:#1d6b3a;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;border:6px solid #0f3a20}
+#cartel{position:absolute;left:96px;top:676px;width:288px;padding:14px 0;text-align:center;background:#1d6b3a;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;border:6px solid #0f3a20}
 /* HUD de videojuego (dentro de la zona segura) */
 #hud{position:absolute;left:68px;top:280px;width:822px;display:flex;justify-content:space-between;align-items:center;font:800 40px/1 'Bricolage Grotesque',sans-serif;color:#fff;text-shadow:4px 4px 0 #000}
 #reloj{background:#000;color:#7CFF9E;padding:12px 18px;border:6px solid #7CFF9E;letter-spacing:.08em}
@@ -37,15 +37,15 @@
 .tk{position:absolute;width:96px;height:120px;background:#f7f5f2;border:6px solid #000;opacity:0}
 .tk::before{content:'';position:absolute;left:12px;right:12px;top:18px;height:72px;background:repeating-linear-gradient(180deg,#6a6a72 0 6px,transparent 6px 18px)}
 #noche{position:absolute;inset:0;background:#05040a;opacity:0}
-#luzpuerta{position:absolute;left:300px;top:1150px;width:480px;height:30px;background:#ffd24a;opacity:0;filter:blur(6px)}
-#puerta{position:absolute;left:300px;top:590px;width:480px;height:590px;background:#5a3418;border:18px solid #2a160a;opacity:0}
+#luzpuerta{position:absolute;left:300px;top:1272px;width:480px;height:30px;background:#ffd24a;opacity:0;filter:blur(6px)}
+#puerta{position:absolute;left:300px;top:700px;width:480px;height:590px;background:#5a3418;border:18px solid #2a160a;opacity:0}
 #puerta i{position:absolute;right:36px;top:290px;width:24px;height:24px;background:#ffd24a}
-#nota{position:absolute;left:330px;top:1140px;width:120px;height:60px;background:#f7f5f2;border:6px solid #000;opacity:0}
+#nota{position:absolute;left:330px;top:1262px;width:120px;height:60px;background:#f7f5f2;border:6px solid #000;opacity:0}
 #zoom{position:absolute;left:68px;top:420px;width:822px;height:820px;background:#f7f0dc;border:14px solid #000;box-shadow:18px 18px 0 #000;opacity:0;padding:90px 70px;transform:rotate(-2deg)}
 #zoom p{margin:0;font:italic 600 92px/1.08 'Cormorant Garamond',serif;color:#1a0a10}
 #zoom p span{opacity:0}
 #zoom small{position:absolute;right:60px;bottom:60px;font:800 30px/1 'Bricolage Grotesque',sans-serif;color:#6E0C2B;letter-spacing:.1em}
-#cierre{position:absolute;inset:0;background:radial-gradient(ellipse 75% 50% at 50% 45%,#3E0515 0%,#160a10 60%,#0A080C 100%);opacity:0}
+#cierre{position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 42%,#6E0C2B 0%,#3E0515 55%,#1c0b12 100%);opacity:0}
 .cont{position:absolute;left:68px;top:330px;margin:0;font:800 44px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.3em;color:#7CFF9E;text-shadow:4px 4px 0 #000}
 .cta{position:absolute;left:68px;top:930px;width:790px;padding:30px 38px;background:#ffd24a;border:8px solid #000;box-shadow:14px 14px 0 #000;color:#1a0a10;font:800 60px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;transform-origin:0 50%}
 .cta small{display:block;margin-bottom:10px;font:800 28px/1 'Inter',sans-serif;letter-spacing:.12em;color:#6E0C2B}
@@ -60,10 +60,10 @@
     <div id="cartel" data-layout-allow-occlusion>PIZZERÍA TONI</div>
     <div id="horno"><div id="boca"><div id="fuego"></div></div></div>
     <div id="mostr"></div>
-    <div class="px" id="tel" style="left:420px;top:960px"></div>
-    <div class="px" id="toni" style="left:250px;top:760px"></div>
-    <div class="px" id="clienta" style="left:1100px;top:760px"></div>
-    <div class="px" id="pizza" style="left:500px;top:1000px;opacity:0"></div>
+    <div class="px" id="tel" style="left:470px;top:1095px"></div>
+    <div class="px" id="toni" style="left:230px;top:800px"></div>
+    <div class="px" id="clienta" style="left:1100px;top:818px"></div>
+    <div class="px" id="pizza" style="left:520px;top:1080px;opacity:0"></div>
     <div class="tk" id="tk0" style="left:220px;top:820px"></div><div class="tk" id="tk1" style="left:520px;top:780px"></div><div class="tk" id="tk2" style="left:360px;top:700px"></div><div class="tk" id="tk3" style="left:640px;top:860px"></div><div class="tk" id="tk4" style="left:150px;top:640px"></div>
     <div id="noche"></div>
     <div id="puerta"><i></i></div>
@@ -117,8 +117,8 @@ const CLI=['....KKKKKKKK....','...KHHHHHHHHK...','..KHHHHHHHHHHK..','..KHSSSSSSS
 const TEL=['..KKKKKKKKKK..','.KRRRRRRRRRRK.','KRRKKKKKKKKRRK','KRK........KRK','KKK.KKKKKK.KKK','...KRRRRRRK...','..KRRWRWRWRK..','..KRRRRRRRRK..','..KRRWRWRWRK..','..KKKKKKKKKK..'];
 const COR=['.KK.KK.','KRRKRRK','KRRRRRK','.KRRRK.','..KRK..','...K...'];
 const PIZ=['...KKKKKK...','..KOOOOOOK..','.KOYYLYYYOK.','KOYLYYYYLYOK','KOYYYGYYYYOK','KOYYYYYLYYOK','.KOYLYYYYOK.','..KOOOOOOK..','...KKKKKK...'];
-document.getElementById('toni').innerHTML=svg(TONI,14);
-document.getElementById('clienta').innerHTML=svg(CLI,14);
+document.getElementById('toni').innerHTML=svg(TONI,18);
+document.getElementById('clienta').innerHTML=svg(CLI,18);
 document.getElementById('tel').innerHTML=svg(TEL,10);
 document.getElementById('pizza').innerHTML=svg(PIZ,10);
 ['c1','c2','c3'].forEach(i=>document.getElementById(i).innerHTML=svg(COR,7));
@@ -130,7 +130,7 @@ const sube=(q,t,d)=>tl.fromTo(q,{y:40,opacity:0},{y:0,opacity:1,duration:d||.35,
 const sale=(q,t)=>tl.to(q,{opacity:0,duration:.2,ease:'steps(2)'},t);
 // fuego del horno y movimiento de cámara continuo
 tl.fromTo('#fuego',{scaleY:1},{scaleY:.7,duration:.25,repeat:55,yoyo:true,ease:'steps(2)',transformOrigin:'50% 100%'},0);
-tl.fromTo('#sala',{scale:1.04},{scale:1.1,duration:13,ease:'none',transformOrigin:'45% 60%'},0);
+tl.fromTo('#sala',{scale:1.02,x:0},{scale:1.12,x:-24,duration:28,ease:'none',transformOrigin:'45% 62%'},0);
 // E1 · 0-4 s: título y teléfono sonando
 tl.fromTo('#k1',{x:-60,opacity:0},{x:0,opacity:1,duration:.3,ease:'steps(3)'},0);
 tl.fromTo('#t1',{scale:1.15,opacity:0,transformOrigin:'0 50%'},{scale:1,opacity:1,duration:.3,ease:'steps(3)'},.05);
@@ -156,10 +156,10 @@ tl.to('#clienta',{x:200,duration:1.3,ease:'steps(8)'},11.2);
 tl.fromTo('#c3',{opacity:1,scale:1},{opacity:0,scale:1.8,duration:.4,ease:'steps(4)'},11.3);
 sale(['#k3','#t3'],12.7);
 // E4 · 12.8-17.6 s: medianoche, puerta y la nota que entra por debajo
-tl.to('#noche',{opacity:.82,duration:.6,ease:'steps(4)'},12.8);
+tl.to('#noche',{opacity:.62,duration:.6,ease:'steps(4)'},12.8);
 tl.set('#r1',{textContent:'SÁB 00:00'},13.1);
 tl.to('#puerta',{opacity:1,duration:.4,ease:'steps(4)'},13.1);
-tl.to('#luzpuerta',{opacity:.9,duration:.4,ease:'steps(3)'},13.3);
+tl.to('#luzpuerta',{opacity:.9,duration:.4,ease:'steps(3)'},13.3);tl.to('#luzpuerta',{opacity:.35,duration:.3,repeat:11,yoyo:true,ease:'steps(2)'},13.8);tl.fromTo('.estr',{opacity:1},{opacity:.2,duration:.4,repeat:20,yoyo:true,stagger:.2,ease:'steps(1)'},12.9);
 tl.to('#toni',{x:120,duration:1.4,ease:'steps(8)'},13.3);
 sube('#k4',13.2);sube('#t4',13.3);
 tl.fromTo('#nota',{opacity:0,x:-60},{opacity:1,x:120,duration:1,ease:'steps(6)'},15.6);
@@ -171,10 +171,10 @@ document.querySelectorAll('#zoom p span').forEach((s,i)=>tl.to(s,{opacity:1,dura
 tl.to('#zoom',{rotation:1,duration:4,ease:'none'},18);
 tl.to('#zoom',{opacity:0,duration:.3,ease:'steps(3)'},22.0);
 // E6 · 22.2-28 s: continuará
-tl.to('#cierre',{opacity:1,duration:.4,ease:'steps(4)'},22.0);
+tl.to('#cierre',{opacity:.94,duration:.3,ease:'steps(3)'},22.0);tl.fromTo('#cierre',{scale:1},{scale:1.12,duration:6,ease:'none'},22.0);tl.fromTo('#t6',{x:0},{x:18,duration:5.6,ease:'none'},22.4);tl.fromTo('#cont',{x:0},{x:12,duration:5.6,ease:'none'},22.4);
 tl.to('#hud',{opacity:0,duration:.3,ease:'steps(3)'},22.0);
 tl.fromTo('#cont',{opacity:0},{opacity:1,duration:.1,repeat:5,yoyo:true,ease:'steps(1)'},22.3);tl.set('#cont',{opacity:1},22.9);
-tl.fromTo('#t6',{opacity:0,scale:.7,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},22.5);
+tl.fromTo('#t6',{opacity:0,scale:.7,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.3,ease:'steps(3)'},22.1);
 tl.fromTo('#cta',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},24.4);
 tl.to('#cta',{scale:1.05,duration:.35,yoyo:true,repeat:5,ease:'steps(2)'},25.0);
 tl.to('#fm',{opacity:1,duration:.4,ease:'steps(3)'},25.2);tl.to('#rot',{opacity:1,duration:.4,ease:'steps(3)'},25.4);

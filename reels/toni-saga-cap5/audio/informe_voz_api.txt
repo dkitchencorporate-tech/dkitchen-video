@@ -1,0 +1,7 @@
+voz v1: 2.42 s (hueco 3.80 s, speed 1.08) CABE
+voz v2: 2.96 s (hueco 4.40 s, speed 1.08) CABE
+voz v3: 2.46 s (hueco 4.10 s, speed 1.08) CABE
+voz v4: 2.09 s (hueco 4.50 s, speed 1.08) CABE
+voz v5: 2.25 s (hueco 4.00 s, speed 1.08) CABE
+voz v6: 2.90 s (hueco 5.00 s, speed 1.08) CABE
+musica: 29.02 s (pedido 29 s)

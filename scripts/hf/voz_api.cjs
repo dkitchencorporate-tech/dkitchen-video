@@ -19,7 +19,8 @@ const informe = []; let fallos = 0;
     for (const speed of [g.voz.ajustes.speed || 1.08, 1.12, 1.15]) {
       const body = {
         text: t.texto, model_id: g.voz.modelo || 'eleven_multilingual_v2', voice_settings: Object.assign({}, g.voz.ajustes, { speed }),
-        previous_text: i > 0 ? tr[i - 1].texto : undefined, next_text: i < tr.length - 1 ? tr[i + 1].texto : undefined,
+        // eleven_v3 no admite previous_text/next_text (400 unsupported_model, 27/11)
+        previous_text: i > 0 && !/v3/.test(g.voz.modelo || '') ? tr[i - 1].texto : undefined, next_text: i < tr.length - 1 && !/v3/.test(g.voz.modelo || '') ? tr[i + 1].texto : undefined,
       };
       const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${g.voz.voice_id}?output_format=mp3_44100_128`, { method: 'POST', headers: Object.assign({ Accept: 'audio/mpeg' }, H), body: JSON.stringify(body) });
       if (!r.ok) { informe.push(`voz ${t.id}: ERROR ${r.status} ${(await r.text()).slice(0, 160)}`); break; }

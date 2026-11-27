@@ -3,8 +3,42 @@
  "titulo": "DKitchen · Toni, viernes 21:15 · TikTok",
  "duracion": 20,
  "fps": 30,
- "tramos_voz": [],
- "musica": "Original (ElevenLabs Music, reutilizada de ads-a2-carta-editorial)",
+ "tramos_voz": [
+  {
+   "id": "v1",
+   "inicio": 0.3,
+   "fin_max": 4.3,
+   "texto": "Viernes, nueve y cuarto... y el teléfono no para."
+  },
+  {
+   "id": "v2",
+   "inicio": 4.75,
+   "fin_max": 9,
+   "texto": "Mientras, en un sofá, alguien pide desde la app de su pizzería."
+  },
+  {
+   "id": "v3",
+   "inicio": 9.45,
+   "fin_max": 13.5,
+   "texto": "Y a Toni le llega así: escrito, por orden. Sin papelitos."
+  },
+  {
+   "id": "v4",
+   "inicio": 14,
+   "fin_max": 16.6,
+   "texto": "¿Y ella? Suma puntos. Y vuelve."
+  },
+  {
+   "id": "v5",
+   "inicio": 17,
+   "fin_max": 19.7,
+   "texto": "Tu pizzería... con app propia."
+  }
+ ],
+ "musica": {
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "Modern viral TikTok background track, 21 seconds, instrumental. Starts with tense playful suspense: muted plucked bass, ticking hi-hat and a quirky pizzicato motif that builds curiosity for 9 seconds, then a satisfying drop into a warm, bright, feel-good groove with funky clean guitar, claps and a light Italian mandolin flavour, confident and catchy, ends with a clean button ending at 20 seconds. Leaves space for a voiceover, no vocals."
+ },
  "qc": {
   "lufs": -14,
   "tolerancia_lufs": 1,
@@ -12,5 +46,18 @@
   "lra_max": 11,
   "congelado_max_s": 0.6,
   "negro_max_s": 0.1
- }
+ },
+ "voz": {
+  "voice_id": "4L2A19qwD3pMcNlt484F",
+  "nombre": "Enzo - Viral Reels (DKitchen)",
+  "modelo": "eleven_multilingual_v2",
+  "ajustes": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1
+  }
+ },
+ "carve_fuerza": 0.8
 }

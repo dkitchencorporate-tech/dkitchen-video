@@ -1,0 +1,68 @@
+{
+ "pieza": "toni-saga-cap5",
+ "titulo": "DKitchen · Saga La pizzería de Toni (piloto pixel art) · Cap. 5 · Las cuentas",
+ "duracion": 28,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "v1",
+   "inicio": 0.15,
+   "fin_max": 3.95,
+   "texto": "[serious] Capítulo cinco. Toni hace cuentas."
+  },
+  {
+   "id": "v2",
+   "inicio": 4.2,
+   "fin_max": 8.6,
+   "texto": "[surprised] De un pedido de veinte euros... hasta seis se van."
+  },
+  {
+   "id": "v3",
+   "inicio": 8.8,
+   "fin_max": 12.9,
+   "texto": "[excited] Lucía activa el pedido directo, con puntos."
+  },
+  {
+   "id": "v4",
+   "inicio": 13.2,
+   "fin_max": 17.7,
+   "texto": "[happy] Los clientes vuelven. Y piden en su app."
+  },
+  {
+   "id": "v5",
+   "inicio": 18,
+   "fin_max": 22,
+   "texto": "[shocked] ¡Un pedido de cuarenta pizzas!"
+  },
+  {
+   "id": "v6",
+   "inicio": 22.4,
+   "fin_max": 27.4,
+   "texto": "[curious] ¿Quién las ha pedido? Final de temporada, esta tarde."
+  }
+ ],
+ "musica": {
+  "api": true,
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "8-bit chiptune soundtrack for a retro video game story, 29 seconds, instrumental. Thoughtful puzzle-like melody for 8 seconds, then an uplifting power-up theme with bright arpeggios and a coin-collect motif, at 18 seconds a sudden surprised dramatic sting and building suspense, ends on an unresolved cliffhanger chord at 28 seconds. Leaves space for a voiceover, no vocals."
+ },
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ },
+ "voz": {
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
+  "ajustes": {
+   "stability": 0.5,
+   "similarity_boost": 0.85,
+   "use_speaker_boost": true
+  }
+ },
+ "carve_fuerza": 0.8
+}

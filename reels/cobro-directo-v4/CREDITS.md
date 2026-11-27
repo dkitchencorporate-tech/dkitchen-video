@@ -1,0 +1,1 @@
+Personaje y escenas (Toni) generados con IA de imagen vía Vercel AI Gateway, estilo animación 3D; personaje y local ficticios. Locución: ElevenLabs v3, voz Álvaro (Cool and Energetic). Música original: ElevenLabs Music. Efectos: marca/sonido. Pantallas: grabación real de la PWA demo en la VM. Precios: MAPA_PRECIOS_Y_FUNCIONES (Fundador Signature).

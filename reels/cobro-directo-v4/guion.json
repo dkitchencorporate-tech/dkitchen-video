@@ -1,0 +1,61 @@
+{
+ "pieza": "cobro-directo-v4",
+ "titulo": "DKitchen · Cobro directo v4 (Toni) · IG, FB y TikTok",
+ "duracion": 20,
+ "fps": 30,
+ "voz": {
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
+  "ajustes": {
+   "stability": 0.5,
+   "similarity_boost": 0.85,
+   "use_speaker_boost": true
+  }
+ },
+ "tramos_voz": [
+  {
+   "id": "v1",
+   "inicio": 0.15,
+   "fin_max": 4.35,
+   "texto": "[excited] ¡Vendes todos los días! ¿Y tu dinero... dónde se queda?"
+  },
+  {
+   "id": "v2",
+   "inicio": 4.7,
+   "fin_max": 9,
+   "texto": "Con Signature, el cliente paga en tu Stripe o Redsys... ¡y va directo a tu banco!"
+  },
+  {
+   "id": "v3",
+   "inicio": 9.45,
+   "fin_max": 13.4,
+   "texto": "[excited] Cero comisión por pedido. DKitchen no retiene ni un euro."
+  },
+  {
+   "id": "v4",
+   "inicio": 13.8,
+   "fin_max": 16.85,
+   "texto": "Plazas Fundador: quinientos euros más IVA. Pago único."
+  },
+  {
+   "id": "v5",
+   "inicio": 17.15,
+   "fin_max": 19.85,
+   "texto": "[excited] ¿La quieres? ¡Escribe «SIGNATURE» por privado!"
+  }
+ ],
+ "musica": {
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "Modern viral Instagram reel background track, 21 seconds, instrumental. Opens with a punchy hit and a tense, curious groove with muted bass and ticking percussion for 9 seconds, then lifts into a confident, premium, uplifting groove with warm synth stabs, crisp claps and a subtle cash-register shimmer, builds energy at 13 seconds for a reveal, clean button ending at 20 seconds. Leaves space for a voiceover, no vocals."
+ },
+ "carve_fuerza": 0.8,
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ }
+}

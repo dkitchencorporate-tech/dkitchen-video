@@ -101,7 +101,7 @@
   <p class="kick" id="k3" style="top:400px">Toni no se fía</p>
   <p class="kick" id="k4" style="top:400px">Power-up desbloqueado</p>
   <p class="tit" id="t4" style="top:450px">Su pizzería,<br/><span class="oro">con app propia.</span></p>
-  <p class="kick" id="k5" style="top:400px">Mañana es sábado…</p>
+  <p class="kick" id="k5" style="top:400px">Sábado · 20:59</p>
   <p class="tit" id="t5" style="top:450px">Y el teléfono<br/><span class="oro">vuelve a sonar.</span></p>
   <div class="px" id="tel" style="left:660px;top:780px;opacity:0"></div>
   <div id="reto"><small>RETO</small>DÍA 1 DE 30</div>
@@ -127,12 +127,12 @@
   <audio id="sfx-7" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="22.2" data-duration="1" data-track-index="22" data-volume="0.85"></audio>
 </div>
 <script>
-const PAL={K:'#120a0e',W:'#f7f5f2',S:'#f1c08f',M:'#3a2414',A:'#6E0C2B',P:'#2b2b3a',B:'#1a1a1a',H:'#1c1418',D:'#1d6b3a',R:'#d8282c',G:'#9a9aa2',Y:'#ffd24a',O:'#e0701a',L:'#c9302c',C:'#3a7bd5'};
+const PAL={K:'#120a0e',W:'#f7f5f2',S:'#f1c08f',M:'#3a2414',A:'#6E0C2B',P:'#2b2b3a',B:'#1a1a1a',H:'#6b3a1e',D:'#1d6b3a',R:'#d8282c',G:'#9a9aa2',Y:'#ffd24a',O:'#e0701a',L:'#c9302c',C:'#3a7bd5'};
 const svg=(rows,p)=>{const w=rows[0].length,h=rows.length;let r='';rows.forEach((row,y)=>[...row].forEach((c,x)=>{if(c!=='.')r+=`<rect x="${x*p}" y="${y*p}" width="${p}" height="${p}" fill="${PAL[c]}"/>`;}));return `<svg width="${w*p}" height="${h*p}" viewBox="0 0 ${w*p} ${h*p}">${r}</svg>`;};
 const TONI=['....KKKKKKKK....','...KWWWWWWWWK...','..KWWWWWWWWWWK..','..KWWWWWWWWWWK..','...KWWWWWWWWK...','...KKKKKKKKKK...','...KSSSSSSSSK...','...KSKSSSSKSK...','...KSSSSSSSSK...','...KSMMMMMMSK...','...KSSMSSMSSK...','....KSSSSSSK....','..KKWWWWWWWWKK..','.KSWWWAAAAWWWSK.','.KSWWAAAAAAWWSK.','.KSKKAAAAAAKKSK.','....KAAAAAAK....','....KAAAAAAK....','....KPPKKPPK....','....KPPK.KPPK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
 // Toni con los brazos cruzados
 const TONIX=['....KKKKKKKK....','...KWWWWWWWWK...','..KWWWWWWWWWWK..','..KWWWWWWWWWWK..','...KWWWWWWWWK...','...KKKKKKKKKK...','...KSSSSSSSSK...','...KSKKSSKKSK...','...KSSSSSSSSK...','...KSMMMMMMSK...','...KSSKKKKSSK...','....KSSSSSSK....','..KKWWWWWWWWKK..','..KWWAAAAAAWWK..','..KSSSSSSSSSSK..','..KKSSSSSSSSKK..','....KAAAAAAK....','....KAAAAAAK....','....KPPKKPPK....','....KPPK.KPPK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
-const LUC=['....KKKKKKKK....','...KHHHHHHHHK...','..KHHHHHHHHHHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHSSSSSSSSHK..','..KHSSKSSKSSHK..','..KHHSKKKKSHHK..','..KHHKSSSSKHHK..','..KHKDDDDDDKHK..','...KDDDDDDDDK...','..KSDDDDDDDDSK..','..KSDDDWWDDDSK..','...KDDDDDDDDK...','....KCCCCCCK....','....KCCCCCCK....','....KCCKKCCK....','....KCCK.KCCK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
+const LUC=['....KKKRRKKK....','...KHHHRRHHHK...','..KHHHHHHHHHHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHSSSSSSSSHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHHSSKKSSHHK..','..KHKDDDDDDKHK..','...KDDDDDDDDK...','..KSDDDDDDDDSK..','..KSDDDWWDDDSK..','...KDDDDDDDDK...','....KCCCCCCK....','....KCCCCCCK....','....KCCKKCCK....','....KCCK.KCCK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
 const NOTA=['KKKKKKKKKKKK','KWWWWWWWWWWK','KWKKKKKKKWWK','KWWWWWWWWWWK','KWKKKKKKKKWK','KWWWWWWWWWWK','KWKKKKKWWWWK','KWWWWWWWWWWK','KKKKKKKKKKKK'];
 const TEL=['..KKKKKKKKKK..','.KRRRRRRRRRRK.','KRRKKKKKKKKRRK','KRK........KRK','KKK.KKKKKK.KKK','...KRRRRRRK...','..KRRWRWRWRK..','..KRRRRRRRRK..','..KRRWRWRWRK..','..KKKKKKKKKK..'];
 const COR=['.KK.KK.','KRRKRRK','KRRRRRK','.KRRRK.','..KRK..','...K...'];

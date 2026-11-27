@@ -6,33 +6,33 @@
  "tramos_voz": [
   {
    "id": "v1",
-   "inicio": 0.3,
-   "fin_max": 4.3,
-   "texto": "Viernes, nueve y cuarto... y el teléfono no para."
+   "inicio": 0.15,
+   "fin_max": 4.35,
+   "texto": "[excited] ¿Tienes pizzería? ¡Escucha! Viernes, nueve y cuarto... ¡y el teléfono no para!"
   },
   {
    "id": "v2",
-   "inicio": 4.75,
+   "inicio": 4.7,
    "fin_max": 9,
-   "texto": "Mientras, en un sofá, alguien pide desde la app de su pizzería."
+   "texto": "[curious] Mientras, en su sofá, Laura pide... desde la app de su pizzería."
   },
   {
    "id": "v3",
-   "inicio": 9.45,
+   "inicio": 9.4,
    "fin_max": 13.5,
-   "texto": "Y a Toni le llega así: escrito, por orden. Sin papelitos."
+   "texto": "[excited] ¡Y a Toni le llega así! Escrito. Por orden. Sin un solo papelito."
   },
   {
    "id": "v4",
-   "inicio": 14,
-   "fin_max": 16.6,
-   "texto": "¿Y ella? Suma puntos. Y vuelve."
+   "inicio": 13.9,
+   "fin_max": 16.1,
+   "texto": "[excited] ¿Y Laura? ¡Suma puntos y vuelve!"
   },
   {
    "id": "v5",
-   "inicio": 17,
-   "fin_max": 19.7,
-   "texto": "Tu pizzería... con app propia."
+   "inicio": 16.45,
+   "fin_max": 19.85,
+   "texto": "[excited] ¿Quieres la tuya? ¡Escríbenos «PIZZA» por privado!"
   }
  ],
  "musica": {
@@ -48,15 +48,13 @@
   "negro_max_s": 0.1
  },
  "voz": {
-  "voice_id": "4L2A19qwD3pMcNlt484F",
-  "nombre": "Enzo - Viral Reels (DKitchen)",
-  "modelo": "eleven_multilingual_v2",
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
   "ajustes": {
-   "stability": 0.45,
-   "similarity_boost": 0.8,
-   "style": 0.25,
-   "use_speaker_boost": true,
-   "speed": 1
+   "stability": 0.5,
+   "similarity_boost": 0.85,
+   "use_speaker_boost": true
   }
  },
  "carve_fuerza": 0.8

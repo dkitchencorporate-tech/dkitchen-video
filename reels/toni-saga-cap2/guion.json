@@ -7,14 +7,14 @@
   {
    "id": "v1",
    "inicio": 0.15,
-   "fin_max": 3.8,
-   "texto": "[curious] Capítulo dos. La nota no era de un cliente... ni del casero."
+   "fin_max": 3.95,
+   "texto": "[curious] Capítulo dos. ¿De quién era la nota?"
   },
   {
    "id": "v2",
    "inicio": 4.2,
-   "fin_max": 8.4,
-   "texto": "[warm] Era de Lucía, su hija. «Papá, dame treinta días. Te monto una app.»"
+   "fin_max": 8.6,
+   "texto": "[warm] De Lucía, su hija: «Papá, dame treinta días.»"
   },
   {
    "id": "v3",
@@ -31,14 +31,14 @@
   {
    "id": "v5",
    "inicio": 18,
-   "fin_max": 21.8,
-   "texto": "[tense] Toni duda. Mañana es sábado. Y el teléfono... vuelve a sonar."
+   "fin_max": 22,
+   "texto": "[tense] Mañana es sábado. Y el teléfono... vuelve a sonar."
   },
   {
    "id": "v6",
    "inicio": 22.4,
-   "fin_max": 26.8,
-   "texto": "[curious] ¿Aceptará el reto? Capítulo tres... mañana."
+   "fin_max": 27.4,
+   "texto": "[curious] ¿Aceptará el reto? Capítulo tres, mañana."
   }
  ],
  "musica": {

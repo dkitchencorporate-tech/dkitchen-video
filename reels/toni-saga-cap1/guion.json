@@ -1,0 +1,27 @@
+{
+ "pieza": "toni-saga-cap1",
+ "titulo": "DKitchen · Saga La pizzería de Toni · Cap. 1 · El viernes que casi cierra",
+ "duracion": 28,
+ "fps": 30,
+ "tramos_voz": [
+  { "id": "v1", "inicio": 0.15, "fin_max": 3.7, "texto": "[dramatic] Viernes, nueve y cuarto. En la pizzería de Toni... el teléfono no para." },
+  { "id": "v2", "inicio": 4.0, "fin_max": 8.3, "texto": "[tense] Toni lo apunta todo a mano. Cinco pedidos a la vez. Y entonces... se equivoca." },
+  { "id": "v3", "inicio": 8.7, "fin_max": 12.6, "texto": "[sad] La clienta se va. Sin su pizza. Y sin ganas de volver." },
+  { "id": "v4", "inicio": 13.0, "fin_max": 17.3, "texto": "[whispers] Cierra a medianoche, agotado... y bajo la puerta, encuentra una nota." },
+  { "id": "v5", "inicio": 17.8, "fin_max": 21.8, "texto": "[dramatic] «Si el sábado vuelve a pasar... esto se acaba.»" },
+  { "id": "v6", "inicio": 22.4, "fin_max": 26.8, "texto": "[curious] ¿Quién ha dejado la nota? Capítulo dos... esta tarde." }
+ ],
+ "musica": {
+  "api": true,
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "8-bit chiptune soundtrack for a retro video game story, 29 seconds, instrumental. Starts frantic and playful: fast square-wave arpeggios and a ringing-telephone motif, rising tension for 8 seconds; then a sad minor-key 8-bit melody slowing down; at 13 seconds a quiet mysterious night theme with soft pulses and suspense; ends on an unresolved cliffhanger chord at 28 seconds. Leaves space for a voiceover, no vocals."
+ },
+ "qc": { "lufs": -14, "tolerancia_lufs": 1, "true_peak_max": -1, "lra_max": 11, "congelado_max_s": 0.6, "negro_max_s": 0.1 },
+ "voz": {
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
+  "ajustes": { "stability": 0.5, "similarity_boost": 0.85, "use_speaker_boost": true }
+ },
+ "carve_fuerza": 0.8
+}

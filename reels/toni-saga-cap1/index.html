@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/><title>DKitchen · Saga Toni · Cap. 1</title><script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script><link rel="stylesheet" href="marca/tokens.css"/><link rel="stylesheet" href="marca/fuentes.css"/><style>@font-face { font-family: 'Bricolage Grotesque'; src: url('marca/fuentes/bricolage-grotesque-latin.woff2') format('woff2'); font-weight: 200 800; font-display: block; }@font-face { font-family: 'Inter'; src: url('marca/fuentes/inter-latin.woff2') format('woff2'); font-weight: 100 900; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-latin.woff2') format('woff2'); font-weight: 300 700; font-style: normal; font-display: block; }@font-face { font-family: 'Cormorant Garamond'; src: url('marca/fuentes/cormorant-garamond-italic-latin.woff2') format('woff2'); font-weight: 300 700; font-style: italic; font-display: block; }
+*{box-sizing:border-box}body{margin:0}
+#raiz{position:relative;width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#0A080C}
+.lleno{position:absolute;inset:0}
+.px{position:absolute;image-rendering:pixelated}
+.px svg{display:block;shape-rendering:crispEdges}
+/* local en pixel art: pared de ladrillo, suelo a cuadros, horno y ventana */
+#sala{position:absolute;inset:0;background:#2a1418}
+#pared{position:absolute;left:0;right:0;top:0;height:1180px;background:
+ repeating-linear-gradient(0deg,#3d1a1f 0 6px,transparent 6px 48px),
+ repeating-linear-gradient(90deg,#3d1a1f 0 6px,transparent 6px 96px),
+ linear-gradient(#7a2e2a,#5e2224)}
+#suelo{position:absolute;left:0;right:0;top:1180px;bottom:0;background:
+ repeating-conic-gradient(#e9dfcf 0 25%,#2b2b3a 0 50%) 0 0/96px 96px}
+#mostr{position:absolute;left:0;right:0;top:1060px;height:150px;background:#6b3f22;border-top:18px solid #9a6236;box-shadow:inset 0 -18px 0 #4a2a15}
+#horno{position:absolute;left:600px;top:560px;width:300px;height:360px;background:#8a8a92;border:12px solid #4a4a52;border-radius:150px 150px 0 0;box-shadow:inset 0 -24px 0 #6a6a72}
+#boca{position:absolute;left:66px;top:150px;width:144px;height:120px;background:#140808;border-radius:72px 72px 0 0;overflow:hidden}
+#fuego{position:absolute;left:12px;right:12px;bottom:0;height:72px;background:
+ linear-gradient(0deg,#ffd24a 0 24px,#ff8a1f 24px 48px,#e03a1a 48px 72px)}
+#ventana{position:absolute;left:96px;top:420px;width:288px;height:240px;background:#141a3a;border:18px solid #9a6236;box-shadow:inset 0 0 0 6px #4a2a15}
+#luna{position:absolute;left:156px;top:36px;width:60px;height:60px;background:#f7e7bf;box-shadow:12px 0 0 #f7e7bf,0 12px 0 #f7e7bf,12px 12px 0 #f7e7bf}
+.estr{position:absolute;width:12px;height:12px;background:#f7e7bf}
+#cartel{position:absolute;left:96px;top:330px;width:288px;padding:14px 0;text-align:center;background:#1d6b3a;color:#ffd24a;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;border:6px solid #0f3a20}
+/* HUD de videojuego (dentro de la zona segura) */
+#hud{position:absolute;left:68px;top:280px;width:822px;display:flex;justify-content:space-between;align-items:center;font:800 40px/1 'Bricolage Grotesque',sans-serif;color:#fff;text-shadow:4px 4px 0 #000}
+#reloj{background:#000;color:#7CFF9E;padding:12px 18px;border:6px solid #7CFF9E;letter-spacing:.08em}
+#vidas{display:flex;gap:12px}
+#ped{display:flex;gap:10px;align-items:center}
+#ped .n{position:relative;width:46px;height:46px}
+#ped .n span{position:absolute;inset:0;text-align:center;color:#ffd24a;opacity:0}
+/* titulares */
+.tit{position:absolute;left:68px;width:822px;margin:0;font:800 96px/.95 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;color:#fff;text-shadow:6px 6px 0 #000,0 0 40px rgba(0,0,0,.6)}
+.kick{position:absolute;left:68px;margin:0;font:800 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.14em;color:#ffd24a;text-shadow:4px 4px 0 #000;text-transform:uppercase}
+.oro{color:#E9C877}
+.err{position:absolute;left:68px;width:822px;text-align:center;margin:0;font:800 170px/1 'Bricolage Grotesque',sans-serif;color:#ff3b3b;letter-spacing:.04em;text-shadow:10px 10px 0 #000,-4px -4px 0 #fff}
+.tk{position:absolute;width:96px;height:120px;background:#f7f5f2;border:6px solid #000;opacity:0}
+.tk::before{content:'';position:absolute;left:12px;right:12px;top:18px;height:72px;background:repeating-linear-gradient(180deg,#6a6a72 0 6px,transparent 6px 18px)}
+#noche{position:absolute;inset:0;background:#05040a;opacity:0}
+#luzpuerta{position:absolute;left:300px;top:1150px;width:480px;height:30px;background:#ffd24a;opacity:0;filter:blur(6px)}
+#puerta{position:absolute;left:300px;top:590px;width:480px;height:590px;background:#5a3418;border:18px solid #2a160a;opacity:0}
+#puerta i{position:absolute;right:36px;top:290px;width:24px;height:24px;background:#ffd24a}
+#nota{position:absolute;left:330px;top:1140px;width:120px;height:60px;background:#f7f5f2;border:6px solid #000;opacity:0}
+#zoom{position:absolute;left:68px;top:420px;width:822px;height:820px;background:#f7f0dc;border:14px solid #000;box-shadow:18px 18px 0 #000;opacity:0;padding:90px 70px;transform:rotate(-2deg)}
+#zoom p{margin:0;font:italic 600 92px/1.08 'Cormorant Garamond',serif;color:#1a0a10}
+#zoom p span{opacity:0}
+#zoom small{position:absolute;right:60px;bottom:60px;font:800 30px/1 'Bricolage Grotesque',sans-serif;color:#6E0C2B;letter-spacing:.1em}
+#cierre{position:absolute;inset:0;background:radial-gradient(ellipse 75% 50% at 50% 45%,#3E0515 0%,#160a10 60%,#0A080C 100%);opacity:0}
+.cont{position:absolute;left:68px;top:330px;margin:0;font:800 44px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.3em;color:#7CFF9E;text-shadow:4px 4px 0 #000}
+.cta{position:absolute;left:68px;top:930px;width:790px;padding:30px 38px;background:#ffd24a;border:8px solid #000;box-shadow:14px 14px 0 #000;color:#1a0a10;font:800 60px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;transform-origin:0 50%}
+.cta small{display:block;margin-bottom:10px;font:800 28px/1 'Inter',sans-serif;letter-spacing:.12em;color:#6E0C2B}
+.firma{position:absolute;left:68px;top:1200px;width:780px;display:flex;align-items:center;gap:26px;font:500 30px/1.25 'Inter',sans-serif;color:#F7E7BF}
+.firma b{font:800 58px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;color:#fff;padding-right:26px;border-right:2px solid #D9B25C}
+.rot{position:absolute;left:68px;top:1340px;margin:0;font:500 22px/1 'Inter',sans-serif;color:rgba(247,231,191,.6)}
+</style></head><body>
+<div id="raiz" data-composition-id="toni-saga-cap1" data-start="0" data-width="1080" data-height="1920" data-duration="28">
+  <div id="sala" data-layout-allow-overflow>
+    <div id="pared"></div><div id="suelo"></div>
+    <div id="ventana"><div id="luna"></div><i class="estr" style="left:40px;top:40px"></i><i class="estr" style="left:90px;top:120px"></i><i class="estr" style="left:220px;top:150px"></i></div>
+    <div id="cartel">PIZZERÍA TONI</div>
+    <div id="horno"><div id="boca"><div id="fuego"></div></div></div>
+    <div id="mostr"></div>
+    <div class="px" id="tel" style="left:420px;top:960px"></div>
+    <div class="px" id="toni" style="left:250px;top:760px"></div>
+    <div class="px" id="clienta" style="left:1100px;top:760px"></div>
+    <div class="px" id="pizza" style="left:500px;top:1000px;opacity:0"></div>
+    <div class="tk" id="tk0" style="left:220px;top:820px"></div><div class="tk" id="tk1" style="left:520px;top:780px"></div><div class="tk" id="tk2" style="left:360px;top:700px"></div><div class="tk" id="tk3" style="left:640px;top:860px"></div><div class="tk" id="tk4" style="left:150px;top:640px"></div>
+    <div id="noche"></div>
+    <div id="puerta"><i></i></div>
+    <div id="luzpuerta"></div>
+    <div id="nota"></div>
+  </div>
+  <div id="hud" data-layout-allow-overlap>
+    <div id="reloj"><span id="r1">VIE 21:15</span></div>
+    <div id="ped">PEDIDOS <div class="n"><span id="n0" style="opacity:1">0</span><span id="n1">1</span><span id="n2">2</span><span id="n3">3</span><span id="n4">4</span><span id="n5">5</span></div></div>
+    <div id="vidas"><div class="px" id="c1" style="position:relative"></div><div class="px" id="c2" style="position:relative"></div><div class="px" id="c3" style="position:relative"></div></div>
+  </div>
+  <p class="kick" id="k1" style="top:400px">Capítulo 1</p>
+  <h1 class="tit" id="t1" style="top:450px">El viernes que<br/><span class="oro">casi cierra.</span></h1>
+  <p class="kick" id="k2" style="top:400px">5 pedidos a la vez</p>
+  <p class="tit" id="t2" style="top:450px">Todo a mano.</p>
+  <p class="err" id="err" style="top:560px">¡ERROR!</p>
+  <p class="kick" id="k3" style="top:400px">Cliente perdido</p>
+  <p class="tit" id="t3" style="top:450px">Sin pizza.<br/><span class="oro">Y sin volver.</span></p>
+  <p class="kick" id="k4" style="top:400px">00:00 · Cierre</p>
+  <p class="tit" id="t4" style="top:450px">Bajo la puerta…</p>
+  <div id="zoom"><p><span>«Si</span> <span>el</span> <span>sábado</span> <span>vuelve</span> <span>a</span> <span>pasar…</span> <span>esto</span> <span>se</span> <span>acaba.»</span></p><small>— ???</small></div>
+  <div id="cierre"></div>
+  <p class="cont" id="cont">CONTINUARÁ…</p>
+  <h2 class="tit" id="t6" style="top:420px;font-size:104px">¿Quién ha dejado<br/><span class="oro">la nota?</span></h2>
+  <div class="cta" id="cta"><small>LA PIZZERÍA DE TONI</small>Cap. 2 · esta tarde</div>
+  <div class="firma" id="fm"><b>DKitchen</b><span>dkitchencorporate.es<br/>Apps propias para bares</span></div>
+  <p class="rot" id="rot">Recreación · personajes ficticios</p>
+  <audio id="musica" data-audio-group="musica" src="audio/musica.mp3" data-start="0" data-duration="28" data-track-index="21" data-volume="0.5"></audio>
+  <audio id="voz-v1" data-audio-group="voz" src="audio/voz-v1.mp3" data-start="0.15" data-duration="3.5" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v2" data-audio-group="voz" src="audio/voz-v2.mp3" data-start="4.0" data-duration="4.3" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v3" data-audio-group="voz" src="audio/voz-v3.mp3" data-start="8.7" data-duration="3.9" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v4" data-audio-group="voz" src="audio/voz-v4.mp3" data-start="13.0" data-duration="4.3" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v5" data-audio-group="voz" src="audio/voz-v5.mp3" data-start="17.8" data-duration="4.0" data-track-index="24" data-volume="1"></audio>
+  <audio id="voz-v6" data-audio-group="voz" src="audio/voz-v6.mp3" data-start="22.4" data-duration="4.4" data-track-index="24" data-volume="1"></audio>
+  <audio id="sfx-1" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="0" data-duration="0.9" data-track-index="22" data-volume="1"></audio>
+  <audio id="sfx-2" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="4.4" data-duration="0.3" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-3" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="5.2" data-duration="0.3" data-track-index="25" data-volume="0.6"></audio>
+  <audio id="sfx-4" data-audio-group="sfx" src="marca/sonido/tick.mp3" data-start="6.0" data-duration="0.3" data-track-index="23" data-volume="0.6"></audio>
+  <audio id="sfx-5" data-audio-group="sfx" src="marca/sonido/impacto-suave.mp3" data-start="7.6" data-duration="0.9" data-track-index="22" data-volume="1"></audio>
+  <audio id="sfx-6" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="11.4" data-duration="0.4" data-track-index="23" data-volume="0.7"></audio>
+  <audio id="sfx-7" data-audio-group="sfx" src="marca/sonido/whoosh.mp3" data-start="15.9" data-duration="0.4" data-track-index="22" data-volume="0.6"></audio>
+  <audio id="sfx-8" data-audio-group="sfx" src="marca/sonido/pop.mp3" data-start="17.6" data-duration="0.4" data-track-index="23" data-volume="0.8"></audio>
+  <audio id="sfx-9" data-audio-group="sfx" src="marca/sonido/cierre.mp3" data-start="22.2" data-duration="1" data-track-index="22" data-volume="0.85"></audio>
+</div>
+<script>
+// Sprites de pixel art dibujados en código (deterministas): cada letra es un color, '.' transparente.
+const PAL={K:'#120a0e',W:'#f7f5f2',S:'#f1c08f',M:'#3a2414',A:'#6E0C2B',P:'#2b2b3a',B:'#1a1a1a',H:'#7a3b1e',D:'#2f6fb0',R:'#d8282c',G:'#9a9aa2',Y:'#ffd24a',O:'#e0701a',L:'#c9302c'};
+const svg=(rows,p)=>{const w=rows[0].length,h=rows.length;let r='';rows.forEach((row,y)=>[...row].forEach((c,x)=>{if(c!=='.')r+=`<rect x="${x*p}" y="${y*p}" width="${p}" height="${p}" fill="${PAL[c]}"/>`;}));return `<svg width="${w*p}" height="${h*p}" viewBox="0 0 ${w*p} ${h*p}">${r}</svg>`;};
+const TONI=['....KKKKKKKK....','...KWWWWWWWWK...','..KWWWWWWWWWWK..','..KWWWWWWWWWWK..','...KWWWWWWWWK...','...KKKKKKKKKK...','...KSSSSSSSSK...','...KSKSSSSKSK...','...KSSSSSSSSK...','...KSMMMMMMSK...','...KSSMSSMSSK...','....KSSSSSSK....','..KKWWWWWWWWKK..','.KSWWWAAAAWWWSK.','.KSWWAAAAAAWWSK.','.KSKKAAAAAAKKSK.','....KAAAAAAK....','....KAAAAAAK....','....KPPKKPPK....','....KPPK.KPPK...','...KBBBK.KBBBK..','...KKKKK.KKKKK..'];
+const CLI=['....KKKKKKKK....','...KHHHHHHHHK...','..KHHHHHHHHHHK..','..KHSSSSSSSSHK..','..KHSKSSSSKSHK..','..KHSSSSSSSSHK..','..KHSSKKKKSSHK..','..KHHSSSSSSHHK..','...KHKSSSSKHK...','....KDDDDDDK....','...KDDDDDDDDK...','..KSDDDDDDDDSK..','..KSDDDDDDDDSK..','...KDDDDDDDDK...','...KDDDDDDDDK...','..KDDDDDDDDDDK..','..KKKKKKKKKKKK..','....KSK..KSK....','....KSK..KSK....','...KBBK..KBBK...','...KKKK..KKKK...'];
+const TEL=['..KKKKKKKKKK..','.KRRRRRRRRRRK.','KRRKKKKKKKKRRK','KRK........KRK','KKK.KKKKKK.KKK','...KRRRRRRK...','..KRRWRWRWRK..','..KRRRRRRRRK..','..KRRWRWRWRK..','..KKKKKKKKKK..'];
+const COR=['.KK.KK.','KRRKRRK','KRRRRRK','.KRRRK.','..KRK..','...K...'];
+const PIZ=['...KKKKKK...','..KOOOOOOK..','.KOYYLYYYOK.','KOYLYYYYLYOK','KOYYYGYYYYOK','KOYYYYYLYYOK','.KOYLYYYYOK.','..KOOOOOOK..','...KKKKKK...'];
+document.getElementById('toni').innerHTML=svg(TONI,14);
+document.getElementById('clienta').innerHTML=svg(CLI,14);
+document.getElementById('tel').innerHTML=svg(TEL,10);
+document.getElementById('pizza').innerHTML=svg(PIZ,10);
+['c1','c2','c3'].forEach(i=>document.getElementById(i).innerHTML=svg(COR,7));
+
+const tl=gsap.timeline({paused:true});
+const T=['#k1','#t1','#k2','#t2','#err','#k3','#t3','#k4','#t4','#cont','#t6','#cta','#fm','#rot'];
+tl.set(T,{opacity:0},0);
+const sube=(q,t,d)=>tl.fromTo(q,{y:40,opacity:0},{y:0,opacity:1,duration:d||.35,ease:'steps(4)'},t);
+const sale=(q,t)=>tl.to(q,{opacity:0,duration:.2,ease:'steps(2)'},t);
+// fuego del horno y movimiento de cámara continuo
+tl.fromTo('#fuego',{scaleY:1},{scaleY:.7,duration:.25,repeat:55,yoyo:true,ease:'steps(2)',transformOrigin:'50% 100%'},0);
+tl.fromTo('#sala',{scale:1.04},{scale:1.1,duration:13,ease:'none',transformOrigin:'45% 60%'},0);
+// E1 · 0-4 s: título y teléfono sonando
+tl.fromTo('#k1',{x:-60,opacity:0},{x:0,opacity:1,duration:.3,ease:'steps(3)'},0);
+tl.fromTo('#t1',{scale:1.15,opacity:0,transformOrigin:'0 50%'},{scale:1,opacity:1,duration:.3,ease:'steps(3)'},.05);
+tl.fromTo('#tel',{x:-6,y:0},{x:6,y:-6,duration:.06,repeat:57,yoyo:true,ease:'steps(1)'},.3);
+tl.fromTo('#toni',{y:0},{y:-14,duration:.3,repeat:12,yoyo:true,ease:'steps(1)'},.2);
+sale(['#k1','#t1'],3.75);
+// E2 · 4-8.4 s: cinco pedidos, Toni corre, papeles volando, ERROR
+sube('#k2',3.95);sube('#t2',4.0);
+tl.to('#toni',{x:300,duration:.5,repeat:6,yoyo:true,ease:'steps(5)'},4.1);
+[0,1,2,3,4].forEach(k=>{tl.fromTo('#tk'+k,{opacity:0,y:120,rotation:0},{opacity:1,y:-160-k*30,rotation:(k%2?1:-1)*(20+k*8),duration:1.2,ease:'steps(6)'},4.3+k*.55);tl.to('#tk'+k,{opacity:0,y:'-=120',duration:.6,ease:'steps(3)'},6.4+k*.25);
+ tl.set('#n'+k,{opacity:0},4.4+k*.8);tl.set('#n'+(k+1),{opacity:1},4.4+k*.8);});
+sale(['#k2','#t2'],7.5);
+tl.fromTo('#err',{opacity:0,scale:2.4},{opacity:1,scale:1,duration:.2,ease:'steps(3)'},7.6);
+tl.fromTo('#raiz',{x:0},{x:14,duration:.05,repeat:9,yoyo:true,ease:'steps(1)'},7.6);
+tl.fromTo('#pizza',{opacity:0,y:0},{opacity:1,y:-40,duration:.3,ease:'steps(3)'},7.7);
+sale('#err',8.55);
+// E3 · 8.7-12.8 s: la clienta entra, recibe la pizza equivocada y se va; se pierde un corazón
+tl.fromTo('#clienta',{x:0},{x:-460,duration:1.2,ease:'steps(8)'},8.6);
+sube('#k3',9.6);sube('#t3',9.7);
+tl.to('#clienta',{y:-20,duration:.12,repeat:5,yoyo:true,ease:'steps(1)'},10.0);
+tl.to('#pizza',{opacity:0,duration:.2,ease:'steps(2)'},10.6);
+tl.to('#clienta',{x:200,duration:1.3,ease:'steps(8)'},11.2);
+tl.fromTo('#c3',{opacity:1,scale:1},{opacity:0,scale:1.8,duration:.4,ease:'steps(4)'},11.3);
+sale(['#k3','#t3'],12.7);
+// E4 · 12.8-17.6 s: medianoche, puerta y la nota que entra por debajo
+tl.to('#noche',{opacity:.82,duration:.6,ease:'steps(4)'},12.8);
+tl.set('#r1',{textContent:'SÁB 00:00'},13.1);
+tl.to('#puerta',{opacity:1,duration:.4,ease:'steps(4)'},13.1);
+tl.to('#luzpuerta',{opacity:.9,duration:.4,ease:'steps(3)'},13.3);
+tl.to('#toni',{x:120,duration:1.4,ease:'steps(8)'},13.3);
+sube('#k4',13.2);sube('#t4',13.3);
+tl.fromTo('#nota',{opacity:0,x:-60},{opacity:1,x:120,duration:1,ease:'steps(6)'},15.6);
+tl.to('#toni',{y:-24,duration:.12,repeat:3,yoyo:true,ease:'steps(1)'},16.6);
+sale(['#k4','#t4'],17.4);
+// E5 · 17.6-22.2 s: la nota en primer plano, palabra a palabra
+tl.fromTo('#zoom',{opacity:0,scale:.3},{opacity:1,scale:1,duration:.35,ease:'steps(5)'},17.6);
+document.querySelectorAll('#zoom p span').forEach((s,i)=>tl.to(s,{opacity:1,duration:.12,ease:'steps(1)'},18.0+i*.38));
+tl.to('#zoom',{rotation:1,duration:4,ease:'none'},18);
+tl.to('#zoom',{opacity:0,duration:.3,ease:'steps(3)'},22.0);
+// E6 · 22.2-28 s: continuará
+tl.to('#cierre',{opacity:1,duration:.4,ease:'steps(4)'},22.0);
+tl.to('#hud',{opacity:0,duration:.3,ease:'steps(3)'},22.0);
+tl.fromTo('#cont',{opacity:0},{opacity:1,duration:.1,repeat:5,yoyo:true,ease:'steps(1)'},22.3);tl.set('#cont',{opacity:1},22.9);
+tl.fromTo('#t6',{opacity:0,scale:.7,transformOrigin:'0 50%'},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},22.5);
+tl.fromTo('#cta',{opacity:0,scale:.6},{opacity:1,scale:1,duration:.35,ease:'steps(4)'},24.4);
+tl.to('#cta',{scale:1.05,duration:.35,yoyo:true,repeat:5,ease:'steps(2)'},25.0);
+tl.to('#fm',{opacity:1,duration:.4,ease:'steps(3)'},25.2);tl.to('#rot',{opacity:1,duration:.4,ease:'steps(3)'},25.4);
+
+window.__timelines['toni-saga-cap1']=tl;
+</script></body></html>

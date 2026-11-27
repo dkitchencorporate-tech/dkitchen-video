@@ -1,0 +1,68 @@
+{
+ "pieza": "toni-saga-cap4",
+ "titulo": "DKitchen · Saga La pizzería de Toni (piloto pixel art) · Cap. 4 · El jefe final",
+ "duracion": 28,
+ "fps": 30,
+ "tramos_voz": [
+  {
+   "id": "v1",
+   "inicio": 0.15,
+   "fin_max": 3.95,
+   "texto": "[dramatic] Capítulo cuatro. El teléfono ataca de nuevo."
+  },
+  {
+   "id": "v2",
+   "inicio": 4.2,
+   "fin_max": 8.6,
+   "texto": "[excited] Pero Lucía tiene un truco: pausar pedidos."
+  },
+  {
+   "id": "v3",
+   "inicio": 8.8,
+   "fin_max": 12.9,
+   "texto": "[happy] La cocina respira. ¡Nivel superado!"
+  },
+  {
+   "id": "v4",
+   "inicio": 13.2,
+   "fin_max": 17.7,
+   "texto": "[ominous] Entonces aparece... el Repartidor Gris."
+  },
+  {
+   "id": "v5",
+   "inicio": 18,
+   "fin_max": 22,
+   "texto": "[tense] Y de cada pedido, se queda hasta un treinta por ciento."
+  },
+  {
+   "id": "v6",
+   "inicio": 22.4,
+   "fin_max": 27.4,
+   "texto": "[curious] ¿Cuánto le cuesta de verdad? Capítulo cinco, mañana."
+  }
+ ],
+ "musica": {
+  "api": true,
+  "origen": "ElevenLabs Music (API), pista nueva",
+  "prompt": "8-bit chiptune boss battle music, 29 seconds, instrumental. Intense boss theme with fast bass for 8 seconds, a triumphant level-clear jingle at 9 seconds, then at 13 seconds a dark ominous villain theme in minor key with slow heavy pulses, ends on an unresolved cliffhanger chord at 28 seconds. Leaves space for a voiceover, no vocals."
+ },
+ "qc": {
+  "lufs": -14,
+  "tolerancia_lufs": 1,
+  "true_peak_max": -1,
+  "lra_max": 11,
+  "congelado_max_s": 0.6,
+  "negro_max_s": 0.1
+ },
+ "voz": {
+  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
+  "nombre": "Álvaro - Cool and Energetic",
+  "modelo": "eleven_v3",
+  "ajustes": {
+   "stability": 0.5,
+   "similarity_boost": 0.85,
+   "use_speaker_boost": true
+  }
+ },
+ "carve_fuerza": 0.8
+}

@@ -1,0 +1,1 @@
+Serie «Si yo tuviera…», pieza 1 (pizzería). Fotos propias generadas con Flow; tipografía y gráficos en código (HyperFrames). Locución: ElevenLabs v3, voz Álvaro. Música original: ElevenLabs Music. Efectos: marca/sonido. Cifras de ejemplo.

@@ -75,14 +75,14 @@
   "negro_max_s": 0.1
  },
  "voz": {
-  "voice_id": "ozbKZapo4Cy6jU7KTHtp",
-  "nombre": "Álvaro - Cool and Energetic",
+  "voice_id": "dlGxemPxFMTY7iXagmOj",
+  "nombre": "Fernando Martínez - Rapid, Persuasive (biblioteca ElevenLabs, la voz en español más usada en 2026)",
   "modelo": "eleven_v3",
   "ajustes": {
    "stability": 0.5,
    "similarity_boost": 0.85,
    "use_speaker_boost": true,
-   "speed": 1.1
+   "speed": 1.05
   }
  },
  "carve_fuerza": 0.8

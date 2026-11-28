@@ -1,0 +1,75 @@
+name: Analizar referencia (inversa)
+# Descompone un vídeo de referencia para estudiarlo (no se publica nada): datos técnicos, cortes de escena,
+# fotogramas, hoja de contacto, texto en pantalla (OCR), audio separado (voz / música), transcripción con
+# tiempos por palabra, sonoridad, silencios y ritmo. Resultado solo como artefacto temporal (3 días).
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL pública del vídeo (Blob temporal)
+        required: true
+      nombre:
+        description: Nombre corto del análisis
+        required: true
+        default: referencia
+permissions:
+  contents: read
+jobs:
+  analizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Herramientas
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg tesseract-ocr tesseract-ocr-spa > /dev/null
+          pip install -q openai-whisper librosa demucs soundfile
+      - name: Descargar
+        run: |
+          mkdir -p out/escenas out/cada_medio_segundo out/audio
+          curl -sSL "${{ inputs.url }}" -o in.mp4
+          ffprobe -v quiet -print_format json -show_format -show_streams in.mp4 > out/00_ffprobe.json
+      - name: Cortes de escena y fotogramas
+        run: |
+          ffmpeg -hide_banner -i in.mp4 -vf "select='gt(scene,0.25)',showinfo" -vsync vfr out/escenas/corte_%03d.jpg 2> out/01_cortes_showinfo.txt || true
+          grep -o 'pts_time:[0-9.]*' out/01_cortes_showinfo.txt | cut -d: -f2 > out/01_cortes_segundos.txt || true
+          ffmpeg -hide_banner -loglevel error -i in.mp4 -vf fps=2,scale=360:-2 out/cada_medio_segundo/f_%04d.jpg
+          ffmpeg -hide_banner -loglevel error -i in.mp4 -vf "fps=2,scale=240:-2,tile=8x8:padding=4:color=white" out/02_hoja_contacto_%02d.jpg
+          ffmpeg -hide_banner -loglevel error -ss 0 -i in.mp4 -frames:v 1 out/03_primer_fotograma.jpg
+          ffmpeg -hide_banner -loglevel error -i in.mp4 -vf "select='lt(t,3)',fps=10,scale=240:-2,tile=6x5:padding=4:color=white" -frames:v 1 out/04_primeros_3s_a_10fps.jpg
+      - name: Texto en pantalla (OCR por fotograma)
+        run: |
+          for f in out/cada_medio_segundo/*.jpg; do
+            t=$(basename "$f" .jpg | sed 's/f_//'); s=$(python3 -c "print((int('$t')-1)/2)")
+            txt=$(tesseract "$f" - -l spa --psm 6 2>/dev/null | tr '\n' ' ' | tr -s ' ')
+            echo "$s s | $txt" >> out/05_ocr_por_medio_segundo.txt
+          done
+      - name: Audio, voz y música
+        run: |
+          ffmpeg -hide_banner -loglevel error -i in.mp4 -vn -ac 1 -ar 44100 out/audio/completo.wav
+          ffmpeg -hide_banner -i out/audio/completo.wav -af ebur128 -f null - 2> out/06_sonoridad.txt || true
+          ffmpeg -hide_banner -i out/audio/completo.wav -af silencedetect=n=-35dB:d=0.25 -f null - 2> out/07_silencios.txt || true
+          python3 -m demucs --two-stems=vocals -n htdemucs -o out/audio/separado out/audio/completo.wav || echo "demucs falló" > out/audio/demucs_error.txt
+      - name: Transcripción con tiempos por palabra
+        run: |
+          whisper out/audio/completo.wav --model small --language es --word_timestamps True --output_dir out/08_transcripcion --output_format all
+      - name: Ritmo y golpes
+        run: |
+          python3 - <<'PY'
+          import librosa, json
+          y, sr = librosa.load('out/audio/completo.wav', sr=None)
+          tempo, beats = librosa.beat.beat_track(y=y, sr=sr)
+          onsets = librosa.onset.onset_detect(y=y, sr=sr, units='time')
+          rms = librosa.feature.rms(y=y)[0]
+          t = librosa.times_like(rms, sr=sr)
+          json.dump({'duracion_s': len(y)/sr, 'tempo_bpm': float(tempo if not hasattr(tempo,'__len__') else tempo[0]),
+                     'golpes_s': [round(float(x),2) for x in librosa.frames_to_time(beats, sr=sr)],
+                     'ataques_s': [round(float(x),2) for x in onsets],
+                     'energia_por_0_5s': [round(float(rms[(t>=i/2)&(t<(i+1)/2)].mean()),4) for i in range(int(len(y)/sr*2))]},
+                    open('out/09_ritmo.json','w'), indent=1)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: analisis-${{ inputs.nombre }}
+          path: out
+          retention-days: 3

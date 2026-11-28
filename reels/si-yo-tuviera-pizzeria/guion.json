@@ -1,62 +1,62 @@
 {
  "pieza": "si-yo-tuviera-pizzeria",
  "titulo": "DKitchen · Serie «Si yo tuviera…» · 1 · Pizzería: la sexta gratis",
- "duracion": 39,
+ "duracion": 42,
  "fps": 30,
  "tramos_voz": [
   {
    "id": "v1",
    "inicio": 0.1,
-   "fin_max": 3.4,
+   "fin_max": 3,
    "texto": "[confident] Si tuviera una pizzería, haría que me pidieran a mí.",
    "cap": "Si tuviera una pizzería, haría que me pidieran a mí."
   },
   {
    "id": "v2",
-   "inicio": 3.5,
-   "fin_max": 9.2,
+   "inicio": 3.15,
+   "fin_max": 9.9,
    "texto": "Una pizza de quince euros por plataforma: con hasta un treinta por ciento de comisión, me quedan diez cincuenta.",
    "cap": "Una pizza de 15 € por plataforma: con hasta un 30 % de comisión, me quedan 10,50 €."
   },
   {
    "id": "v3",
-   "inicio": 9.3,
-   "fin_max": 13.4,
+   "inicio": 10.05,
+   "fin_max": 15.6,
    "texto": "Así que crearía una dinámica. Cada cinco pedidos directos... la sexta pizza, gratis.",
    "cap": "Así que crearía una dinámica. Cada 5 pedidos directos… la sexta pizza, gratis."
   },
   {
    "id": "v4",
-   "inicio": 13.5,
-   "fin_max": 15.3,
+   "inicio": 15.75,
+   "fin_max": 17.5,
    "texto": "[intrigued] Y aquí está lo interesante.",
    "cap": "Y aquí está lo interesante."
   },
   {
    "id": "v5",
-   "inicio": 15.4,
-   "fin_max": 21.6,
+   "inicio": 17.65,
+   "fin_max": 24.6,
    "texto": "Esa pizza gratis me cuesta unos tres euros de ingredientes. Repartidos en cinco pedidos: sesenta céntimos por pedido.",
    "cap": "Esa pizza gratis me cuesta unos 3 € de ingredientes. Repartidos en 5 pedidos: 0,60 € por pedido."
   },
   {
    "id": "v6",
-   "inicio": 21.7,
-   "fin_max": 26.8,
+   "inicio": 24.75,
+   "fin_max": 30.4,
    "texto": "Pidiendo directo, me quedo catorce cuarenta en vez de diez cincuenta. Casi cuatro euros más por pizza.",
    "cap": "Pidiendo directo, me quedo 14,40 € en vez de 10,50 €. Casi 4 € más por pizza."
   },
   {
    "id": "v7",
-   "inicio": 26.9,
-   "fin_max": 30.8,
+   "inicio": 30.55,
+   "fin_max": 33.8,
    "texto": "Con trescientos pedidos al mes... son más de mil euros.",
    "cap": "Con 300 pedidos al mes… son más de 1.000 €."
   },
   {
    "id": "v8",
-   "inicio": 30.9,
-   "fin_max": 37.2,
+   "inicio": 33.95,
+   "fin_max": 41.6,
    "texto": "No necesitas bajar tus precios. Solo necesitas darle al cliente una razón para pedirte a ti.",
    "cap": "No necesitas bajar tus precios. Solo necesitas darle al cliente una razón para pedirte a ti."
   }
@@ -64,7 +64,7 @@
  "musica": {
   "api": true,
   "origen": "ElevenLabs Music (API), pista nueva",
-  "prompt": "Modern minimal business-explainer beat for a short vertical video, 136 BPM, instrumental, no vocals. Punchy but soft kick, crisp hi-hats, warm muted plucks and a deep sub bass, confident and intriguing mood, steady energy from the first second, a short filter drop at 13.5 seconds, builds slightly from 27 seconds, ends cleanly at 39 seconds. Leaves space for a voiceover."
+  "prompt": "Modern minimal business-explainer beat for a short vertical video, 136 BPM, instrumental, no vocals. Punchy but soft kick, crisp hi-hats, warm muted plucks and a deep sub bass, confident and intriguing mood, steady energy from the first second, a short filter drop at 15.7 seconds, builds slightly from 30 seconds, ends cleanly at 42 seconds. Leaves space for a voiceover."
  },
  "qc": {
   "lufs": -14,
